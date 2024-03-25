@@ -1,13 +1,13 @@
-DROP TABLE Admission IF EXISTS;
-DROP TABLE CompMod   IF EXISTS;
+DROP TABLE IF EXISTS Admission;
+DROP TABLE IF EXISTS CompMod  ;
 
-DROP TABLE Note       IF EXISTS;
-DROP TABLE Competence IF EXISTS;
+DROP TABLE IF EXISTS Note      ;
+DROP TABLE IF EXISTS Competence;
 
-DROP TABLE Utilisateur IF EXISTS;
-DROP TABLE Semestre    IF EXISTS;
-DROP TABLE Etudiant    IF EXISTS;
-DROP TABLE Module      IF EXISTS;
+DROP TABLE IF EXISTS Utilisateur;
+DROP TABLE IF EXISTS Semestre   ;
+DROP TABLE IF EXISTS Etudiant   ;
+DROP TABLE IF EXISTS Module     ;
 
 
 /*                           */
@@ -18,7 +18,7 @@ CREATE TABLE Module
 (
 	modId   INTEGER     PRIMARY KEY                                                     ,
 	modLib  VARCHAR(50)                                                                 ,
-	modType VARCHAR(11) NOT NULL CHECK (typeMod IN ('Ressource', 'Sae', 'Stage', 'PPP'))
+	modType VARCHAR(11) NOT NULL CHECK (modType IN ('Ressource', 'Sae', 'Stage', 'PPP'))
 );
 
 CREATE TABLE Semestre
@@ -29,7 +29,7 @@ CREATE TABLE Semestre
 CREATE TABLE Etudiant
 (
 	etdId       INTEGER     PRIMARY KEY,
-	etdCiv      VARCHAR(3)  CHECK (typeMod IN ('Ressource', 'Sae', 'Stage', 'PPP'))
+	etdCiv      VARCHAR(3)  CHECK (etdCiv IN ('M.', 'Mme')),
 	etdNom      VARCHAR(30) ,
 	etdPrenom   VARCHAR(30) ,
 	etdGroupeTP VARCHAR(10) ,
