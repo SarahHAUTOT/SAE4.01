@@ -1,13 +1,11 @@
 class Module
 {
-	Module(modId, modLib, modType)
+	Module(modId, modLib)
 	{
 		this.modId = modId;
 		this.modLib = modLib;
-		this.modType = modType;
 	}
 
 	getModId  () { return modId; }
 	getModLib () { return modLib; }
-	getModType() { return modType; }
 }
