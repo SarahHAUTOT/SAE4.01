@@ -68,7 +68,12 @@ CREATE TABLE Moyenne
 	PRIMARY KEY (etdId, modId)
 );
 
-
+CREATE TABLE Annee
+(
+	anneId    VARCHAR(30) NOT NULL,
+	anneLib   VARCHAR(30) NOT NULL,
+	PRIMARY KEY (anneId)
+);
 
 
 /*                           */
@@ -80,11 +85,23 @@ CREATE TABLE CompMod
 	compId  INTEGER REFERENCES Competence(compId),
 	modId   INTEGER REFERENCES Module  (modId)   ,
 	modCoef FLOAT   CHECK      (modCoef > 0)
+	PRIMARY KEY (compId,modId)
 );
 
-CREATE TABLE Admission 
+CREATE TABLE AdminComp
 (
-	compId  INTEGER REFERENCES Competence(compId),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
-	admi    VARCHAR(5)         CHECK (admi IN ('ADM','CMP','AJ','ADSUP'))
+	compId  INTEGER REFERENCES Competence(compId),
+	anneId  INTEGER REFERENCES Annee(anneId),
+	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP'))
+	PRIMARY KEY (anneId,compId,etdId)
+);
+
+CREATE TABLE AdminAn
+(
+	etdId   INTEGER REFERENCES Etudiant(etdId),
+	anneId  INTEGER REFERENCES Annee(anneId),
+	admi    VARCHAR(5) CHECK (admi IN ('ADM','PASD','RED','NAR', 'ABL', 'NR' ))
+			           DEFAULT 'NR' /* NR pour non-renseigné */
+	PRIMARY KEY (anneId,etdId)
 );
