@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS Admission;
+DROP TABLE IF EXISTS AdmAnnee ;
+DROP TABLE IF EXISTS AdmComp  ;
 DROP TABLE IF EXISTS CompMod  ;
 
 DROP TABLE IF EXISTS Moyenne   ;
@@ -6,6 +7,7 @@ DROP TABLE IF EXISTS Competence;
 
 DROP TABLE IF EXISTS Utilisateur;
 DROP TABLE IF EXISTS Semestre   ;
+DROP TABLE IF EXISTS Annee      ;
 DROP TABLE IF EXISTS Etudiant   ;
 DROP TABLE IF EXISTS Module     ;
 
@@ -70,7 +72,7 @@ CREATE TABLE Moyenne
 
 CREATE TABLE Annee
 (
-	anneId    VARCHAR(30) NOT NULL,
+	anneId    SERIAL      NOT NULL,
 	anneLib   VARCHAR(30) NOT NULL,
 	PRIMARY KEY (anneId)
 );
@@ -84,24 +86,23 @@ CREATE TABLE CompMod
 (
 	compId  INTEGER REFERENCES Competence(compId),
 	modId   INTEGER REFERENCES Module  (modId)   ,
-	modCoef FLOAT   CHECK      (modCoef > 0)
+	modCoef FLOAT   CHECK      (modCoef > 0)     ,
 	PRIMARY KEY (compId,modId)
 );
 
-CREATE TABLE AdminComp
+CREATE TABLE AdmComp
 (
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	compId  INTEGER REFERENCES Competence(compId),
 	anneId  INTEGER REFERENCES Annee(anneId),
-	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP'))
+	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP','NR')) DEFAULT 'NR',
 	PRIMARY KEY (anneId,compId,etdId)
 );
 
-CREATE TABLE AdminAn
+CREATE TABLE AdmAnnee
 (
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	anneId  INTEGER REFERENCES Annee(anneId),
-	admi    VARCHAR(5) CHECK (admi IN ('ADM','PASD','RED','NAR', 'ABL', 'NR' ))
-			           DEFAULT 'NR' /* NR pour non-renseigné */
+	admi    VARCHAR(5) CHECK (admi IN ('ADM','PASD','RED','NAR', 'ABL', 'NR' )) DEFAULT 'NR',
 	PRIMARY KEY (anneId,etdId)
 );
