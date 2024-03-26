@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Admission;
 DROP TABLE IF EXISTS CompMod  ;
 
-DROP TABLE IF EXISTS Note      ;
+DROP TABLE IF EXISTS Moyenne   ;
 DROP TABLE IF EXISTS Competence;
 
 DROP TABLE IF EXISTS Utilisateur;
@@ -16,13 +16,13 @@ DROP TABLE IF EXISTS Module     ;
 
 CREATE TABLE Module 
 (
-	modId   INTEGER     PRIMARY KEY,
+	modId   SERIAL      PRIMARY KEY,
 	modLib  VARCHAR(50)                                                                 
 );
 
 CREATE TABLE Semestre
 (
-	semId INTEGER PRIMARY KEY
+	semId SERIAL  PRIMARY KEY
 );
 
 CREATE TABLE Etudiant
@@ -55,17 +55,17 @@ CREATE TABLE Utilisateur
 
 CREATE TABLE Competence 
 (
-	compId  INTEGER PRIMARY KEY  ,
+	compId  SERIAL  PRIMARY KEY  ,
 	compLib VARCHAR (10) NOT NULL,
 	semId   INTEGER REFERENCES Semestre(semId)
 );
 
-CREATE TABLE Note 
+CREATE TABLE Moyenne 
 (
-	noteId  INTEGER PRIMARY KEY,
 	noteVal FLOAT   CHECK      (noteVal > 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
-	modId   INTEGER REFERENCES Module  (modId)    
+	modId   INTEGER REFERENCES Module  (modId),
+	PRIMARY KEY (etdId, modId)
 );
 
 
