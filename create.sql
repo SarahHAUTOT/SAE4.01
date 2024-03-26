@@ -16,9 +16,8 @@ DROP TABLE IF EXISTS Module     ;
 
 CREATE TABLE Module 
 (
-	modId   INTEGER     PRIMARY KEY                                                     ,
-	modLib  VARCHAR(50)                                                                 ,
-	modType VARCHAR(11) NOT NULL CHECK (modType IN ('Ressource', 'Sae', 'Stage', 'PPP'))
+	modId   INTEGER     PRIMARY KEY,
+	modLib  VARCHAR(50)                                                                 
 );
 
 CREATE TABLE Semestre
@@ -34,6 +33,7 @@ CREATE TABLE Etudiant
 	etdPrenom   VARCHAR(30) ,
 	etdGroupeTP VARCHAR(10) ,
 	etdGroupeTD VARCHAR(10) ,
+	etdParcours VARCHAR(30) ,
 	etdBonus    FLOAT       CHECK (etdBonus >= 0) DEFAULT 0,
 	etdBac      VARCHAR(20)
 );
@@ -63,7 +63,7 @@ CREATE TABLE Competence
 CREATE TABLE Note 
 (
 	noteId  INTEGER PRIMARY KEY,
-	noteVal FLOAT   CHECK      (noteVal < 0),
+	noteVal FLOAT   CHECK      (noteVal > 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	modId   INTEGER REFERENCES Module  (modId)    
 );
