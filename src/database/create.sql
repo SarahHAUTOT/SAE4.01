@@ -50,9 +50,9 @@ CREATE TABLE Utilisateur
 
 CREATE TABLE Annee
 (
-	anneId    SERIAL      NOT NULL,
+	anneeId    SERIAL      NOT NULL,
 	anneLib   VARCHAR(30) NOT NULL,
-	PRIMARY KEY (anneId)
+	PRIMARY KEY (anneeId)
 );
 
 
@@ -74,8 +74,8 @@ CREATE TABLE Moyenne
 	noteVal FLOAT   CHECK      (noteVal > 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	modId   INTEGER REFERENCES Module  (modId),
-	anneId  INTEGER REFERENCES Annee   (anneId),
-	PRIMARY KEY (etdId, modId,anneId)
+	anneeId  INTEGER REFERENCES Annee  (anneeId),
+	PRIMARY KEY (etdId, modId,anneeId)
 );
 
 
@@ -95,15 +95,15 @@ CREATE TABLE AdmComp
 (
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	compId  INTEGER REFERENCES Competence(compId),
-	anneId  INTEGER REFERENCES Annee(anneId),
+	anneeId  INTEGER REFERENCES Annee(anneeId),
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP','NR')) DEFAULT 'NR',
-	PRIMARY KEY (anneId,compId,etdId)
+	PRIMARY KEY (anneeId,compId,etdId)
 );
 
 CREATE TABLE AdmAnnee
 (
 	etdId   INTEGER REFERENCES Etudiant(etdId),
-	anneId  INTEGER REFERENCES Annee(anneId),
+	anneeId  INTEGER REFERENCES Annee(anneeId),
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','PASD','RED','NAR', 'ABL', 'NR' )) DEFAULT 'NR',
-	PRIMARY KEY (anneId,etdId)
+	PRIMARY KEY (anneeId,etdId)
 );

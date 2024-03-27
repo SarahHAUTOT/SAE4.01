@@ -29,77 +29,96 @@ $semesters = $statement->fetchAll(PDO::FETCH_ASSOC);
 //For each year 
 foreach ($years as &$year) {
 
-    $year["semesters : "] = [];
+    $year["semesters"] = [];
 
     foreach ($semesters as &$semester) 
     {
         
         //We get the students from this year and semesters
-        $query = "SELECT * FROM Etudiant WHERE etdId IN (SELECT etdId FROM AdmComp a JOIN Competence c ON a.compId = c.compId WHERE anneeId = ".$year["anneid"] . " AND semId = ".$semester["semid"] . ")";
+        $query = "SELECT * FROM Etudiant WHERE etdId IN (SELECT etdId FROM AdmComp a JOIN Competence c ON a.compId = c.compId WHERE a.anneeId = ".$year["anneeid"] . " AND semId = ".$semester["semid"] . ")";
         $statement = $pdo->query($query);
         $students = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $semester ["etd"] = [];
+
         //For each students
-        foreach ($students as &$student) {
+        foreach ($students as &$student) 
+        {
 
             /*                          */
-            /*          GRADES          */
+            /*         MODULES          */
             /*                          */
 
-            //We get the grades from this year and semester
-            $query = "SELECT * FROM Etudiant e JOIN Moyenne m ON e.etdId = m.etdId WHERE m.anneId = " . $year['anneId'] . " AND etdId = " . $student;
+            //We get the grades from this year and semester and student
+            $query = "SELECT * FROM Moyenne m  JOIN Module mo ON mo.modId = m.modId WHERE m.anneeId = " . $year['anneeid'] . " AND etdId = " . $student["etdid"] . " AND m.modId IN (SELECT modId FROM CompMod a JOIN Competence c ON a.compId = c.compId WHERE semId = ".$semester["semid"] . ")";
             $statement = $pdo->query($query);
             $grades = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
-            //Put them 
-            $student['ressources'] = [];
+            //Put them in student
+            $student['modules'] = [];
             foreach ($grades as $grade) {
-                if ($grade['etdid'] == $student['etdid']) {
-                    $student['moy'][] = [
-                        'noteval' => $grade['noteval'],
-                        'modid' => $grade['modid']
-                    ];
-                }
+                $student['modules'][] = [
+                    'modId'   => $grade['modid'],
+                    'modLib'  => $grade['modlib'],
+                    'noteVal' => $grade['noteval']
+                ];
             }
 
-            //Admissions by competences
-            $student['admComp'] = [];
-            foreach ($admissionsByCompetence as $admComp) {
-                
-                echo $admComp['etdid']  . "<br>";
 
-                if (isset($admComp['etdid']) && $admComp['etdid'] == $student['etdid']) {
-                    $student['admComp'][] = [
-                        'compId' => isset($admComp['compid']) ? $admComp['compid'] : null,
-                        'anneId' => isset($admComp['anneid']) ? $admComp['anneid'] : null,
-                        'admi' => isset($admComp['admi']) ? $admComp['admi'] : null
-                    ];
-                }
+
+
+            /*                          */
+            /*       COMPETENCES        */
+            /*                          */
+
+            //We get the competence from this year and semester and student
+            $query = "SELECT * FROM AdmComp a JOIN Competence c ON a.compId = a.compId WHERE anneeId = " . $year['anneeid'] . " AND semId = ".$semester["semid"]. " AND etdId = ".$student["etdid"];
+            $statement = $pdo->query($query);
+            $competences = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+            //Put them in student
+            $student['competences'] = [];
+            foreach ($competences as $competence) {
+                $student['competences'][] = [
+                    'compId'   => $competence['compid'],
+                    'compLib'  => $competence['complib'],
+                    'admi'     => $competence['admi']
+                ];
             }
 
-            //Admissions by year
-            $student['admYear'] = [];
-            foreach ($admissionsByYear as $admYear) {
+
+
+
+            /*                   */
+            /*       YEAR        */
+            /*                   */
+
+            //We get the admission by year
+            $query = "SELECT * FROM AdmAnnee WHERE anneeId = " . $year['anneeid'] . " AND etdId = ".$student["etdid"];
+            $statement = $pdo->query($query);
+            $admYear = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $admYear = $admYear[0];
+
+            //Put them in student
+            $student['admission'] = [
+                    'admi'     => $admYear['admi']
+                ];
+
                 
-                echo $admYear['etdid']  . "<br>";
-
-                if (isset($admYear['etdid']) && $admYear['etdid'] == $student['etdid']) {
-                    $student['admYear'][] = [
-                        'compId' => isset($admYear['compid']) ? $admYear['compid'] : null,
-                        'anneId' => isset($admYear['anneid']) ? $admYear['anneid'] : null,
-                        'admi' => isset($admYear['admi']) ? $admYear['admi'] : null
-                    ];
-                }
-            } 
-
-
+            $semester['etd'][] = [$student];
         }
+
+            
+        $year['semesters'][] = [$semester];
+
+
     }
-
-
 }
+
+
+
 
 
 
@@ -121,8 +140,7 @@ foreach ($years as &$year) {
 
 // Créer un tableau final avec toutes les données
 $data = [
-    'Etudiants' => $students,
-    // 'Competences' => $competences
+    'Years' => $years,
 ];
 
 // Générer le JSON
