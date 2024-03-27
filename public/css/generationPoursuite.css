@@ -20,12 +20,13 @@ div {
     /* Coins arrondis */
     background-color: #6b02777f;
     /* Couleur de fond */
-    width: 700px;
+    width: 90%;
     padding: 30px;
     /* Espace intérieur */
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 
