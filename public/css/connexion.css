@@ -15,13 +15,15 @@ main .container{
 
 main .container h1{
     text-align: center;
-}
-
-.block{
-	justify-content: center;
+	justify-content: center; /* centre horizontalement */
 	align-items: center;
 }
 
+.block{
+}
+
 .ligne{
-	width: 50%;
+	display: flex;
+	justify-content: space-between;
+	width: 70%;
 }
