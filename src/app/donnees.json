@@ -1,0 +1,98 @@
+{
+    "Etudiants": [
+        {
+            "etdid": 1,
+            "etdciv": "M.",
+            "etdnom": "Dupont",
+            "etdprenom": "Jean",
+            "etdgroupetp": "Groupe1",
+            "etdgroupetd": "TD1",
+            "etdparcours": "Math\u00c3\u00a9matiques",
+            "etdbonus": "0",
+            "etdbac": "Bac S",
+            "moyennes": [
+                {
+                    "noteval": "14.5",
+                    "modid": 1
+                },
+                {
+                    "noteval": "16.8",
+                    "modid": 2
+                }
+            ],
+            "admissionsCompetence": [
+                {
+                    "compId": 1,
+                    "anneId": 1,
+                    "admi": "ADM"
+                },
+                {
+                    "compId": 4,
+                    "anneId": 2,
+                    "admi": "ADM"
+                }
+            ]
+        },
+        {
+            "etdid": 2,
+            "etdciv": "Mme",
+            "etdnom": "Durand",
+            "etdprenom": "Marie",
+            "etdgroupetp": "Groupe2",
+            "etdgroupetd": "TD2",
+            "etdparcours": "Biologie",
+            "etdbonus": "0.5",
+            "etdbac": "Bac ES",
+            "moyennes": [
+                {
+                    "noteval": "17.2",
+                    "modid": 1
+                },
+                {
+                    "noteval": "15.9",
+                    "modid": 2
+                }
+            ],
+            "admissionsCompetence": [
+                {
+                    "compId": 1,
+                    "anneId": 1,
+                    "admi": "CMP"
+                },
+                {
+                    "compId": 5,
+                    "anneId": 2,
+                    "admi": "ADSUP"
+                }
+            ]
+        },
+        {
+            "etdid": 3,
+            "etdciv": "M.",
+            "etdnom": "Lefebvre",
+            "etdprenom": "Pierre",
+            "etdgroupetp": "Groupe3",
+            "etdgroupetd": "TD3",
+            "etdparcours": "Informatique",
+            "etdbonus": "1.2",
+            "etdbac": "Bac STI2D",
+            "moyennes": [
+                {
+                    "noteval": "18.3",
+                    "modid": 1
+                },
+                {
+                    "noteval": "19.1",
+                    "modid": 2
+                }
+            ],
+            "admissionsCompetence": [
+                {
+                    "compId": 2,
+                    "anneId": 1,
+                    "admi": "AJ"
+                }
+            ]
+        }
+    ]
+}

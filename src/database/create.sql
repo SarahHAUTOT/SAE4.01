@@ -48,6 +48,13 @@ CREATE TABLE Utilisateur
 	PRIMARY KEY (userLogin, userPassword)
 );
 
+CREATE TABLE Annee
+(
+	anneId    SERIAL      NOT NULL,
+	anneLib   VARCHAR(30) NOT NULL,
+	PRIMARY KEY (anneId)
+);
+
 
 
 
@@ -67,14 +74,8 @@ CREATE TABLE Moyenne
 	noteVal FLOAT   CHECK      (noteVal > 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	modId   INTEGER REFERENCES Module  (modId),
-	PRIMARY KEY (etdId, modId)
-);
-
-CREATE TABLE Annee
-(
-	anneId    SERIAL      NOT NULL,
-	anneLib   VARCHAR(30) NOT NULL,
-	PRIMARY KEY (anneId)
+	anneId  INTEGER REFERENCES Annee   (anneId),
+	PRIMARY KEY (etdId, modId,anneId)
 );
 
 

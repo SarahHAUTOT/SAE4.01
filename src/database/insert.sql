@@ -1,9 +1,12 @@
+DELETE FROM AdmComp;
+DELETE FROM AdmAnnee;
+DELETE FROM Moyenne;
+DELETE FROM Competence;
+
 DELETE FROM Module;
 DELETE FROM Semestre;
 DELETE FROM Etudiant;
 DELETE FROM Utilisateur;
-DELETE FROM Competence;
-DELETE FROM Moyenne;
 
 -- Réinitialiser la séquence pour modId à 0
 ALTER SEQUENCE Module_modId_seq RESTART WITH 1;
@@ -19,6 +22,11 @@ UPDATE Competence SET compId = nextval('Competence_compId_seq');
 INSERT INTO Module (modLib)
 VALUES      ('R1.01'),
             ('R2.02');
+
+INSERT INTO Annee (anneLib) VALUES 
+    ('2021-2022'), -- Année scolaire 2021-2022
+    ('2022-2023'); -- Année scolaire 2022-2023
+
 
 
 INSERT INTO Semestre DEFAULT VALUES;
@@ -49,12 +57,29 @@ VALUES
     ('C.F', 2);
 
 
-INSERT INTO Moyenne (noteVal, etdId, modId) 
-VALUES (14.5, 1, 8),
-       (16.8, 1, 9),
-       (17.2, 2, 8),
-       (15.9, 2, 9),
-       (18.3, 3, 8),
-       (19.1, 3, 9);
+INSERT INTO Moyenne (noteVal, etdId, modId, anneId) 
+VALUES (14.5, 1, 1, 1),
+       (16.8, 1, 2, 1),
+       (17.2, 2, 1, 1),
+       (15.9, 2, 2, 2),
+       (18.3, 3, 1, 2),
+       (19.1, 3, 2, 2);
 
 
+INSERT INTO AdmComp (etdId, compId, anneId, admi)
+VALUES 
+    (1, 1, 1, 'ADM'),   -- Jean Dupont est admis à la compétence C.A pour l'année 1
+    (2, 1, 1, 'CMP'),   -- Marie Durand est complétée à la compétence C.A pour l'année 1
+    (3, 2, 1, 'AJ'),    -- Pierre Lefebvre est ajourné à la compétence C.B pour l'année 1
+    (1, 4, 2, 'ADM'),   -- Jean Dupont est admis à la compétence C.D pour l'année 2
+    (2, 5, 2, 'ADSUP'); -- Marie Durand est admis avec mention à la compétence C.E pour l'année 2
+
+-- Remplir la table AdmAnnee
+INSERT INTO AdmAnnee (etdId, anneId, admi)
+VALUES 
+    (1, 1, 'ADM'),   -- Jean Dupont est admis pour l'année 1
+    (2, 1, 'PASD'),  -- Marie Durand est passé pour l'année 1
+    (3, 1, 'RED'),   -- Pierre Lefebvre est redoublant pour l'année 1
+    (1, 2, 'ADM'),   -- Jean Dupont est admis pour l'année 2
+    (2, 2, 'NAR'),   -- Marie Durand est non admis pour l'année 2
+    (3, 2, 'NR');   -- Marie Durand est non admis pour l'année 2
