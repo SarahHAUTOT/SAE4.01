@@ -1,11 +1,13 @@
 DELETE FROM AdmComp;
 DELETE FROM AdmAnnee;
+DELETE FROM CompMod;
 DELETE FROM Moyenne;
 DELETE FROM Competence;
 
 DELETE FROM Module;
 DELETE FROM Semestre;
 DELETE FROM Etudiant;
+DELETE FROM Annee;
 DELETE FROM Utilisateur;
 
 -- Réinitialiser la séquence pour modId à 0
@@ -17,6 +19,9 @@ UPDATE Semestre SET semId = nextval('Semestre_semId_seq');
 
 ALTER SEQUENCE Competence_compId_seq RESTART WITH 1;
 UPDATE Competence SET compId = nextval('Competence_compId_seq');
+
+ALTER SEQUENCE Annee_anneeId_seq RESTART WITH 1;
+UPDATE Annee SET anneeId = nextval('Annee_anneeId_seq');
 
 
 INSERT INTO Module (modLib)
@@ -57,7 +62,7 @@ VALUES
     ('C.F', 2);
 
 
-INSERT INTO Moyenne (noteVal, etdId, modId, anneId) 
+INSERT INTO Moyenne (noteVal, etdId, modId, anneeId) 
 VALUES (14.5, 1, 1, 1),
        (16.8, 1, 2, 1),
        (17.2, 2, 1, 1),
@@ -66,7 +71,7 @@ VALUES (14.5, 1, 1, 1),
        (19.1, 3, 2, 2);
 
 
-INSERT INTO AdmComp (etdId, compId, anneId, admi)
+INSERT INTO AdmComp (etdId, compId, anneeId, admi)
 VALUES 
     (1, 1, 1, 'ADM'),   -- Jean Dupont est admis à la compétence C.A pour l'année 1
     (2, 1, 1, 'CMP'),   -- Marie Durand est complétée à la compétence C.A pour l'année 1
@@ -75,7 +80,7 @@ VALUES
     (2, 5, 2, 'ADSUP'); -- Marie Durand est admis avec mention à la compétence C.E pour l'année 2
 
 -- Remplir la table AdmAnnee
-INSERT INTO AdmAnnee (etdId, anneId, admi)
+INSERT INTO AdmAnnee (etdId, anneeId, admi)
 VALUES 
     (1, 1, 'ADM'),   -- Jean Dupont est admis pour l'année 1
     (2, 1, 'PASD'),  -- Marie Durand est passé pour l'année 1
@@ -83,3 +88,20 @@ VALUES
     (1, 2, 'ADM'),   -- Jean Dupont est admis pour l'année 2
     (2, 2, 'NAR'),   -- Marie Durand est non admis pour l'année 2
     (3, 2, 'NR');   -- Marie Durand est non admis pour l'année 2
+
+
+
+-- Insertion des données dans la table CompMod
+INSERT INTO CompMod (compId, modId, modCoef) VALUES
+    (1, 1, 1.5),  -- Compétence C.A pour le module R1.01 avec un coefficient de 1.5
+    (1, 2, 1.2),  -- Compétence C.A pour le module R2.02 avec un coefficient de 1.2
+    (2, 1, 1.0),  -- Compétence C.B pour le module R1.01 avec un coefficient de 1.0
+    (2, 2, 1.3),  -- Compétence C.B pour le module R2.02 avec un coefficient de 1.3
+    (3, 1, 0.8),  -- Compétence C.C pour le module R1.01 avec un coefficient de 0.8
+    (3, 2, 1.0),  -- Compétence C.C pour le module R2.02 avec un coefficient de 1.0
+    (4, 1, 1.2),  -- Compétence C.D pour le module R1.01 avec un coefficient de 1.2
+    (4, 2, 1.5),  -- Compétence C.D pour le module R2.02 avec un coefficient de 1.5
+    (5, 1, 1.0),  -- Compétence C.E pour le module R1.01 avec un coefficient de 1.0
+    (5, 2, 1.1),  -- Compétence C.E pour le module R2.02 avec un coefficient de 1.1
+    (6, 1, 0.9),  -- Compétence C.F pour le module R1.01 avec un coefficient de 0.9
+    (6, 2, 0.7);  -- Compétence C.F pour le module R2.02 avec un coefficient de 0.7
