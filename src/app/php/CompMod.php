@@ -1,8 +1,8 @@
 <?php
 class CompMod
 {
-	private int $compId;
-	private int $modId;
+	private int   $compId;
+	private int   $modId;
 	private float $modCoef;
 
 	public function __construct(int $compId, int $modId, float $modCoef)

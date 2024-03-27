@@ -150,7 +150,7 @@ class DB
 
 	public function insertModule(array $tparam)
 	{
-		$requete = 'insert into Module values(?,?,?)';
+		$requete = 'insert into Module values(?,?,?,?)';
 		return $this->execMaj($requete,$tparam);
 	}
 

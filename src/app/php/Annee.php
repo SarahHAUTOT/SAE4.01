@@ -1,7 +1,7 @@
 <?php
 class Annee
 {
-	private int $anneeId;
+	private int    $anneeId;
 	private string $anneLib;
 
 	public function __construct(int $anneeId, string $anneLib)

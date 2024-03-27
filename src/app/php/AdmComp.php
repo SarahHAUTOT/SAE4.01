@@ -1,9 +1,9 @@
 <?php
 class AdmComp
 {
-	private int $etdId;
-	private int $compId;
-	private int $anneeId;
+	private int    $etdId;
+	private int    $compId;
+	private int    $anneeId;
 	private string $admi;
 
 	public function __construct(int $etdId, int $compId, int $anneeId, string $admi)

@@ -1,10 +1,10 @@
 <?php
 class Competence
 {
-	private int $compId;
+	private int    $compId;
 	private string $compCode;
 	private string $compLib;
-	private int $semId;
+	private int    $semId;
 
 	public function __construct(int $compId, string $compCode, string $compLib, int $semId)
 	{

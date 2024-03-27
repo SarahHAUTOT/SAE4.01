@@ -3,7 +3,7 @@ class Utilisateur
 {
 	private string $userLogin;
 	private string $userPassword;
-	private int $userDroit;
+	private int    $userDroit;
 
 	public function __construct(string $userLogin, string $userPassword, int $userDroit)
 	{

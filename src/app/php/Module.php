@@ -1,7 +1,7 @@
 <?php
 class Module
 {
-	private int $modId;
+	private int    $modId;
 	private string $modCode;
 	private string $modCat;
 	private string $modLib;
