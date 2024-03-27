@@ -19,7 +19,9 @@ DROP TABLE IF EXISTS Module     ;
 CREATE TABLE Module 
 (
 	modId   SERIAL      PRIMARY KEY,
-	modLib  VARCHAR(50)                                                                 
+	modCode VARCHAR(10) ,
+	modCat  VARCHAR(20) NOT NULL,
+	modLib  VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Semestre
@@ -37,6 +39,7 @@ CREATE TABLE Etudiant
 	etdGroupeTD VARCHAR(10) ,
 	etdParcours VARCHAR(30) ,
 	etdBonus    FLOAT       CHECK (etdBonus >= 0) DEFAULT 0,
+	etdAbs      INTEGER	    CHECK (etdAbs   >= 0) DEFAULT 0,
 	etdBac      VARCHAR(20)
 );
 
@@ -50,7 +53,7 @@ CREATE TABLE Utilisateur
 
 CREATE TABLE Annee
 (
-	anneeId    SERIAL      NOT NULL,
+	anneeId   SERIAL      NOT NULL,
 	anneLib   VARCHAR(30) NOT NULL,
 	PRIMARY KEY (anneeId)
 );
@@ -64,9 +67,10 @@ CREATE TABLE Annee
 
 CREATE TABLE Competence 
 (
-	compId  SERIAL  PRIMARY KEY  ,
-	compLib VARCHAR (10) NOT NULL,
-	semId   INTEGER REFERENCES Semestre(semId)
+	compId   SERIAL  PRIMARY KEY  ,
+	compCode VARCHAR (10) NOT NULL,
+	compLib  VARCHAR (50) NOT NULL,
+	semId    INTEGER REFERENCES Semestre(semId)
 );
 
 CREATE TABLE Moyenne 
@@ -74,7 +78,7 @@ CREATE TABLE Moyenne
 	noteVal FLOAT   CHECK      (noteVal >= 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	modId   INTEGER REFERENCES Module  (modId),
-	anneeId  INTEGER REFERENCES Annee  (anneeId),
+	anneeId INTEGER REFERENCES Annee   (anneeId),
 	PRIMARY KEY (etdId, modId,anneeId)
 );
 
@@ -93,9 +97,9 @@ CREATE TABLE CompMod
 
 CREATE TABLE AdmComp
 (
-	etdId   INTEGER REFERENCES Etudiant(etdId),
-	compId  INTEGER REFERENCES Competence(compId),
-	anneeId  INTEGER REFERENCES Annee(anneeId),
+	etdId   INTEGER REFERENCES  Etudiant(etdId),
+	compId  INTEGER REFERENCES  Competence(compId),
+	anneeId INTEGER REFERENCES Annee(anneeId),
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP','NR')) DEFAULT 'NR',
 	PRIMARY KEY (anneeId,compId,etdId)
 );
@@ -103,7 +107,7 @@ CREATE TABLE AdmComp
 CREATE TABLE AdmAnnee
 (
 	etdId   INTEGER REFERENCES Etudiant(etdId),
-	anneeId  INTEGER REFERENCES Annee(anneeId),
+	anneeId INTEGER REFERENCES Annee(anneeId),
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','PASD','RED','NAR', 'ABL', 'NR' )) DEFAULT 'NR',
 	PRIMARY KEY (anneeId,etdId)
 );
