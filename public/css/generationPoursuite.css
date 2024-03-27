@@ -1,0 +1,33 @@
+/* Styles pour le contenu principal */
+main {
+    color: black;
+    display: flex;
+    flex-grow: 1;
+}
+
+.container{
+    border-radius: 10px; /* Coins arrondis */
+    background-color: #6b027781; /* Couleur de fond */
+    width:850px;
+    padding: 20px; /* Espace intérieur */
+    margin: 5%;
+    text-align: center;
+}
+
+
+.block{
+	justify-content: center;
+	align-items: center;
+}
+
+.ligne{
+	width: 50%;
+}
+
+.gridRessource{
+    text-align: right;
+    display: grid;
+    grid-template-columns: minmax(300px, 300px) minmax(300px, 300px);
+    grid-gap: 40px;
+    grid-row-gap: 10px;
+}
