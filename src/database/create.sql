@@ -20,6 +20,7 @@ CREATE TABLE Module
 (
 	modId   SERIAL      PRIMARY KEY,
 	modCode VARCHAR(10) ,
+	modCat  VARCHAR(20) NOT NULL,
 	modLib  VARCHAR(50) NOT NULL
 );
 

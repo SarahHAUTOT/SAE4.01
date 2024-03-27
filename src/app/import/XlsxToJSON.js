@@ -44,6 +44,8 @@ fileMoy.addEventListener('change', (event) =>
 				modules.push(module);
 			}
 		}
+		
+		console.log(bonus);
 
 		// Iterate through the Competences and its modules 
 		for (let row of rows)
