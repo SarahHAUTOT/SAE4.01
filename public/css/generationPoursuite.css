@@ -8,9 +8,11 @@ main {
 .container{
     border-radius: 10px; /* Coins arrondis */
     background-color: #6b027781; /* Couleur de fond */
-    width:850px;
+    width:700px;
     padding: 20px; /* Espace intérieur */
-    margin: 5%;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
@@ -27,7 +29,13 @@ main {
 .gridRessource{
     text-align: right;
     display: grid;
-    grid-template-columns: minmax(300px, 300px) minmax(300px, 300px);
-    grid-gap: 40px;
+    grid-template-columns: 300px 300px;
+    grid-gap: 20px;
     grid-row-gap: 10px;
+}
+.importation{
+    text-align:justify;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 2%;
 }
