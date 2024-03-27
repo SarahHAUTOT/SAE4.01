@@ -1,21 +1,26 @@
 /* Styles pour le contenu principal */
 main {
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     color: black;
     display: flex;
     flex-grow: 1;
 }
-
+div{
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
 .container{
     border-radius: 10px; /* Coins arrondis */
     background-color: #6b02777f; /* Couleur de fond */
     width:700px;
-    padding: 20px; /* Espace intérieur */
+    padding: 30px; /* Espace intérieur */
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
 }
 
 
@@ -30,7 +35,8 @@ main {
 
 .gridRessource{
     font-weight: bold;
-    margin-top: 50px;
+    margin-top: 70px;
+    margin-bottom: 100px;
     text-align: right;
     display: grid;
     grid-template-columns: auto 200px;
@@ -50,7 +56,6 @@ main {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    border: 2px solid #333; /* Border color */
     border-radius: 0px; /* square corners */
     background-color: #f0f0f0; /* Button background color */
 }
