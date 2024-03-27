@@ -11,6 +11,9 @@ main .container{
     width:90%;
     padding: 20px; /* Espace intérieur */
     margin: 5%;
+	text-align:center;
+	justify-content: center;
+
 }
 
 main .container h1{
@@ -20,10 +23,18 @@ main .container h1{
 }
 
 .block{
+	align-self: center;
+	text-align: right;
+	justify-content: center; /* centre horizontalement */
+	align-items: center;
+    display: grid;
+    grid-template-columns: 15% 15%;
+    grid-gap: 2%;
+    grid-row-gap: 5%;
 }
 
-.ligne{
-	display: flex;
-	justify-content: space-between;
-	width: 70%;
+.valider{
+	margin: 1%;
+	height : 10%;
+	width: 15%;
 }
