@@ -71,7 +71,7 @@ CREATE TABLE Competence
 
 CREATE TABLE Moyenne 
 (
-	noteVal FLOAT   CHECK      (noteVal > 0),
+	noteVal FLOAT   CHECK      (noteVal >= 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	modId   INTEGER REFERENCES Module  (modId),
 	anneeId  INTEGER REFERENCES Annee  (anneeId),

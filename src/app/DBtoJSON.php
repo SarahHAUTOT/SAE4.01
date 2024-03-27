@@ -120,29 +120,23 @@ foreach ($years as &$year) {
 
     foreach ($semesters as &$semester) 
     {
-        
-        //We get the students from this year and semesters
+        // We get the students from this year and semester
         $query = "SELECT * FROM Etudiant WHERE etdId IN (SELECT etdId FROM AdmComp a JOIN Competence c ON a.compId = c.compId WHERE a.anneeId = ".$year["anneeid"] . " AND semId = ".$semester["semid"] . ")";
         $statement = $pdo->query($query);
         $students = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        $semester ["etd"] = [];
+        $semesterStudents = []; // Array to hold students for this semester
 
-        //For each students
+        // For each student
         foreach ($students as &$student) 
         {
-
-            /*                          */
-            /*         MODULES          */
-            /*                          */
-
-            //We get the grades from this year and semester and student
+            /* MODULES */
+            // We get the grades from this year, semester, and student
             $query = "SELECT * FROM Moyenne m  JOIN Module mo ON mo.modId = m.modId WHERE m.anneeId = " . $year['anneeid'] . " AND etdId = " . $student["etdid"] . " AND m.modId IN (SELECT modId FROM CompMod a JOIN Competence c ON a.compId = c.compId WHERE semId = ".$semester["semid"] . ")";
             $statement = $pdo->query($query);
             $grades = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
-            //Put them in student
+            // Put them in student
             $student['modules'] = [];
             foreach ($grades as $grade) {
                 $student['modules'][] = [
@@ -152,20 +146,13 @@ foreach ($years as &$year) {
                 ];
             }
 
-
-
-
-            /*                          */
-            /*       COMPETENCES        */
-            /*                          */
-
-            //We get the competence from this year and semester and student
+            /* COMPETENCES */
+            // We get the competences from this year, semester, and student
             $query = "SELECT * FROM AdmComp a JOIN Competence c ON a.compId = a.compId WHERE anneeId = " . $year['anneeid'] . " AND semId = ".$semester["semid"]. " AND etdId = ".$student["etdid"];
             $statement = $pdo->query($query);
             $competences = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
-            //Put them in student
+            // Put them in student
             $student['competences'] = [];
             foreach ($competences as $competence) {
                 $student['competences'][] = [
@@ -175,34 +162,25 @@ foreach ($years as &$year) {
                 ];
             }
 
-
-
-
-            /*                   */
-            /*       YEAR        */
-            /*                   */
-
-            //We get the admission by year
+            /* YEAR */
+            // We get the admission by year
             $query = "SELECT * FROM AdmAnnee WHERE anneeId = " . $year['anneeid'] . " AND etdId = ".$student["etdid"];
             $statement = $pdo->query($query);
-            $admYear = $statement->fetchAll(PDO::FETCH_ASSOC);
-            $admYear = $admYear[0];
+            $admYear = $statement->fetch(PDO::FETCH_ASSOC); // Assuming only one row is returned
 
-            //Put them in student
+            // Put it in student
             $student['admission'] = [
                     'admi'     => $admYear['admi']
                 ];
 
-                
-            $semester['etd'][] = [$student];
+            $semesterStudents[] = $student; // Add the student to the array of students for this semester
         }
 
-            
-        $year['semesters'][] = [$semester];
-
-
+        $semester['etd'] = $semesterStudents; // Assign the array of students to the semester directly
+        $year['semesters'][] = $semester; // Add the semester to the array of semesters for this year
     }
 }
+
 
 
 // Générer le JSON
