@@ -1,1 +1,104 @@
-[]
+[
+    {
+        "compid": 1,
+        "complib": "C.A",
+        "semid": 1,
+        "modules": [
+            {
+                "modId": 1,
+                "modLib": "R1.01",
+                "coef": "1.5"
+            },
+            {
+                "modId": 2,
+                "modLib": "R2.02",
+                "coef": "1.2"
+            }
+        ]
+    },
+    {
+        "compid": 2,
+        "complib": "C.B",
+        "semid": 1,
+        "modules": [
+            {
+                "modId": 1,
+                "modLib": "R1.01",
+                "coef": "1"
+            },
+            {
+                "modId": 2,
+                "modLib": "R2.02",
+                "coef": "1.3"
+            }
+        ]
+    },
+    {
+        "compid": 3,
+        "complib": "C.C",
+        "semid": 1,
+        "modules": [
+            {
+                "modId": 1,
+                "modLib": "R1.01",
+                "coef": "0.8"
+            },
+            {
+                "modId": 2,
+                "modLib": "R2.02",
+                "coef": "1"
+            }
+        ]
+    },
+    {
+        "compid": 4,
+        "complib": "C.D",
+        "semid": 2,
+        "modules": [
+            {
+                "modId": 1,
+                "modLib": "R1.01",
+                "coef": "1.2"
+            },
+            {
+                "modId": 2,
+                "modLib": "R2.02",
+                "coef": "1.5"
+            }
+        ]
+    },
+    {
+        "compid": 5,
+        "complib": "C.E",
+        "semid": 2,
+        "modules": [
+            {
+                "modId": 1,
+                "modLib": "R1.01",
+                "coef": "1"
+            },
+            {
+                "modId": 2,
+                "modLib": "R2.02",
+                "coef": "1.1"
+            }
+        ]
+    },
+    {
+        "compid": 6,
+        "complib": "C.F",
+        "semid": 2,
+        "modules": [
+            {
+                "modId": 1,
+                "modLib": "R1.01",
+                "coef": "0.9"
+            },
+            {
+                "modId": 2,
+                "modLib": "R2.02",
+                "coef": "0.7"
+            }
+        ]
+    }
+]
