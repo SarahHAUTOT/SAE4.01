@@ -1,85 +1,51 @@
-// Import dependencies
-const { insertEtudiant, insertCompetence, insertModule, insertMoyenne } = require('DB.js');
-const XLSX = require('xlsx');
-
-/* TEST
-const spreadSheet = XLSX.readFile('test.xlsx');
-let colums = {};
-for (const columName of spreadSheet.SheetNames) 
-{
-	colums[columName] = XLSX.utils.sheet_to_json(spreadSheet.Sheets[columName]);
-}
-
-console.log(JSON.stringify(colums.Sheet1), "\n\n");*/
-
-let fileMoy = document.getElementById('fichier_import');
+const fileMoy = document.getElementById('moy_file');
 fileMoy.addEventListener('change', (event) =>
 {
-	const file = event.target.files[0]; 
+	const file = event.target.files[0];
 	const reader = new FileReader();
 
-	reader.onload = function (event) 
+	reader.onload = function (event)
 	{
-        const data = new Uint8Array(event.target.result);
+		console.log('file loaded');
+
+		const data = new Uint8Array(event.target.result);
 		const workbook = XLSX.read(data, {type:'array'});
 		const sheet = workbook.SheetNames[0];
 		const worksheet = workbook.Sheets[sheet];
-		const rows = XLSX.utils.sheet_to_json(worksheet);
-		const bonus = null;
+		const rows = XLSX.utils.sheet_to_json(worksheet, {raw: true});
 
-		// We get all the informations about competences
-		const compDetails = rows[0].slice(13, rows[0].length-4);
+		const bonus = null;
+		const modules = [];
+
+		// Iterate through the Modules
+		const header = Object.keys(rows[0]);
+		const compDetails = header.slice(13, header.length-2);
 		for (let i=0; i < compDetails.length; i++)
 		{
 			let key = compDetails[i];
 
-			if (key.startsWith('Bonus') && is_null(bonus))
+			let isBonus = key.startsWith('Bonus'); 
+            let isComp  = parseInt(key.replace('BIN','')) != NaN;
+			let isMod   = !isComp && !isBonus; 
+
+			if (isBonus && bonus == null)
 			{
-				bonus = row[key];
+				const bonus = key;
 			}
-
-			if (key.startsWith('BIN'))
-			{
-				const comp  = compDetails[i];
-				let lib   = comp;
-				let id    = comp.replace('BIN','');
-				let semId = comp.replace('BIN','').charAt(0);
-
-				let competence = 
-				{
-					id   : id,
-					lib  : lib,
-					semId: semId,
-				};
 			
-				insertCompetence(competence)
-				.then(insertedData => {
-					console.log('Inserted data:', insertedData);
-				})
-				.catch(error => {
-					console.error('Error:', error);
-				});
-
-				let module = 
-				{
-					//TODO 
-					id : ,
-					lib: ,
-				};
-				
-				insertModule(module)
-				.then(insertedData => {
-					console.log('Inserted data:', insertedData);
-				})
-				.catch(error => {
-					console.error('Error:', error);
-				});
+			if (isMod)
+			{
+				let lib = compDetails[i];
+				console.log(lib);
+				let id = compDetails[i].slice(4); // getting rid of the 'BINR'
+				let module  = { id: id, lib: lib };
+				modules.push(module);
 			}
 		}
 
+		// Iterate through the Competences and its modules 
 		for (let row of rows)
 		{
-
 			let etudiant = 
 			{
 				id : row['etudid'],
@@ -93,31 +59,18 @@ fileMoy.addEventListener('change', (event) =>
 				parcours: row['Cursus'],
 			};
 
-			insertEtudiant(etudiant)
-			.then(insertedData => {
-				console.log('Inserted data:', insertedData);
-			})
-			.catch(error => {
-				console.error('Error:', error);
-			});
+			// TODO Insertion Etudiant
+			// console.log(etudiant);
 
-			let moyenne = 
+			for (let mod of modules)
 			{
-				noteVal: ,
-				etdId  : ,
-				modId  : ,
-			};
-			
-			insertMoyenne(moyenne)
-			.then(insertedData => {
-				console.log('Inserted data:', insertedData);
-			})
-			.catch(error => {
-				console.error('Error:', error);
-			});
+				let moyenne = { noteVal: row[mod.lib], etdId  : row['etudid'], modId  : mod.id };
 
+				// TODO  Insertion moyenne
+				// console.log(moyenne);
+			}
 		}
-	}
+	};
 
 	reader.readAsArrayBuffer(file);
 });
