@@ -14,6 +14,8 @@ main {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -27,15 +29,38 @@ main {
 }
 
 .gridRessource{
+    font-weight: bold;
+    margin-top: 50px;
     text-align: right;
     display: grid;
-    grid-template-columns: 300px 300px;
+    grid-template-columns: auto 200px;
     grid-gap: 20px;
     grid-row-gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
-.importation{
+.divImportation{
     text-align:justify;
     display: grid;
     grid-template-columns: 49% 49%;
     grid-gap: 2%;
+}
+.importButton{
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #333; /* Border color */
+    border-radius: 0px; /* square corners */
+    background-color: #f0f0f0; /* Button background color */
+}
+
+.validateButton{
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px; /* very rounded corners */
+    background-color: #f0f0f0; /* Button background color */
 }
