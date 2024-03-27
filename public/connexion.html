@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mon Site Web</title>
 	<link rel="stylesheet" href="css/background.css">
+	<link rel="stylesheet" href="css/connexion.css">
 </head>
 
 <body>
@@ -23,15 +24,19 @@
 	<main>
 		<div class="container">
 			<h1>Connexion</h1>
-			<div class="">
-				Utilisateur :
-				<input type="text" name="utilisateur" value="">
+
+			<div class="block">
+				<div class="ligne">
+					Utilisateur :
+					<input type="text" name="user" value="">
+				</div>
+				<div class="ligne">
+					mot de pass :
+					<input type="password" name="password" value="">
+				</div>
+				<input type="submit" name="validate" value="valider">
 			</div>
-			<div class="">
-				Mot de passe :
-				<input type="password" name="mot de passe" value="">
-			</div>
-			<input type="submit" name="valider" value="valider">
+
 		</div>
 	</main>
 

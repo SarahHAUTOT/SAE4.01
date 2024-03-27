@@ -31,25 +31,6 @@ header {
         text-align: right;
     }
 
-/* Styles pour le contenu principal */
-main {
-    color: black;
-    display: flex;
-    flex-grow: 1;
-}
-
-main .container{
-    border-radius: 10px; /* Coins arrondis */
-    background-color: #6b027781; /* Couleur de fond */
-    width:90%;
-    padding: 20px; /* Espace intérieur */
-    margin: 5%;
-}
-
-main .container h1{
-    text-align: center;
-}
-
 /* Styles pour le footer */
 footer {
     background-color: black;
