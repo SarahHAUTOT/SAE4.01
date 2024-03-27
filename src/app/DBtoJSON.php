@@ -12,6 +12,97 @@ try {
     die("Erreur de connexion à la base de données: " . $e->getMessage());
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************************/
+/*                              USERS                                 */
+/**********************************************************************/
+
+
+// Récupérer les utilisateur 
+$query     = "SELECT * FROM Utilisateur";
+$statement = $pdo->query($query);
+$users     = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+// Générer le JSON
+$jsonData = json_encode($users, JSON_PRETTY_PRINT);
+// Écrire le JSON dans un fichier
+file_put_contents( 'users.json', $jsonData);
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************************/
+/*                       COMPETENCES-MODULES                          */
+/**********************************************************************/
+
+
+// Récupérer les utilisateur 
+$query       = "SELECT * FROM Competence ORDER BY compId";
+$statement   = $pdo->query($query);
+$competences = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($competences as &$competence)
+{
+    $competence['modules'] = [];
+
+    $query       = "SELECT * FROM CompMod c JOIN Module m ON c.modId = m.modId WHERE compId =" . $competence['compid'];
+    $statement   = $pdo->query($query);
+    $modules     = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($modules as $module) {
+        $competence['modules'][] = [
+            'modId'   => $module['modid'],
+            'modLib'  => $module['modlib'],
+            'coef'    => $module['modcoef']
+        ];
+    }
+
+    
+}
+
+
+// Générer le JSON
+$jsonData = json_encode($competences, JSON_PRETTY_PRINT);
+// Écrire le JSON dans un fichier
+file_put_contents( 'comp.json', $jsonData);
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************************/
+/*                            STUDENTS                                */
+/**********************************************************************/
+
+
+
 // Récupérer les données de la table Annee
 $query     = "SELECT * FROM Annee";
 $statement = $pdo->query($query);
@@ -21,10 +112,6 @@ $query     = "SELECT * FROM Semestre";
 $statement = $pdo->query($query);
 $semesters = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
-/**********************************************************************/
-/*                           ETUDIANTES                               */
-/**********************************************************************/
 
 //For each year 
 foreach ($years as &$year) {
@@ -118,38 +205,11 @@ foreach ($years as &$year) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Créer un tableau final avec toutes les données
-$data = [
-    'Years' => $years,
-];
-
 // Générer le JSON
-$jsonData = json_encode($data, JSON_PRETTY_PRINT);
-
+$jsonData = json_encode($years, JSON_PRETTY_PRINT);
 // Écrire le JSON dans un fichier
-$file = 'donnees.json';
-file_put_contents($file, $jsonData);
+file_put_contents( 'donnees.json', $jsonData);
 
-echo "Le fichier JSON a été créé avec succès.";
+echo "Les fichiers JSON a été créé avec succès.";
 
 ?>
