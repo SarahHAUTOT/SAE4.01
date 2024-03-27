@@ -13,11 +13,8 @@ fileMoy.addEventListener('change', (event) =>
 		const sheet = workbook.SheetNames[0];
 		const worksheet = workbook.Sheets[sheet];
 		const rows = XLSX.utils.sheet_to_json(worksheet, {raw: true});
-
 		const bonus = null;
 		const modules = [];
-
-		
 
 		// Iterate through the Modules
 		const header = Object.keys(rows[0]);
@@ -31,9 +28,12 @@ fileMoy.addEventListener('change', (event) =>
             let isComp  = !isNaN(parseInt(key.replace('BIN','')));
 			let isMod   = !isComp && !isBonus; 
 
-			if (isBonus && bonus == null)
+			if (isBonus)
 			{
-				const bonus = key;
+				bonus = key;
+				console.log(key);
+				console.log(bonus);
+				continue;
 			}
 			
 			if (isMod)
@@ -52,6 +52,7 @@ fileMoy.addEventListener('change', (event) =>
 			{
 				id : row['etudid'],
 				civ: row['Civ.'],
+				abs: row['Abs'],
 				nom: row['Nom'],
 				td : row['TD'],
 				tp : row['TP'],
