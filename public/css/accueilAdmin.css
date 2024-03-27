@@ -38,3 +38,8 @@ main  h1{
 	height : 10%;
 	width: 15%;
 }
+
+.container img{
+    width: 100%;
+}
+
