@@ -1,13 +1,26 @@
 <?php
+require 'Etudiant.php';
+require 'Semestre.php';
+require 'Annee.php';
+require 'Module.php';
+require 'Utilisateur.php';
+
+require 'Competence.php';
+require 'Moyenne.php';
+
+require 'CompMod.php';
+require 'AdmMod.php';
+require 'AdmAnnee.php';
+
 class DB
 {
 
-	private static $instance = null; //mémorisation de l'instance de DB pour appliquer le pattern Singleton
-	private $connect=null; //connexion PDO à la base
+	private static $instance = null; // to make sure that only one DB Object exist
+	private $connect=null; // database connexion variable
 
 	/************************************************************************/
-	//	Constructeur gerant  la connexion à la base via PDO
-	//	NB : il est non utilisable a l'exterieur de la classe DB
+	//	Constructor that manage the connection to the database
+	//	NB : You cannot use it outside of this class
 	/************************************************************************/	
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
@@ -51,10 +64,13 @@ class DB
 		return self::$instance;
 	}
 
-	/************************************************************************/
-	//	Methode permettant de fermer la connexion a la base de données
-	/************************************************************************/
-
+	/************************************/
+	// Close the connection to database
+	/*************************************/
+	public function close()
+	{
+		$this->connect = null;
+	}
 
 	/************************************************************************/
 	//	Methode uniquement utilisable dans les méthodes de la class DB 
