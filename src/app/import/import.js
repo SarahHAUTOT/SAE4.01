@@ -64,7 +64,7 @@ fileMoy.addEventListener('change', (event) =>
 
 			for (let mod of modules)
 			{
-				let moyenne = { noteVal: row[mod.lib], etdId  : row['etudid'], modId  : mod.id };
+				let moyenne = { noteVal: row[mod.lib], etdId  : row['code_nip'], modId  : mod.id };
 
 				// TODO  Insertion moyenne
 				console.log(moyenne);
