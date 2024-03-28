@@ -9,10 +9,10 @@ main .container {
     /* Coins arrondis */
     background-color: #6b02777f;
     /* Couleur de fond */
-    width: 90%;
-    padding: 20px;
+    width: 80%;
+    padding: 4%;
     /* Espace intérieur */
-    margin: 5%;
+    margin: 6%;
     text-align: center;
     justify-content: center;
 }
@@ -32,7 +32,7 @@ main h1 {
     /* centre horizontalement */
     align-items: center;
     display: grid;
-    grid-template-columns: 20% 20%;
+    grid-template-columns: 30% 30%;
     grid-gap: 2%;
     grid-row-gap: 5%;
 }
@@ -57,5 +57,31 @@ main h1 {
     width: 100%;
     background-color: aqua;
     border-radius: 15px;
+}
 
+input[type="file"]::file-selector-button {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0px;
+    background-color: #f0f0f0;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #e0e0e0;
+}
+
+input[type="text"]::file-selector-button {
+    width: 50%;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0px;
+    background-color: #f0f0f0;
+}
+
+input[type="text"]::file-selector-button:hover {
+    background-color: #e0e0e0;
 }
