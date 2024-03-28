@@ -45,9 +45,7 @@
                                 "admi": "ADM"
                             }
                         ],
-                        "admission": {
-                            "admi": "ADM"
-                        }
+                        "admi": "ADM"
                     },
                     {
                         "etdid": 2,
@@ -83,9 +81,7 @@
                                 "admi": "ADM"
                             }
                         ],
-                        "admission": {
-                            "admi": "PASD"
-                        }
+                        "admi": "PASD"
                     },
                     {
                         "etdid": 3,
@@ -115,9 +111,7 @@
                                 "admi": "AJ"
                             }
                         ],
-                        "admission": {
-                            "admi": "RED"
-                        }
+                        "admi": "RED"
                     }
                 ]
             },
@@ -166,9 +160,7 @@
                                 "admi": "ADM"
                             }
                         ],
-                        "admission": {
-                            "admi": "ADM"
-                        }
+                        "admi": "ADM"
                     },
                     {
                         "etdid": 2,
@@ -204,9 +196,7 @@
                                 "admi": "ADSUP"
                             }
                         ],
-                        "admission": {
-                            "admi": "NAR"
-                        }
+                        "admi": "NAR"
                     }
                 ]
             }

@@ -1,16 +1,4 @@
 <?php
-require 'Etudiant.php';
-require 'Semestre.php';
-require 'Annee.php';
-require 'Module.php';
-require 'Utilisateur.php';
-
-require 'Competence.php';
-require 'Moyenne.php';
-
-require 'CompMod.php';
-require 'AdmMod.php';
-require 'AdmAnnee.php';
 
 class DB
 {
@@ -24,7 +12,7 @@ class DB
 	/************************************************************************/	
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
-		$connStr = 'pgsql:host=woody port=5432 dbname='.$dbName; 
+		$connStr = 'pgsql:host=127.0.0.1 port=5432 dbname='.$dbName; 
 		try 
 		{
 			// Connection with the base
@@ -88,28 +76,11 @@ class DB
 	//	que d'éléments dans le tableau passé en second paramètre.
 	//	NB : si la requête ne renvoie aucun tuple alors la fonction renvoie un tableau vide
 	/************************************************************************/
-	private function execQuery($request,$tparam,$className)
+	public function execQuery($query)
 	{
-		$stmt = $this->connect->prepare($request);
+		$statement   = $this->connect->query($query);
 
-		// Indicating the class type of the data collected from the request
-		$stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, $className); 
-		//on exécute la requête
-		if ($tparam != null)
-			$stmt->execute($tparam);
-		else
-			$stmt->execute();
-
-		$tab = array();
-		$tuple = $stmt->fetch(); // getting the first tuple of the indicated Object type ($className)
-		if ($tuple)
-			while ($tuple != false)
-			{
-				$tab[]=$tuple;
-				$tuple = $stmt->fetch();
-			}
-			
-		return $tab;
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	/************************************************************************/
@@ -127,83 +98,6 @@ class DB
 		$stmt = $this->connect->prepare($sqlRequest);
 		$res = $stmt->execute($tparam);
 		return $stmt->rowCount();
-	}
-
-	/*****************************************************
-	 * Functions that can be used in other PHP scripts
-	 *****************************************************/
-	
-	// Selections
-	public function getEtudiants()
-	{
-		$request = 'select * from Etudiants';
-		return $this->execQuery($request,null,'Etudiant');
-	}
-
-	// Insertions
-	public function insertSemestre(int $idSem)
-	{
-		$requete = 'insert into Semestre values(?)';
-		$tparam = array($idSem);
-		return $this->execMaj($requete,$tparam);
-	}
-
-	public function insertModule(array $tparam)
-	{
-		$requete = 'insert into Module values(?,?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-
-	public function insertEtudiant(array $tparam)
-	{
-		$requete = 'insert into Etudiant values(?,?,?,?,?,?,?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-	
-	public function insertUtilisateur(array $tparam)
-	{
-		$requete = 'insert into Utilisateur values(?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-		
-	public function insertAnnee(array $tparam)
-	{
-		$requete = 'insert into Annee values(?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-
-
-	
-	public function insertCompetence(array $tparam)
-	{
-		$requete = 'insert into Competence values(?,?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-		
-	public function insertMoyenne(array $tparam)
-	{
-		$requete = 'insert into Moyenne values(?,?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-
-
-		
-	public function insertCompMod(array $tparam)
-	{
-		$requete = 'insert into CompMod values(?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-		
-	public function insertAdmComp(array $tparam)
-	{
-		$requete = 'insert into AdmComp values(?,?,?,?)';
-		return $this->execMaj($requete,$tparam);
-	}
-
-	public function insertAdmAnne(array $tparam)
-	{
-		$requete = 'insert into AdmAnnee values(?,?,?)';
-		return $this->execMaj($requete,$tparam);
 	}
 			
 }

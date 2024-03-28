@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS Module     ;
 CREATE TABLE Export 
 (
 	exportId SERIAL      PRIMARY KEY,
-	chemin   VARCHAR(30) NOT NULL,
+	chemin   VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Module 
