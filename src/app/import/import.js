@@ -75,34 +75,6 @@ fileMoy.addEventListener('change', (event) =>
 	reader.readAsArrayBuffer(file);
 }, false);
 
-/*
-const fileCoef = document.getElementById('coef_file');
-fileCoef.addEventListener('change', (event) =>
-{
-	const file = event.target.files[0];
-	const reader = new FileReader();
-
-	reader.onload = function (event)
-	{
-		console.log('file coef loaded');
-
-		const data = new Uint8Array(event.target.result);
-		const workbook = XLSX.read(data, {type:'array'});
-		const sheet = workbook.SheetNames[0];
-		const worksheet = workbook.Sheets[sheet];
-		const rows = XLSX.utils.sheet_to_json(worksheet, {raw: true});
-
-		// Iterate through the Competences and its modules 
-		for (let row of rows)
-		{
-			console.log(row);
-		}
-	};
-
-	reader.readAsArrayBuffer(file);
-});
-*/
-
 const fileCoef = document.getElementById('coef_file');
 fileCoef.addEventListener('change', (event) =>
 {
@@ -150,30 +122,33 @@ fileCoef.addEventListener('change', (event) =>
 			for (const cell in worksheet)
 			{
 				let dataCell = worksheet[cell].v;
-				let info = i > parseInt(workbook.SheetNames.length -2); 
-				let moduleInfo = info && i - parseInt(workbook.SheetNames.length) < modAttr.length;
-				
+				const matches = cell.match(/([A-Z]+)([0-9]+)/);
 
-				if (cell === '!ref') continue;
+				if (cell === '!ref' || matches === null)
+					continue;
+	
+				const letter = matches[2];
 				
+				let info = i > parseInt(workbook.SheetNames.length -1); 
+				let moduleInfo = info && letter.charCodeAt(0) - parseInt(workbook.SheetNames.length) < modAttr.length;
+								
 				
 				if (moduleInfo)
 				{
-					let index = i - parseInt(workbook.SheetNames.length -1);
+					console.log(info)
+					let index = i - parseInt(workbook.SheetNames.length);
 					mod[modAttr[index]] = dataCell;
-					console.log(mod);
+					//console.log( sheet + ' ' + cell + ' : ' + dataCell)
+					//console.log(mod);
 				}
 				
-				if (info)
+				if (info && !moduleInfo && !isEmpty(dataCell))
 				{
 					compColumn = (i - parseInt(workbook.SheetNames.length) === 3) ? cell : compColumn;
 					//compMod = { modId: }
-
+					console.log(dataCell + ' : ' + cell)
 				}
 
-				console.log(info);
-				console.log(i - parseInt(workbook.SheetNames.length -1) < modAttr.length);
-				console.log( sheet + ' ' + cell + ' : ' + dataCell)
 
 				compMods.push(compMod);
 				i++;
@@ -187,3 +162,8 @@ fileCoef.addEventListener('change', (event) =>
 
 	reader.readAsArrayBuffer(file);
 }, false);
+
+function isEmpty(value)
+{
+	return (value == null || (typeof value === "string" && value.trim().length === 0));
+}
