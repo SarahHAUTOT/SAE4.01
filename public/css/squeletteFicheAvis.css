@@ -82,9 +82,7 @@ input[type="file"]::file-selector-button:hover {
 
 table {
     border-collapse: collapse;
-    width: 100%;
   }
-  
   td, th {
     border: 1px solid #dddddd;
     background-color: #ffffff;
@@ -94,4 +92,8 @@ table {
   
   th {
     background-color: #f2f2f2;
+  }
+  th:empty{
+    background:none;
+    border: none;
   }
