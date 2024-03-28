@@ -1,107 +1,85 @@
 const fileMoy = document.getElementById('moy_file');
-fileMoy.addEventListener('change', (event) =>
-{
-	const file = event.target.files[0];
-	const reader = new FileReader();
+fileMoy.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
 
-	reader.onload = function (event)
-	{
-		console.log('file moyenne loaded');
+    reader.onload = function (event) {
+        console.log('file moyenne loaded');
 
-		const data = new Uint8Array(event.target.result);
-		const workbook = XLSX.read(data, {type:'array'});
-		const sheet = workbook.SheetNames[0];
-		const worksheet = workbook.Sheets[sheet];
-		const rows = XLSX.utils.sheet_to_json(worksheet, {raw: true});
-		let bonus;
-		const modules = [];
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheet = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheet];
+        const rows = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+        let bonus;
+        const modules = [];
 
-		// Iterate through the Modules
-		const header = Object.keys(rows[0]);
-		const compDetails = header.slice(13, header.length-2);
-		for (let i=0; i < compDetails.length; i++)
-		{
-			let key = compDetails[i];
+        // Iterate through the Modules
+        const header = Object.keys(rows[0]);
+        const compDetails = header.slice(13, header.length - 2);
+        for (let i = 0; i < compDetails.length; i++) {
+            let key = compDetails[i];
 
-			let isBonus = key.startsWith('Bonus'); 
-			let isComp  = !isNaN(parseInt(key.replace('BIN','')));
-			let isMod   = !isComp && !isBonus; 
+            let isBonus = key.startsWith('Bonus');
+            let isComp = !isNaN(parseInt(key.replace('BIN', '')));
+            let isMod = !isComp && !isBonus;
 
-			if (isBonus)
-			{
-				bonus = key;
-				continue;
+            if (isBonus) {
+                bonus = key;
+                continue;
+            }
+
+            if (isMod) {
+                let lib = compDetails[i];
+                let id = compDetails[i].slice(4); // getting rid of the 'BINR'
+                let module = { id: id, lib: lib };
+                modules.push(module);
+            }
+        }
+
+        // Prepare data to send to PHP script
+        const students = rows.map(row => ({
+            id: row['code_nip'],
+            civ: row['Civ.'],
+            abs: parseInt(row['Abs'] - row['Just.']),
+            nom: row['Nom'],
+            td: row['TD'],
+            tp: row['TP'],
+            bac: row['Bac'],
+            bonus: row[bonus],
+            prenom: row['Pr\u00E9nom'], // Use bracket notation for 'Prénom'
+            parcours: row['Cursus'],
+        }));
+
+		// Send data to PHP script using fetch
+		fetch('test.php', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ students }),
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
 			}
-			
-			if (isMod)
-			{
-				let lib = compDetails[i];
-				let id = compDetails[i].slice(4); // getting rid of the 'BINR'
-				let module  = { id: id, lib: lib };
-				modules.push(module);
-			}
-		}
-		
-		// Iterate through the Competences and its modules 
-		for (let row of rows)
-		{
-			let etudiant = 
-			{
-				id : row['code_nip'],
-				civ: row['Civ.'],
-				abs: parseInt(row['Abs'] - row['Just.']),
-				nom: row['Nom'],
-				td : row['TD'],
-				tp : row['TP'],
-				bac: row['Bac'],
-				bonus : row[bonus],
-				prenom: row['Prenom'], // TODO problème d'encodage => prenom undefined
-				parcours: row['Cursus'],
-			};
+			return response.text();
+		})
+		.then(data => {
+			console.log(data); // Success message from PHP script
+		})
+		.catch(error => {
+			console.error('There was a problem with the fetch operation:', error);
+		});
+    };
 
-			// TODO Insertion Etudiant
-			console.log(etudiant);
-
-			for (let mod of modules)
-			{
-				let moyenne = { noteVal: row[mod.lib], etdId  : row['code_nip'], modId  : mod.id };
-
-				// TODO  Insertion moyenne
-				console.log(moyenne);
-			}
-		}
-	};
-
-	reader.readAsArrayBuffer(file);
+    reader.readAsArrayBuffer(file);
 }, false);
 
-/*
-const fileCoef = document.getElementById('coef_file');
-fileCoef.addEventListener('change', (event) =>
-{
-	const file = event.target.files[0];
-	const reader = new FileReader();
 
-	reader.onload = function (event)
-	{
-		console.log('file coef loaded');
 
-		const data = new Uint8Array(event.target.result);
-		const workbook = XLSX.read(data, {type:'array'});
-		const sheet = workbook.SheetNames[0];
-		const worksheet = workbook.Sheets[sheet];
-		const rows = XLSX.utils.sheet_to_json(worksheet, {raw: true});
 
-		// Iterate through the Competences and its modules 
-		for (let row of rows)
-		{
-			console.log(row);
-		}
-	};
 
-	reader.readAsArrayBuffer(file);
-});
-*/
 
 const fileCoef = document.getElementById('coef_file');
 fileCoef.addEventListener('change', (event) =>

@@ -93,7 +93,7 @@ class DB
 	//	ATTENTION : il doit y avoir autant de ? dans le texte de la requête
 	//	que d'éléments dans le tableau passé en second paramètre.
 	/************************************************************************/
-	private function execMaj($sqlRequest,$tparam) 
+	public function execMaj($sqlRequest,$tparam) 
 	{
 		$stmt = $this->connect->prepare($sqlRequest);
 		$res = $stmt->execute($tparam);
