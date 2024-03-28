@@ -298,6 +298,6 @@ $pdf->Ln();
 
 
 
-$pdf->Output('image.pdf', 'I');
+$pdf->Output('image.pdf', 'D');
 
 ?>
