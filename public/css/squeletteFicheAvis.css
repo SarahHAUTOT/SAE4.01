@@ -1,0 +1,81 @@
+/* Styles pour le contenu principal */
+main {
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+div {
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    border-radius: 10px;
+    /* Coins arrondis */
+    background-color: #6b02777f;
+    /* Couleur de fond */
+    width: 90%;
+    padding: 30px;
+    /* Espace intérieur */
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+
+.block {
+    justify-content: center;
+    align-items: center;
+}
+
+.ligne {
+    width: 50%;
+}
+
+.gridRessource {
+    font-weight: bold;
+    margin-top: 70px;
+    margin-bottom: 100px;
+    text-align: right;
+    display: grid;
+    grid-template-columns: auto 200px;
+    grid-gap: 20px;
+    grid-row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.divImportation {
+    text-align: justify;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 2%;
+}
+
+.importButton {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0px;
+    /* square corners */
+    background-color: #f0f0f0;
+    /* Button background color */
+}
+
+.validateButton {
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    /* very rounded corners */
+    background-color: #6b0277;
+    /* Couleur de fond */
+}
