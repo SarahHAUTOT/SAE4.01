@@ -14,8 +14,8 @@ async function insertEtudiant(etd)
 {
 	const client = await db.connect();
 	try {
-		const query = 'INSERT INTO Etudiant VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
-		const values = [etd.id, etd.civ, etd.nom, etd.prenom, etd.tp, etd.td, etd.parcours, etd.bonus, etd.bac];
+		const query = 'INSERT INTO Etudiant VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
+		const values = [etd.id, etd.civ, etd.nom, etd.prenom, etd.tp, etd.td, etd.parcours, etd.bonus, etd.abs, etd.bac];
 		const result = await client.query(query, values);
 		console.log('Data inserted in Etudiant successfully', result.rows[0]);
 	}
@@ -54,8 +54,8 @@ async function insertModule(mod)
 {
 	const client = await db.connect();
 	try {
-		const query = 'INSERT INTO Module VALUES($1, $2) RETURNING *';
-		const values = [mod.id, moy.lib]
+		const query = 'INSERT INTO Module VALUES($1, $2, $3, $4) RETURNING *';
+		const values = [mod.id, moy.code, moy.cat, moy.lib];
 		const result = await client.query(query, values);
 		console.log('Data inserted in Module successfully', result.rows[0]);
 	}
@@ -73,9 +73,9 @@ async function insertModule(mod)
 async function insertCompetence(comp)
 {
 	const client = await db.connect();
-	try {
+	try{
 		const query = 'INSERT INTO Competence VALUES($1, $2, $3) RETURNING *';
-		const values = [comp.id, comp.lib, comp.semId]
+		const values = [comp.id, comp.lib, comp.semId];
 		const result = await client.query(query, values);
 		console.log('Data inserted in Competence successfully', result.rows[0]);
 	}
