@@ -52,3 +52,10 @@ main h1 {
     outline: none;
     background-color: #6b02777f;
 }
+
+.recherche{
+    width: 100%;
+    background-color: aqua;
+    border-radius: 15px;
+
+}
