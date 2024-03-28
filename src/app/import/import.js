@@ -109,7 +109,6 @@ fileCoef.addEventListener('change', (event) =>
 	const file = event.target.files[0];
 
 	console.log('file loaded');
-	console.log(file.name);
 
 	const reader = new FileReader();
 	reader.onload = function (event)
@@ -121,13 +120,48 @@ fileCoef.addEventListener('change', (event) =>
 
 		// Initialize an empty JSON object
 		const jsonData = {};
+		const competences = [];
+		let idCompColumn  = null;
+		let keyCompColumn = null;
+
+		for (let cell in worksheet)
+		{
+			if (cell === '!ref')
+				continue;
+			
+			const matches = cell.match(/([A-Z]+)([0-9]+)/);
+			keyCompColumn = matches[1];
+			idCompColumn = matches[2];
+
+			let dataCell = worksheet[cell].v;
+			let comp = { lib: dataCell.trim() };
+			competences.push(comp);
+
+			break;
+		}
 
 		for (const cell in worksheet)
 		{
+
 			// Extract the column name (key)
-			const key = cell.replace(/[0-9]/g, '');
-			console.log(cell);
-			console.log(key);
+			const matches = cell.match(/([A-Z]+)([0-9]+)/);
+			console.log(matches)
+			if (cell === '!ref' || matches === null)
+				continue;
+			
+			const key    = matches[1];
+			const idCell = matches[2];
+			
+			let isComp = keyCompColumn == key && (parseInt(idCompColumn)+1) == idCell;
+			let dataCell = worksheet[cell].v;
+
+			if ( isComp )
+			{
+				let comp = { lib: dataCell.trim() };
+				console.log(comp)
+				competences.push(comp);
+				idCompColumn = idCell;
+			}
 
 			// If the key doesn't exist in the JSON object, create it
 			if (!jsonData[key])
@@ -136,19 +170,14 @@ fileCoef.addEventListener('change', (event) =>
 			}
 
 			// Push the value of the current cell to the corresponding key
+			
 			jsonData[key].push(worksheet[cell].v);
 		}
 
-		// Convert the JSON object to an array of objects
-		const dataArray = Object.keys(jsonData).map(key =>
-			{
-				const obj = {};
-				obj[key] = jsonData[key];
-				return obj;
-			}
-		);
-
 		console.log(jsonData);
+		console.log(competences);
+
 	};
+
 	reader.readAsArrayBuffer(file);
 }, false);

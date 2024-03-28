@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS CompMod  ;
 DROP TABLE IF EXISTS Moyenne   ;
 DROP TABLE IF EXISTS Competence;
 
+DROP TABLE IF EXISTS Export     ;
 DROP TABLE IF EXISTS Utilisateur;
 DROP TABLE IF EXISTS Semestre   ;
 DROP TABLE IF EXISTS Annee      ;
@@ -15,6 +16,11 @@ DROP TABLE IF EXISTS Module     ;
 /*                           */
 /* TABLE DE PREMIERE LIAISON */
 /*                           */
+CREATE TABLE Export 
+(
+	exportId SERIAL      PRIMARY KEY,
+	chemin   VARCHAR(30) NOT NULL,
+);
 
 CREATE TABLE Module 
 (
