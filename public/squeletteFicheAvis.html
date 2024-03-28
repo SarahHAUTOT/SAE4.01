@@ -23,23 +23,68 @@
 		<div>
 			<h1>Génération avis de poursuite d'études</h1>
 			<div class="container">
-				<h2>%%CHOIX ETUDIANT%%</h1>
+				<h2>%%ETUDIANT SPECIFIQUE%%</h1>
+				<table>
+					<thead>
+						<tr>
+						  <th>Apprentissage</th>
+						  <th>BUT 1</th>
+						  <th>BUT 2</th>
+						  <th>BUT 3</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+							<th>Parcours d'études</th>
+							<td>N-2</td>
+							<td>N-1</td>
+							<td>N</td>
+						</tr>
+						<tr>
+							<th>Parcours BUT</th>
+							<td colspan="3">A "Réalisation d'application: conception...</td>
+						</tr>
+						<tr>
+							<th>Si mobilité à létranger (lieu,durée)</th>
+							<td colspan="3"></td>
+						</tr>
+					  </tbody>
+					</table>
+					<hr>
+					<h3>Résultat des compétences</h3>
+					<table>
+						<thead>
+							<tr>
+							  <th colspan="2">BUT 1</th>
+							  <th colspan="2">BUT 2</th>
+							</tr>
+							<tr>
+								<th>Rang</th>
+								<th>Moy.</th>
+								<th>BUT 1</th>
+								<th>BUT 2</th>
+							</tr>
+						  </thead>
+						  <tbody>
+							<tr>
+								<th>Parcours d'études</th>
+								<td>N-2</td>
+								<td>N-1</td>
+								<td>N</td>
+							</tr>
+							<tr>
+								<th>Parcours BUT</th>
+								<td colspan="3">A "Réalisation d'application: conception...</td>
+							</tr>
+							<tr>
+								<th>Si mobilité à létranger (lieu,durée)</th>
+								<td colspan="3"></td>
+							</tr>
+						  </tbody>
+						</table>
 				<div class="gridRessource">
-					<label>Nom du chef de Dept. :</label> <input type="text" name="utilisateur" value="">
-					<label>Logo 1 :</label>
-					<div class="divImportation"><button class="importButton" type="import" name="logo1"
-							value="">Importer</button><label>Non importé</label></div>
-					<label>Logo 2 :</label>
-					<div class="divImportation"><button class="importButton" type="import" name="logo2"
-							value="">Importer</button><label>Non importé</label></div>
-					<label>Signature et cachet du Dept. :</label>
-					<div class="divImportation"><button class="importButton" type="import" name="signCachet"
-							value="">Importer</button><label>Non importé</label></div>
-				</div>
-				<div class="gridRessource">
-					<label>*Modification non sauvegardée*</label>
-					<button class="validateButton" type="import" name="signCachet" value="">Export %%CHOIX ETUDIANT%%
-						(prévisualisation)</button>
+					<label id="modification">*Modification non sauvegardée*</label>
+					<button class="validateButton" type="import" name="signCachet" value="">Prévisualiser</button>
 					<button class="validateButton" type="import" name="signCachet" value="">Sauvegarder les
 						modification</button>
 					<button class="validateButton" type="import" name="signCachet" value="">Générer</button>

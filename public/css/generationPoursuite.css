@@ -12,12 +12,9 @@ div {
 
 .container {
     border-radius: 10px;
-    /* Coins arrondis */
     background-color: #6b027760;
-    /* Couleur de fond */
     width: 510px;
     padding: 30px;
-    /* Espace intérieur */
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -55,7 +52,6 @@ div {
 }
 
   
-/* Style for the file input button */
 input[type="file"]::file-selector-button {
     display: inline-block;
     font-weight: bold;
@@ -65,7 +61,6 @@ input[type="file"]::file-selector-button {
     background-color: #f0f0f0;
 }
 
-/* Style for the file input button on hover */
 input[type="file"]::file-selector-button:hover {
     background-color: #e0e0e0;
 }
@@ -77,9 +72,7 @@ input[type="file"]::file-selector-button:hover {
     text-align: center;
     text-decoration: none;
     border-radius: 30px;
-    /* very rounded corners */
     background-color: #6b027750;
-    /* Couleur de fond */
 }
 
 .validateButton:hover {

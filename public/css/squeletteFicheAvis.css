@@ -1,9 +1,6 @@
 /* Styles pour le contenu principal */
 main {
-    align-self: center;
     text-align: center;
-    justify-content: center;
-    align-items: center;
     color: black;
 }
 
@@ -15,12 +12,9 @@ div {
 
 .container {
     border-radius: 10px;
-    /* Coins arrondis */
-    background-color: #6b02777f;
-    /* Couleur de fond */
-    width: 90%;
+    background-color: #6b027760;
+    width: 1200px;
     padding: 30px;
-    /* Espace intérieur */
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -43,7 +37,7 @@ div {
     margin-bottom: 100px;
     text-align: right;
     display: grid;
-    grid-template-columns: auto 200px;
+    grid-template-columns: auto auto;
     grid-gap: 20px;
     grid-row-gap: 10px;
     justify-content: center;
@@ -57,15 +51,18 @@ div {
     grid-gap: 2%;
 }
 
-.importButton {
+  
+input[type="file"]::file-selector-button {
     display: inline-block;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
     border-radius: 0px;
-    /* square corners */
     background-color: #f0f0f0;
-    /* Button background color */
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #e0e0e0;
 }
 
 .validateButton {
@@ -75,7 +72,26 @@ div {
     text-align: center;
     text-decoration: none;
     border-radius: 30px;
-    /* very rounded corners */
-    background-color: #6b0277;
-    /* Couleur de fond */
+    background-color: #6b027750;
 }
+
+.validateButton:hover {
+    outline: none;
+    background-color: #6b02777f;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
