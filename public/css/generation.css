@@ -15,7 +15,6 @@ main .container {
     margin: 5%;
     text-align: center;
     justify-content: center;
-
 }
 
 main h1 {
@@ -33,17 +32,23 @@ main h1 {
     /* centre horizontalement */
     align-items: center;
     display: grid;
-    grid-template-columns: 15% 15%;
+    grid-template-columns: 20% 20%;
     grid-gap: 2%;
     grid-row-gap: 5%;
 }
 
-.valider {
+.validateButton {
     margin: 1%;
-    height: 10%;
-    width: 15%;
-}
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: #6b027750;
 
-.container img {
-    width: 100%;
+}
+.validateButton:hover {
+    outline: none;
+    background-color: #6b02777f;
 }
