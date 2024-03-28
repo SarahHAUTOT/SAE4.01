@@ -47,15 +47,15 @@ fileMoy.addEventListener('change', (event) =>
 		{
 			let etudiant = 
 			{
-				id : row['etudid'],
+				id : row['code_nip'],
 				civ: row['Civ.'],
-				abs: row['Abs'],
+				abs: parseInt(row['Abs'] - row['Just.']),
 				nom: row['Nom'],
 				td : row['TD'],
 				tp : row['TP'],
 				bac: row['Bac'],
 				bonus : row[bonus],
-				prenom: row['Prénom'], // TODO problème d'encodage => prenom undefined
+				prenom: row['Prenom'], // TODO problème d'encodage => prenom undefined
 				parcours: row['Cursus'],
 			};
 
@@ -115,67 +115,73 @@ fileCoef.addEventListener('change', (event) =>
 	{
 		const data = new Uint8Array(event.target.result);
 		const workbook = XLSX.read(data, {type:'array'});
-		const sheet = workbook.SheetNames[0];
-		const worksheet = workbook.Sheets[sheet];
+		let sheet = workbook.SheetNames[0];
+		let worksheet = workbook.Sheets[sheet];
 
 		// Initialize an empty JSON object
 		const jsonData = {};
+		
 		const competences = [];
-		let idCompColumn  = null;
-		let keyCompColumn = null;
-
-		for (let cell in worksheet)
-		{
-			if (cell === '!ref')
-				continue;
-			
-			const matches = cell.match(/([A-Z]+)([0-9]+)/);
-			keyCompColumn = matches[1];
-			idCompColumn = matches[2];
-
-			let dataCell = worksheet[cell].v;
-			let comp = { lib: dataCell.trim() };
-			competences.push(comp);
-
-			break;
-		}
-
+		const modules  = [];
+		const compMods = [];
+		
 		for (const cell in worksheet)
-		{
-
-			// Extract the column name (key)
-			const matches = cell.match(/([A-Z]+)([0-9]+)/);
-			console.log(matches)
-			if (cell === '!ref' || matches === null)
-				continue;
-			
-			const key    = matches[1];
-			const idCell = matches[2];
-			
-			let isComp = keyCompColumn == key && (parseInt(idCompColumn)+1) == idCell;
-			let dataCell = worksheet[cell].v;
-
-			if ( isComp )
+			if ( cell !== '!ref' )
 			{
-				let comp = { lib: dataCell.trim() };
-				console.log(comp)
+				let dataCell = worksheet[cell].v;
+				let comp = { lib: dataCell.trim(), id:cell.substring(1, cell.length) };
 				competences.push(comp);
-				idCompColumn = idCell;
 			}
+		
+		console.log(competences);
 
-			// If the key doesn't exist in the JSON object, create it
-			if (!jsonData[key])
+		// Insertions competences
+		let modAttr = ['code', 'lib'];
+		for ( let nbSem = 1; nbSem < workbook.SheetNames.length -1; nbSem++)
+		{
+			sheet     = workbook.SheetNames[nbSem];
+			worksheet = workbook.Sheets[sheet];
+
+			let mod     = {};
+			let compMod = {};
+
+			let i = 0;
+			let compColumn = null;
+			for (const cell in worksheet)
 			{
-				jsonData[key] = [];
+				let dataCell = worksheet[cell].v;
+				let info = i > parseInt(workbook.SheetNames.length -2); 
+				let moduleInfo = info && i - parseInt(workbook.SheetNames.length) < modAttr.length;
+				
+
+				if (cell === '!ref') continue;
+				
+				
+				if (moduleInfo)
+				{
+					let index = i - parseInt(workbook.SheetNames.length -1);
+					mod[modAttr[index]] = dataCell;
+					console.log(mod);
+				}
+				
+				if (info)
+				{
+					compColumn = (i - parseInt(workbook.SheetNames.length) === 3) ? cell : compColumn;
+					//compMod = { modId: }
+
+				}
+
+				console.log(info);
+				console.log(i - parseInt(workbook.SheetNames.length -1) < modAttr.length);
+				console.log( sheet + ' ' + cell + ' : ' + dataCell)
+
+				compMods.push(compMod);
+				i++;
 			}
 
-			// Push the value of the current cell to the corresponding key
-			
-			jsonData[key].push(worksheet[cell].v);
 		}
 
-		console.log(jsonData);
-		console.log(competences);
+		console.log(modules);
 
 	};
 
