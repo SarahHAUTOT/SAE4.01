@@ -34,8 +34,7 @@ div {
 .gridRessource {
   height: 100px;
   font-weight: bold;
-  margin-top: 70px;
-  margin-bottom: 100px;
+  margin-top: 50px;
   text-align: right;
   display: grid;
   grid-template-columns: auto auto;
