@@ -75,9 +75,6 @@ fileMoy.addEventListener('change', (event) => {
 			}
 		}
 
-		console.log(students);
-		console.log(moyennes);
-
 		// Send data to PHP script using fetch
 		callPHP('../DB.inc.php', 'insertStudents', students);
 		callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
@@ -118,7 +115,7 @@ fileCoef.addEventListener('change', (event) =>
 {
 	const file = event.target.files[0];
 
-	console.log('file loaded');
+	console.log('file coef loaded');
 
 	const reader = new FileReader();
 	reader.onload = function (event)
@@ -143,7 +140,6 @@ fileCoef.addEventListener('change', (event) =>
 				competences.push(comp);
 			}
 		
-		console.log(competences);
 
 		// Insertions competences
 		let modAttr = ['code', 'lib'];
@@ -186,30 +182,22 @@ fileCoef.addEventListener('change', (event) =>
 
 				if (info && !moduleInfo && !isEmpty(dataCell))
 				{
-					console.log( mod )
-
-					console.log( sheet + ' ' + cell + ' : ' + dataCell)
 					let compColumn = 'C'.charCodeAt(0);
 					let idComp = letter.charCodeAt(0) - compColumn;
-					console.log(idComp)
 
+					
 					let compId = nbSem + '' + competences[idComp].id;
-
 					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };
 
 					compMods.push(compMod);
 					compMod = {};
 				}
 
-
 				i++;
 			}
 
 		}
-		console.log(compMods);
-
-		console.log(modules);
-
+	
 	};
 
 	reader.readAsArrayBuffer(file);
