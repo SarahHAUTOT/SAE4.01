@@ -123,6 +123,7 @@ h3 {
 label {
   font-size: large;
   font-weight: bold;
+  color:red;
 }
 
 textarea {
