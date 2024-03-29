@@ -53,7 +53,7 @@ fileMoy.addEventListener('change', (event) => {
 				td : row['TD'],
 				tp : row['TP'],
 				bac: row['Bac'],
-				bonus : (isNaN(row[bonus])) ? 0 : row[bonus],
+				bonus : !isNaN(row[bonus]) ? row[bonus] : 0,
 				prenom: row['Pr\u00E9nom'], 
 				parcours: row['Cursus'],
 			};
@@ -63,17 +63,15 @@ fileMoy.addEventListener('change', (event) => {
 
 			for (let mod of modules)
 			{
-				let moy = row[mod.lib];
-
-				if (isNaN(moy))
+				let moy =
 				{
-					moy = 0;
-				}
-
-				let moyenne = { moy, etdId  : row['code_nip'], modId  : mod.id };
+					moy  : !isNan(row[mod.lib]) ? row[mod.lib] : 0,
+					etdId: row['code_nip'],
+					modId: mod.id
+				};
 
 				// TODO  Insertion moyenne
-				moyennes.push(moyenne);
+				moyennes.push(moy);
 			}
 		}
 
@@ -114,15 +112,6 @@ function callPHP (file, action, datas)
 			console.error('There was a problem with the fetch operation:', error);
 		});
 }
-
-
-
-
-
-
-
-
-
 
 const fileCoef = document.getElementById('coef_file');
 fileCoef.addEventListener('change', (event) =>
