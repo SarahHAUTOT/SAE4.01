@@ -24,9 +24,9 @@ ALTER SEQUENCE Annee_anneeId_seq RESTART WITH 1;
 UPDATE Annee SET anneeId = nextval('Annee_anneeId_seq');
 
 
-INSERT INTO Module (modLib)
-VALUES      ('R1.01'),
-            ('R2.02');
+INSERT INTO Module (modCat, modLib)
+VALUES      ('e','R1.01'),
+            ('e','R2.02');
 
 INSERT INTO Annee (anneLib) VALUES 
     ('2021-2022'), -- Année scolaire 2021-2022
@@ -52,14 +52,14 @@ VALUES
     ('admin_user', 'adminpass', 1);
 
 
-INSERT INTO Competence (compLib, semId) 
+INSERT INTO Competence (compCode, compLib, semId) 
 VALUES 
-    ('C.A', 1),
-    ('C.B', 1),
-    ('C.C', 1),
-    ('C.D', 2),
-    ('C.E', 2),
-    ('C.F', 2);
+    ('C.A','C.A', 1),
+    ('C.B','C.B', 1),
+    ('C.C','C.C', 1),
+    ('C.D','C.D', 2),
+    ('C.E','C.E', 2),
+    ('C.F','C.F', 2);
 
 
 INSERT INTO Moyenne (noteVal, etdId, modId, anneeId) 

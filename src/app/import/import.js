@@ -1,5 +1,98 @@
 const fileMoy = document.getElementById('moy_file');
-fileMoy.addEventListener('change', (event) => {
+fileMoy.addEventListener('change', decomposeMoyennes , false);
+const fileCoef = document.getElementById('coef_file');
+fileCoef.addEventListener('change', decomposeCoef, false);
+
+
+const mybtn = document.getElementById('myButton');
+mybtn.addEventListener('click', generateAll, false);
+
+
+//oN GARDE CA 
+let modules = [];
+let students = [];
+let moyennes = [];
+let competences = [];
+let compMods = [];
+
+
+
+
+function isEmpty(value)
+{
+	return (value == null || (typeof value === "string" && value.trim().length === 0));
+}
+
+
+
+
+
+
+function callPHP(file, action, datas) {
+    return new Promise((resolve, reject) => {
+        fetch(file, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: action, datas }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                resolve(data); // Renvoie le message de succès du script PHP
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
+
+
+function generateAll() {
+    console.log("Etudiants", students);
+    console.log("Moyenne", moyennes);
+    console.log("Competences", competences);
+    console.log("Modules", modules);
+    console.log("CompMod", compMods);
+
+    // Insertion des étudiants
+    callPHP('../DB.inc.php', 'insertStudents', students)
+        .then(() => {
+            // Après l'insertion des étudiants, insérer les modules
+            return callPHP('../DB.inc.php', 'insertModules', modules);
+        })
+        .then(() => {
+            // Après l'insertion des modules, insérer les compétences
+            return callPHP('../DB.inc.php', 'insertCompetences', competences);
+        })
+        .then(() => {
+            // Après l'insertion des compétences, insérer les moyennes
+            return callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
+        })
+        .then(() => {
+            // Enfin, insérer compMods après l'insertion des moyennes
+            return callPHP('../DB.inc.php', 'insertCompMods', compMods);
+        })
+        .then(() => {
+            // Toutes les opérations ont réussi
+            console.log("Toutes les données ont été insérées avec succès !");
+        })
+        .catch(error => {
+            console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
+        });
+}
+
+
+
+
+function decomposeMoyennes()
+{
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -12,7 +105,6 @@ fileMoy.addEventListener('change', (event) => {
         const worksheet = workbook.Sheets[sheet];
         const rows = XLSX.utils.sheet_to_json(worksheet, { raw: true });
         let bonus;
-        const modules = [];
 
         // Iterate through the Modules
         const header = Object.keys(rows[0]);
@@ -36,10 +128,6 @@ fileMoy.addEventListener('change', (event) => {
                 modules.push(module);
             }
         }
-
-
-		let students = [];
-		let moyennes = [];
 
 		// Iterate through the Competences and its modules 
 		for (let row of rows)
@@ -72,20 +160,13 @@ fileMoy.addEventListener('change', (event) => {
 				moyennes.push(moy);
 			}
 		}
-
-		// Send data to PHP script using fetch
-		callPHP('../DB.inc.php', 'insertStudents', students);
-		callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
     };
 
     reader.readAsArrayBuffer(file);
-}, false);
+}
 
 
-
-
-const fileCoef = document.getElementById('coef_file');
-fileCoef.addEventListener('change', (event) =>
+function decomposeCoef()
 {
 	const file = event.target.files[0];
 
@@ -101,10 +182,6 @@ fileCoef.addEventListener('change', (event) =>
 
 		// Initialize an empty JSON object
 		const jsonData = {};
-		
-		const competences = [];
-		const modules  = [];
-		const compMods = [];
 		
 		for (const cell in worksheet)
 			if ( cell !== '!ref' )
@@ -183,48 +260,10 @@ fileCoef.addEventListener('change', (event) =>
 			}
 		}
 
-		console.log(modules)
-		console.log(competences)
-		console.log(compMods)
-
-		callPHP('../DB.inc.php', 'insertCompetences', competences);
-		callPHP('../DB.inc.php', 'insertModules'    , modules);
-		callPHP('../DB.inc.php', 'insertCompMods'   , compMods);
+		console.log(modules);
+		console.log(competences);
+		console.log(compMods);
 	};
 
 	reader.readAsArrayBuffer(file);
-	
-}, false);
-
-function isEmpty(value)
-{
-	return (value == null || (typeof value === "string" && value.trim().length === 0));
-}
-
-
-
-
-
-
-function callPHP (file, action, datas)
-{
-	fetch(file, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ action: action, datas }),
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.text();
-		})
-		.then(data => {
-			console.log(data); // Success message from PHP script
-		})
-		.catch(error => {
-			console.error('There was a problem with the fetch operation:', error);
-		});
 }

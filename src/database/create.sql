@@ -27,7 +27,7 @@ CREATE TABLE Module
 	modId   SERIAL      PRIMARY KEY,
 	modCode VARCHAR(10) ,
 	modCat  VARCHAR(20) NOT NULL,
-	modLib  VARCHAR(50) NOT NULL
+	modLib  VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Semestre
@@ -75,7 +75,7 @@ CREATE TABLE Competence
 (
 	compId   SERIAL  PRIMARY KEY  ,
 	compCode VARCHAR (10) NOT NULL,
-	compLib  VARCHAR (50) NOT NULL,
+	compLib  VARCHAR (255) NOT NULL,
 	semId    INTEGER REFERENCES Semestre(semId)
 );
 
@@ -117,3 +117,12 @@ CREATE TABLE AdmAnnee
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','PASD','RED','NAR', 'ABL', 'NR' )) DEFAULT 'NR',
 	PRIMARY KEY (anneeId,etdId)
 );
+
+
+-- Les 6 semestres
+INSERT INTO Semestre DEFAULT VALUES;
+INSERT INTO Semestre DEFAULT VALUES;
+INSERT INTO Semestre DEFAULT VALUES;
+INSERT INTO Semestre DEFAULT VALUES;
+INSERT INTO Semestre DEFAULT VALUES;
+INSERT INTO Semestre DEFAULT VALUES;

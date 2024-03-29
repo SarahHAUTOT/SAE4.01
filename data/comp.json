@@ -1,6 +1,7 @@
 [
     {
         "compid": 1,
+        "compcode": "C.A",
         "complib": "C.A",
         "semid": 1,
         "modules": [
@@ -18,6 +19,7 @@
     },
     {
         "compid": 2,
+        "compcode": "C.B",
         "complib": "C.B",
         "semid": 1,
         "modules": [
@@ -35,6 +37,7 @@
     },
     {
         "compid": 3,
+        "compcode": "C.C",
         "complib": "C.C",
         "semid": 1,
         "modules": [
@@ -52,6 +55,7 @@
     },
     {
         "compid": 4,
+        "compcode": "C.D",
         "complib": "C.D",
         "semid": 2,
         "modules": [
@@ -69,6 +73,7 @@
     },
     {
         "compid": 5,
+        "compcode": "C.E",
         "complib": "C.E",
         "semid": 2,
         "modules": [
@@ -86,6 +91,7 @@
     },
     {
         "compid": 6,
+        "compcode": "C.F",
         "complib": "C.F",
         "semid": 2,
         "modules": [

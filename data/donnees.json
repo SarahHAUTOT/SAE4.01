@@ -15,17 +15,18 @@
                         "etdgroupetd": "TD1",
                         "etdparcours": "Math\u00c3\u00a9matiques",
                         "etdbonus": "0",
+                        "etdabs": 0,
                         "etdbac": "Bac S",
                         "modules": [
                             {
                                 "modId": 1,
                                 "modLib": "R1.01",
-                                "noteVal": "0"
+                                "noteVal": "14.5"
                             },
                             {
                                 "modId": 2,
                                 "modLib": "R2.02",
-                                "noteVal": "0"
+                                "noteVal": "16.8"
                             }
                         ],
                         "competences": [
@@ -56,29 +57,30 @@
                         "etdgroupetd": "TD2",
                         "etdparcours": "Biologie",
                         "etdbonus": "0.5",
+                        "etdabs": 0,
                         "etdbac": "Bac ES",
                         "modules": [
                             {
                                 "modId": 1,
                                 "modLib": "R1.01",
-                                "noteVal": "0"
+                                "noteVal": "17.2"
                             }
                         ],
                         "competences": [
                             {
                                 "compId": 1,
                                 "compLib": "C.A",
-                                "admi": "ADM"
+                                "admi": "CMP"
                             },
                             {
                                 "compId": 2,
                                 "compLib": "C.B",
-                                "admi": "ADM"
+                                "admi": "CMP"
                             },
                             {
                                 "compId": 3,
                                 "compLib": "C.C",
-                                "admi": "ADM"
+                                "admi": "CMP"
                             }
                         ],
                         "admi": "PASD"
@@ -92,6 +94,7 @@
                         "etdgroupetd": "TD3",
                         "etdparcours": "Informatique",
                         "etdbonus": "1.2",
+                        "etdabs": 0,
                         "etdbac": "Bac STI2D",
                         "modules": [],
                         "competences": [
@@ -141,6 +144,7 @@
                         "etdgroupetd": "TD1",
                         "etdparcours": "Math\u00c3\u00a9matiques",
                         "etdbonus": "0",
+                        "etdabs": 0,
                         "etdbac": "Bac S",
                         "modules": [],
                         "competences": [
@@ -171,6 +175,7 @@
                         "etdgroupetd": "TD2",
                         "etdparcours": "Biologie",
                         "etdbonus": "0.5",
+                        "etdabs": 0,
                         "etdbac": "Bac ES",
                         "modules": [
                             {
