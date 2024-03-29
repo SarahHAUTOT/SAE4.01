@@ -45,3 +45,16 @@ h2{
 	color: red;
 	font-weight: bold;
 }
+.gridRessource {
+    height: auto;
+    margin:auto;
+    font-weight: bold;
+    font-size: large;
+    text-align: right;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    grid-row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
