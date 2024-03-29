@@ -202,8 +202,8 @@ fileCoef.addEventListener('change', (event) =>
 		callPHP('../DB.inc.php', 'insertCompMods'   , compMods);
 	};
 
-
 	reader.readAsArrayBuffer(file);
+	
 }, false);
 
 function isEmpty(value)
