@@ -167,29 +167,52 @@ class DB
 			// For each student in data
 			foreach ($moyennes as $moyenne) 
 			{
-				// Prepare the SQL statement
-				$sql = "INSERT INTO Moyenne (noteVal, etdid, modid, anneeid) VALUES (?, ?, ?, ?)";
+				$sql = "SELECT * FROM Moyenne WHERE etdId = ? AND modId = ? AND anneeId = ?";
+				$param = array ($moyenne['etdId'],$moyenne['modId'],$max_annee_id);
 
-				// Bind parameters
-				$params = array(
-					$moyenne['moy'],
-					$moyenne['etdId'],
-					$moyenne['modId'],
-					$max_annee_id
-				);
+				$stmt = $this->connect->prepare($sql);
+				$res = $stmt->execute($param);
+
+				//The student is already in the database
+				if ($stmt->rowCount() > 0) {
+					// Prepare the SQL statement
+					$sql = "UPDATE Moyenne SET noteVal = ? WHERE etdId = ? AND modId = ? AND anneeId = ?";
+
+					// Bind parameters
+					$params = array(
+						$moyenne['moy'],
+						$moyenne['etdId'],
+						$moyenne['modId'],
+						$max_annee_id
+					);
+					
+				}
+				else
+				{
+					// Prepare the SQL statement
+					$sql = "INSERT INTO Moyenne (noteVal, etdid, modid, anneeid) VALUES (?, ?, ?, ?)";
+
+					// Bind parameters
+					$params = array(
+						$moyenne['moy'],
+						$moyenne['etdId'],
+						$moyenne['modId'],
+						$max_annee_id
+					);
+				}
 
 				$stmt = $this->connect->prepare($sql);
 				$result = $stmt->execute($params);
 				if ($result === false) {
-					return "Error inserting moyennes: " . $db->getError();
+					return "Error updating moyennes: " . $db->getError();
 				}
 			}
 
 			// Respond to the client with a success message
-			echo "Students inserted successfully";
+			echo "Moyennes inserted successfully";
 		} else {
 			// Respond to the client with an error message
-			echo "No student data received";
+			echo "No moyennes data received";
 		}
 	}
 
@@ -200,16 +223,38 @@ class DB
 
 		foreach ($competences as $comp) 
 		{
-			// Prepare the SQL statement
-			$sql = "INSERT INTO Competence (compId, compCode, compLib, semId) VALUES (?, ?, ?, ?)";
+			$sql = "SELECT * FROM Competence WHERE compId = ?";
+			$param = array ($comp['compId']);
 
-			// Bind parameters
-			$params = array(
-				$comp['compId'],
-				$comp['compCode'],
-				$comp['compLib'],
-				$comp['semId']
-			);
+			$stmt = $this->connect->prepare($sql);
+			$res = $stmt->execute($param);
+
+			//The student is already in the database
+			if ($stmt->rowCount() > 0) {
+				// Prepare the SQL statement
+				$sql = "UPDATE Competence SET compCode = ?, compLib = ?, semId = ? WHERE compId = ?";
+
+				// Bind parameters
+				$params = array(
+					$comp['compCode'],
+					$comp['compLib'],
+					$comp['semId'],
+					$comp['compId']
+				);
+			}
+			else
+			{
+				// Prepare the SQL statement
+				$sql = "INSERT INTO Competence (compId, compCode, compLib, semId) VALUES (?, ?, ?, ?)";
+
+				// Bind parameters
+				$params = array(
+					$comp['compId'],
+					$comp['compCode'],
+					$comp['compLib'],
+					$comp['semId']
+				);
+			}
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
@@ -228,21 +273,44 @@ class DB
 
 		foreach ($modules as $mod) 
 		{
-			// Prepare the SQL statement
-			$sql = "INSERT INTO Module (modId, modCode, modCat, modLib) VALUES (?, ?, ?, ?)";
 
-			// Bind parameters
-			$params = array(
-				$comp['modId'],
-				$comp['modCode'],
-				$comp['modCat'],
-				$comp['modLib']
-			);
+			$sql = "SELECT * FROM Module WHERE modId = ?";
+			$param = array ($mod['modId']);
+
+			$stmt = $this->connect->prepare($sql);
+			$res = $stmt->execute($param);
+
+			//The student is already in the database
+			if ($stmt->rowCount() > 0) {
+				// Prepare the SQL statement
+				$sql = "UPDATE Module SET modCode = ?, modCat = ?, modLib = ? WHERE modId = ?";
+
+				// Bind parameters
+				$params = array(
+					$mod['modCode'],
+					$mod['modCat'],
+					$mod['modLib'],
+					$mod['modId']
+				);
+			}
+			else
+			{
+				// Prepare the SQL statement
+				$sql = "INSERT INTO Module (modId, modCode, modCat, modLib) VALUES (?, ?, ?, ?)";
+
+				// Bind parameters
+				$params = array(
+					$mod['modId'],
+					$mod['modCode'],
+					$mod['modCat'],
+					$mod['modLib']
+				);
+			}
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
-
-			if ($result === false) return "Error inserting Module: " . $db->getError();
+			
+			if ($result === false) return "Error inserting Modules: " . $db->getError();
 		}
 
 		// Respond to the client with a success message
@@ -255,15 +323,38 @@ class DB
 
 		foreach ($compMods as $compMod) 
 		{
-			// Prepare the SQL statement
-			$sql = "INSERT INTO CompMod (compId, modId, modCoef) VALUES (?, ?, ?)";
 
-			// Bind parameters
-			$params = array(
-				$comp['compId'],
-				$comp['modId'],
-				$comp['modCoef']
-			);
+			$sql = "SELECT * FROM CompMod WHERE modId = ? AND compId = ?";
+			$param = array ($compMod['modId'],$compMod['compId']);
+
+			$stmt = $this->connect->prepare($sql);
+			$res = $stmt->execute($param);
+
+			//The student is already in the database
+			if ($stmt->rowCount() > 0) {
+				// Prepare the SQL statement
+				$sql = "UPDATE CompMod SET modCoef = ? WHERE modId = ? AND compId = ?";
+
+				// Bind parameters
+				$params = array(
+					$compMod['modCoef'],
+					$compMod['modId'],
+					$compMod['compId']
+				);
+			}
+			else
+			{
+				
+				// Prepare the SQL statement
+				$sql = "INSERT INTO CompMod (compId, modId, modCoef) VALUES (?, ?, ?)";
+
+				// Bind parameters
+				$params = array(
+					$compMod['compId'],
+					$compMod['modId'],
+					$compMod['modCoef']
+				);
+			}
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
@@ -321,4 +412,8 @@ if (!empty($postData['action'])) {
 	// Répondre au client avec un message d'erreur
 	echo "Aucune action spécifiée";
 }
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>

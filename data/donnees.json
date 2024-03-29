@@ -1,7 +1,210 @@
 [
     {
         "anneeid": 1,
+        "annelib": "2021-2022",
+        "semesters": [
+            {
+                "semid": 1,
+                "etd": [
+                    {
+                        "etdid": 1,
+                        "etdciv": "M.",
+                        "etdnom": "Dupont",
+                        "etdprenom": "Jean",
+                        "etdgroupetp": "Groupe1",
+                        "etdgroupetd": "TD1",
+                        "etdparcours": "Math\u00c3\u00a9matiques",
+                        "etdbonus": "0",
+                        "etdabs": 0,
+                        "etdbac": "Bac S",
+                        "modules": [
+                            {
+                                "modId": 1,
+                                "modLib": "R1.01",
+                                "noteVal": "14.5"
+                            },
+                            {
+                                "modId": 2,
+                                "modLib": "R2.02",
+                                "noteVal": "16.8"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "compId": 1,
+                                "compLib": "C.A",
+                                "admi": "ADM"
+                            },
+                            {
+                                "compId": 2,
+                                "compLib": "C.B",
+                                "admi": "ADM"
+                            },
+                            {
+                                "compId": 3,
+                                "compLib": "C.C",
+                                "admi": "ADM"
+                            }
+                        ],
+                        "admi": "ADM"
+                    },
+                    {
+                        "etdid": 2,
+                        "etdciv": "Mme",
+                        "etdnom": "Durand",
+                        "etdprenom": "Marie",
+                        "etdgroupetp": "Groupe2",
+                        "etdgroupetd": "TD2",
+                        "etdparcours": "Biologie",
+                        "etdbonus": "0.5",
+                        "etdabs": 0,
+                        "etdbac": "Bac ES",
+                        "modules": [
+                            {
+                                "modId": 1,
+                                "modLib": "R1.01",
+                                "noteVal": "17.2"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "compId": 1,
+                                "compLib": "C.A",
+                                "admi": "CMP"
+                            },
+                            {
+                                "compId": 2,
+                                "compLib": "C.B",
+                                "admi": "CMP"
+                            },
+                            {
+                                "compId": 3,
+                                "compLib": "C.C",
+                                "admi": "CMP"
+                            }
+                        ],
+                        "admi": "PASD"
+                    },
+                    {
+                        "etdid": 3,
+                        "etdciv": "M.",
+                        "etdnom": "Lefebvre",
+                        "etdprenom": "Pierre",
+                        "etdgroupetp": "Groupe3",
+                        "etdgroupetd": "TD3",
+                        "etdparcours": "Informatique",
+                        "etdbonus": "1.2",
+                        "etdabs": 0,
+                        "etdbac": "Bac STI2D",
+                        "modules": [],
+                        "competences": [
+                            {
+                                "compId": 1,
+                                "compLib": "C.A",
+                                "admi": "AJ"
+                            },
+                            {
+                                "compId": 2,
+                                "compLib": "C.B",
+                                "admi": "AJ"
+                            },
+                            {
+                                "compId": 3,
+                                "compLib": "C.C",
+                                "admi": "AJ"
+                            }
+                        ],
+                        "admi": "RED"
+                    }
+                ]
+            },
+            {
+                "semid": 2,
+                "etd": []
+            }
+        ]
+    },
+    {
+        "anneeid": 2,
         "annelib": "2022-2023",
-        "semesters": []
+        "semesters": [
+            {
+                "semid": 1,
+                "etd": []
+            },
+            {
+                "semid": 2,
+                "etd": [
+                    {
+                        "etdid": 1,
+                        "etdciv": "M.",
+                        "etdnom": "Dupont",
+                        "etdprenom": "Jean",
+                        "etdgroupetp": "Groupe1",
+                        "etdgroupetd": "TD1",
+                        "etdparcours": "Math\u00c3\u00a9matiques",
+                        "etdbonus": "0",
+                        "etdabs": 0,
+                        "etdbac": "Bac S",
+                        "modules": [],
+                        "competences": [
+                            {
+                                "compId": 4,
+                                "compLib": "C.D",
+                                "admi": "ADM"
+                            },
+                            {
+                                "compId": 5,
+                                "compLib": "C.E",
+                                "admi": "ADM"
+                            },
+                            {
+                                "compId": 6,
+                                "compLib": "C.F",
+                                "admi": "ADM"
+                            }
+                        ],
+                        "admi": "ADM"
+                    },
+                    {
+                        "etdid": 2,
+                        "etdciv": "Mme",
+                        "etdnom": "Durand",
+                        "etdprenom": "Marie",
+                        "etdgroupetp": "Groupe2",
+                        "etdgroupetd": "TD2",
+                        "etdparcours": "Biologie",
+                        "etdbonus": "0.5",
+                        "etdabs": 0,
+                        "etdbac": "Bac ES",
+                        "modules": [
+                            {
+                                "modId": 2,
+                                "modLib": "R2.02",
+                                "noteVal": "15.9"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "compId": 4,
+                                "compLib": "C.D",
+                                "admi": "ADSUP"
+                            },
+                            {
+                                "compId": 5,
+                                "compLib": "C.E",
+                                "admi": "ADSUP"
+                            },
+                            {
+                                "compId": 6,
+                                "compLib": "C.F",
+                                "admi": "ADSUP"
+                            }
+                        ],
+                        "admi": "NAR"
+                    }
+                ]
+            }
+        ]
     }
 ]
