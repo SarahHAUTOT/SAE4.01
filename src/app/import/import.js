@@ -116,8 +116,6 @@ function decomposeMoyennes()
             let isComp = !isNaN(parseInt(key.replace('BIN', '')));
             let isMod = !isComp && !isBonus;
 
-			let mods = [];
-
             if (isBonus) {
                 bonus = key;
                 continue;
@@ -127,7 +125,7 @@ function decomposeMoyennes()
                 let lib = compDetails[i];
                 let id = compDetails[i].slice(4); // getting rid of the 'BINR'
                 let module = { id: id, lib: lib };
-                mods.push(module);
+                modules.push(module);
             }
         }
 
@@ -150,7 +148,7 @@ function decomposeMoyennes()
 
 			students.push(student)
 
-			for (let mod of mods)
+			for (let mod of modules)
 			{
 				let moy =
 				{
