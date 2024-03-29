@@ -65,7 +65,7 @@ fileMoy.addEventListener('change', (event) => {
 			{
 				let moy =
 				{
-					moy  : isNan(row[mod.lib]) ? 0 : row[mod.lib],
+					moy  : isNaN(row[mod.lib]) ? 0 : row[mod.lib],
 					etdId: row['code_nip'],
 					modId: mod.id
 				};
