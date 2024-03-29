@@ -29,63 +29,64 @@ function isEmpty(value)
 
 
 function callPHP(file, action, datas) {
-    return new Promise((resolve, reject) => {
-        fetch(file, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: action, datas }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                resolve(data); // Renvoie le message de succès du script PHP
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
+	return new Promise((resolve, reject) => {
+		fetch(file, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ action: action, datas }),
+			})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.text();
+			})
+			.then(data => {
+				resolve(data); // Renvoie le message de succès du script PHP
+			})
+			.catch(error => {
+				reject(error);
+			});
+	});
 }
 
 
 
-function generateAll() {
-    console.log("Etudiants", students);
-    console.log("Moyenne", moyennes);
-    console.log("Competences", competences);
-    console.log("Modules", modules);
-    console.log("CompMod", compMods);
+function generateAll()
+{
+	console.log("Etudiants", students);
+	console.log("Moyenne", moyennes);
+	console.log("Competences", competences);
+	console.log("Modules", modules);
+	console.log("CompMod", compMods);
 
-    // Insertion des étudiants
-    callPHP('../DB.inc.php', 'insertStudents', students)
-        .then(() => {
-            // Après l'insertion des étudiants, insérer les modules
-            return callPHP('../DB.inc.php', 'insertModules', modules);
-        })
-        .then(() => {
-            // Après l'insertion des modules, insérer les compétences
-            return callPHP('../DB.inc.php', 'insertCompetences', competences);
-        })
-        .then(() => {
-            // Après l'insertion des compétences, insérer les moyennes
-            return callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
-        })
-        .then(() => {
-            // Enfin, insérer compMods après l'insertion des moyennes
-            return callPHP('../DB.inc.php', 'insertCompMods', compMods);
-        })
-        .then(() => {
-            // Toutes les opérations ont réussi
-            console.log("Toutes les données ont été insérées avec succès !");
-        })
-        .catch(error => {
-            console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
-        });
+	// Insertion des étudiants
+	callPHP('../DB.inc.php', 'insertStudents', students)
+		.then(() => {
+			// Après l'insertion des étudiants, insérer les modules
+			return callPHP('../DB.inc.php', 'insertModules', modules);
+		})
+		.then(() => {
+			// Après l'insertion des modules, insérer les compétences
+			return callPHP('../DB.inc.php', 'insertCompetences', competences);
+		})
+		.then(() => {
+			// Après l'insertion des compétences, insérer les moyennes
+			return callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
+		})
+		.then(() => {
+			// Enfin, insérer compMods après l'insertion des moyennes
+			return callPHP('../DB.inc.php', 'insertCompMods', compMods);
+		})
+		.then(() => {
+			// Toutes les opérations ont réussi
+			console.log("Toutes les données ont été insérées avec succès !");
+		})
+		.catch(error => {
+			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
+		});
 }
 
 
@@ -93,43 +94,46 @@ function generateAll() {
 
 function decomposeMoyennes()
 {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+	const file = event.target.files[0];
+	const reader = new FileReader();
 
-    reader.onload = function (event) {
-        console.log('file moyenne loaded');
+	reader.onload = function (event) {
+		console.log('file moyenne loaded');
 
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const sheet = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheet];
-        const rows = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-        let bonus;
+		const data = new Uint8Array(event.target.result);
+		const workbook = XLSX.read(data, { type: 'array' });
+		const sheet = workbook.SheetNames[0];
+		const worksheet = workbook.Sheets[sheet];
+		const rows = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+		let bonus;
 
-        // Iterate through the Modules
-        const header = Object.keys(rows[0]);
-        const compDetails = header.slice(13, header.length - 2);
-        for (let i = 0; i < compDetails.length; i++) {
-            let key = compDetails[i];
+		// Iterate through the Modules
+		const header = Object.keys(rows[0]);
+		const compDetails = header.slice(13, header.length -2);
+		for (let i = 0; i < compDetails.length; i++) {
+			let key = compDetails[i];
 
-            let isBonus = key.startsWith('Bonus');
-            let isComp = !isNaN(parseInt(key.replace('BIN', '')));
-            let isMod = !isComp && !isBonus;
+			let isBonus = key.startsWith('Bonus');
+			let isComp = !isNaN(parseInt(key.replace('BIN', '')));
+			let isMod = !isComp && !isBonus;
 
-            if (isBonus) {
-                bonus = key;
-                continue;
-            }
+			if (isBonus)
+			{
+				bonus = key;
+				continue;
+			}
 
-            if (isMod) {
-                let lib = compDetails[i];
-                let id = compDetails[i].slice(4); // getting rid of the 'BINR'
-                let module = { id: id, lib: lib };
-                modules.push(module);
-            }
-        }
+			if (isMod)
+			{
+				let lib = compDetails[i];
+				let id  = compDetails[i].replace('BIN', ''); // getting rid of the 'BIN'
+				let mod = { id: id, lib: lib };
+				modules.push(mod);
+			}
+		}
 
-		// Iterate through the Competences and its modules 
+		// Iterate through the Competences and its modules
+		
 		for (let row of rows)
 		{
 			let student = 
@@ -149,20 +153,20 @@ function decomposeMoyennes()
 			students.push(student)
 
 			for (let mod of modules)
-			{
-				let moy =
+				if (!isNaN(row[mod.lib]))
 				{
-					moy  : isNaN(row[mod.lib]) ? 0 : row[mod.lib],
-					etdId: row['code_nip'],
-					modId: mod.id
-				};
-
-				moyennes.push(moy);
-			}
+					let moy =
+					{
+						etdId: row['code_nip'],
+						moy  : row[mod.lib],
+						modId: mod.id
+					};
+					
+				}
 		}
-    };
+	};
 
-    reader.readAsArrayBuffer(file);
+	reader.readAsArrayBuffer(file);
 }
 
 
@@ -203,8 +207,9 @@ function decomposeCoef()
 				}
 				
 			}
+		
+		let nbComp = workbook.SheetNames.length -1;
 
-		// Insertions competences
 		let modAttr = ['modCode', 'modLib', 'modCat'];
 		for ( let nbSem = 1; nbSem < workbook.SheetNames.length -1; nbSem++)
 		{
@@ -235,7 +240,7 @@ function decomposeCoef()
 
 					if (Object.keys(mod).length === modAttr.length)
 					{
-						mod['modId' ] = (mod.modCode).slice(4);
+						mod['modId' ] = (mod.modCode).replace('BIN','');
 						currentModId = mod.modId;
 
 						modules.push(mod);
@@ -247,7 +252,7 @@ function decomposeCoef()
 				if (isInfo && !isModuleInfo && !isEmpty(dataCell))
 				{
 					let compColumn = 'D'.charCodeAt(0);
-					let idComp = letter.charCodeAt(0) - compColumn;
+					let idComp = (letter.charCodeAt(0) - compColumn) + ((nbSem -1) * nbComp);
 					
 					let compId = competences[idComp].compId; // TODO wrong thing
 					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };

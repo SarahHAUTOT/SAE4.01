@@ -167,8 +167,8 @@ class DB
 			// For each student in data
 			foreach ($moyennes as $moyenne) 
 			{
-				$sql = "SELECT * FROM Moyenne WHERE etdId = ? AND modId = ? AND anneeId = ?";
-				$param = array ($moyenne['etdId'],$moyenne['modId'],$max_annee_id);
+				$sql = "SELECT * FROM Moyenne WHERE etdId = ? AND modCode = ? AND anneeId = ?";
+				$param = array ($moyenne['etdId'],$moyenne['modCode'],$max_annee_id);
 
 				$stmt = $this->connect->prepare($sql);
 				$res = $stmt->execute($param);
@@ -176,13 +176,13 @@ class DB
 				//The student is already in the database
 				if ($stmt->rowCount() > 0) {
 					// Prepare the SQL statement
-					$sql = "UPDATE Moyenne SET noteVal = ? WHERE etdId = ? AND modId = ? AND anneeId = ?";
+					$sql = "UPDATE Moyenne SET noteVal = ? WHERE etdId = ? AND modCode = ? AND anneeId = ?";
 
 					// Bind parameters
 					$params = array(
 						$moyenne['moy'],
 						$moyenne['etdId'],
-						$moyenne['modId'],
+						$moyenne['modCode'],
 						$max_annee_id
 					);
 					
@@ -190,13 +190,13 @@ class DB
 				else
 				{
 					// Prepare the SQL statement
-					$sql = "INSERT INTO Moyenne (noteVal, etdid, modid, anneeid) VALUES (?, ?, ?, ?)";
+					$sql = "INSERT INTO Moyenne (noteVal, etdid, modCode, anneeid) VALUES (?, ?, ?, ?)";
 
 					// Bind parameters
 					$params = array(
 						$moyenne['moy'],
 						$moyenne['etdId'],
-						$moyenne['modId'],
+						$moyenne['modCode'],
 						$max_annee_id
 					);
 				}
@@ -274,8 +274,8 @@ class DB
 		foreach ($modules as $mod) 
 		{
 
-			$sql = "SELECT * FROM Module WHERE modId = ?";
-			$param = array ($mod['modId']);
+			$sql = "SELECT * FROM Module WHERE modCode = ?";
+			$param = array ($mod['modCode']);
 
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
@@ -283,24 +283,22 @@ class DB
 			//The student is already in the database
 			if ($stmt->rowCount() > 0) {
 				// Prepare the SQL statement
-				$sql = "UPDATE Module SET modCode = ?, modCat = ?, modLib = ? WHERE modId = ?";
+				$sql = "UPDATE Module SET modCat = ?, modLib = ? WHERE modCode = ?";
 
 				// Bind parameters
 				$params = array(
 					$mod['modCode'],
 					$mod['modCat'],
-					$mod['modLib'],
-					$mod['modId']
+					$mod['modLib']
 				);
 			}
 			else
 			{
 				// Prepare the SQL statement
-				$sql = "INSERT INTO Module (modId, modCode, modCat, modLib) VALUES (?, ?, ?, ?)";
+				$sql = "INSERT INTO Module (modCode, modCat, modLib) VALUES (?, ?, ?)";
 
 				// Bind parameters
 				$params = array(
-					$mod['modId'],
 					$mod['modCode'],
 					$mod['modCat'],
 					$mod['modLib']
@@ -324,8 +322,8 @@ class DB
 		foreach ($compMods as $compMod) 
 		{
 
-			$sql = "SELECT * FROM CompMod WHERE modId = ? AND compId = ?";
-			$param = array ($compMod['modId'],$compMod['compId']);
+			$sql = "SELECT * FROM CompMod WHERE modCode = ? AND compId = ?";
+			$param = array ($compMod['modCode'],$compMod['compId']);
 
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
@@ -333,12 +331,12 @@ class DB
 			//The student is already in the database
 			if ($stmt->rowCount() > 0) {
 				// Prepare the SQL statement
-				$sql = "UPDATE CompMod SET modCoef = ? WHERE modId = ? AND compId = ?";
+				$sql = "UPDATE CompMod SET modCoef = ? WHERE modCode = ? AND compId = ?";
 
 				// Bind parameters
 				$params = array(
 					$compMod['modCoef'],
-					$compMod['modId'],
+					$compMod['modCode'],
 					$compMod['compId']
 				);
 			}
@@ -346,12 +344,12 @@ class DB
 			{
 				
 				// Prepare the SQL statement
-				$sql = "INSERT INTO CompMod (compId, modId, modCoef) VALUES (?, ?, ?)";
+				$sql = "INSERT INTO CompMod (compId, modCode, modCoef) VALUES (?, ?, ?)";
 
 				// Bind parameters
 				$params = array(
 					$compMod['compId'],
-					$compMod['modId'],
+					$compMod['modCode'],
 					$compMod['modCoef']
 				);
 			}
