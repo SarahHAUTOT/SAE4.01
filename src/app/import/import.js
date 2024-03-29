@@ -53,7 +53,7 @@ fileMoy.addEventListener('change', (event) => {
 				td : row['TD'],
 				tp : row['TP'],
 				bac: row['Bac'],
-				bonus : !isNaN(row[bonus]) ? row[bonus] : 0,
+				bonus : isNaN(row[bonus]) ? 0 : row[bonus],
 				prenom: row['Pr\u00E9nom'], 
 				parcours: row['Cursus'],
 			};
@@ -65,7 +65,7 @@ fileMoy.addEventListener('change', (event) => {
 			{
 				let moy =
 				{
-					moy  : !isNan(row[mod.lib]) ? row[mod.lib] : 0,
+					moy  : isNan(row[mod.lib]) ? 0 : row[mod.lib],
 					etdId: row['code_nip'],
 					modId: mod.id
 				};
