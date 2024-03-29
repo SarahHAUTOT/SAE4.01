@@ -58,7 +58,6 @@ fileMoy.addEventListener('change', (event) => {
 				parcours: row['Cursus'],
 			};
 
-			// TODO Insertion Etudiant
 			students.push(student)
 
 			for (let mod of modules)
@@ -70,7 +69,6 @@ fileMoy.addEventListener('change', (event) => {
 					modId: mod.id
 				};
 
-				// TODO  Insertion moyenne
 				moyennes.push(moy);
 			}
 		}
@@ -112,13 +110,25 @@ fileCoef.addEventListener('change', (event) =>
 			if ( cell !== '!ref' )
 			{
 				let dataCell = worksheet[cell].v;
-				let comp = { lib: dataCell.trim(), id:cell.substring(1, cell.length) };
-				competences.push(comp);
+				
+				for (let nbSem=1; nbSem <= workbook.SheetNames.length -1; nbSem++)
+				{
+					let compId = cell.substring(1, cell.length);
+					let comp = 
+					{
+						compLib: dataCell.trim(),
+						compId : nbSem+''+compId,
+						semId  : nbSem,
+						compCode: 'BIN'+nbSem+''+compId,
+					};
+
+					competences.push(comp);
+				}
+				
 			}
-		
 
 		// Insertions competences
-		let modAttr = ['code', 'lib', 'cat'];
+		let modAttr = ['modCode', 'modLib', 'modCat'];
 		for ( let nbSem = 1; nbSem < workbook.SheetNames.length -1; nbSem++)
 		{
 			sheet     = workbook.SheetNames[nbSem];
@@ -148,8 +158,8 @@ fileCoef.addEventListener('change', (event) =>
 
 					if (Object.keys(mod).length === modAttr.length)
 					{
-						mod['id' ] = (mod.code).slice(4);
-						currentModId = mod.id;
+						mod['modId' ] = (mod.modCode).slice(4);
+						currentModId = mod.modId;
 
 						modules.push(mod);
 						mod = {};
@@ -162,7 +172,7 @@ fileCoef.addEventListener('change', (event) =>
 					let compColumn = 'D'.charCodeAt(0);
 					let idComp = letter.charCodeAt(0) - compColumn;
 					
-					let compId = nbSem + '' + competences[idComp].id;
+					let compId = competences[idComp].compId; // TODO wrong thing
 					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };
 
 					compMods.push(compMod);
@@ -171,8 +181,11 @@ fileCoef.addEventListener('change', (event) =>
 
 				i++;
 			}
-
 		}
+
+		console.log(modules)
+		console.log(competences)
+		console.log(compMods)
 
 		callPHP('../DB.inc.php', 'insertCompetences', competences);
 		callPHP('../DB.inc.php', 'insertModules'    , modules);
