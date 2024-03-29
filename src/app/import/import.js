@@ -86,29 +86,6 @@ fileMoy.addEventListener('change', (event) => {
 
 
 
-function callPHP (file, action, datas)
-{
-	fetch(file, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ action: action, datas }),
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.text();
-		})
-		.then(data => {
-			console.log(data); // Success message from PHP script
-		})
-		.catch(error => {
-			console.error('There was a problem with the fetch operation:', error);
-		});
-}
-
 const fileCoef = document.getElementById('coef_file');
 fileCoef.addEventListener('change', (event) =>
 {
@@ -209,4 +186,32 @@ fileCoef.addEventListener('change', (event) =>
 function isEmpty(value)
 {
 	return (value == null || (typeof value === "string" && value.trim().length === 0));
+}
+
+
+
+
+
+
+function callPHP (file, action, datas)
+{
+	fetch(file, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ action: action, datas }),
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.text();
+		})
+		.then(data => {
+			console.log(data); // Success message from PHP script
+		})
+		.catch(error => {
+			console.error('There was a problem with the fetch operation:', error);
+		});
 }
