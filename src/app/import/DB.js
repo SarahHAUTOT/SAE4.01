@@ -3,10 +3,10 @@ const DB = require('pg');
 // Connection configuration
 const db = new DB(
 	{
-		user: 'na222180',
+		user: 'hs220880',
 		host: 'localhost',
-		database: 'na222180',
-		password: 'DUCAL873',
+		database: 'hs220880',
+		password: 'SAHAU2004',
 		port: 5432,
 	});
 
