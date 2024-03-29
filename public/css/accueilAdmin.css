@@ -1,0 +1,42 @@
+/* Styles pour le contenu principal */
+main {
+    color: black;
+    flex-grow: 1;
+}
+
+.container {
+
+    border-radius: 10px;
+    background-color: #6b027760;
+    width: 550px;
+    padding: 30px;
+    margin: auto;
+	text-align: center;
+    
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+h2{
+	margin: 10px;
+}
+
+.validateButton {
+    margin: 1%;
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: #6b027750;
+
+}
+.validateButton:hover {
+    outline: none;
+    background-color: #6b02777f;
+}

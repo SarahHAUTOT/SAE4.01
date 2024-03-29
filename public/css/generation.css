@@ -35,6 +35,7 @@ main h1 {
     grid-template-columns: 30% 30%;
     grid-gap: 2%;
     grid-row-gap: 5%;
+    background-color: rgb(226, 221, 221);
 }
 
 .validateButton {

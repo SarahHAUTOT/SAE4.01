@@ -10,18 +10,15 @@ div {
   align-items: center;
 }
 
-main .container {
+.container {
   border-radius: 10px;
-  /* Coins arrondis */
-  background-color: #6b02777f;
-  /* Couleur de fond */
-  width: 80%;
-  padding: 4%;
-  /* Espace intérieur */
-  margin: 6%;
-  text-align: center;
-  justify-content: center;
-
+  background-color: #6b027760;
+  width: 510px;
+  padding: 30px;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 
