@@ -118,7 +118,7 @@ fileCoef.addEventListener('change', (event) =>
 		
 
 		// Insertions competences
-		let modAttr = ['code', 'lib'];
+		let modAttr = ['code', 'lib', 'cat'];
 		for ( let nbSem = 1; nbSem < workbook.SheetNames.length -1; nbSem++)
 		{
 			sheet     = workbook.SheetNames[nbSem];
@@ -139,28 +139,28 @@ fileCoef.addEventListener('change', (event) =>
 				let letter   = matches[1]; 
 				let idColumn = letter.charCodeAt(0) - 'A'.charCodeAt(0);
 
-				let info       = i > parseInt(workbook.SheetNames.length -2); 
-				let moduleInfo = info && idColumn < modAttr.length;
+				let isInfo       = i > parseInt(workbook.SheetNames.length -1); 
+				let isModuleInfo = isInfo && idColumn < modAttr.length;
 
-				
-				if (moduleInfo)
+				if (isModuleInfo)
 				{
 					mod[modAttr[idColumn]] = dataCell;
 
-					if (Object.keys(mod).length === 2)
+					if (Object.keys(mod).length === modAttr.length)
 					{
-						mod['id'] = (mod.code).slice(4);
+						mod['id' ] = (mod.code).slice(4);
 						currentModId = mod.id;
+
 						modules.push(mod);
 						mod = {};
 					}
+
 				}
 
-				if (info && !moduleInfo && !isEmpty(dataCell))
+				if (isInfo && !isModuleInfo && !isEmpty(dataCell))
 				{
-					let compColumn = 'C'.charCodeAt(0);
+					let compColumn = 'D'.charCodeAt(0);
 					let idComp = letter.charCodeAt(0) - compColumn;
-
 					
 					let compId = nbSem + '' + competences[idComp].id;
 					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };
