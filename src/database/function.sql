@@ -12,7 +12,7 @@ BEGIN
 	END IF;
 
 	SELECT SUM(noteVal) INTO total
-	FROM   Moyenne m JOIN CompMod cm ON m.modCode = cm.modCode
+	FROM   Moyenne m JOIN CompMod cm ON m.modId = cm.modId
 	WHERE  cm.compId = getMoyenne.compId AND m.anneeId = yearId AND m.etdId = studentId;
 
 	RETURN total / count_modules;
@@ -27,7 +27,7 @@ DECLARE
 BEGIN
 	SELECT RANK() OVER (ORDER BY m.noteVal ASC) INTO student_rank
 	FROM  Moyenne m JOIN Competence c ON m.anneeId = yearId AND m.etdId = studentId
-	JOIN  CompMod cm ON c.compId = cm.compId AND cm.modCode = m.modCode
+	JOIN  CompMod cm ON c.compId = cm.compId AND cm.modId = m.modId
 	WHERE c.compId = compId;
 
 	RETURN student_rank;

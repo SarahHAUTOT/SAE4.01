@@ -24,7 +24,8 @@ CREATE TABLE Export
 
 CREATE TABLE Module 
 (
-	modCode VARCHAR(10) PRIMARY KEY,
+	modId   VARCHAR(10) PRIMARY KEY,
+	modCode VARCHAR(10) ,
 	modCat  VARCHAR(20) NOT NULL,
 	modLib  VARCHAR(255) NOT NULL
 );
@@ -82,9 +83,9 @@ CREATE TABLE Moyenne
 (
 	noteVal FLOAT   CHECK      (noteVal >= 0),
 	etdId   INTEGER REFERENCES Etudiant(etdId),
-	modCode INTEGER REFERENCES Module  (modCode),
+	modId   INTEGER REFERENCES Module  (modId),
 	anneeId INTEGER REFERENCES Annee   (anneeId),
-	PRIMARY KEY (etdId, modCode,anneeId)
+	PRIMARY KEY (etdId, modId, anneeId)
 );
 
 
@@ -95,15 +96,15 @@ CREATE TABLE Moyenne
 CREATE TABLE CompMod 
 (
 	compId  INTEGER REFERENCES Competence(compId),
-	modCode INTEGER REFERENCES Module  (modCode)   ,
+	modId   INTEGER REFERENCES Module    (modId) ,
 	modCoef FLOAT   CHECK      (modCoef > 0)     ,
-	PRIMARY KEY (compId,modCode)
+	PRIMARY KEY (compId, modId)
 );
 
 CREATE TABLE AdmComp
 (
-	etdId   INTEGER REFERENCES  Etudiant(etdId),
-	compId  INTEGER REFERENCES  Competence(compId),
+	etdId   INTEGER REFERENCES Etudiant(etdId),
+	compId  INTEGER REFERENCES Competence(compId),
 	anneeId INTEGER REFERENCES Annee(anneeId),
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP','NR')) DEFAULT 'NR',
 	PRIMARY KEY (anneeId,compId,etdId)
