@@ -1,146 +1,81 @@
-/* Styles pour le contenu principal */
+
 main {
-    color: black;
-    flex-grow: 1;
+	text-align: center;
+	color: black;
 }
-
-main .container {
-    border-radius: 10px;
-    /* Coins arrondis */
-    background-color: #6b02777f;
-    /* Couleur de fond */
-    width: 80%;
-    padding: 4%;
-    /* Espace intérieur */
-    margin: 6%;
-    text-align: center;
-    justify-content: center;
+div {
+	align-self: center;
+	justify-content: center;
+	align-items: center;
 }
-
-main h1 {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    /* centre horizontalement */
-    align-items: center;
+  
+.container {
+	border-radius: 10px;
+	background-color: #6b027760;
+	width: 510px;
+	padding: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	
 }
-
-.block {
-    align-self: center;
-    text-align: right;
-    justify-content: center;
-    /* centre horizontalement */
-    align-items: center;
-    display: grid;
-    grid-template-columns: 30% 30%;
-    grid-gap: 2%;
-    grid-row-gap: 5%;
-    background-color: rgb(226, 221, 221);
+.gridLibImport {
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: right;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 20px;
+	grid-row-gap: 10px;
+	justify-content: center;
+	align-items: center;
 }
-
-.validateButton {
-    margin: 1%;
-    display: inline-block;
-    font-size: small;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 30px;
-    background-color: #6b027750;
-
+  
+.generationSection{
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-bottom: 10px;
+	background-color: rgb(226, 221, 221);
 }
-.validateButton:hover {
-    outline: none;
-    background-color: #6b02777f;
+.divImportation {
+	text-align: justify;
+	display: grid;
+	grid-template-columns: 49% 49%;
+	grid-gap: 2%;
 }
-
-.recherche{
-    width: 100%;
-    background-color: aqua;
-    border-radius: 15px;
-}
-
+  
+  
 input[type="file"]::file-selector-button {
-    display: inline-block;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 0px;
-    background-color: #f0f0f0;
+	display: inline-block;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 0px;
+	background-color: #f0f0f0;
 }
-
+  
 input[type="file"]::file-selector-button:hover {
-    background-color: #e0e0e0;
+	background-color: #e0e0e0;
 }
-
-input[type="text"]::file-selector-button {
-    width: 50%;
-    display: inline-block;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 0px;
-    background-color: #f0f0f0;
+.validateButton {
+	display: inline-block;
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 30px;
+	background-color: #6b027750;
 }
-
-input[type="text"]::file-selector-button:hover {
-    background-color: #e0e0e0;
+  
+.validateButton:hover {
+	outline: none;
+	background-color: #6b02777f;
 }
-
-.semestre{
-  text-align:center ;
-  font-size:medium;
-  background-color: #f0f0f0;
-  width:6%;
-  border-radius: 10px;
+h2{
+	margin-top: 0px;
+	padding-top: 20px;
 }
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: auto;
-    margin-top: 50px;
-  }
-  
-  thead>tr>th {
-    text-align: center;
-  }
-  
-  td,
-  th {
-    border: 1px solid #dddddd;
-    background-color: #ffffff;
-    text-align: left;
-    padding: 8px;
-    vertical-align: middle;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  th:empty {
-    background: none;
-    border: none;
-  }
-  
-  h3 {
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 30px;
-    padding: 10px;
-    background-color: rgb(226, 221, 221);
-    margin: auto;
-  }
-  
-  label {
-    font-size: large;
-    font-weight: bold;
-  }
-  
-  textarea {
-    width: 100%;
-    height: 100%;
-    resize: none;
-  }
