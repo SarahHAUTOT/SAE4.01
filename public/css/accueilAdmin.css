@@ -40,3 +40,8 @@ h2{
     outline: none;
     background-color: #6b02777f;
 }
+
+.urgent{
+	color: red;
+	font-weight: bold;
+}
