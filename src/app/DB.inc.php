@@ -94,7 +94,7 @@ class DB
 				//The student is already in the database
 				if ($stmt->rowCount() > 0) {
 
-					$sql = "UPDATE Etudiant SET etdciv = ?, etdabs = ?, etdnom = ?, etdgroupetd = ?, etdgroupetp = ?, etdbac = ?, etdbonus = ?, etdprenom = ?, etdparcours = ? WHERE etdId = ?";
+					$sql = "UPDATE Etudiant SET etdciv = ?, etdabs = ?, etdnom = ?, etdgroupetd = ?, etdgroupetp = ?, etdbac = ?, etdbonus = ?, etdprenom = ?, etdCursus = ? WHERE etdId = ?";
 
 					// Bind parameters
 					$params = array(
@@ -106,14 +106,14 @@ class DB
 						$student['bac'],
 						$student['bonus'],
 						$student['prenom'],
-						$student['parcours'],
+						$student['cursus'],
 						$student['id']
 					);					
 
 				} else {
 					
 					// Prepare the SQL statement
-					$sql = "INSERT INTO Etudiant (etdid, etdciv, etdabs, etdnom, etdgroupetd, etdgroupetp, etdbac, etdbonus, etdprenom, etdparcours) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					$sql = "INSERT INTO Etudiant (etdid, etdciv, etdabs, etdnom, etdgroupetd, etdgroupetp, etdbac, etdbonus, etdprenom, etdCursus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 					// Bind parameters
 					$params = array(
@@ -126,7 +126,7 @@ class DB
 						$student['bac'],
 						$student['bonus'],
 						$student['prenom'],
-						$student['parcours']
+						$student['cursus']
 					);
 
 					// Execute the query

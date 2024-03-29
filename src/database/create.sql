@@ -43,7 +43,7 @@ CREATE TABLE Etudiant
 	etdPrenom   VARCHAR(30) ,
 	etdGroupeTP VARCHAR(10) ,
 	etdGroupeTD VARCHAR(10) ,
-	etdParcours VARCHAR(30) ,
+	etdCursus   VARCHAR(30) ,
 	etdBonus    FLOAT       CHECK (etdBonus >= 0) DEFAULT 0,
 	etdAbs      INTEGER	    CHECK (etdAbs   >= 0) DEFAULT 0,
 	etdBac      VARCHAR(20)

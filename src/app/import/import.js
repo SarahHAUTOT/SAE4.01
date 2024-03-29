@@ -1,14 +1,13 @@
 const fileMoy = document.getElementById('moy_file');
-fileMoy.addEventListener('change', decomposeMoyennes , false);
-const fileCoef = document.getElementById('coef_file');
-fileCoef.addEventListener('change', decomposeCoef, false);
+fileMoy.addEventListener('change', decomposeMoyennes(event) , false);
 
+const fileCoef = document.getElementById('coef_file');
+fileCoef.addEventListener('change', decomposeCoef(event), false);
 
 const mybtn = document.getElementById('myButton');
 mybtn.addEventListener('click', generateAll, false);
 
 
-//oN GARDE CA 
 let modules = [];
 let students = [];
 let moyennes = [];
@@ -16,17 +15,10 @@ let competences = [];
 let compMods = [];
 
 
-
-
 function isEmpty(value)
 {
 	return (value == null || (typeof value === "string" && value.trim().length === 0));
 }
-
-
-
-
-
 
 function callPHP(file, action, datas) {
 	return new Promise((resolve, reject) => {
@@ -51,6 +43,7 @@ function callPHP(file, action, datas) {
 			});
 	});
 }
+
 
 
 
@@ -90,9 +83,7 @@ function generateAll()
 }
 
 
-
-
-function decomposeMoyennes()
+function decomposeMoyennes(event)
 {
 	const file = event.target.files[0];
 	const reader = new FileReader();
@@ -147,7 +138,7 @@ function decomposeMoyennes()
 				bac: row['Bac'],
 				bonus : isNaN(row[bonus]) ? 0 : row[bonus],
 				prenom: row['Pr\u00E9nom'], 
-				parcours: row['Cursus'],
+				cursus: row['Cursus'],
 			};
 
 			students.push(student)
@@ -170,7 +161,7 @@ function decomposeMoyennes()
 }
 
 
-function decomposeCoef()
+function decomposeCoef(event)
 {
 	const file = event.target.files[0];
 
