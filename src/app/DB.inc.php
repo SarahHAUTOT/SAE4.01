@@ -191,7 +191,89 @@ class DB
 			// Respond to the client with an error message
 			echo "No student data received";
 		}
-	}	
+	}
+
+
+	public function insertCompetences($competences)
+	{
+		$postData = json_decode(file_get_contents("php://input"), true);
+
+		foreach ($competences as $comp) 
+		{
+			// Prepare the SQL statement
+			$sql = "INSERT INTO Competence (compId, compCode, compLib, semId) VALUES (?, ?, ?, ?)";
+
+			// Bind parameters
+			$params = array(
+				$comp['compId'],
+				$comp['compCode'],
+				$comp['compLib'],
+				$comp['semId']
+			);
+
+			$stmt = $this->connect->prepare($sql);
+			$result = $stmt->execute($params);
+			
+			if ($result === false) return "Error inserting Competence: " . $db->getError();
+		}
+
+		// Respond to the client with a success message
+		echo "Competences inserted successfully";
+	}
+
+
+	public function insertModules($modules)
+	{
+		$postData = json_decode(file_get_contents("php://input"), true);
+
+		foreach ($modules as $mod) 
+		{
+			// Prepare the SQL statement
+			$sql = "INSERT INTO Module (modId, modCode, modCat, modLib) VALUES (?, ?, ?, ?)";
+
+			// Bind parameters
+			$params = array(
+				$comp['modId'],
+				$comp['modCode'],
+				$comp['modCat'],
+				$comp['modLib']
+			);
+
+			$stmt = $this->connect->prepare($sql);
+			$result = $stmt->execute($params);
+
+			if ($result === false) return "Error inserting Module: " . $db->getError();
+		}
+
+		// Respond to the client with a success message
+		echo "Module inserted successfully";
+	}
+
+	public function insertCompMods($compMods)
+	{
+		$postData = json_decode(file_get_contents("php://input"), true);
+
+		foreach ($compMods as $compMod) 
+		{
+			// Prepare the SQL statement
+			$sql = "INSERT INTO CompMod (compId, modId, modCoef) VALUES (?, ?, ?)";
+
+			// Bind parameters
+			$params = array(
+				$comp['compId'],
+				$comp['modId'],
+				$comp['modCoef']
+			);
+
+			$stmt = $this->connect->prepare($sql);
+			$result = $stmt->execute($params);
+			
+			if ($result === false) return "Error inserting CompMod: " . $db->getError();
+		}
+
+		// Respond to the client with a success message
+		echo "CompMod inserted successfully";
+	}
 }
 
 
@@ -199,27 +281,44 @@ $postData = json_decode(file_get_contents("php://input"), true);
 
 // Vérifiez si une action est spécifiée
 if (!empty($postData['action'])) {
-    $action = $postData['action'];
+	$action = $postData['action'];
 
-    // Créer une nouvelle instance de la classe DB
+	// Créer une nouvelle instance de la classe DB
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
-    // Gérer les différentes actions
-    switch ($action) {
-        case 'insertStudents':
-            // Appeler la méthode insertStudents avec les données d'étudiants
-            echo $db->insertStudents($postData['datas']);
-            break;
-        case 'insertMoyennes':
-            // Appeler la méthode insertMoyennes avec les données des moyennes
-            echo $db->insertMoyennes($postData['datas']);
-            break;
-        default:
-            echo "Action invalide";
-            break;
-    }
+	// Gérer les différentes actions
+	switch ($action) {
+		case 'insertStudents':
+			// Appeler la méthode insertStudents avec les données d'étudiants
+			echo $db->insertStudents($postData['datas']);
+			break;
+		
+		case 'insertMoyennes':
+			// Appeler la méthode insertMoyennes avec les données des moyennes
+			echo $db->insertMoyennes($postData['datas']);
+			break;
+
+		case 'insertCompetences':
+			// Appeler la méthode insertCompetences avec les données des moyennes
+			echo $db->insertCompetences($postData['datas']);
+			break;
+
+		case 'insertModules':
+			// Appeler la méthode insertModules avec les données des moyennes
+			echo $db->insertModules($postData['datas']);
+			break;
+
+		case 'insertCompMods':
+			// Appeler la méthode insertCompMods avec les données des moyennes
+			echo $db->insertCompMods($postData['datas']);
+			break;
+			
+		default:
+			echo "Action invalide";
+			break;
+	}
 } else {
-    // Répondre au client avec un message d'erreur
-    echo "Aucune action spécifiée";
+	// Répondre au client avec un message d'erreur
+	echo "Aucune action spécifiée";
 }
 ?>
