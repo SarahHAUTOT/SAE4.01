@@ -78,7 +78,6 @@ fileMoy.addEventListener('change', (event) => {
 		// Send data to PHP script using fetch
 		callPHP('../DB.inc.php', 'insertStudents', students);
 		callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
-		
     };
 
     reader.readAsArrayBuffer(file);
@@ -197,8 +196,12 @@ fileCoef.addEventListener('change', (event) =>
 			}
 
 		}
-	
+
+		callPHP('../DB.inc.php', 'insertCompetences', competences);
+		callPHP('../DB.inc.php', 'insertModules'    , modules);
+		callPHP('../DB.inc.php', 'insertCompMods'   , compMods);
 	};
+
 
 	reader.readAsArrayBuffer(file);
 }, false);
