@@ -160,16 +160,16 @@ fileCoef.addEventListener('change', (event) =>
 				if (cell === '!ref' || matches === null) continue;
 
 				let dataCell = worksheet[cell].v;
-				let letter  = matches[1]; 
-				let idSheet = letter.charCodeAt(0) - 'A'.charCodeAt(0);
+				let letter   = matches[1]; 
+				let idColumn = letter.charCodeAt(0) - 'A'.charCodeAt(0);
 
-				let info = i > parseInt(workbook.SheetNames.length -2); 
-				let moduleInfo = info && idSheet < modAttr.length;
+				let info       = i > parseInt(workbook.SheetNames.length -2); 
+				let moduleInfo = info && idColumn < modAttr.length;
 
 				
 				if (moduleInfo)
 				{
-					mod[modAttr[idSheet]] = dataCell;
+					mod[modAttr[idColumn]] = dataCell;
 
 					if (Object.keys(mod).length === 2)
 					{
