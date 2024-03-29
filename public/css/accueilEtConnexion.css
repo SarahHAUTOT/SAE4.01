@@ -36,7 +36,7 @@ h2{
     border-radius: 30px;
     background-color: #6b027750;
   }
-.validateButton:hover {
+.validateButtonStyle:hover {
     outline: none;
     background-color: #6b02777f;
 }
