@@ -4,26 +4,12 @@ function export(String $year, String $type, String $semester)
 {
 	header('Content-type: text/csv; charset=utf-8');
 	header('Content-Disposition: attachment; filename=PV '.$type.' '.$semester.' '.$year);
-
-	$header = '"Rg","Nom","Prénom","Cursus","Ues","Moy"';
-	$rCompetence = "SELECT compId, compCode FROM Competence WHERE semId = ?"; //TODO DB request
 	
-	for ($competences as $comp)
-	{
-		$header .= ', "'. $comp['compCode']. '", "Bonus '. $comp['compCode'].'"';
+	$header = "";
+	$rCompetence = "SELECT compId, compCode FROM Competence WHERE semId = ?"; //TODO DB request
 
-		$rModule = "SELECT c.modCode, modCoef, modId FROM Module m 
-					JOIN CompMod c ON m.modId=c.modId
-					WHERE compId = ?"; //TODO DB request
-		
-		$competences['modules'] = $modules;
-		
-		// Iterating through the modules of the comp
-		for ($compMods as $compMod)
-		{
-			$header .= ', "'. $compMod['modCode']. '"';
-		}
-	}
+	if (strcmp($type, 'Commission') !== 0) $header = headerCommission($competences);
+	else $header = headerJury($competences);
 
 	$rStudents = "SELECT nom, prenom, parcours FROM Etudiant WHERE anneeId = ?"; //TODO DB request
 
@@ -60,4 +46,44 @@ function export(String $year, String $type, String $semester)
 	
 }
 
+function headerCommission($competences)
+{
+	$header = '"Rg","Nom","Prénom","Cursus","Ues","Moy"';
+	for ($competences as $comp)
+	{
+		$header .= ', "'. $comp['compCode']. '", "Bonus '. $comp['compCode'].'"';
+
+		$rModule = "SELECT c.modCode, modCoef, modId FROM Module m 
+					JOIN CompMod c ON m.modId=c.modId
+					WHERE compId = ?"; //TODO DB request
+		
+		$competences['modules'] = $modules;
+		
+		// Iterating through the modules of the comp
+		for ($compMods as $compMod)
+		{
+			$header .= ', "'. $compMod['modCode']. '"';
+		}
+	}
+
+	return $header .'\n';
+}
+
+
+function headerJury($competences)
+{
+	$header = '"code_nip, Rg","Nom","Prénom","Cursus"';
+	
+	for ($competences as $comp)
+	{
+		$header    .= ', "C'. $comp['compId'].slice(-1) .'"';
+		$compCodes .= ', "'.$comp['compCode'].'"'; 
+	}
+
+	$header .= ', "Ues", "Moy", "'.$compCodes.'"';
+	return $header .'\n';
+}
+
+function contentJury($competences)
+function contentCommission($competences)
 ?>
