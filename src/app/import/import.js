@@ -147,43 +147,57 @@ fileCoef.addEventListener('change', (event) =>
 			let compMod = {};
 
 			let i = 0;
-			let compColumn = null;
+			let currentModId = 0;
+
 			for (const cell in worksheet)
 			{
-				let dataCell = worksheet[cell].v;
 				const matches = cell.match(/([A-Z]+)([0-9]+)/);
+				if (cell === '!ref' || matches === null) continue;
 
-				if (cell === '!ref' || matches === null)
-					continue;
-	
-				const letter = matches[2];
-				
-				let info = i > parseInt(workbook.SheetNames.length -1); 
-				let moduleInfo = info && letter.charCodeAt(0) - parseInt(workbook.SheetNames.length) < modAttr.length;
-								
+				let dataCell = worksheet[cell].v;
+				let letter  = matches[1]; 
+				let idSheet = letter.charCodeAt(0) - 'A'.charCodeAt(0);
+
+				let info = i > parseInt(workbook.SheetNames.length -2); 
+				let moduleInfo = info && idSheet < modAttr.length;
+
 				
 				if (moduleInfo)
 				{
-					console.log(info)
-					let index = i - parseInt(workbook.SheetNames.length);
-					mod[modAttr[index]] = dataCell;
-					//console.log( sheet + ' ' + cell + ' : ' + dataCell)
-					//console.log(mod);
+					mod[modAttr[idSheet]] = dataCell;
+
+					if (Object.keys(mod).length === 2)
+					{
+						mod['id'] = (mod.code).slice(4);
+						currentModId = mod.id;
+						modules.push(mod);
+						mod = {};
+					}
 				}
-				
+
 				if (info && !moduleInfo && !isEmpty(dataCell))
 				{
-					compColumn = (i - parseInt(workbook.SheetNames.length) === 3) ? cell : compColumn;
-					//compMod = { modId: }
-					console.log(dataCell + ' : ' + cell)
+					console.log( mod )
+
+					console.log( sheet + ' ' + cell + ' : ' + dataCell)
+					let compColumn = 'C'.charCodeAt(0);
+					let idComp = letter.charCodeAt(0) - compColumn;
+					console.log(idComp)
+
+					let compId = nbSem + '' + competences[idComp].id;
+
+					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };
+
+					compMods.push(compMod);
+					compMod = {};
 				}
 
 
-				compMods.push(compMod);
 				i++;
 			}
 
 		}
+		console.log(compMods);
 
 		console.log(modules);
 
