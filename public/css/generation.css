@@ -87,6 +87,14 @@ input[type="text"]::file-selector-button:hover {
     background-color: #e0e0e0;
 }
 
+.semestre{
+  text-align:center ;
+  font-size:medium;
+  background-color: #f0f0f0;
+  width:6%;
+  border-radius: 10px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
