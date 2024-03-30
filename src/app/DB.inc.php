@@ -2,12 +2,9 @@
 
 class DB
 {
-
 	private static $instance = null; // to make sure that only one DB Object exist
 	private $connect=null; // database connexion variable
 
-	
-		
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
 		$connStr = 'pgsql:host=127.0.0.1 port=5432 dbname='.$dbName; 
@@ -62,7 +59,6 @@ class DB
 
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
-
 
 
 	public function execMaj($sqlRequest,$tparam) 

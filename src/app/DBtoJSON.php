@@ -159,4 +159,77 @@ function generateYears()
 
     echo "Le fichier donnees.json a été créé avec succès.<br>";
 }
+
+
+
+/**********************************************************************/
+/*                          CSV CREATION                              */
+/**********************************************************************/
+
+function generateStudents(int $yearId, int $semesterId)
+{
+    
+    $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
+    // Récupérer les données de la table Annee
+    $query     = "SELECT etdId, nom, prenom, cursus 
+                  FROM  Etudiant e JOIN AdmAnnee adma ON e.etdId=adma.etdId 
+                  JOIN  AdmComp  admc ON e.etdId=admc.etdId 
+                  JOIN  AdmAnnee adma ON e.etdId=adma.etdId 
+                  JOIN  Competence c ON c.compId=admc.compId 
+                  WHERE anneId = ".$yearId." AND semId = ".$semesterId;
+    $students  = $db->execQuery($query);
+
+    // For each studient
+    foreach ($studients as &$studient) 
+    {
+        // getRankSem(".$tudent['etdid'].",".$semesterId.",".$yearId.") AS rank
+        // For each competences of the semester
+        $query = "SELECT * FROM Competence WHERE semId =".$semesterId -1;
+        $lastSemComps = $db->execQuery($query);
+
+        foreach ($lastSemComps as &$comp) 
+        {
+            $query = "SELECT getRegroupAdmi(".$comp['compid'].", ".$semesterId -1.", ".$student['etdid'].", ".$yearId.") 
+                      FROM AdmComp";
+            $admiRegroup = $db->execQuery($query);
+
+            $student['admComps'][] = 
+            [
+                'compId'=> $comp['compid'],
+                'admi'  => $admiRegroup
+            ];
+        }
+
+        $query = "SELECT getNbAdmiUE(".$comp['compid'].", ".$semesterId.", ".$student['etdid'].", ".$yearId.") 
+                  FROM AdmComp";
+        $nbAdmiUE = $db->execQuery($query);
+
+        $students['admiUE'] = $nbAdmiUE; // UEs that are passed
+        
+        
+        $query = "SELECT * FROM Competence WHERE semId =".$semesterId;
+        $competences = $db->execQuery($query);
+
+        foreach ($competences as &$comp) 
+        {
+            $query = "SELECT getCompMoy(".$comp['compid'].", ".$student['etdid'].", ".$yearId.") FROM Moyenne";
+            $moyUe = $db->execQuery($query);
+
+            $student['moyComp'][] = 
+            [
+                'compCode'=> $comp['compcode'],
+                'moy'     => $moyUe
+            ];
+        }
+    }
+
+    // Générer le JSON
+    $jsonData = json_encode($students, JSON_PRETTY_PRINT);
+    // Écrire le JSON dans un fichier
+    file_put_contents( '../../data/csv.json', $jsonData);
+
+    echo "Le fichier donnees.json a été créé avec succès.<br>";
+}
+
 ?>

@@ -1,4 +1,7 @@
 <?php
+require '../DBtoJSON';
+// function generateStudents(int $yearId, int $semesterId)
+// TODO deconstruct the JSON file
 
 function export(String $year, String $type, String $semester)
 {
@@ -43,7 +46,6 @@ function export(String $year, String $type, String $semester)
 		echo $studentInfo;
 		print($studentInfo);
 	}
-	
 }
 
 function headerCommission($competences)
