@@ -1,7 +1,8 @@
 <?php
 require '../DBtoJSON';
-// function generateStudents(int $yearId, int $semesterId)
+// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
 // TODO deconstruct the JSON file
+require '../../../data/csv.json';
 
 function export(String $year, String $type, String $semester)
 {

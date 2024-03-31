@@ -183,7 +183,10 @@ function generateStudents(int $yearId, int $semesterId)
     // For each studient
     foreach ($studients as &$studient) 
     {
-        // getRankSem(".$tudent['etdid'].",".$semesterId.",".$yearId.") AS rank
+        // $query = "SELECT getRankSem(".$tudent['etdid'].",".$semesterId.",".$yearId.") AS rank FROM AdmComp";
+        // $rank = $db->execQuery($query);
+        // $student['rg'] = $rank;
+
         // For each competences of the semester
         $query = "SELECT * FROM Competence WHERE semId =".$semesterId -1;
         $lastSemComps = $db->execQuery($query);
@@ -205,7 +208,7 @@ function generateStudents(int $yearId, int $semesterId)
                   FROM AdmComp";
         $nbAdmiUE = $db->execQuery($query);
 
-        $students['admiUE'] = $nbAdmiUE; // UEs that are passed
+        $students['admiUEs'] = $nbAdmiUE; // UEs that are passed
         
         
         $query = "SELECT * FROM Competence WHERE semId =".$semesterId;
