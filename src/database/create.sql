@@ -24,7 +24,7 @@ CREATE TABLE Export
 
 CREATE TABLE Module 
 (
-	modId   SERIAL      PRIMARY KEY,
+	modId   VARCHAR(10) PRIMARY KEY,
 	modCode VARCHAR(10) ,
 	modCat  VARCHAR(20) NOT NULL,
 	modLib  VARCHAR(255) NOT NULL
@@ -43,7 +43,7 @@ CREATE TABLE Etudiant
 	etdPrenom   VARCHAR(30) ,
 	etdGroupeTP VARCHAR(10) ,
 	etdGroupeTD VARCHAR(10) ,
-	etdParcours VARCHAR(30) ,
+	etdCursus   VARCHAR(30) ,
 	etdBonus    FLOAT       CHECK (etdBonus >= 0) DEFAULT 0,
 	etdAbs      INTEGER	    CHECK (etdAbs   >= 0) DEFAULT 0,
 	etdBac      VARCHAR(20)
@@ -85,7 +85,7 @@ CREATE TABLE Moyenne
 	etdId   INTEGER REFERENCES Etudiant(etdId),
 	modId   INTEGER REFERENCES Module  (modId),
 	anneeId INTEGER REFERENCES Annee   (anneeId),
-	PRIMARY KEY (etdId, modId,anneeId)
+	PRIMARY KEY (etdId, modId, anneeId)
 );
 
 
@@ -96,15 +96,15 @@ CREATE TABLE Moyenne
 CREATE TABLE CompMod 
 (
 	compId  INTEGER REFERENCES Competence(compId),
-	modId   INTEGER REFERENCES Module  (modId)   ,
+	modId   INTEGER REFERENCES Module    (modId) ,
 	modCoef FLOAT   CHECK      (modCoef > 0)     ,
-	PRIMARY KEY (compId,modId)
+	PRIMARY KEY (compId, modId)
 );
 
 CREATE TABLE AdmComp
 (
-	etdId   INTEGER REFERENCES  Etudiant(etdId),
-	compId  INTEGER REFERENCES  Competence(compId),
+	etdId   INTEGER REFERENCES Etudiant(etdId),
+	compId  INTEGER REFERENCES Competence(compId),
 	anneeId INTEGER REFERENCES Annee(anneeId),
 	admi    VARCHAR(5) CHECK (admi IN ('ADM','CMP','AJ','ADSUP','NR')) DEFAULT 'NR',
 	PRIMARY KEY (anneeId,compId,etdId)

@@ -1,303 +1,92 @@
 <?php
-// Inclure le fichier fpdf.php
-require('../../../lib/fpdf/fpdf.php');
+require '../DBtoJSON';
+// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
+// TODO deconstruct the JSON file
+require '../../../data/csv.json';
 
-// Créer une nouvelle instance de FPDF
-$pdf = new FPDF();
+function export(String $year, String $type, String $semester)
+{
+	header('Content-type: text/csv; charset=utf-8');
+	header('Content-Disposition: attachment; filename=PV '.$type.' '.$semester.' '.$year);
+	
+	$header = "";
+	$rCompetence = "SELECT compId, compCode FROM Competence WHERE semId = ?"; //TODO DB request
 
-// Ajouter une page au document
-$pdf->AddPage();
+	if (strcmp($type, 'Commission') !== 0) $header = headerCommission($competences);
+	else $header = headerJury($competences);
 
+	$rStudents = "SELECT nom, prenom, parcours FROM Etudiant WHERE anneeId = ?"; //TODO DB request
 
+	// Iterating through the students of the specified year
+	for ($i = 0; i < count($students); $i++)
+	{
+		$studentInfo =
+			($i+1)              .'", "'.
+			$student['nom']     .'", "'.
+			$student['prenom']  .'", "'.
+			$student['parcours'].'"';
 
+		$rBonus = "SELECT etdBonus FROM Etudiant WHERE etdId = ?";
 
-/*                */
-/* Première Ligne */
-/*                */
+		for ($competences as $comp)
+		{
+			//TODO DB requests
+			$rAdmUEs = "SELECT getNbAdminComp(?, ?, ?) FROM AdmComp"; //studentId, yearId, semId
+			$rMoyUe  = "SELECT getCompMoy    (?, ?, ?) FROM Moyenne"; //compId, studentId, yearId
+			$studentInfo .= ', "'.$admUEs.'" ,"'.', "'.$moyUe.'" ,"'.$bonus.'"'; // TODO change color of the moyUe cell
 
-//Logo 1
-$pdf->Image('Logo1.png', 10, 15, 50); 
-// Logo 2
-$pdf->Image('Logo2.png', 160, 10, 23); 
-// Titre
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetY(40);
-$pdf->Cell(0, -1, utf8_decode("Fiche d'avis poursuite d'études - Promotion 2022-2023"), 0, 1, 'C');
-$pdf->SetY(45);
-$pdf->Cell(0, -1, utf8_decode("Département Informatique IUT Le Havre"), 0, 1, 'C');
+			for ($comp['modules'] as $modComp)
+			{
+				$rMoy = "SELECT noteVal FROM Moyenne WHERE anneId = ? AND modId = ? AND etdId = ?"; //TODO DB request
 
+				if (is_null($rMoy)) $moy = 'NR';
+				$studentInfo .= ', "'.$moy.'"';
+			}
+		}
 
+		echo $studentInfo;
+		print($studentInfo);
+	}
+}
 
+function headerCommission($competences)
+{
+	$header = '"Rg","Nom","Prénom","Cursus","Ues","Moy"';
+	for ($competences as $comp)
+	{
+		$header .= ', "'. $comp['compCode']. '", "Bonus '. $comp['compCode'].'"';
 
-/*                  */
-/* Première Tableau */
-/*                  */
+		$rModule = "SELECT c.modCode, modCoef, modId FROM Module m 
+					JOIN CompMod c ON m.modId=c.modId
+					WHERE compId = ?"; //TODO DB request
+		
+		$competences['modules'] = $modules;
+		
+		// Iterating through the modules of the comp
+		for ($compMods as $compMod)
+		{
+			$header .= ', "'. $compMod['modCode']. '"';
+		}
+	}
 
-// Titre
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetY(50);
-$pdf->Cell(0, 10, utf8_decode("FICHE D'INFORMATION ETUDIANT(E)"), 0, 1, 'L');
-$pdf->Line(10, 57, 190, 57);
-
-$pdf->SetFont('Arial', '', 8);
-
-//Ligne 1
-$pdf->Cell( 60, 4, utf8_decode("NOM - Prénom :"), 1);
-$pdf->Cell(120, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 2
-$pdf->Cell(60, 4, utf8_decode("Apprentissage : (oui/non)"), 1);
-$pdf->Cell(10, 4, 'BUT1', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Cell(10, 4, 'BUT2', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Cell(10, 4, 'BUT3', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 3
-$pdf->Cell(60, 4, utf8_decode("Parcours d'étude"), 1);
-$pdf->Cell(10, 4, 'n-2', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Cell(10, 4, 'n-1', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Cell(10, 4, 'n', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 1
-$pdf->Cell(60 , 4, utf8_decode("Parcours BUT"), 1);
-$pdf->Cell(120, 4, utf8_decode("A \"Réalisation d'applications : conception, développement, validation\""), 1);
-$pdf->Ln();
-
-//Ligne 1
-$pdf->Cell(60 , 4, utf8_decode("Si mobilité à l'étranger (lieu,durée)"), 1);
-$pdf->Cell(120, 4, '', 1);
-$pdf->Ln();
+	return $header .'\n';
+}
 
 
+function headerJury($competences)
+{
+	$header = '"code_nip, Rg","Nom","Prénom","Cursus"';
+	
+	for ($competences as $comp)
+	{
+		$header    .= ', "C'. $comp['compId'].slice(-1) .'"';
+		$compCodes .= ', "'.$comp['compCode'].'"'; 
+	}
 
-/*                  */
-/* Deuxième Tableau */
-/*                  */
+	$header .= ', "Ues", "Moy", "'.$compCodes.'"';
+	return $header .'\n';
+}
 
-// Titre
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetY(85);
-$pdf->Cell(0, 10, utf8_decode("RESULTATS DES COMPETENCES"), 0, 1, 'L');
-$pdf->Line(10, 92, 190, 92);
-
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->SetFillColor(220, 220, 220);
-
-//Ligne 1
-$pdf->Cell(65, 4, '', 0);
-$pdf->Cell(30, 4, 'BUT1', 1, 0, 'C', true);
-$pdf->Cell(30, 4, 'BUT2', 1, 0, 'C', true);
-$pdf->Ln();
-$pdf->SetFont('Arial', '', 8);
-
-//Ligne 2
-$pdf->Cell(65, 4, ''    , 0);
-$pdf->Cell(15, 4, 'Moy.', 1, 0, 'L', true);
-$pdf->Cell(15, 4, 'Rang', 1, 0, 'L', true);
-$pdf->Cell(15, 4, 'Moy.', 1, 0, 'L', true);
-$pdf->Cell(15, 4, 'Rang', 1, 0, 'L', true);
-$pdf->Ln();
-
-//Ligne 3
-$pdf->Cell(65, 4, utf8_decode('UE1 - Réaliser des applications')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 4
-$pdf->Cell(65, 4, utf8_decode('UE2 - Optimiser des applications')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 4
-$pdf->Cell(65, 4, utf8_decode('UE3 - Administrer des systèmes')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 6
-$pdf->Cell(65, 4, utf8_decode('UE4 - Gérer desdonnées')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 7
-$pdf->Cell(65, 4, utf8_decode('UE5 - Conduire des projets')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 8
-$pdf->Cell(65, 4, utf8_decode('UE6 - Collaborer')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 9
-$pdf->Cell(65, 4, utf8_decode('Maths')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 10
-$pdf->Cell(65, 4, utf8_decode('Anglais')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 11
-$pdf->Cell(65, 4, utf8_decode('Nombres d\'absences injustifiés')    , 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Ln();
-
-
-
-/*                   */
-/* Troisième Tableau */
-/*                   */
-$pdf->Ln();
-
-//Ligne 1
-$pdf->Cell(65, 4, '', 0);
-$pdf->Cell(30, 4, 'BUT3', 1, 0, 'C', true);
-$pdf->Ln();
-$pdf->SetFont('Arial', '', 8);
-
-//Ligne 2
-$pdf->Cell(65, 4, ''    , 0);
-$pdf->Cell(15, 4, 'Moy.', 1, 0, 'L', true);
-$pdf->Cell(15, 4, 'Rang', 1, 0, 'L', true);
-$pdf->Ln();
-
-//Ligne 3
-$pdf->Cell(65, 4, utf8_decode('UE1 - Réaliser des applications')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 4
-$pdf->Cell(65, 4, utf8_decode('UE2 - Optimiser des applications')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 5
-$pdf->Cell(65, 4, utf8_decode('UE6 - Collaborer')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 6
-$pdf->Cell(65, 4, utf8_decode('Maths')    , 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Cell(15, 4, '', 1);
-$pdf->Ln();
-
-//Ligne 7
-$pdf->Cell(65, 4, utf8_decode('Nombres d\'absences injustifiés')    , 1);
-$pdf->Cell(30, 4, '', 1);
-$pdf->Ln();
-
-
-
-/*                 */
-/* Dernier Tableau */
-/*                 */
-
-// Titre
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetY(175);
-$pdf->Cell(0, 10, utf8_decode("Avis de l'équipe pédagogique pour la poursuite d'étude après le BUT3"), 0, 1, 'C');
-$pdf->Line(10, 182, 190, 182);
-
-$pdf->SetFont('Arial', '', 8);
-
-//Ligne 1
-$pdf->Cell(25, 6, '', 1, 0, 'C');
-$pdf->Cell(25, 6, '', 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Très Favorable'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Favorable'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Assez Favorable'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Sans avis'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Réservé'), 1, 0, 'C');
-$pdf->Ln();
-
-//Ligne 2
-$pdf->Cell(25, 12,utf8_decode('Pour l\'étudiant'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Ecole d\'ingénieurs'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Ln();
-
-//Ligne 2bis
-$pdf->Cell(25, 6);
-$pdf->Cell(25, 6, utf8_decode('Master'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-$pdf->Ln();
-
-//Ligne 3
-$pdf->Cell(25, 12,utf8_decode('Nombre d\'avis'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode('Ecole d\'ingénieurs'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Ln();
-
-//Ligne 3bis
-$pdf->Cell(25, 6, 'pour la promotion');
-$pdf->Cell(25, 6, utf8_decode('Master'), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-$pdf->Ln();
-
-//Ligne 3
-$pdf->Cell(25, 6,utf8_decode('Commentaire'), 1, 0, 'C');
-$pdf->Cell(150, 6, '', 1);
-$pdf->Ln();
-
-
-
-
-
-
-$pdf->Output('image.pdf', 'D');
-
+function contentJury($competences)
+function contentCommission($competences)
 ?>

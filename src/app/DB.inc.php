@@ -2,12 +2,9 @@
 
 class DB
 {
-
 	private static $instance = null; // to make sure that only one DB Object exist
 	private $connect=null; // database connexion variable
 
-	
-		
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
 		$connStr = 'pgsql:host=127.0.0.1 port=5432 dbname='.$dbName; 
@@ -64,7 +61,6 @@ class DB
 	}
 
 
-
 	public function execMaj($sqlRequest,$tparam) 
 	{
 		$stmt = $this->connect->prepare($sqlRequest);
@@ -94,7 +90,7 @@ class DB
 				//The student is already in the database
 				if ($stmt->rowCount() > 0) {
 
-					$sql = "UPDATE Etudiant SET etdciv = ?, etdabs = ?, etdnom = ?, etdgroupetd = ?, etdgroupetp = ?, etdbac = ?, etdbonus = ?, etdprenom = ?, etdparcours = ? WHERE etdId = ?";
+					$sql = "UPDATE Etudiant SET etdciv = ?, etdabs = ?, etdnom = ?, etdgroupetd = ?, etdgroupetp = ?, etdbac = ?, etdbonus = ?, etdprenom = ?, etdCursus = ? WHERE etdId = ?";
 
 					// Bind parameters
 					$params = array(
@@ -106,14 +102,14 @@ class DB
 						$student['bac'],
 						$student['bonus'],
 						$student['prenom'],
-						$student['parcours'],
+						$student['cursus'],
 						$student['id']
 					);					
 
 				} else {
 					
 					// Prepare the SQL statement
-					$sql = "INSERT INTO Etudiant (etdid, etdciv, etdabs, etdnom, etdgroupetd, etdgroupetp, etdbac, etdbonus, etdprenom, etdparcours) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					$sql = "INSERT INTO Etudiant (etdid, etdciv, etdabs, etdnom, etdgroupetd, etdgroupetp, etdbac, etdbonus, etdprenom, etdCursus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 					// Bind parameters
 					$params = array(
@@ -126,7 +122,7 @@ class DB
 						$student['bac'],
 						$student['bonus'],
 						$student['prenom'],
-						$student['parcours']
+						$student['cursus']
 					);
 
 					// Execute the query
