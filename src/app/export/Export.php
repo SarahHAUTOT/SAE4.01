@@ -2,7 +2,7 @@
 
 require('../../../lib/fpdf/fpdf.php');
 
-function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign)
+function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $nbAviMast)
 {
 	// Inclure le fichier fpdf.php
 
@@ -71,7 +71,7 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign)
 
 	// Line 1
 	$pdf->Cell(60 , 4, utf8_decode("Si mobilité à l'étranger (lieu,durée)"), 1);
-	$pdf->Cell(120, 4, $avi['mobilite'], 1);
+	$pdf->Cell(120, 4, utf8_decode($avi['mobilite']), 1);
 	$pdf->Ln();
 
 
@@ -195,31 +195,31 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign)
 
 	// Line 3
 	$pdf->Cell(65, 4, utf8_decode('UE1 - Réaliser des applications')    , 1);
-	$pdf->Cell(15, 4, '', 1);
-	$pdf->Cell(15, 4, '', 1);
+	$pdf->Cell(15, 4, $avi['annee'][2]['C1']['moy' ], 1, 0, 'R');
+	$pdf->Cell(15, 4, $avi['annee'][2]['C1']['rang'], 1, 0, 'R');
 	$pdf->Ln();
 
 	// Line 4
 	$pdf->Cell(65, 4, utf8_decode('UE2 - Optimiser des applications')    , 1);
-	$pdf->Cell(15, 4, '', 1);
-	$pdf->Cell(15, 4, '', 1);
+	$pdf->Cell(15, 4, $avi['annee'][2]['C2']['moy' ], 1, 0, 'R');
+	$pdf->Cell(15, 4, $avi['annee'][2]['C2']['rang'], 1, 0, 'R');
 	$pdf->Ln();
 
 	// Line 5
 	$pdf->Cell(65, 4, utf8_decode('UE6 - Collaborer')    , 1);
-	$pdf->Cell(15, 4, '', 1);
-	$pdf->Cell(15, 4, '', 1);
+	$pdf->Cell(15, 4, $avi['annee'][2]['C6']['moy' ], 1, 0, 'R');
+	$pdf->Cell(15, 4, $avi['annee'][2]['C6']['rang'], 1, 0, 'R');
 	$pdf->Ln();
 
 	// Line 6
 	$pdf->Cell(65, 4, utf8_decode('Maths')    , 1);
-	$pdf->Cell(15, 4, '', 1);
-	$pdf->Cell(15, 4, '', 1);
+	$pdf->Cell(15, 4, $avi['annee'][2]['Maths']['moy' ], 1, 0, 'R');
+	$pdf->Cell(15, 4, $avi['annee'][2]['Maths']['rang'], 1, 0, 'R');
 	$pdf->Ln();
 
 	// Line 7
 	$pdf->Cell(65, 4, utf8_decode('Nombres d\'absences injustifiés')    , 1);
-	$pdf->Cell(30, 4, '', 1);
+	$pdf->Cell(30, 4, $avi['annee'][2]['ABS'], 1, 0, 'R');
 	$pdf->Ln();
 
 
@@ -249,47 +249,67 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign)
 	// Line 2
 	$pdf->Cell(25, 12,utf8_decode('Pour l\'étudiant'), 1, 0, 'C');
 	$pdf->Cell(25, 6, utf8_decode('Ecole d\'ingénieurs'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
+
+	$num = $avi['avisIngenieur'];
+	for ($i = 1; $i <= 5; $i++)
+		if ($i == $num)
+			$pdf->Cell(25, 6, utf8_decode('X'), 1, 0, 'C');
+		else
+			$pdf->Cell(25, 6, utf8_decode(' '), 1, 0, 'C');
+
 	$pdf->Ln();
 
 	// Line 2bis
 	$pdf->Cell(25, 6);
 	$pdf->Cell(25, 6, utf8_decode('Master'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode('o'), 1, 0, 'C');
+
+	$num = $avi['avisMaster'];
+	for ($i = 1; $i <= 5; $i++)
+		if ($i == $num)
+			$pdf->Cell(25, 6, utf8_decode('X'), 1, 0, 'C');
+		else
+			$pdf->Cell(25, 6, utf8_decode(' '), 1, 0, 'C');
+
 	$pdf->Ln();
 
 	// Line 3
 	$pdf->Cell(25, 12,utf8_decode('Nombre d\'avis'), 1, 0, 'C');
 	$pdf->Cell(25, 6, utf8_decode('Ecole d\'ingénieurs'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviIng[0] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviIng[1] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviIng[2] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviIng[3] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviIng[4] ), 1, 0, 'C');
 	$pdf->Ln();
 
 	// Line 3bis
 	$pdf->Cell(25, 6, 'pour la promotion');
 	$pdf->Cell(25, 6, utf8_decode('Master'), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
-	$pdf->Cell(25, 6, utf8_decode(''), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviMast[0] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviMast[1] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviMast[2] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviMast[3] ), 1, 0, 'C');
+	$pdf->Cell(25, 6, utf8_decode($nbAviMast[4] ), 1, 0, 'C');
 	$pdf->Ln();
 
 	// Line 3
 	$pdf->Cell(25, 6,utf8_decode('Commentaire'), 1, 0, 'C');
-	$pdf->Cell(150, 6, '', 1);
+	$pdf->Cell(150, 6,utf8_decode($avi['comm']), 1);
 	$pdf->Ln();
+	$pdf->Ln();
+	$pdf->Ln();
+
+
+	$pdf->setX(150);
+	$pdf->Cell(40, 6,utf8_decode('Signature du chef de Département'), 0, 0, 'L');
+	$pdf->Ln();
+
+	$pdf->setX(155);
+	$pdf->Cell(40, 6,utf8_decode($chef), 0, 0, 'L');
+	$pdf->Image($sign, 155, 245, 40); 
+
+	$pdf->Ln();
+
 
 	$pdf->Output('image.pdf', 'I');
 }
@@ -319,15 +339,58 @@ function generatePDFs()
     $signature = $data['signature'];
     $anneeLib = $data['anneeLib'];
 
+    $nbAviIng = $data['nbAvisIng'];
+    $nbAviMast= $data['nbAvisMaster'];
+
     $avis = $data['avis'];
 
     foreach ($avis as $avi) 
     {
-        generatePDF($avi, $anneeLib, $logo1, $logo2, $chef, $signature);
+        generatePDF($avi, $anneeLib, $logo1, $logo2, $chef, $signature, $nbAviIng, $nbAviMast);
     }
+
+
+	resetJSON();
 }
 
-generatePDFs();
+
+function ajouterAvis($nouvelAvis, $logo1, $logo2, $chef, $signature, $anneeLib)
+{
+    // Charger les données JSON existantes depuis le fichier
+    $donnees = json_decode(file_get_contents('../../../data/study.json'), true);
+
+    // Ajouter le nouvel avis à la liste des avis
+    $donnees['avis'][] = $nouvelAvis;
+
+	//Ajouter les info en +
+	$donnees['nbAvisMaster'][$avi['avisMaster'   ]] = $donnees['nbAvisMaster'][$avi['avisMaster'   ]]+1;
+	$donnees['nbAvisIng'   ][$avi['avisIngenieur']] = $donnees['nbAvisIng']   [$avi['avisIngenieur']]+1;
+
+
+	$donnees['logo1'    ] = $logo1;
+	$donnees['logo2'    ] = $logo2;
+	$donnees['chef'     ] = $chef;
+	$donnees['signature'] = $signature;
+	$donnees['anneeLib' ] = $anneeLib;
+    // Enregistrer les données mises à jour dans le fichier JSON
+    file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
+}
+
+function resetJSON() 
+{
+    // Chemin vers le fichier JSON
+    $cheminFichier = '../../../data/study.json';
+
+    // Charger les données JSON existantes depuis le fichier
+    $donnees = json_decode(file_get_contents($cheminFichier), true);
+	$donnees = $donnees['0'];
+
+    // Réinitialiser uniquement les avis à un tableau vide
+    $donnees['avis'] = [];
+
+    // Enregistrer les données mises à jour dans le fichier JSON
+    $resultat = file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
+}
 
 
 ?>
