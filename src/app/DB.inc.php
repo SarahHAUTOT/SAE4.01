@@ -137,11 +137,7 @@ class DB
 				}
 			}
 
-			// Respond to the client with a success message
-			echo "Students inserted successfully";
 		} else {
-			// Respond to the client with an error message
-			echo "No student data received";
 		}
 	}	
 
@@ -203,12 +199,7 @@ class DB
 					return "Error updating moyennes: " . $db->getError();
 				}
 			}
-
-			// Respond to the client with a success message
-			echo "Moyennes inserted successfully";
 		} else {
-			// Respond to the client with an error message
-			echo "No moyennes data received";
 		}
 	}
 
@@ -257,9 +248,6 @@ class DB
 			
 			if ($result === false) return "Error inserting Competence: " . $db->getError();
 		}
-
-		// Respond to the client with a success message
-		echo "Competences inserted successfully";
 	}
 
 
@@ -308,9 +296,6 @@ class DB
 			
 			if ($result === false) return "Error inserting Modules: " . $db->getError();
 		}
-
-		// Respond to the client with a success message
-		echo "Module inserted successfully";
 	}
 
 	public function insertCompMods($compMods)
@@ -357,9 +342,6 @@ class DB
 			
 			if ($result === false) return "Error inserting CompMod: " . $db->getError();
 		}
-
-		// Respond to the client with a success message
-		echo "CompMod inserted successfully";
 	}
 }
 
@@ -377,36 +359,34 @@ if (!empty($postData['action'])) {
 	switch ($action) {
 		case 'insertStudents':
 			// Appeler la méthode insertStudents avec les données d'étudiants
-			echo $db->insertStudents($postData['datas']);
+			$db->insertStudents($postData['datas']);
 			break;
 		
 		case 'insertMoyennes':
 			// Appeler la méthode insertMoyennes avec les données des moyennes
-			echo $db->insertMoyennes($postData['datas']);
+			$db->insertMoyennes($postData['datas']);
 			break;
 
 		case 'insertCompetences':
 			// Appeler la méthode insertCompetences avec les données des moyennes
-			echo $db->insertCompetences($postData['datas']);
+			$db->insertCompetences($postData['datas']);
 			break;
 
 		case 'insertModules':
 			// Appeler la méthode insertModules avec les données des moyennes
-			echo $db->insertModules($postData['datas']);
+			$db->insertModules($postData['datas']);
 			break;
 
 		case 'insertCompMods':
 			// Appeler la méthode insertCompMods avec les données des moyennes
-			echo $db->insertCompMods($postData['datas']);
+			$db->insertCompMods($postData['datas']);
 			break;
 			
 		default:
-			echo "Action invalide";
 			break;
 	}
 } else {
 	// Répondre au client avec un message d'erreur
-	echo "Aucune action spécifiée";
 }
 
 ini_set('display_errors', 1);
