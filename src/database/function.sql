@@ -5,7 +5,7 @@ DECLARE
 	count_modules INTEGER := 0;
 BEGIN
 	SELECT COUNT(*) INTO count_modules FROM  CompMod 
-	WHERE  compId = getMoyenne.compId;
+	WHERE  compId = getCompMoy.compId;
 
 	IF count_modules = 0 THEN
 		RETURN NULL; -- No modules affected to the Competence 
@@ -13,7 +13,7 @@ BEGIN
 
 	SELECT SUM(noteVal) INTO total
 	FROM   Moyenne m JOIN CompMod cm ON m.modId = cm.modId
-	WHERE  cm.compId = getMoyenne.compId AND m.anneeId = yearId AND m.etdId = studentId;
+	WHERE  cm.compId = getCompMoy.compId AND m.anneeId = yearId AND m.etdId = studentId;
 
 	RETURN total / count_modules;
 END;
@@ -40,11 +40,26 @@ RETURNS INTEGER AS $$
 */
 
 /* TODO
-CREATE OR REPLACE FUNCTION getMoySem(...)
+CREATE OR REPLACE FUNCTION getMoySem(IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS FLOAT AS $$
+DECLARE
+	total FLOAT := 0;
+	count_comps INTEGER := 0;
+BEGIN
+	SELECT COUNT(c.compId) INTO count_comps 
+	FROM  CompMod cm JOIN Competence c ON c.compId=cm.compId 
+	WHERE semId = semesterId;
+
+	IF count_comps = 0 THEN
+		RETURN NULL; -- No modules affected to the Competence 
+	END IF;
+
+	SELECT SUM( getCompMoy(compId,studentId,yearId) ) INTO total
+	FROM   Moyenne;
+
+	RETURN total / count_comps;
 */
 
-/* TODO
 CREATE OR REPLACE FUNCTION getRCUE(IN compId INTEGER, IN semId INTEGER, IN etdId INTEGER, IN yearId INTEGER)
 RETURNS VARCHAR AS $$
 DECLARE
@@ -59,10 +74,10 @@ BEGIN
 	JOIN AdmAnnee adma ON adma.etdId=admc2.etdId
 	WHERE anneeId = yearId AND c1.semId = semId  AND c2.semId = lastSemId;
 	
-	// switch case
+	-- switch case TODO
 END;
 $$ LANGUAGE plpgsql;
-*/
+
 
 CREATE OR REPLACE FUNCTION getNbAdmiUE(IN compId INTEGER, IN semId INTEGER, IN etdId INTEGER, IN yearId INTEGER)
 RETURNS INTEGER AS $$
