@@ -183,16 +183,16 @@ function generateStudents(int $yearId, int $semesterId)
 	// For each studient
 	foreach ($studients as &$studient) 
 	{
-		// $query = "SELECT getRankSem(".$tudent['etdid'].",".$semesterId.",".$yearId.") AS rank FROM AdmComp"; TODO funciton.sql
-		// $rank = $db->execQuery($query);
-		// $student['rank'] = $rank;
+		$query = 'SELECT getRankSem('.$tudent['etdid'].', '.$semesterId.', '.$yearId.') 
+				  FROM AdmComp'; // TODO funciton.sql
+		$rank = $db->execQuery($query);
+		$student['rank'] = $rank;
 
-		$query = "SELECT getNbAdmiUE(".$comp['compid'].", ".$semesterId.", ".$student['etdid'].", ".$yearId.") 
+		$query = "SELECT getNbAdmiUE(".$semesterId.", ".$student['etdid'].", ".$yearId.") 
 				FROM AdmComp";
 		$nbAdmiUE = $db->execQuery($query);
 
 		$students['admiUEs'] = $nbAdmiUE; // UEs that are passed
-
 
 		// For each competences of the last semester
 		$query = "SELECT * FROM Competence WHERE semId =".$semesterId -1;
@@ -201,18 +201,19 @@ function generateStudents(int $yearId, int $semesterId)
 		foreach ($lastSemComps as &$comp) 
 		{
 			$query = "SELECT getRCUE(".$comp['compid'].", ".$semesterId -1.", ".$student['etdid'].", ".$yearId.") 
-					FROM AdmComp";
-			$admiRegroup = $db->execQuery($query);
+					  FROM AdmComp";
+			$admiRCUE = $db->execQuery($query);
 
 			$student['RCUE'][] = 
 			[
 				'compId'=> $comp['compid'],
-				'admi'  => $admiRegroup
+				'admi'  => $admiRCUE
 			];
 		}
 
-		// $query = "SELECT getMoySem() FROM AdmComp"; TODO funciton.sql
-		// $moySem = $db->execQuery($query);
+		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; // TODO funciton.sql
+		$moySem = $db->execQuery($query);
+		$student['moySem'] = $moySem;
 
 		$query = "SELECT * FROM Competence WHERE semId =".$semesterId;
 		$competences = $db->execQuery($query);
@@ -220,7 +221,7 @@ function generateStudents(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT getCompMoy(".$comp['compid'].", ".$student['etdid'].", ".$yearId.") FROM Moyenne";
+			$query = "SELECT getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") FROM Moyenne";
 			$moyUe = $db->execQuery($query);
 
 			$student['competences'][] = 
@@ -231,9 +232,8 @@ function generateStudents(int $yearId, int $semesterId)
 		}
 	}
 
-	// Générer le JSON
+	// JSON Generation
 	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
-	// Écrire le JSON dans un fichier
 	file_put_contents( '../../data/csv.json', $jsonData);
 
 	echo "Le fichier csv.json a été créé avec succès.<br>";
