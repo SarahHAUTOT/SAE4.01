@@ -1,6 +1,6 @@
 <?php
-
-require('../../../lib/fpdf/fpdf.php');
+require ('../DBtoJSON');
+require ('../../../lib/fpdf/fpdf.php');
 
 function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $nbAviMast)
 {
@@ -317,37 +317,37 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $
 
 function generatePDFs() 
 {
-    // Lire le contenu du fichier JSON
-    $jsonData = file_get_contents('../../../data/study.json');
-    
-    // Convertir la chaîne JSON en tableau associatif
-    $data = json_decode($jsonData, true);
+	// Lire le contenu du fichier JSON
+	$jsonData = file_get_contents('../../../data/study.json');
+	
+	// Convertir la chaîne JSON en tableau associatif
+	$data = json_decode($jsonData, true);
 
 	$data = $data[0];
 
-    // Vérifier si la conversion a réussi
-    if ($data === null) {
-        // Gérer l'erreur de décodage JSON
-        echo "Erreur lors du décodage du fichier JSON.";
-        return;
-    }
+	// Vérifier si la conversion a réussi
+	if ($data === null) {
+		// Gérer l'erreur de décodage JSON
+		echo "Erreur lors du décodage du fichier JSON.";
+		return;
+	}
 
-    // Extraire les données nécessaires
-    $logo1 = $data['logo1'];
-    $logo2 = $data['logo2'];
-    $chef = $data['chef'];
-    $signature = $data['signature'];
-    $anneeLib = $data['anneeLib'];
+	// Extraire les données nécessaires
+	$logo1 = $data['logo1'];
+	$logo2 = $data['logo2'];
+	$chef = $data['chef'];
+	$signature = $data['signature'];
+	$anneeLib = $data['anneeLib'];
 
-    $nbAviIng = $data['nbAvisIng'];
-    $nbAviMast= $data['nbAvisMaster'];
+	$nbAviIng = $data['nbAvisIng'];
+	$nbAviMast= $data['nbAvisMaster'];
 
-    $avis = $data['avis'];
+	$avis = $data['avis'];
 
-    foreach ($avis as $avi) 
-    {
-        generatePDF($avi, $anneeLib, $logo1, $logo2, $chef, $signature, $nbAviIng, $nbAviMast);
-    }
+	foreach ($avis as $avi) 
+	{
+		generatePDF($avi, $anneeLib, $logo1, $logo2, $chef, $signature, $nbAviIng, $nbAviMast);
+	}
 
 
 	resetJSON();
@@ -356,11 +356,11 @@ function generatePDFs()
 
 function ajouterAvis($nouvelAvis, $logo1, $logo2, $chef, $signature, $anneeLib)
 {
-    // Charger les données JSON existantes depuis le fichier
-    $donnees = json_decode(file_get_contents('../../../data/study.json'), true);
+	// Charger les données JSON existantes depuis le fichier
+	$donnees = json_decode(file_get_contents('../../../data/study.json'), true);
 
-    // Ajouter le nouvel avis à la liste des avis
-    $donnees['avis'][] = $nouvelAvis;
+	// Ajouter le nouvel avis à la liste des avis
+	$donnees['avis'][] = $nouvelAvis;
 
 	//Ajouter les info en +
 	$donnees['nbAvisMaster'][$avi['avisMaster'   ]] = $donnees['nbAvisMaster'][$avi['avisMaster'   ]]+1;
@@ -372,25 +372,164 @@ function ajouterAvis($nouvelAvis, $logo1, $logo2, $chef, $signature, $anneeLib)
 	$donnees['chef'     ] = $chef;
 	$donnees['signature'] = $signature;
 	$donnees['anneeLib' ] = $anneeLib;
-    // Enregistrer les données mises à jour dans le fichier JSON
-    file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
+	// Enregistrer les données mises à jour dans le fichier JSON
+	file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
 }
 
 function resetJSON() 
 {
-    // Chemin vers le fichier JSON
-    $cheminFichier = '../../../data/study.json';
+	// Chemin vers le fichier JSON
+	$cheminFichier = '../../../data/study.json';
 
-    // Charger les données JSON existantes depuis le fichier
-    $donnees = json_decode(file_get_contents($cheminFichier), true);
+	// Charger les données JSON existantes depuis le fichier
+	$donnees = json_decode(file_get_contents($cheminFichier), true);
 	$donnees = $donnees['0'];
 
-    // Réinitialiser uniquement les avis à un tableau vide
-    $donnees['avis'] = [];
+	// Réinitialiser uniquement les avis à un tableau vide
+	$donnees['avis'] = [];
 
-    // Enregistrer les données mises à jour dans le fichier JSON
-    $resultat = file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
+	// Enregistrer les données mises à jour dans le fichier JSON
+	$resultat = file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
+}
+
+function generateCSV(String $year, String $type, String $semester)
+{
+	// CSV File creation
+	header('Content-type: text/csv; charset=utf-8');
+	header('Content-Disposition: attachment; filename=PV '.$type.' '.$semester.' '.$year);
+	
+	$header  = null;
+	$content = null;
+
+	if (strcmp($type, 'Commission') === 0)
+	{
+		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
+		// Exploiting JSON File
+		$json_data = file_get_contents('../../../data/csv.json');
+		$commissionData = json_decode($json_data, true);
+
+		$header  = headerCommission (...);
+		$content = contentCommission($commissionData) ;
+	}
+
+	if (strcmp($type, 'Jury') === 0 && $semesterId >= 2)
+	{
+		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
+		// Exploiting JSON File
+		$json_data = file_get_contents('../../../data/csv.json');
+		$juryData = json_decode($json_data, true);
+		
+		$header  = headerJury (...);
+		$content = contentJury($juryData); 
+	}
+
+	if (!is_null($header) && !is_null($content))
+	{
+		echo $header;
+		echo $content;
+	}
+}
+
+function headerCommission($competences)
+{
+	$header = '"Rg", "Nom", "Prenom", "Cursus", "Ues", "Moy"';
+
+	foreach ($competences as $comp)
+	{
+		$header .= ', "'.$comp['compCode'].'", "Bonus '.$comp['compCode'].'"';
+		
+		foreach ($comp['modules'] as $mod)
+		{
+			$header .= ', "'.$mod['modCode'].'"';
+		}		
+	}
+
+	return $header .'\n';
 }
 
 
+function headerJury($rcues, $competences)
+{
+	$header = '"Rg", "Nom", "Prenom", "Cursus"';
+	
+	foreach ($rcues as $rcue)
+	{
+		$header .= ', "C'.$rcue['compId'].'"';
+	}
+
+	$header .= ', "Ues", "Moy"';
+
+	foreach ($competences as $comp)
+	{
+		$header .= ', "'.$comp['compCode'].'"';
+	}
+
+	return $header .'\n';
+}
+
+function contentJury($competences)
+{
+	$studentInfo = "";
+
+	// Iterating through the students of the specified year
+	foreach ($students as $student)
+	{
+		$studentInfo .= '"'.
+			$student['rank']      .'", "'.
+			$student['etdNom']    .'", "'.
+			$student['etdPrenom'] .'", "'.
+			$student['etdCursus'] .'"';
+
+		foreach ($student['RCUE'] as $mod)
+		{
+			$studentInfo .= '", "'.$mod['admi'];
+		}
+
+		$studentInfo .= '", "'.
+			$student['admiUes'] .'", "'.
+			$student['moySem'] .'"';
+
+		foreach ($student['competences'] as $comp)
+		{
+			$studentInfo .= '", "'.$comp['moy'];
+		}
+
+		$studentInfo .= '\n';	
+	}
+
+	// print($studentInfo);
+	return $studentInfo;
+}
+
+function contentCommission($students)
+{
+	$studentInfo = "";
+
+	// Iterating through the students of the specified year
+	foreach ($students as $student)
+	{
+		$studentInfo .= '"'.
+			$student['rank']      .'", "'.
+			$student['etdNom']    .'", "'.
+			$student['etdPrenom'] .'", "'.
+			$student['etdCursus'] .'", "'.
+			$student['admiUEs']   .'", "'.
+			$student['moySem']   .'"';
+
+		foreach ($student['competences'] as $comp)
+		{
+			$studentInfo .= ', "'.$comp['moy'].'" ,"'.$student['etdBonus'].'"';
+
+			foreach ($comp['modules'] as $mod)
+			{
+				$studentInfo .= ', "'.$mod['noteVal'].'"';
+			}
+		}
+
+		$studentInfo .= '\n';
+	}
+
+	// print($studentInfo);
+	return $studentInfo;
+}
 ?>

@@ -6,6 +6,7 @@ require 'DB.inc.php';
 generateUsers();
 generateCompMod();
 generateYears();
+generateExport();
 
 
 /**********************************************************************/
@@ -25,6 +26,27 @@ function generateUsers()
 	$jsonData = json_encode($users, JSON_PRETTY_PRINT);
 	// Écrire le JSON dans un fichier
 	file_put_contents( '../../data/users.json', $jsonData);
+	echo "Le fichier users.json a été créé avec succès.<br>";
+}
+
+
+/**********************************************************************/
+/*                              FILES                                 */
+/**********************************************************************/
+
+function generateExport()
+{
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+	
+	// Récupérer les utilisateur 
+	$query     = "SELECT * FROM Export";
+	$users     = $db->execQuery($query);
+
+
+	// Générer le JSON
+	$jsonData = json_encode($users, JSON_PRETTY_PRINT);
+	// Écrire le JSON dans un fichier
+	file_put_contents( '../../data/export.json', $jsonData);
 	echo "Le fichier users.json a été créé avec succès.<br>";
 }
 
@@ -105,10 +127,16 @@ function generateYears()
 			// For each student
 			foreach ($students as &$student) 
 			{
+				// Get rank of the student for the current semester and year
+				$query = 'SELECT getRankSem('.$semester['semId'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
+				$rankSem = $db->execQuery($query);
+				$student['rank'] = $rankSem;
+
 				/* MODULES */
 				// We get the grades from this year, semester, and student
 				$query = "SELECT * FROM Moyenne m  JOIN Module mo ON mo.modId = m.modId WHERE m.anneeId = " . $year['anneeid'] . " AND etdId = " . $student["etdid"] . " AND m.modId IN (SELECT modId FROM CompMod a JOIN Competence c ON a.compId = c.compId WHERE semId = ".$semester["semid"] . ")";
 				$grades = $db->execQuery($query);
+
 
 				// Put them in student
 				$student['modules'] = [];
@@ -181,8 +209,8 @@ function generateStudents(int $yearId, int $semesterId)
 	// For each studient
 	foreach ($studients as &$studient) 
 	{
-		$query = 'SELECT getRankSem('.$semesterId.', '.$tudent['etdid'].', '.$yearId.') 
-				  FROM AdmComp'; // TODO funciton.sql
+		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
+				  FROM AdmComp'; 
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
 
@@ -198,8 +226,7 @@ function generateStudents(int $yearId, int $semesterId)
 
 		foreach ($lastSemComps as &$comp) 
 		{
-			$query = "SELECT getRCUE(".$semesterId -1.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") 
-					  FROM AdmComp";
+            $query = 'SELECT getRCUE('.($semesterId-1).', '.$comp['compid'].', '.$student['etdid'].', '.$yearId.') FROM AdmComp';
 			$admiRCUE = $db->execQuery($query);
 
 			$student['RCUE'][] = 
@@ -209,7 +236,7 @@ function generateStudents(int $yearId, int $semesterId)
 			];
 		}
 
-		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; // TODO funciton.sql
+		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; 
 		$moySem = $db->execQuery($query);
 		$student['moySem'] = $moySem;
 
@@ -219,14 +246,30 @@ function generateStudents(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") FROM Moyenne";
-			$moyUe = $db->execQuery($query);
+			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS moyUe FROM Moyenne";
+			$compInfo = $db->execQuery($query);
 
 			$student['competences'][] = 
 			[
 				'compCode'=> $comp['compcode'],
-				'moy'     => $moyUe
+				'moy'     => $compInfo['moyUe']
 			];
+
+			$query = "SELECT modCode, noteVal 
+					  FROM  Module m JOIN CompMod cm  ON m.modId=cm.modId 
+					  				 JOIN Moyenne moy ON m.modId=moy.modId 
+					  WHERE compId = ".$compInfo['compid']."";
+			
+			$modules = $db->execQuery($query);
+
+			foreach ($modules as &$mod) 
+			{
+				$student['competences']['modules'][] = 
+				[
+					'modCode' => $mod['modcode'],	
+					'noteVal' => $mod['noteval']
+				];
+			}
 		}
 	}
 

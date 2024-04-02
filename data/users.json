@@ -1,17 +1,1 @@
-[
-    {
-        "userlogin": "john_doe",
-        "userpassword": "password123",
-        "userdroit": 1
-    },
-    {
-        "userlogin": "jane_smith",
-        "userpassword": "secret789",
-        "userdroit": 2
-    },
-    {
-        "userlogin": "admin_user",
-        "userpassword": "adminpass",
-        "userdroit": 1
-    }
-]
+[]
