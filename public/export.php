@@ -26,17 +26,20 @@ if ($_SESSION['role'] != 2 && $_SESSION['role'] != 1 ) {
 function contenue()
 {
 	echo '
-
 	<h1> Export </h1>
 	<div class="container">
 		<div class="gridLibImport">
 			<span>Recherche :</span>
 			<input type="text" name="recherche" value="Michel">
 		</div>
-		<span> Filtres :</span>
-		<button>Poursuite d\'étude</button>
-		<button>Commission</button>
-		<button>Jury</button>
+		<span> Filtres :</span> <br>
+		<input type="radio" id="poursuite etude" name="drone" checked/>
+		<label>Poursuite d\'étude</label>
+		<input type="radio" id="commission" name="drone"/>
+		<label>Commission</label>
+		<input type="radio" id="jury" name="drone"/>
+		<label>Jury</label>
+
 		<table class="recherche">
 			<caption> recherche de michel en poursuite d\'étude</caption>
 			<thead>

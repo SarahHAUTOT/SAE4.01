@@ -89,6 +89,8 @@ function contenue()
 			<br>
 			<button class="validateButtonStyle" id="save" type="import" name="signCachet" value="">Valider</button>
 
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
 			<script src="../src/app/import/import.js"></script>
 
 		</div>';
