@@ -105,10 +105,16 @@ function generateYears()
 			// For each student
 			foreach ($students as &$student) 
 			{
+				// Get rank of the student for the current semester and year
+				$query = 'SELECT getRankSem('.$semester['semId'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
+				$rankSem = $db->execQuery($query);
+				$student['rank'] = $rankSem;
+
 				/* MODULES */
 				// We get the grades from this year, semester, and student
 				$query = "SELECT * FROM Moyenne m  JOIN Module mo ON mo.modId = m.modId WHERE m.anneeId = " . $year['anneeid'] . " AND etdId = " . $student["etdid"] . " AND m.modId IN (SELECT modId FROM CompMod a JOIN Competence c ON a.compId = c.compId WHERE semId = ".$semester["semid"] . ")";
 				$grades = $db->execQuery($query);
+
 
 				// Put them in student
 				$student['modules'] = [];
@@ -181,7 +187,7 @@ function generateStudents(int $yearId, int $semesterId)
 	// For each studient
 	foreach ($studients as &$studient) 
 	{
-		$query = 'SELECT getRankSem('.$semesterId.', '.$tudent['etdid'].', '.$yearId.') 
+		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
 				  FROM AdmComp'; 
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
