@@ -1,7 +1,7 @@
 <?php
 
 //Pour la structure
-include 'chemin/vers/le/fichier.php';
+include 'background.php';
 
 
 
@@ -18,7 +18,7 @@ if (!isset($_SESSION['role'])) {
 // Vérifier les droits de l'utilisateur
 if ($_SESSION['role'] != 1) {
     // Rediriger vers une page d'erreur si l'utilisateur n'a pas les droits nécessaires
-    header('Location: acceuilUtilisateur.php');
+    header('Location: accueilAdmin.php');
     exit;
 }
 
@@ -49,44 +49,3 @@ foot();
 
 
 ?>
-
-
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>AccueilUtilisateur</title>
-	<link rel="stylesheet" href="css/background.css">
-	<link rel="stylesheet" href="css/accueilEtConnexion.css">
-</head>
-
-<body>
-
-	<header>
-		<div class="logo">
-			<img src="images/logo.png" alt="Logo de votre site">
-			<h1>DocSco</h1>
-		</div>
-		<div class="user">
-			Utilisateur
-		</div>
-	</header>
-
-	<main>
-		
-	</main>
-
-	<footer>
-		<div class="logo">
-			<a href="https://eureka.univ-lehavre.fr/"> <img src="images/eureka.svg" alt="Logo de votre site"> </a>
-			<a href="https://diw.iut.univ-lehavre.fr/pedago/index.xml"> <img src="images/departement.gif"
-					alt="Logo de votre site"></a>
-		</div>
-	</footer>
-
-</body>
-
-</html>

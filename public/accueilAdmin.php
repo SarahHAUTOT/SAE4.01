@@ -1,7 +1,7 @@
 <?php
 
 //Pour la structure
-include 'chemin/vers/le/fichier.php';
+include 'background.php';
 
 
 
@@ -16,7 +16,7 @@ if (!isset($_SESSION['role'])) {
 
 // Vérifier les droits de l'utilisateur
 if ($_SESSION['role'] != 2) {
-    header('Location: acceuilUtilisateur.php');
+    header('Location: accueilUtilisateur.php');
     exit;
 }
 
