@@ -87,7 +87,7 @@ class DB
 				$res = $stmt->execute($param);
 				
 
-				//The student is already in the database
+				//The data is already in the database
 				if ($stmt->rowCount() > 0) {
 
 					$sql = "UPDATE Etudiant SET etdciv = ?, etdabs = ?, etdnom = ?, etdgroupetd = ?, etdgroupetp = ?, etdbac = ?, etdbonus = ?, etdprenom = ?, etdCursus = ? WHERE etdId = ?";
@@ -165,7 +165,7 @@ class DB
 				$stmt = $this->connect->prepare($sql);
 				$res = $stmt->execute($param);
 
-				//The student is already in the database
+				//The data is already in the database
 				if ($stmt->rowCount() > 0) {
 					// Prepare the SQL statement
 					$sql = "UPDATE Moyenne SET noteVal = ? WHERE etdId = ? AND modId = ? AND anneeId = ?";
@@ -216,7 +216,7 @@ class DB
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
 
-			//The student is already in the database
+			//The data is already in the database
 			if ($stmt->rowCount() > 0) {
 				// Prepare the SQL statement
 				$sql = "UPDATE Competence SET compCode = ?, compLib = ?, semId = ? WHERE compId = ?";
@@ -264,7 +264,7 @@ class DB
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
 
-			//The student is already in the database
+			//The data is already in the database
 			if ($stmt->rowCount() > 0) {
 				// Prepare the SQL statement
 				$sql = "UPDATE Module SET modCode = ?, modCat = ?, modLib = ? WHERE modId = ?";
@@ -313,6 +313,48 @@ class DB
 		$res = $stmt->execute($param);
 
 	}
+	
+	public function insertAdmComps($admComps)
+	{
+		$postData = json_decode(file_get_contents("php://input"), true);
+
+		foreach ($$admComps as $admc) 
+		{
+			$sql = "SELECT * FROM AdmComp WHERE anneeId = ? AND compId = ? AND etdId = ?";
+			$param = array ($admc['anneeId'],$admc['compId'], $admc['etdId']);
+
+			$stmt = $this->connect->prepare($sql);
+			$res = $stmt->execute($param);
+
+			//The data is already in the database
+			if ($stmt->rowCount() > 0)
+			{
+				// Prepare the SQL statement
+				$sql = "UPDATE AdmComp SET admi = ?";
+
+				// Bind parameters
+				$params = array($admc['admi']);
+			}
+			else
+			{
+				// Prepare the SQL statement
+				$sql = "INSERT INTO AdmComp (etdId, compId, anneeId, admi) VALUES (?, ?, ?, ?)";
+
+				// Bind parameters
+				$params = array(
+					$admc['etdId']
+					$admc['compId'],
+					$admc['anneeId'],
+					$admc['admi']
+				);
+			}
+
+			$stmt = $this->connect->prepare($sql);
+			$result = $stmt->execute($params);
+			
+			if ($result === false) return "Error inserting CompMod: " . $db->getError();
+		}
+	}
 
 	public function insertCompMods($compMods)
 	{
@@ -320,14 +362,13 @@ class DB
 
 		foreach ($compMods as $compMod) 
 		{
-
 			$sql = "SELECT * FROM CompMod WHERE modId = ? AND compId = ?";
 			$param = array ($compMod['modId'],$compMod['compId']);
 
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
 
-			//The student is already in the database
+			//The data is already in the database
 			if ($stmt->rowCount() > 0) {
 				// Prepare the SQL statement
 				$sql = "UPDATE CompMod SET modCoef = ? WHERE modId = ? AND compId = ?";
@@ -341,7 +382,6 @@ class DB
 			}
 			else
 			{
-				
 				// Prepare the SQL statement
 				$sql = "INSERT INTO CompMod (compId, modId, modCoef) VALUES (?, ?, ?)";
 
@@ -379,8 +419,8 @@ if (!empty($postData['action'])) {
 			break;
 		
 		case 'insertAnnee':
-			// Appeler la méthode insertStudents avec les données d'étudiants
-			$db->insertStudents($postData['datas']);
+			// Appeler la méthode insertAnnee avec les données d'étudiants
+			$db->insertAnnee($postData['datas']);
 			break;
 		
 		case 'insertMoyennes':
@@ -402,7 +442,12 @@ if (!empty($postData['action'])) {
 			// Appeler la méthode insertCompMods avec les données des moyennes
 			$db->insertCompMods($postData['datas']);
 			break;
-			
+
+		case 'insertAdmComps':
+			// Appeler la méthode insertAdmComps avec les données des moyennes
+			$db->insertAdmComps($postData['datas']);
+		break;
+
 		default:
 			break;
 	}
