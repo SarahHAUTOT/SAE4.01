@@ -392,7 +392,7 @@ function resetJSON()
 	$resultat = file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
 }
 
-function export(String $year, String $type, String $semester)
+function generateCSV(String $year, String $type, String $semester)
 {
 	// CSV File creation
 	header('Content-type: text/csv; charset=utf-8');

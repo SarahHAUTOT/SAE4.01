@@ -1,15 +1,19 @@
 const mybtn = document.getElementById('save');
 mybtn.addEventListener('click', generateAll, false);
 
-// Sélectionnez tous les éléments ayant la classe spécifiée
-const btnJurys = document.querySelectorAll('.maClasse');
+const btnJurys = document.querySelectorAll('.jury');
 btnJurys.forEach(function(btn) {
-    btn.addEventListener('click', decomposeJury);
+    btn.addEventListener('change', decomposeJury);
 });
 
-const btnMoyennes = document.querySelectorAll('.maClasse');
+const btnMoyennes = document.querySelectorAll('.moyenne');
 btnMoyennes.forEach(function(btn) {
-    btn.addEventListener('click', decomposeMoyennes);
+    btn.addEventListener('change', decomposeMoyennes);
+});
+
+const btnCoef = document.querySelectorAll('.coef');
+btnCoef.forEach(function(btn) {
+    btn.addEventListener('change', decomposeCoef);
 });
 
 
@@ -53,15 +57,15 @@ function callPHP(file, action, datas) {
 
 function checkYearFormat(annee) {
     // Expression régulière pour vérifier le format "YYYY-YYYY" avec vérification de l'ordre des années
-    var regex = /^(\d{4})-(\d{4})$/;
+    let regex = /^(\d{4})-(\d{4})$/;
     
     // Extraction des deux années
-    var match = annee.match(regex);
+    let match = annee.match(regex);
     if (!match) {
         return false; // Le format est incorrect
     }
-    var premiereAnnee = parseInt(match[1]); // Première année
-    var deuxiemeAnnee = parseInt(match[2]); // Deuxième année
+    let premiereAnnee = parseInt(match[1]); // Première année
+    let deuxiemeAnnee = parseInt(match[2]); // Deuxième année
 
     // Vérification si l'année est vide ou ne correspond pas au format attendu
     if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 1) {
@@ -73,6 +77,8 @@ function checkYearFormat(annee) {
 
 function generateAll()
 {
+
+	let cheminFic = "../../public/DB.inc.php";
 	anneLib = document.getElementById('anneeLib').value;
 
 	if (!checkYearFormat(anneLib))
@@ -82,29 +88,29 @@ function generateAll()
 	}
 
 	// Insertion des étudiants
-	callPHP('../src/app/DB.inc.php', 'insertAnnee', anneLib)
+	callPHP(cheminFic, 'insertAnnee', anneLib)
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
-			return callPHP('../src/app/DB.inc.php', 'insertStudents', students);
+			return callPHP(cheminFic, 'insertStudents', students);
 		})
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
-			return callPHP('../src/app/DB.inc.php', 'insertModules', modules);
+			return callPHP(cheminFic, 'insertModules', modules);
 		})
 		.then(() => {
 			// Après l'insertion des modules, insérer les compétences
-			return callPHP('../src/app/DB.inc.php', 'insertCompetences', competences);
+			return callPHP(cheminFic, 'insertCompetences', competences);
 		})
 		.then(() => {
 			// Après l'insertion des compétences, insérer les moyennes
-			return callPHP('../src/app/DB.inc.php', 'insertMoyennes', moyennes);
+			return callPHP(cheminFic, 'insertMoyennes', moyennes);
 		})
 		.then(() => {
 			// Enfin, insérer compMods après l'insertion des moyennes
-			return callPHP('../src/app/DB.inc.php', 'insertCompMods', compMods);
+			return callPHP(cheminFic, 'insertCompMods', compMods);
 		})
 		.then(() => {
-			return callPHP('../src/app/DB.inc.php', 'insertAdmComps', admComp);
+			return callPHP(cheminFic, 'insertAdmComps', admComp);
 		})
 		.then(() => {
 			// Toutes les opérations ont réussi
@@ -114,7 +120,7 @@ function generateAll()
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
 
-	window.location.href = "accueilAdmin.php";
+	// window.location.href = "accueilAdmin.php";
 }
 
 
@@ -123,7 +129,8 @@ function decomposeMoyennes(event)
 	const file = event.target.files[0];
 	const reader = new FileReader();
 
-	reader.onload = function (event) {
+	reader.onload = function (event)
+	{
 		console.log('file moyenne loaded');
 
 		const data = new Uint8Array(event.target.result);
@@ -200,11 +207,11 @@ function decomposeCoef(event)
 {
 	const file = event.target.files[0];
 
-	console.log('file coef loaded');
-
 	const reader = new FileReader();
 	reader.onload = function (event)
 	{
+		console.log('file coef loaded');
+
 		const data = new Uint8Array(event.target.result);
 		const workbook = XLSX.read(data, {type:'array'});
 		let sheet = workbook.SheetNames[0];
@@ -290,10 +297,6 @@ function decomposeCoef(event)
 				i++;
 			}
 		}
-
-		console.log(modules);
-		console.log(competences);
-		console.log(compMods);
 	};
 
 	reader.readAsArrayBuffer(file);
@@ -305,11 +308,15 @@ function decomposeCoef(event)
 
 function decomposeJury ()
 {
+	
 	const file = event.target.files[0];
 	if (!file) return;
 
 	const reader = new FileReader();
-	reader.onload = function (event) {
+	reader.onload = function (event)
+	{
+		console.log('file jury loaded');
+
 		const data = new Uint8Array(event.target.result);
 		const workbook = XLSX.read(data, { type: 'array' });
 		const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -317,22 +324,14 @@ function decomposeJury ()
 
 		//On cherche ou sont les ressources
 		let ind = [];
-		var pattern = /^BIN\d{2}$/;
+		let pattern = /^BIN\d{2}$/;
 
 
 		excelData[1]; //header
 
 		for (let i = 0; i < excelData[0].length; i++)
-		{
 			if (pattern.test(excelData[0][i]))
-			{
 				ind.push(i+1);
-				console.log(excelData[0][i]);
-			} 
-
-		}
-
-
 
 		// Parcourir chaque ligne
 		for (let i = 1; i < excelData.length; i++) {
@@ -345,7 +344,7 @@ function decomposeJury ()
 
 			//pour chaque compétence
 			ind.forEach(function (e) {
-				var admCompBis = 
+				let admCompBis = 
 				{
 					'etdId' : etdid,
 					'adm'   : excelData[i][e],
@@ -353,14 +352,6 @@ function decomposeJury ()
 				}
 				admComp.push(admCompBis);
 			});
-
-			console.log("L'étudiant " + etdid + " a :");
-			//pour chaque compétence
-			for (let cpt = 0; cpt < admComp.length; cpt++)
-			{
-				console.log("\t\t " + excelData[0][ind[cpt]-1] + "   " + admComp[cpt]);
-			}
-
 		}
 	};
 	reader.readAsArrayBuffer(file);
