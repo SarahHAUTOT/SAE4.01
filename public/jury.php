@@ -88,7 +88,7 @@ function contenu(String $anneeSelec, int $semestreSelec)
 					}
 
 					foreach($student['competences'] as $comp)
-						$contenu .= '<td>'.$comp['moy'] .'</td>'
+						$contenu .= '<td>'.$comp['admi'] .'</td>'
 
 					$contenu .= '</tr>';
 				}
