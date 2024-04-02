@@ -1,10 +1,4 @@
-const fileMoy = document.getElementById('moy_file');
-fileMoy.addEventListener('change', decomposeMoyennes(event) , false);
-
-const fileCoef = document.getElementById('coef_file');
-fileCoef.addEventListener('change', decomposeCoef(event), false);
-
-const mybtn = document.getElementById('myButton');
+const mybtn = document.getElementById('generate');
 mybtn.addEventListener('click', generateAll, false);
 
 
@@ -49,6 +43,8 @@ function callPHP(file, action, datas) {
 
 function generateAll()
 {
+	$anneLib = document.getElementById('anneeLib').value;
+
 	console.log("Etudiants", students);
 	console.log("Moyenne", moyennes);
 	console.log("Competences", competences);
@@ -56,7 +52,11 @@ function generateAll()
 	console.log("CompMod", compMods);
 
 	// Insertion des étudiants
-	callPHP('../DB.inc.php', 'insertStudents', students)
+	callPHP('../DB.inc.php', 'insertAnnee', $anneLib)
+		.then(() => {
+			// Après l'insertion des étudiants, insérer les modules
+			return callPHP('../DB.inc.php', 'insertStudents', students);
+		})
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
 			return callPHP('../DB.inc.php', 'insertModules', modules);

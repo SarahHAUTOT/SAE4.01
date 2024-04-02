@@ -298,6 +298,22 @@ class DB
 		}
 	}
 
+	
+
+
+	public function insertAnnee($anneLib)
+	{
+		$anneLib = $anneLib[0];
+		$postData = json_decode(file_get_contents("php://input"), true);
+
+		$sql = "INSERT INTO Annee (anneLib) VALUES ?";
+		$param = array ($anneLib);
+
+		$stmt = $this->connect->prepare($sql);
+		$res = $stmt->execute($param);
+
+	}
+
 	public function insertCompMods($compMods)
 	{
 		$postData = json_decode(file_get_contents("php://input"), true);
@@ -358,6 +374,11 @@ if (!empty($postData['action'])) {
 	// Gérer les différentes actions
 	switch ($action) {
 		case 'insertStudents':
+			// Appeler la méthode insertStudents avec les données d'étudiants
+			$db->insertStudents($postData['datas']);
+			break;
+		
+		case 'insertAnnee':
 			// Appeler la méthode insertStudents avec les données d'étudiants
 			$db->insertStudents($postData['datas']);
 			break;
