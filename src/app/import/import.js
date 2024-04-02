@@ -78,25 +78,19 @@ function checkYearFormat(annee) {
 function generateAll()
 {
 
-	let cheminFic = "../DB.inc.php";
-	// anneLib = document.getElementById('anneeLib').value;
+	let cheminFic = "../../public/DB.inc.php";
+	anneLib = document.getElementById('anneeLib').value;
 
-	anneLib = "dz";
 
-	// console.log(students);
 
-	// if (!checkYearFormat(anneLib))
-	// {
-	// 	alert("Veuillez entré une année dans un format correct");
-	// 	return 0;
-	// }insertAnnee
-
-	console.log(competences);
-	console.log(modules);
-	console.log(compMods);
+	if (!checkYearFormat(anneLib))
+	{
+		alert("Veuillez entré une année dans un format correct");
+		return 0;
+	}
 
 	// Insertion des étudiants
-	callPHP(cheminFic, '', anneLib)
+	callPHP(cheminFic, 'insertAnnee', anneLib)
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
 			return callPHP(cheminFic, 'insertStudents', students);
