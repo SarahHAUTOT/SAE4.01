@@ -87,7 +87,7 @@ function contenue()
 
 
 			<br>
-			<a href="squeletteFicheAvis.html"><button class="validateButtonStyle" type="import" name="signCachet" value="">Valider</button></a>
+			<a href="accueilAdmin.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Valider</button></a>
 		</div>';
 }
 

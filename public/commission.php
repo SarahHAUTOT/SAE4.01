@@ -38,12 +38,12 @@ function contenue()
 							<th>moy</th>
 							<th>TP </th>
 							<th>TD </th>
-							<th><a href="commissionComp.html">C1</a></th>
-							<th><a href="commissionComp.html">C2</a></th>
-							<th><a href="commissionComp.html">C3</a></th>
-							<th><a href="commissionComp.html">C4</a></th>
-							<th><a href="commissionComp.html">C5</a></th>
-							<th><a href="commissionComp.html">C6</a></th>
+							<th><a href="commissionComp.php">C1</a></th>
+							<th><a href="commissionComp.php">C2</a></th>
+							<th><a href="commissionComp.php">C3</a></th>
+							<th><a href="commissionComp.php">C4</a></th>
+							<th><a href="commissionComp.php">C5</a></th>
+							<th><a href="commissionComp.php">C6</a></th>
 						</tr>
 					</thead>
 					<tbody>
