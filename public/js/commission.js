@@ -1,4 +1,6 @@
 function generationCommission(table, annee, semestre) {
+    
+    
     while (table.hasChildNodes()) {
         table.removeChild(table.firstChild);
     }

@@ -23,86 +23,14 @@ if ($_SESSION['role'] != 2) {
 }
 
 
-function contenue()
+function contenu()
 {
 	echo '
 	<div>
-		<h1>Génération avis de poursuite d\'études</h1>
+		<h1>Commission d\'études</h1>
 		<div class="container">
-			<h2>%%ETUDIANT SPECIFIQUE%%</h1>
-				<table class="block">
-					<thead>
-						<tr>
-							<th>NIP</th>
-							<th>nom</th>
-							<th>moy</th>
-							<th>TP </th>
-							<th>TD </th>
-							<th><a href="commissionComp.php">C1</a></th>
-							<th><a href="commissionComp.php">C2</a></th>
-							<th><a href="commissionComp.php">C3</a></th>
-							<th><a href="commissionComp.php">C4</a></th>
-							<th><a href="commissionComp.php">C5</a></th>
-							<th><a href="commissionComp.php">C6</a></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
+			<h2 id="anneeSemestre">%%ETUDIANT SPECIFIQUE%%</h1>
+				<table class="block" id="tableCom">
 				</table>
 
 				<div class="gridRessource">
@@ -112,12 +40,21 @@ function contenue()
 					<a href="generation.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Générer</button></a>
 				</div>
 		</div>
-	</div>';
+	</div>
+	<script src = "js/commission.js"></script>
+	<script>
+		window.addEventListener("load", (event) =>{
+			const titre2 = document.getElementById("anneeSemestre")
+			titre2.textContent = "Annee 2021-2022 / Semestre 1"
+			const table = document.getElementById("tableCom")
+			generationCommission(table,"année 2020",1)
+		});
+	</script>';
 }
 
 head('css/commissionEtFicheAvis.css');
 
-contenue();
+contenu();
 
 foot();
 
