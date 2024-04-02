@@ -1,0 +1,92 @@
+<?php
+
+//Pour la structure
+include 'chemin/vers/le/fichier.php';
+
+
+
+// Démarrer la session
+session_start();
+
+// Vérifier si la session est ouverte
+if (!isset($_SESSION['role'])) {
+    // Rediriger vers la page de connexion si la session n'est pas ouverte
+    header('Location: connexion.php');
+    exit;
+}
+
+// Vérifier les droits de l'utilisateur
+if ($_SESSION['role'] != 1) {
+    // Rediriger vers une page d'erreur si l'utilisateur n'a pas les droits nécessaires
+    header('Location: acceuilUtilisateur.php');
+    exit;
+}
+
+
+function contenue()
+{
+	echo '
+		<h1>Bienvenue Utilisateur</h1>
+		<div class="container">
+			<h2>Petite description:</h2>
+			<p>L\'application DocSco offre une solution essentielle pour simplifier et optimiser l\'évaluation des
+				étudiants dans les départements universitaires. En centralisant les données des promotions et en
+				facilitant la collaboration entre les membres du jury, DocSco vise à améliorer l\'efficacité et la
+				qualité du processus d\'évaluation. Son potentiel d\'extension à d\'autres départements suggère une
+				évolution continue et une pertinence à long terme dans le domaine de l\'éducation.</p>
+			<a href="export.html"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
+		</div>';
+}
+
+head('css/accueilEtConnexion.css');
+
+contenue();
+
+foot();
+
+
+
+
+
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AccueilUtilisateur</title>
+	<link rel="stylesheet" href="css/background.css">
+	<link rel="stylesheet" href="css/accueilEtConnexion.css">
+</head>
+
+<body>
+
+	<header>
+		<div class="logo">
+			<img src="images/logo.png" alt="Logo de votre site">
+			<h1>DocSco</h1>
+		</div>
+		<div class="user">
+			Utilisateur
+		</div>
+	</header>
+
+	<main>
+		
+	</main>
+
+	<footer>
+		<div class="logo">
+			<a href="https://eureka.univ-lehavre.fr/"> <img src="images/eureka.svg" alt="Logo de votre site"> </a>
+			<a href="https://diw.iut.univ-lehavre.fr/pedago/index.xml"> <img src="images/departement.gif"
+					alt="Logo de votre site"></a>
+		</div>
+	</footer>
+
+</body>
+
+</html>
