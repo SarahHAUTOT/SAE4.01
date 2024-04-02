@@ -29,7 +29,7 @@ function contenu()
 	<div>
 		<h1>Commission d\'études</h1>
 		<div class="container">
-			<h2 id="anneeSemestre">%%ETUDIANT SPECIFIQUE%%</h1>
+			<h2 id="anneeSemestre">%%ETUDIANT SPECIFIQUE%%</h2>
 				<table class="block" id="tableCom">
 				</table>
 
@@ -47,7 +47,7 @@ function contenu()
 			const titre2 = document.getElementById("anneeSemestre")
 			titre2.textContent = "Annee 2021-2022 / Semestre 1"
 			const table = document.getElementById("tableCom")
-			generationCommission(table,"année 2020",1)
+			generationCommission(table,"2021-2022",1)
 		});
 	</script>';
 }
