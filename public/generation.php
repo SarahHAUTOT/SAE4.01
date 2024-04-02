@@ -70,7 +70,7 @@ function contenue()
 				</select>
 			</div>
 			
-			<a href=""><button class="validateButtonStyle">Générer Jury</button></a>
+			<a href="jury.php"><button class="validateButtonStyle">Générer Jury</button></a>
 			<a href="commission.php"><button class="validateButtonStyle">Générer Commission</button></a>
 		</div>
 	</div>';
@@ -81,9 +81,4 @@ head('css/generation.css');
 contenue();
 
 foot();
-
-
-
-
-
 ?>
