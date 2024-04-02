@@ -38,7 +38,7 @@ INSERT INTO Semestre DEFAULT VALUES;
 INSERT INTO Semestre DEFAULT VALUES;
 
 
-INSERT INTO Etudiant (etdId, etdCiv, etdNom, etdPrenom, etdGroupeTP, etdGroupeTD, etdParcours, etdBonus, etdBac) 
+INSERT INTO Etudiant (etdId, etdCiv, etdNom, etdPrenom, etdGroupeTP, etdGroupeTD, etdCursus, etdBonus, etdBac) 
 VALUES 
     (1, 'M.', 'Dupont', 'Jean', 'Groupe1', 'TD1', 'Mathématiques', 0, 'Bac S'),
     (2, 'Mme', 'Durand', 'Marie', 'Groupe2', 'TD2', 'Biologie', 0.5, 'Bac ES'),
