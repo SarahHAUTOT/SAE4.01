@@ -486,8 +486,8 @@ function contentJury($competences)
 		}
 
 		$studentInfo .= '", "'.
-			$student['admiUes'] '", "'.
-			$student['moySem'] .'"';*
+			$student['admiUes'] .'", "'.
+			$student['moySem'] .'"';
 
 		foreach ($student['competences'] as $comp)
 		{
