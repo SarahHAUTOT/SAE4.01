@@ -30,15 +30,15 @@ function contenue()
 		<div class="container">
 			<div class="gridLibImport">
 				<span>Libellé année</span>
-				<input type="text" id="année" name="année" value="">
+				<input type="text" id="anneeLib" name="année" placeholder="YYYY-YYYY + 1">
 			</div>
 			<h2 class="semestre">S1</h2>
 			<div class="gridLibImport">
 				<span>Fichier Moyenne:</span>
-				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+				<input type="file" class="moyenne" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
 				<span>Fichier Jury:</span>
-				<input type="file" class="jury" accept="image/png, image/jpeg">
+				<input type="file" class="jury" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 			</div>
 
 			<hr>
@@ -46,10 +46,10 @@ function contenue()
 			<h2 class="semestre">S2</h2>
 			<div class="gridLibImport">
 				<span>Fichier Moyenne:</span>
-				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+				<input type="file" class="moyenne" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
 				<span>Fichier Jury:</span>
-				<input type="file" class="jury" accept="image/png, image/jpeg">
+				<input type="file" class="jury" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 			</div>
 			
 			<hr>
@@ -57,10 +57,10 @@ function contenue()
 			<h2 class="semestre">S3</h2>
 			<div class="gridLibImport">
 				<span>Fichier Moyenne:</span>
-				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+				<input type="file" class="moyenne" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
 				<span>Fichier Jury:</span>
-				<input type="file" class="jury" accept="image/png, image/jpeg">
+				<input type="file" class="jury" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 			</div>
 			
 			<hr>
@@ -68,10 +68,10 @@ function contenue()
 			<h2 class="semestre">S4</h2>
 			<div class="gridLibImport">
 				<span>Fichier Moyenne:</span>
-				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+				<input type="file" class="moyenne" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
 				<span>Fichier Jury:</span>
-				<input type="file" class="jury" accept="image/png, image/jpeg">
+				<input type="file" class="jury" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 			</div>
 			
 			<hr>
@@ -79,15 +79,18 @@ function contenue()
 			<h2 class="semestre">S5</h2>
 			<div class="gridLibImport">
 				<span>Fichier Moyenne:</span>
-				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+				<input type="file" class="moyenne" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
 				<span>Fichier Jury:</span>
-				<input type="file" class="jury" accept="image/png, image/jpeg">
+				<input type="file" class="jury" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 			</div>
 
 
 			<br>
-			<a href="squeletteFicheAvis.html"><button class="validateButtonStyle" type="import" name="signCachet" value="">Valider</button></a>
+			<button class="validateButtonStyle" id="save" type="import" name="signCachet" value="">Valider</button>
+
+			<script src="../src/app/import/import.js"></script>
+
 		</div>';
 }
 

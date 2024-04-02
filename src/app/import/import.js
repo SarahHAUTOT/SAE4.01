@@ -1,10 +1,15 @@
-const mybtn = document.getElementById('generate');
+const mybtn = document.getElementById('save');
 mybtn.addEventListener('click', generateAll, false);
 
 // Sélectionnez tous les éléments ayant la classe spécifiée
-const btnJury = document.querySelectorAll('.maClasse');
-btnJury.forEach(function(btn) {
-    btn.addEventListener('click', dec);
+const btnJurys = document.querySelectorAll('.maClasse');
+btnJurys.forEach(function(btn) {
+    btn.addEventListener('click', decomposeJury);
+});
+
+const btnMoyennes = document.querySelectorAll('.maClasse');
+btnMoyennes.forEach(function(btn) {
+    btn.addEventListener('click', decomposeMoyennes);
 });
 
 
@@ -46,42 +51,60 @@ function callPHP(file, action, datas) {
 }
 
 
+function checkYearFormat(annee) {
+    // Expression régulière pour vérifier le format "YYYY-YYYY" avec vérification de l'ordre des années
+    var regex = /^(\d{4})-(\d{4})$/;
+    
+    // Extraction des deux années
+    var match = annee.match(regex);
+    if (!match) {
+        return false; // Le format est incorrect
+    }
+    var premiereAnnee = parseInt(match[1]); // Première année
+    var deuxiemeAnnee = parseInt(match[2]); // Deuxième année
 
+    // Vérification si l'année est vide ou ne correspond pas au format attendu
+    if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function generateAll()
 {
-	$anneLib = document.getElementById('anneeLib').value;
+	anneLib = document.getElementById('anneeLib').value;
 
-	console.log("Etudiants", students);
-	console.log("Moyenne", moyennes);
-	console.log("Competences", competences);
-	console.log("Modules", modules);
-	console.log("CompMod", compMods);
+	if (!checkYearFormat(anneLib))
+	{
+		alert("Veuillez entré une année dans un format correct");
+		return 0;
+	}
 
 	// Insertion des étudiants
-	callPHP('../DB.inc.php', 'insertAnnee', $anneLib)
+	callPHP('../src/app/DB.inc.php', 'insertAnnee', anneLib)
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
-			return callPHP('../DB.inc.php', 'insertStudents', students);
+			return callPHP('../src/app/DB.inc.php', 'insertStudents', students);
 		})
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
-			return callPHP('../DB.inc.php', 'insertModules', modules);
+			return callPHP('../src/app/DB.inc.php', 'insertModules', modules);
 		})
 		.then(() => {
 			// Après l'insertion des modules, insérer les compétences
-			return callPHP('../DB.inc.php', 'insertCompetences', competences);
+			return callPHP('../src/app/DB.inc.php', 'insertCompetences', competences);
 		})
 		.then(() => {
 			// Après l'insertion des compétences, insérer les moyennes
-			return callPHP('../DB.inc.php', 'insertMoyennes', moyennes);
+			return callPHP('../src/app/DB.inc.php', 'insertMoyennes', moyennes);
 		})
 		.then(() => {
 			// Enfin, insérer compMods après l'insertion des moyennes
-			return callPHP('../DB.inc.php', 'insertCompMods', compMods);
+			return callPHP('../src/app/DB.inc.php', 'insertCompMods', compMods);
 		})
 		.then(() => {
-			return callPHP('../DB.inc.php', 'insertAdmComp', admComp);
+			return callPHP('../src/app/DB.inc.php', 'insertAdmComps', admComp);
 		})
 		.then(() => {
 			// Toutes les opérations ont réussi
