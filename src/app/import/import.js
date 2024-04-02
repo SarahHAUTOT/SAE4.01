@@ -1,12 +1,19 @@
 const mybtn = document.getElementById('generate');
 mybtn.addEventListener('click', generateAll, false);
 
+// Sélectionnez tous les éléments ayant la classe spécifiée
+const btnJury = document.querySelectorAll('.maClasse');
+btnJury.forEach(function(btn) {
+    btn.addEventListener('click', dec);
+});
+
 
 let modules = [];
 let students = [];
 let moyennes = [];
 let competences = [];
 let compMods = [];
+let admComp = [];
 
 
 function isEmpty(value)
@@ -72,6 +79,9 @@ function generateAll()
 		.then(() => {
 			// Enfin, insérer compMods après l'insertion des moyennes
 			return callPHP('../DB.inc.php', 'insertCompMods', compMods);
+		})
+		.then(() => {
+			return callPHP('../DB.inc.php', 'insertAdmComp', admComp);
 		})
 		.then(() => {
 			// Toutes les opérations ont réussi
@@ -261,5 +271,72 @@ function decomposeCoef(event)
 		console.log(compMods);
 	};
 
+	reader.readAsArrayBuffer(file);
+}
+
+
+
+
+
+function decomposeJury ()
+{
+	const file = event.target.files[0];
+	if (!file) return;
+
+	const reader = new FileReader();
+	reader.onload = function (event) {
+		const data = new Uint8Array(event.target.result);
+		const workbook = XLSX.read(data, { type: 'array' });
+		const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+		const excelData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+		//On cherche ou sont les ressources
+		let ind = [];
+		var pattern = /^BIN\d{2}$/;
+
+
+		excelData[1]; //header
+
+		for (let i = 0; i < excelData[0].length; i++)
+		{
+			if (pattern.test(excelData[0][i]))
+			{
+				ind.push(i+1);
+				console.log(excelData[0][i]);
+			} 
+
+		}
+
+
+
+		// Parcourir chaque ligne
+		for (let i = 1; i < excelData.length; i++) {
+			//Récuperer la ligne
+			const rowData = excelData[i];
+
+			//ID Etd
+			const etdid       = rowData[1];
+
+
+			//pour chaque compétence
+			ind.forEach(function (e) {
+				var admCompBis = 
+				{
+					'etdId' : etdid,
+					'adm'   : excelData[i][e],
+					'comp'  : excelData[i][ind - 1],
+				}
+				admComp.push(admCompBis);
+			});
+
+			console.log("L'étudiant " + etdid + " a :");
+			//pour chaque compétence
+			for (let cpt = 0; cpt < admComp.length; cpt++)
+			{
+				console.log("\t\t " + excelData[0][ind[cpt]-1] + "   " + admComp[cpt]);
+			}
+
+		}
+	};
 	reader.readAsArrayBuffer(file);
 }
