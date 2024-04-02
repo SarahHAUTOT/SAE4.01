@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Excel File</title>
+</head>
+
+<body>
+    <input type="file" id="fileInput" accept=".xlsx">
+    <div id="tableContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const data = new Uint8Array(event.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const excelData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+                //On cherche ou sont les ressources
+                let ind = [];
+                var pattern = /^BIN\d{2}$/;
+
+
+                excelData[1]; //header
+
+                for (let i = 0; i < excelData[0].length; i++)
+                {
+                    if (pattern.test(excelData[0][i]))
+                    {
+                        ind.push(i+1);
+                        console.log(excelData[0][i]);
+                    } 
+
+                }
+
+
+
+                // Parcourir chaque ligne
+                for (let i = 1; i < excelData.length; i++) {
+                    //Récuperer la ligne
+                    const rowData = excelData[i];
+
+                    //ID Etd
+                    const etdid       = rowData[1];
+
+                    let admComp = [];
+                    //pour chaque compétence
+                    ind.forEach(function (e) {
+                        admComp.push(excelData[i][e]);
+                    });
+
+                    console.log("L'étudiant " + etdid + " a :");
+                    //pour chaque compétence
+                    for (let cpt = 0; cpt < admComp.length; cpt++)
+                    {
+                        console.log("\t\t " + excelData[0][ind[cpt]-1] + "   " + admComp[cpt]);
+                    }
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+</body>
+
+</html>
