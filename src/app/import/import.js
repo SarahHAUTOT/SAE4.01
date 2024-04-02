@@ -12,7 +12,7 @@ btnMoyennes.forEach(function(btn) {
 });
 
 const btnCoef = document.querySelectorAll('.coef');
-btnMoyennes.forEach(function(btn) {
+btnCoef.forEach(function(btn) {
     btn.addEventListener('change', decomposeCoef);
 });
 
