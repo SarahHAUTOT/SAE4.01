@@ -1,0 +1,17 @@
+[
+    {
+        "exportid": 1,
+        "exporttype": "PE",
+        "exportchemin": "\/chemin\/vers\/export1.csv"
+    },
+    {
+        "exportid": 2,
+        "exporttype": "CO",
+        "exportchemin": "\/chemin\/vers\/export2.csv"
+    },
+    {
+        "exportid": 3,
+        "exporttype": "JU",
+        "exportchemin": "\/chemin\/vers\/export3.csv"
+    }
+]
