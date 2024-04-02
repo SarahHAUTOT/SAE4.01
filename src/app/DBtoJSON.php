@@ -238,8 +238,8 @@ function generateStudents(int $yearId, int $semesterId)
 			{
 				$student['competences']['modules'][] = 
 				[
-					'modCode' => $mod['modcode'];	
-					'noteVal' => $mod['noteval'];
+					'modCode' => $mod['modcode'],	
+					'noteVal' => $mod['noteval']
 				];
 			}
 		}
