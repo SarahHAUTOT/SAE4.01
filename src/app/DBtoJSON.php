@@ -182,7 +182,7 @@ function generateStudents(int $yearId, int $semesterId)
 	foreach ($studients as &$studient) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$tudent['etdid'].', '.$yearId.') 
-				  FROM AdmComp'; // TODO funciton.sql
+				  FROM AdmComp'; 
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
 
@@ -209,7 +209,7 @@ function generateStudents(int $yearId, int $semesterId)
 			];
 		}
 
-		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; // TODO funciton.sql
+		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; 
 		$moySem = $db->execQuery($query);
 		$student['moySem'] = $moySem;
 
@@ -219,14 +219,30 @@ function generateStudents(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") FROM Moyenne";
-			$moyUe = $db->execQuery($query);
+			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS moyUe FROM Moyenne";
+			$compInfo = $db->execQuery($query);
 
 			$student['competences'][] = 
 			[
 				'compCode'=> $comp['compcode'],
-				'moy'     => $moyUe
+				'moy'     => $compInfo['moyUe']
 			];
+
+			$query = "SELECT modCode, noteVal 
+					  FROM  Module m JOIN CompMod cm  ON m.modId=cm.modId 
+					  				 JOIN Moyenne moy ON m.modId=moy.modId 
+					  WHERE compId = ".$compInfo['compid']."";
+			
+			$modules = $db->execQuery($query);
+
+			foreach ($modules as &$mod) 
+			{
+				$student['competences']['modules'][] = 
+				[
+					'modCode' => $mod['modcode'];	
+					'noteVal' => $mod['noteval'];
+				];
+			}
 		}
 	}
 
