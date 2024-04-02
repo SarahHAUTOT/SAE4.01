@@ -1,15 +1,19 @@
 const mybtn = document.getElementById('save');
 mybtn.addEventListener('click', generateAll, false);
 
-// Sélectionnez tous les éléments ayant la classe spécifiée
-const btnJurys = document.querySelectorAll('.maClasse');
+const btnJurys = document.querySelectorAll('.jury');
 btnJurys.forEach(function(btn) {
-    btn.addEventListener('click', decomposeJury);
+    btn.addEventListener('change', decomposeJury);
 });
 
-const btnMoyennes = document.querySelectorAll('.maClasse');
+const btnMoyennes = document.querySelectorAll('.moyenne');
 btnMoyennes.forEach(function(btn) {
-    btn.addEventListener('click', decomposeMoyennes);
+    btn.addEventListener('change', decomposeMoyennes);
+});
+
+const btnCoef = document.querySelectorAll('.coef');
+btnMoyennes.forEach(function(btn) {
+    btn.addEventListener('change', decomposeCoef);
 });
 
 
@@ -73,38 +77,48 @@ function checkYearFormat(annee) {
 
 function generateAll()
 {
-	anneLib = document.getElementById('anneeLib').value;
 
-	if (!checkYearFormat(anneLib))
-	{
-		alert("Veuillez entré une année dans un format correct");
-		return 0;
-	}
+	let cheminFic = "../DB.inc.php";
+	// anneLib = document.getElementById('anneeLib').value;
+
+	anneLib = "dz";
+
+	// console.log(students);
+
+	// if (!checkYearFormat(anneLib))
+	// {
+	// 	alert("Veuillez entré une année dans un format correct");
+	// 	return 0;
+	// }insertAnnee
+
+	console.log(competences);
+	console.log(modules);
+	console.log(compMods);
 
 	// Insertion des étudiants
-	callPHP('../src/app/DB.inc.php', 'insertAnnee', anneLib)
+	callPHP(cheminFic, '', anneLib)
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
-			return callPHP('../src/app/DB.inc.php', 'insertStudents', students);
+			return callPHP(cheminFic, 'insertStudents', students);
 		})
 		.then(() => {
 			// Après l'insertion des étudiants, insérer les modules
-			return callPHP('../src/app/DB.inc.php', 'insertModules', modules);
+			return callPHP(cheminFic, 'insertModules', modules);
 		})
 		.then(() => {
 			// Après l'insertion des modules, insérer les compétences
-			return callPHP('../src/app/DB.inc.php', 'insertCompetences', competences);
+			return callPHP(cheminFic, 'insertCompetences', competences);
 		})
 		.then(() => {
 			// Après l'insertion des compétences, insérer les moyennes
-			return callPHP('../src/app/DB.inc.php', 'insertMoyennes', moyennes);
+			return callPHP(cheminFic, 'insertMoyennes', moyennes);
 		})
 		.then(() => {
 			// Enfin, insérer compMods après l'insertion des moyennes
-			return callPHP('../src/app/DB.inc.php', 'insertCompMods', compMods);
+			return callPHP(cheminFic, 'insertCompMods', compMods);
 		})
 		.then(() => {
-			return callPHP('../src/app/DB.inc.php', 'insertAdmComps', admComp);
+			return callPHP(cheminFic, 'insertAdmComps', admComp);
 		})
 		.then(() => {
 			// Toutes les opérations ont réussi
@@ -114,7 +128,7 @@ function generateAll()
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
 
-	window.location.href = "accueilAdmin.php";
+	// window.location.href = "accueilAdmin.php";
 }
 
 

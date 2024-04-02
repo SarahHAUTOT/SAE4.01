@@ -81,10 +81,10 @@ CREATE TABLE Competence
 
 CREATE TABLE Moyenne 
 (
-	noteVal FLOAT   CHECK      (noteVal >= 0),
-	etdId   INTEGER REFERENCES Etudiant(etdId),
-	modId   INTEGER REFERENCES Module  (modId),
-	anneeId INTEGER REFERENCES Annee   (anneeId),
+	noteVal FLOAT       CHECK      (noteVal >= 0),
+	etdId   INTEGER     REFERENCES Etudiant(etdId),
+	modId   VARCHAR(10) REFERENCES Module  (modId),
+	anneeId INTEGER     REFERENCES Annee   (anneeId),
 	PRIMARY KEY (etdId, modId, anneeId)
 );
 
@@ -95,9 +95,9 @@ CREATE TABLE Moyenne
 
 CREATE TABLE CompMod 
 (
-	compId  INTEGER REFERENCES Competence(compId),
-	modId   INTEGER REFERENCES Module    (modId) ,
-	modCoef FLOAT   CHECK      (modCoef > 0)     ,
+	compId  INTEGER     REFERENCES Competence(compId),
+	modId   VARCHAR(10) REFERENCES Module    (modId) ,
+	modCoef FLOAT       CHECK      (modCoef > 0)     ,
 	PRIMARY KEY (compId, modId)
 );
 
