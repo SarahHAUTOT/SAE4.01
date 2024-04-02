@@ -41,14 +41,38 @@ function export(String $year, String $type, String $semester)
 
 function headerCommission($competences)
 {
-	// TODO
+	$header = '"Rg", "Nom", "Prenom", "Cursus", "Ues", "Moy"';
+
+	foreach ($competences as $comp)
+	{
+		$header .= ', "'.$comp['compCode'].'", "Bonus '.$comp['compCode'].'"';
+		
+		foreach ($comp['modules'] as $mod)
+		{
+			$header .= ', "'.$mod['modCode'].'"';
+		}		
+	}
+
 	return $header .'\n';
 }
 
 
-function headerJury($competences)
+function headerJury($rcues, $competences)
 {
-	// TODO 
+	$header = '"Rg", "Nom", "Prenom", "Cursus"';
+	
+	foreach ($rcues as $rcue)
+	{
+		$header .= ', "C'.$rcue['compId'].'"';
+	}
+
+	$header .= ', "Ues", "Moy"';
+
+	foreach ($competences as $comp)
+	{
+		$header .= ', "'.$comp['compCode'].'"';
+	}
+
 	return $header .'\n';
 }
 
@@ -59,7 +83,7 @@ function contentJury($competences)
 	// Iterating through the students of the specified year
 	foreach ($students as $student)
 	{
-		$studentInfo .=
+		$studentInfo .= '"'.
 			$student['rank']      .'", "'.
 			$student['etdNom']    .'", "'.
 			$student['etdPrenom'] .'", "'.
@@ -93,7 +117,7 @@ function contentCommission($students)
 	// Iterating through the students of the specified year
 	foreach ($students as $student)
 	{
-		$studentInfo .=
+		$studentInfo .= '"'.
 			$student['rank']      .'", "'.
 			$student['etdNom']    .'", "'.
 			$student['etdPrenom'] .'", "'.
@@ -107,7 +131,7 @@ function contentCommission($students)
 
 			foreach ($comp['modules'] as $mod)
 			{
-				$studentInfo .= ', "'.$mod['moy'].'"';
+				$studentInfo .= ', "'.$mod['noteVal'].'"';
 			}
 		}
 

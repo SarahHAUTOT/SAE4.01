@@ -36,7 +36,7 @@ BEGIN
 	WHERE semId = semesterId AND anneeId = yearId;
 
 	IF count_comps = 0 THEN
-		RETURN NULL; -- No modules affected to the Competence 
+		RETURN NULL; -- No competence for the semester 
 	END IF;
 
 	SELECT SUM( getCompMoy(semesterId, c.compId, etdId, yearId) ) INTO total
@@ -48,7 +48,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 
--- TODO
 CREATE OR REPLACE FUNCTION getRankSem(IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS INTEGER AS $$
 DECLARE
@@ -103,7 +102,7 @@ DECLARE
 	nb_admi INTEGER := NULL;
 BEGIN
 	SELECT COUNT(admi) INTO nb_admi
-	FROM AdmComp admc JOIN Competence c ON c.compId=admc.compId
+	FROM AdmComp admc JOIN Competence c ON c.3compId=admc.compId
 	WHERE admi = 'ADM' AND c.semId = semesterId AND etdId = studentId AND anneeId = yearId;
 
 	RETURN nb_admi;
