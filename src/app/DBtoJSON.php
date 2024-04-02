@@ -198,8 +198,7 @@ function generateStudents(int $yearId, int $semesterId)
 
 		foreach ($lastSemComps as &$comp) 
 		{
-			$query = "SELECT getRCUE(".$semesterId -1.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") 
-					  FROM AdmComp";
+			$query = 'SELECT getRCUE('.$semesterId -1.', '.$comp['compid'].', '.$student['etdid'].', '.$yearId.') FROM AdmComp';
 			$admiRCUE = $db->execQuery($query);
 
 			$student['RCUE'][] = 
