@@ -36,8 +36,8 @@ function contenue()
 			<span class="urgent">*ATTENTION, IL VOUS FAUDRA IMPORTER AU MINIMUM 3 ANNEES POUR POUVOIR UTILISER CETTE APPLICATION CORRECTEMENT*</span>
 			<br>
 			<a href="import.php"><button class="validateButtonStyle"><img src="images/importer.png" alt="Importer"></i></button></a>
-			<a href="export.html"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
-			<a href="generation.html"><button class="validateButtonStyle"><img src="images/generer.png" alt="Générer"></button></a>
+			<a href="export.php"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
+			<a href="generation.php"><button class="validateButtonStyle"><img src="images/generer.png" alt="Générer"></button></a>
 		</div>';
 }
 
