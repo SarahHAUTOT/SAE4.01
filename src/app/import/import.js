@@ -57,15 +57,15 @@ function callPHP(file, action, datas) {
 
 function checkYearFormat(annee) {
     // Expression régulière pour vérifier le format "YYYY-YYYY" avec vérification de l'ordre des années
-    var regex = /^(\d{4})-(\d{4})$/;
+    let regex = /^(\d{4})-(\d{4})$/;
     
     // Extraction des deux années
-    var match = annee.match(regex);
+    let match = annee.match(regex);
     if (!match) {
         return false; // Le format est incorrect
     }
-    var premiereAnnee = parseInt(match[1]); // Première année
-    var deuxiemeAnnee = parseInt(match[2]); // Deuxième année
+    let premiereAnnee = parseInt(match[1]); // Première année
+    let deuxiemeAnnee = parseInt(match[2]); // Deuxième année
 
     // Vérification si l'année est vide ou ne correspond pas au format attendu
     if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 1) {
@@ -80,8 +80,6 @@ function generateAll()
 
 	let cheminFic = "../../public/DB.inc.php";
 	anneLib = document.getElementById('anneeLib').value;
-
-
 
 	if (!checkYearFormat(anneLib))
 	{
@@ -131,7 +129,8 @@ function decomposeMoyennes(event)
 	const file = event.target.files[0];
 	const reader = new FileReader();
 
-	reader.onload = function (event) {
+	reader.onload = function (event)
+	{
 		console.log('file moyenne loaded');
 
 		const data = new Uint8Array(event.target.result);
@@ -208,11 +207,11 @@ function decomposeCoef(event)
 {
 	const file = event.target.files[0];
 
-	console.log('file coef loaded');
-
 	const reader = new FileReader();
 	reader.onload = function (event)
 	{
+		console.log('file coef loaded');
+
 		const data = new Uint8Array(event.target.result);
 		const workbook = XLSX.read(data, {type:'array'});
 		let sheet = workbook.SheetNames[0];
@@ -298,10 +297,6 @@ function decomposeCoef(event)
 				i++;
 			}
 		}
-
-		console.log(modules);
-		console.log(competences);
-		console.log(compMods);
 	};
 
 	reader.readAsArrayBuffer(file);
@@ -313,11 +308,15 @@ function decomposeCoef(event)
 
 function decomposeJury ()
 {
+	
 	const file = event.target.files[0];
 	if (!file) return;
 
 	const reader = new FileReader();
-	reader.onload = function (event) {
+	reader.onload = function (event)
+	{
+		console.log('file jury loaded');
+
 		const data = new Uint8Array(event.target.result);
 		const workbook = XLSX.read(data, { type: 'array' });
 		const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -325,22 +324,14 @@ function decomposeJury ()
 
 		//On cherche ou sont les ressources
 		let ind = [];
-		var pattern = /^BIN\d{2}$/;
+		let pattern = /^BIN\d{2}$/;
 
 
 		excelData[1]; //header
 
 		for (let i = 0; i < excelData[0].length; i++)
-		{
 			if (pattern.test(excelData[0][i]))
-			{
 				ind.push(i+1);
-				console.log(excelData[0][i]);
-			} 
-
-		}
-
-
 
 		// Parcourir chaque ligne
 		for (let i = 1; i < excelData.length; i++) {
@@ -353,7 +344,7 @@ function decomposeJury ()
 
 			//pour chaque compétence
 			ind.forEach(function (e) {
-				var admCompBis = 
+				let admCompBis = 
 				{
 					'etdId' : etdid,
 					'adm'   : excelData[i][e],
@@ -361,14 +352,6 @@ function decomposeJury ()
 				}
 				admComp.push(admCompBis);
 			});
-
-			console.log("L'étudiant " + etdid + " a :");
-			//pour chaque compétence
-			for (let cpt = 0; cpt < admComp.length; cpt++)
-			{
-				console.log("\t\t " + excelData[0][ind[cpt]-1] + "   " + admComp[cpt]);
-			}
-
 		}
 	};
 	reader.readAsArrayBuffer(file);
