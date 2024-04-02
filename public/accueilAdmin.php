@@ -32,11 +32,12 @@ function contenue()
 				facilitant la collaboration entre les membres du jury, DocSco vise à améliorer l\'efficacité et la
 				qualité du processus d\'évaluation. Son potentiel d\'extension à d\'autres départements suggère une
 				évolution continue et une pertinence à long terme dans le domaine de l\'éducation.</p>
-				<span class="urgent">*ATTENTION, IL VOUS FAUDRA IMPORTER AU MINIMUM 3 ANNEES POUR POUVOIR UTILISER CETTE APPLICATION CORRECTEMENT*</span>
-				<br>
-				<a href="import.html"><button class="validateButtonStyle"><img src="images/importer.png" alt="Importer"></i></button></a>
-				<a href="export.html"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
-				<a href="generation.html"><button class="validateButtonStyle"><img src="images/generer.png" alt="Générer"></button></a>
+				
+			<span class="urgent">*ATTENTION, IL VOUS FAUDRA IMPORTER AU MINIMUM 3 ANNEES POUR POUVOIR UTILISER CETTE APPLICATION CORRECTEMENT*</span>
+			<br>
+			<a href="import.php"><button class="validateButtonStyle"><img src="images/importer.png" alt="Importer"></i></button></a>
+			<a href="export.html"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
+			<a href="generation.html"><button class="validateButtonStyle"><img src="images/generer.png" alt="Générer"></button></a>
 		</div>';
 }
 

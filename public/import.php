@@ -16,9 +16,9 @@ if (!isset($_SESSION['role'])) {
 }
 
 // Vérifier les droits de l'utilisateur
-if ($_SESSION['role'] != 1) {
+if ($_SESSION['role'] != 2) {
     // Rediriger vers une page d'erreur si l'utilisateur n'a pas les droits nécessaires
-    header('Location: accueilAdmin.php');
+    header('Location: accueilUtilisateur.php');
     exit;
 }
 
@@ -26,19 +26,72 @@ if ($_SESSION['role'] != 1) {
 function contenue()
 {
 	echo '
-		<h1>Bienvenue Utilisateur</h1>
+		<h1>Importation des données</h1>
 		<div class="container">
-			<h2>Petite description:</h2>
-			<p>L\'application DocSco offre une solution essentielle pour simplifier et optimiser l\'évaluation des
-				étudiants dans les départements universitaires. En centralisant les données des promotions et en
-				facilitant la collaboration entre les membres du jury, DocSco vise à améliorer l\'efficacité et la
-				qualité du processus d\'évaluation. Son potentiel d\'extension à d\'autres départements suggère une
-				évolution continue et une pertinence à long terme dans le domaine de l\'éducation.</p>
-			<a href="export.html"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
+			<div class="gridLibImport">
+				<span>Libellé année</span>
+				<input type="text" id="année" name="année" value="">
+			</div>
+			<h2 class="semestre">S1</h2>
+			<div class="gridLibImport">
+				<span>Fichier Moyenne:</span>
+				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+
+				<span>Fichier Jury:</span>
+				<input type="file" class="jury" accept="image/png, image/jpeg">
+			</div>
+
+			<hr>
+
+			<h2 class="semestre">S2</h2>
+			<div class="gridLibImport">
+				<span>Fichier Moyenne:</span>
+				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+
+				<span>Fichier Jury:</span>
+				<input type="file" class="jury" accept="image/png, image/jpeg">
+			</div>
+			
+			<hr>
+
+			<h2 class="semestre">S3</h2>
+			<div class="gridLibImport">
+				<span>Fichier Moyenne:</span>
+				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+
+				<span>Fichier Jury:</span>
+				<input type="file" class="jury" accept="image/png, image/jpeg">
+			</div>
+			
+			<hr>
+
+			<h2 class="semestre">S4</h2>
+			<div class="gridLibImport">
+				<span>Fichier Moyenne:</span>
+				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+
+				<span>Fichier Jury:</span>
+				<input type="file" class="jury" accept="image/png, image/jpeg">
+			</div>
+			
+			<hr>
+
+			<h2 class="semestre">S5</h2>
+			<div class="gridLibImport">
+				<span>Fichier Moyenne:</span>
+				<input type="file" class="moyenne" accept="image/png, image/jpeg">
+
+				<span>Fichier Jury:</span>
+				<input type="file" class="jury" accept="image/png, image/jpeg">
+			</div>
+
+
+			<br>
+			<a href="squeletteFicheAvis.html"><button class="validateButtonStyle" type="import" name="signCachet" value="">Valider</button></a>
 		</div>';
 }
 
-head('css/accueilEtConnexion.css');
+head('css/generation.css');
 
 contenue();
 
