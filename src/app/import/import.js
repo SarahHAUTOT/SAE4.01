@@ -78,7 +78,8 @@ function checkYearFormat(annee) {
 function generateAll()
 {
 
-	let cheminFic = "../../public/DB.inc.php";
+	let cheminFic = "../src/app/DB.inc.php";
+	let cheminJSON = "../src/app/DBtoJSON.php";
 	anneLib = document.getElementById('anneeLib').value;
 
 	if (!checkYearFormat(anneLib))
@@ -86,6 +87,7 @@ function generateAll()
 		alert("Veuillez entré une année dans un format correct");
 		return 0;
 	}
+
 
 	// Insertion des étudiants
 	callPHP(cheminFic, 'insertAnnee', anneLib)
@@ -116,9 +118,26 @@ function generateAll()
 			// Toutes les opérations ont réussi
 			console.log("Toutes les données ont été insérées avec succès !");
 		})
+		.then(() => {
+			fetch(cheminJSON)
+			.then(response => {
+				if (!response.ok) {
+				throw new Error('Network response was not ok');
+				}
+				return response.text();
+			})
+			.then(data => {
+				console.log(data); // Affiche la réponse du fichier PHP
+			})
+			.catch(error => {
+				console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
+			});
+		})
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
+
+
 
 	// window.location.href = "accueilAdmin.php";
 }

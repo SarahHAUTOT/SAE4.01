@@ -1,5 +1,6 @@
 <?php
 require ('../DBtoJSON');
+require ('../DB.inc.php');
 require ('../../../lib/fpdf/fpdf.php');
 
 function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $nbAviMast)
@@ -311,7 +312,14 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $
 	$pdf->Ln();
 
 
-	$pdf->Output('image.pdf', 'I');
+	$title = $anneelib."_PoursuiteDEtude_" . $avi['nom'] . "_" . $avi['prenom'] . ".pdf";
+	$pdf->Output($title, 'I');
+
+    $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+	$sql = "INSERT INTO Export (exportType, exportChemin) VALUES ('PE', '".$title."')";
+
+	$db->execQuery($sql);
+	
 }
 
 
@@ -396,7 +404,7 @@ function generateCSV(String $year, String $type, String $semester)
 {
 	// CSV File creation
 	header('Content-type: text/csv; charset=utf-8');
-	header('Content-Disposition: attachment; filename=PV '.$type.' '.$semester.' '.$year);
+	header('Content-Disposition: attachment; filename=PV_'.$type.'_S'.$semester.'_'.$year);
 	
 	$header  = null;
 	$content = null;

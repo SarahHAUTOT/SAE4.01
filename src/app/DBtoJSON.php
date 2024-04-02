@@ -8,6 +8,8 @@ generateCompMod();
 generateYears();
 generateExport();
 
+echo "pute";
+
 
 /**********************************************************************/
 /*                              USERS                                 */
