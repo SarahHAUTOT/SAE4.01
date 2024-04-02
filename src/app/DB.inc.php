@@ -330,10 +330,15 @@ class DB
 			if ($stmt->rowCount() > 0)
 			{
 				// Prepare the SQL statement
-				$sql = "UPDATE AdmComp SET admi = ?";
+				$sql = "UPDATE AdmComp SET admi = ? WHERE etdId = ? AND compId = ? AND anneeId = ?";
 
 				// Bind parameters
-				$params = array($admc['admi']);
+				$params = array(
+					$admc['admi'],
+					$admc['etdId'],
+					$admc['compId'],
+					$admc['anneeId']
+				);
 			}
 			else
 			{
@@ -342,7 +347,7 @@ class DB
 
 				// Bind parameters
 				$params = array(
-					$admc['etdId']
+					$admc['etdId'],
 					$admc['compId'],
 					$admc['anneeId'],
 					$admc['admi']
