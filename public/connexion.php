@@ -5,9 +5,6 @@ $jsonData = file_get_contents('../data/users.json');
 
 $data = json_decode($jsonData, true);
 
-foreach ($variable as $key => $value) {
-	# code...
-}
 
 // Vérifier si les champs du formulaire sont soumis
 if (isset($_POST['user']) && isset($_POST['password'])) {
@@ -17,13 +14,18 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
 	foreach ($data as $user) {
 		if ($user['userlogin'] === $username && $user['userpassword'] === $password) {
 			$_SESSION['username'] = $username;
-			header("Location: accueilAdmin.php");
+			$_SESSION['role'] = $user['userdroit'];
+
+			if ( $user['userdroit'] == 2)
+				header("Location: ./accueilAdmin.php");
+			else
+				header("Location: ./accueilUtilisateur.php");
+
 			exit;
-		} else {
-			// Identifiants invalides, afficher un message d'erreur
-			$errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
 		}
 	}
+
+	echo 'nah';
 }
 
 
@@ -32,6 +34,7 @@ include "background.php";
 head("css/accueilEtConnexion.css"); ?>
 <h1>Connexion</h1>
 <div class="container">
+	<form method="POST" action="">
 	<div class="gridRessource">
 		<span>Utilisateur :</span>
 		<input id="userName" type="text" name="user" value="">
@@ -39,6 +42,7 @@ head("css/accueilEtConnexion.css"); ?>
 		<input id="password" type="password" name="password" value="">
 
 	</div>
-	<button id="valider" class="validateButtonStyle">Valider</button>
+	<button type="submit" class="validateButtonStyle">Valider</button>
+	</form>
 </div>
 <?php foot("accueilEtConnexion"); ?>
