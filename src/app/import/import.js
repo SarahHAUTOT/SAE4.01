@@ -113,6 +113,8 @@ function generateAll()
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
+
+	window.location.href = "accueilAdmin.php";
 }
 
 
