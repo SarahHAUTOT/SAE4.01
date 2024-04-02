@@ -18,8 +18,9 @@ DROP TABLE IF EXISTS Module     ;
 /*                           */
 CREATE TABLE Export 
 (
-	exportId SERIAL      PRIMARY KEY,
-	chemin   VARCHAR(30) NOT NULL
+	exportId     SERIAL      PRIMARY KEY,
+	exportType   VARCHAR(2)  CHECK (exportType IN ('PE', 'CO', 'JU')),
+	exportChemin VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Module 

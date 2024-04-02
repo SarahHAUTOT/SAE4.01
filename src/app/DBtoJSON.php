@@ -6,6 +6,9 @@ require 'DB.inc.php';
 generateUsers();
 generateCompMod();
 generateYears();
+generateExport();
+
+echo "pute";
 
 
 /**********************************************************************/
@@ -25,6 +28,27 @@ function generateUsers()
 	$jsonData = json_encode($users, JSON_PRETTY_PRINT);
 	// Écrire le JSON dans un fichier
 	file_put_contents( '../../data/users.json', $jsonData);
+	echo "Le fichier users.json a été créé avec succès.<br>";
+}
+
+
+/**********************************************************************/
+/*                              FILES                                 */
+/**********************************************************************/
+
+function generateExport()
+{
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+	
+	// Récupérer les utilisateur 
+	$query     = "SELECT * FROM Export";
+	$users     = $db->execQuery($query);
+
+
+	// Générer le JSON
+	$jsonData = json_encode($users, JSON_PRETTY_PRINT);
+	// Écrire le JSON dans un fichier
+	file_put_contents( '../../data/export.json', $jsonData);
 	echo "Le fichier users.json a été créé avec succès.<br>";
 }
 

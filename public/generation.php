@@ -25,19 +25,25 @@ if ($_SESSION['role'] != 2) {
 
 function contenue()
 {
+	$jsonData = file_get_contents('../data/donnees.json');
+	$data = json_decode($jsonData, true);
+
+
+
 	echo '
 	<h1> Génération </h1>
 	<div class="container">
 		<div class="generationSection">
 			<h2>Avis de poursuite d\'études</h2>
 			<div class="gridLibImport">
+
 				<span>Choix Année</span>
-				<select>
-					<option value="annee1">Année 1</option>
-					<option value="annee2">Année 2</option>
-					<option value="annee3">Année 3</option>
-					<option value="annee4">Année 4</option>
-				</select>
+				<select>';
+	foreach ($data as $anneeData) {
+				echo '
+					<option value="annee4">'. $anneeData['annelib'] .'</option>';
+	}
+				echo '</select>
 
 				<span>Choix d\'étudiant</span>
 				<select>
@@ -70,8 +76,8 @@ function contenue()
 				</select>
 			</div>
 			
-			<a href="jury.php"><button class="validateButtonStyle">Générer Jury</button></a>
-			<a href="commission.php"><button class="validateButtonStyle">Générer Commission</button></a>
+			<button class="validateButtonStyle">Générer Jury</button>
+			<button class="validateButtonStyle">Générer Commission</button>
 		</div>
 	</div>';
 }

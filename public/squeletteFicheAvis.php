@@ -23,6 +23,16 @@ if ($_SESSION['role'] != 2) {
 }
 
 
+
+
+
+function forEachStudents($etds)
+{
+	foreach ($etds as $key => $etd) {
+		# code...
+	}
+}
+
 function contenue()
 {
 	echo '
