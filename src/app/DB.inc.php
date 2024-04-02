@@ -303,14 +303,22 @@ class DB
 
 	public function insertAnnee($anneLib)
 	{
-		$anneLib = $anneLib[0];
 		$postData = json_decode(file_get_contents("php://input"), true);
 
-		$sql = "INSERT INTO Annee (anneLib) VALUES ?";
-		$param = array ($anneLib);
+		foreach ($anneLib as $anneLibMaisMieuxApparamentPutainDeMerde) 
+		{
+			
+				// Prepare the SQL statement
+				$sql = "INSERT INTO Annee (annelib) VALUES (?)";
 
-		$stmt = $this->connect->prepare($sql);
-		$res = $stmt->execute($param);
+				// Bind parameters
+				$params = array(
+					$anneLibMaisMieuxApparamentPutainDeMerde
+				);
+
+			$stmt = $this->connect->prepare($sql);
+			$result = $stmt->execute($params);
+		}
 
 	}
 	
@@ -459,8 +467,4 @@ if (!empty($postData['action'])) {
 } else {
 	// Répondre au client avec un message d'erreur
 }
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 ?>

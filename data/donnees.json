@@ -1,1 +1,32 @@
-[]
+[
+    {
+        "anneeid": 1,
+        "annelib": "enjzn",
+        "semesters": [
+            {
+                "semid": 1,
+                "etd": []
+            },
+            {
+                "semid": 2,
+                "etd": []
+            },
+            {
+                "semid": 3,
+                "etd": []
+            },
+            {
+                "semid": 4,
+                "etd": []
+            },
+            {
+                "semid": 5,
+                "etd": []
+            },
+            {
+                "semid": 6,
+                "etd": []
+            }
+        ]
+    }
+]

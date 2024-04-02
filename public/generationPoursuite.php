@@ -22,8 +22,7 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
-
-function contenue()
+function contenue($etd)
 {
 	echo '
 	<h1>Génération avis de poursuite d\'études</h1>
