@@ -110,11 +110,9 @@ function contenue()
 
 				<div class="gridRessource">
 					<label id="modification">*Modification non sauvegardée*</label>
-					<button class="validateButtonStyle" type="import" name="signCachet"
-						value="">Prévisualiser</button>
-					<button class="validateButtonStyle" type="import" name="signCachet" value="">Sauvegarder les
-						modification</button>
-					<button class="validateButtonStyle" type="import" name="signCachet" value="">Générer</button>
+					<button class="validateButtonStyle" type="import" name="signCachet" value="">Prévisualiser</button>
+					<button class="validateButtonStyle" type="import" name="signCachet" value="">Sauvegarder les modification</button>
+					<a href="generation.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Générer</button></a>
 				</div>
 		</div>
 	</div>';
