@@ -1,4 +1,5 @@
 <?php
+include "background.php";
 session_start();
 
 $jsonData = file_get_contents('../data/users.json');
@@ -24,14 +25,8 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
 			exit;
 		}
 	}
-
-	echo 'nah';
 }
-
-
-
-include "background.php";
-head("css/accueilEtConnexion.css"); ?>
+function contenu(){echo'
 <h1>Connexion</h1>
 <div class="container">
 	<form method="POST" action="">
@@ -44,5 +39,14 @@ head("css/accueilEtConnexion.css"); ?>
 	</div>
 	<button type="submit" class="validateButtonStyle">Valider</button>
 	</form>
-</div>
-<?php foot("accueilEtConnexion"); ?>
+</div>';};
+
+
+
+
+head("css/accueilEtConnexion.css");
+
+contenu();
+
+foot();
+?>
