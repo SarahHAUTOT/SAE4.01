@@ -48,7 +48,7 @@ function contenue()
 				</select>
 			</div>
 
-			<a href="generationPoursuite.html"><button class="validateButton">Continuer vers export d\'avis de poursuite d\'étude</button></a>
+			<a href="generationPoursuite.php"><button class="validateButtonStyle">Continuer vers export d\'avis de poursuite d\'étude</button></a>
 		</div>
 		<div class="generationSection">
 			<h2>Préparation aux commissions/jurys</h2>
@@ -70,8 +70,8 @@ function contenue()
 				</select>
 			</div>
 			
-			<a href=""><button class="validateButton">Générer Jury</button></a>
-			<a href="commission.html"><button class="validateButton">Générer Commission</button></a>
+			<a href=""><button class="validateButtonStyle">Générer Jury</button></a>
+			<a href="commission.php"><button class="validateButtonStyle">Générer Commission</button></a>
 		</div>
 	</div>';
 }

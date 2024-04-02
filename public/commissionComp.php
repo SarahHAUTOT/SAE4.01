@@ -38,7 +38,7 @@ function contenue()
 							<th rowspan="2">moy</th>
 							<th rowspan="2">TP </th>
 							<th rowspan="2">TD </th>
-							<th colspan="6"><a href="commission.html">C1</a></th>
+							<th colspan="6"><a href="commission.php">C1</a></th>
 						</tr>
 						<tr>
 							<th>Mod1</th>
@@ -110,11 +110,9 @@ function contenue()
 
 				<div class="gridRessource">
 					<label id="modification">*Modification non sauvegardée*</label>
-					<button class="validateButtonStyle" type="import" name="signCachet"
-						value="">Prévisualiser</button>
-					<button class="validateButtonStyle" type="import" name="signCachet" value="">Sauvegarder les
-						modification</button>
-					<button class="validateButtonStyle" type="import" name="signCachet" value="">Générer</button>
+					<button class="validateButtonStyle" type="import" name="signCachet" value="">Prévisualiser</button>
+					<button class="validateButtonStyle" type="import" name="signCachet" value="">Sauvegarder les modification</button>
+					<a href="generation.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Générer</button></a>
 				</div>
 		</div>
 	</div>';
