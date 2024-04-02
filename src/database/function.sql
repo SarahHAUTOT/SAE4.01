@@ -1,3 +1,5 @@
+-- All of these methods are used in the DBtoJSON file for the csv creation
+
 CREATE OR REPLACE FUNCTION getCompMoy(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS FLOAT AS $$
 DECLARE
@@ -22,7 +24,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
- -- TODO
+
 CREATE OR REPLACE FUNCTION getSemMoy(IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS FLOAT AS $$
 DECLARE
@@ -75,13 +77,14 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION getRCUE(IN compId INTEGER, IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
+CREATE OR REPLACE FUNCTION getRCUE(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS VARCHAR AS $$
 DECLARE
 	student_adm1 VARCHAR := NULL;
 	student_adm2 VARCHAR := NULL;
 	lastSemId    INTEGER := semId -1;
 BEGIN
+	-- Getting the admi of the two last semester for one comp
 	SELECT admc1.admi INTO student_adm1, admc2.admi INTO student_adm2
 	FROM AdmComp admc1 JOIN AdmComp admc2 ON admc1.compId=admc2.compId 
 	JOIN Competence c1 ON c1.compId=admc1.compId

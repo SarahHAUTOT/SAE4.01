@@ -173,9 +173,7 @@ function generateStudents(int $yearId, int $semesterId)
 
 	// Getting all of the student for a specified year and semester
 	$query     = "SELECT etdId, etdNom, etdPrenom, etdCursus, etdBonus 
-				FROM  Etudiant e JOIN AdmAnnee adma ON e.etdId=adma.etdId 
-				JOIN  AdmComp  admc ON e.etdId=admc.etdId 
-				JOIN  AdmAnnee adma ON e.etdId=adma.etdId 
+				FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
 				JOIN  Competence c ON c.compId=admc.compId 
 				WHERE anneId = ".$yearId." AND semId = ".$semesterId;
 	$students  = $db->execQuery($query);
@@ -183,7 +181,7 @@ function generateStudents(int $yearId, int $semesterId)
 	// For each studient
 	foreach ($studients as &$studient) 
 	{
-		$query = 'SELECT getRankSem('.$tudent['etdid'].', '.$semesterId.', '.$yearId.') 
+		$query = 'SELECT getRankSem('.$semesterId.', '.$tudent['etdid'].', '.$yearId.') 
 				  FROM AdmComp'; // TODO funciton.sql
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
@@ -200,7 +198,7 @@ function generateStudents(int $yearId, int $semesterId)
 
 		foreach ($lastSemComps as &$comp) 
 		{
-			$query = "SELECT getRCUE(".$comp['compid'].", ".$semesterId -1.", ".$student['etdid'].", ".$yearId.") 
+			$query = "SELECT getRCUE(".$semesterId -1.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") 
 					  FROM AdmComp";
 			$admiRCUE = $db->execQuery($query);
 
