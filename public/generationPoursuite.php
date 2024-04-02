@@ -43,7 +43,7 @@ function contenue()
 			<input type="file" id="sign-cach-dept" name="sign-cach-dept" accept="image/png, image/jpeg">
 
 		</div>
-		<a href="squeletteFicheAvis.pho"><button class="validateButtonStyle" type="import" name="signCachet" value="">Export %%CHOIX ETUDIANT%%(prévisualisation)</button></a>
+		<a href="squeletteFicheAvis.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Export %%CHOIX ETUDIANT%%(prévisualisation)</button></a>
 	</div>';
 }
 
