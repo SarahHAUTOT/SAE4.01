@@ -182,7 +182,7 @@ function generateStudents(int $yearId, int $semesterId)
 	foreach ($studients as &$studient) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$tudent['etdid'].', '.$yearId.') 
-				  FROM AdmComp'; // TODO funciton.sql
+				  FROM AdmComp'; 
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
 
@@ -209,7 +209,7 @@ function generateStudents(int $yearId, int $semesterId)
 			];
 		}
 
-		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; // TODO funciton.sql
+		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; 
 		$moySem = $db->execQuery($query);
 		$student['moySem'] = $moySem;
 
