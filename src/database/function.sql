@@ -56,7 +56,7 @@ DECLARE
     etd_moySem TABLE (etdId INTEGER, moySem FLOAT);
 BEGIN
 	-- Getting the moy of the semester for every student
-	SELECT etdId, getSemMoy(semesterId, etdId, yearId) INTO etd_moySem
+	SELECT admc.etdId, getSemMoy(semesterId, admc.etdId, yearId) INTO etd_moySem
 	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId
 	WHERE anneeId = yearId AND semId = semesterId;
 
