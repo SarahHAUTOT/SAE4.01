@@ -30,6 +30,14 @@ function isEmpty(value)
 	return (value == null || (typeof value === "string" && value.trim().length === 0));
 }
 
+function reverseString(str)
+{
+    let splitString = str.split("");
+    let reverseArray = splitString.reverse();
+	let joinArray = reverseArray.join("");
+    return joinArray;
+}
+
 function callPHP(file, action, datas) {
 	return new Promise((resolve, reject) => {
 		fetch(file, {
@@ -80,8 +88,6 @@ function generateAll()
 
 	let cheminFic = "../src/app/DB.inc.php";
 	let cheminJSON = "../src/app/DBtoJSON.php";
-
-	console.log(admComp);
 	
 	anneLib = document.getElementById('anneeLib').value;
 
@@ -90,6 +96,8 @@ function generateAll()
 		alert("Veuillez entrer une année dans un format correct");
 		return 0;
 	}
+
+	document.getElementById('save').innerText = "Chargement...";
 
 	// Insertion des étudiants
 	callPHP(cheminFic, 'insertAnnee', anneLib)
@@ -135,13 +143,15 @@ function generateAll()
 				console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 			});
 		})
+		.then(() => {
+			window.location.href = "accueilAdmin.php";
+		})
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
 
 
 
-	// window.location.href = "accueilAdmin.php";
 }
 
 
@@ -264,7 +274,7 @@ function decomposeCoef(event)
 				}
 				
 			}
-		
+				
 		let nbComp = workbook.SheetNames.length -1;
 
 		let modAttr = ['modCode', 'modLib', 'modCat'];
@@ -311,7 +321,7 @@ function decomposeCoef(event)
 					let compColumn = 'D'.charCodeAt(0);
 					let idComp = (letter.charCodeAt(0) - compColumn) + ((nbSem -1) * nbComp);
 					
-					let compId = competences[idComp].compId; // TODO wrong thing
+					let compId = reverseString(competences[idComp].compId);
 					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };
 
 					compMods.push(compMod);
@@ -323,6 +333,8 @@ function decomposeCoef(event)
 		}
 	};
 
+
+	console.log("hey");
 	reader.readAsArrayBuffer(file);
 }
 
@@ -375,7 +387,6 @@ function decomposeJury ()
 					'comp'  : (excelData[0][e - 1]).replace('BIN',''),
 				}
 
-				console.log( excelData[0][e - 1]),
 				admComp.push(admCompBis);
 			});
 		}

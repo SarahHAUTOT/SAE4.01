@@ -27,26 +27,25 @@ function contenu()
 {
 	echo '
 	<h1> Export </h1>
-		<div class="container">
-			<div class="gridLibImport">
-				<span>Recherche :</span>
-				<input type="text" id="inputRecherche" name="inputRecherche" placeholder="Recherche. . .">
-			</div>
-			<span> Filtres :</span> <br>
-
-			<input type="radio" id="radioPE" name="typeExport" value="PE">
-			<label for="radioPE">Poursuit d\'étude</label>
-			<input type="radio" id="radioCO" name="typeExport" value="CO">
-			<label for="radioCO">Commission</label>
-			<input type="radio" id="radioJU" name="typeExport" value="JU">
-			<label for="radioJU">Jury</label>
-
-			<table id="tableauExports" class="recherche">
-			</table>
-
+	<div class="container">
+		<div class="gridLibImport">
+			<span>Recherche :</span>
+			<input type="text" id="inputRecherche" name="inputRecherche" placeholder="Recherche. . .">
 		</div>
-		
-		<script>
+		<span> Filtres :</span> <br>
+
+		<input type="radio" id="radioPE" name="typeExport" value="PE">
+		<label for="radioPE">Poursuit d\'étude</label>
+		<input type="radio" id="radioCO" name="typeExport" value="CO">
+		<label for="radioCO">Commission</label>
+		<input type="radio" id="radioJU" name="typeExport" value="JU">
+		<label for="radioJU">Jury</label>
+
+		<table id="tableauExports" class="recherche">
+		</table>
+
+	</div>
+	<script>
 		fetch(\'../data/export.json\')
 			.then(response => response.json())
 			.then(data => {
@@ -79,7 +78,7 @@ function contenu()
 				//Poursuite d\'étude
 				// Supprimer les anciennes données
 				const tableauExports = document.getElementById(\'tableauExports\');
-				tableauExports.innerHTML =\'
+				tableauExports.innerHTML = `
 				<thead>
 					<tr>
 						<th>Code NIP</th>
@@ -89,7 +88,7 @@ function contenu()
 						<th>Téléchargement</th>
 					</tr>
 				</thead>
-				<tbody>\';
+				<tbody>`;
 
 				const exportsFiltres = data.filter(exportData => exportData.exporttype === typeExport && exportData.exportchemin.toLowerCase().includes(termeRecherche.toLowerCase()));
 
@@ -98,26 +97,19 @@ function contenu()
 					const nomFichier = exportData.exportchemin;
 					const parties = nomFichier.split(\'_\');
 
-					console.log("test", nomFichier)
-					if (nomFichier.toLowerCase().includes(termeRecherche.toLowerCase())) {
-						console.log("contenu", nomFichier);
-					} else {
-						console.log("c\'est non", nomFichier);
-					}
-
 					const newRow = tableauExports.insertRow();
-					newRow.innerHTML = \'
-							<td>${parties[0]}</td>
-							<td>${parties[1]}</td>
-							<td>${parties[2]}</td>
-							<td>${parties[3].split(\'.\')[0]}</td>
-							<td><a href=\"../generer/poursuite${nomFichier}.pdf\" download><button>Télécharger des données</button></a></td>\';
+					newRow.innerHTML = `
+		<td>${parties[0]}</td>
+		<td>${parties[1]}</td>
+		<td>${parties[2]}</td>
+		<td>${parties[3].split(\'.\')[0]}</td>
+		<td><a href="../generer/poursuite${nomFichier}.pdf" download><button>Télécharger des données</button></a></td>`;
 				});
 			}
 			else {
 				//commission et jury
-				const tableauExports = document.getElementById("tableauExports");
-				tableauExports.innerHTML = \'
+				const tableauExports = document.getElementById(\'tableauExports\');
+				tableauExports.innerHTML = `
 				<thead>
 					<tr>
 						<th>année</th>
@@ -125,7 +117,7 @@ function contenu()
 						<th>Téléchargement</th>
 					</tr>
 				</thead>
-				<tbody>\';
+				<tbody>`;
 
 				// Filtrer les données en fonction du type d\'export
 				const exportsFiltres = data.filter(exportData => exportData.exporttype === typeExport && exportData.exportchemin.toLowerCase().includes(termeRecherche.toLowerCase()));
@@ -136,18 +128,17 @@ function contenu()
 					const parties = nomFichier.split(\'_\');
 
 					const newRow = tableauExports.insertRow();
-					newRow.innerHTML = \'
+					newRow.innerHTML = `
 		<td>${parties[0]}</td>
 		<td>${parties[1]}</td>
-		<td><a href="../generer/poursuite${nomFichier}.csv" download><button>Télécharger des données</button></a></td>\';
+		<td><a href="../generer/poursuite${nomFichier}.csv" download><button>Télécharger des données</button></a></td>`;
 				});
 			}
 
 		}
 
-
-
-	</script>';
+	</script>
+';
 }
 
 head('css/generation.css');

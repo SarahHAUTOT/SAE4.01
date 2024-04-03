@@ -98,66 +98,66 @@ function contenue($etd)
 					<tbody>
 						<tr>
 							<th>UE1-Réaliser des applications</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][0]['rank'].'</td>
+							<td>'.$etd['but 1'][0]['moy' ].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE2-Optimiser des applications</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][0]['rank'].'</td>
+							<td>'.$etd['but 1'][0]['moy' ].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE3-Administrer des systèmes</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][1]['rank'].'</td>
+							<td>'.$etd['but 1'][1]['moy' ].'</td>
+							<td>'.$etd['but 2'][1]['rank'].'</td>
+							<td>'.$etd['but 2'][1]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE4-Gérer des données</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][2]['rank'].'</td>
+							<td>'.$etd['but 1'][2]['moy' ].'</td>
+							<td>'.$etd['but 2'][2]['rank'].'</td>
+							<td>'.$etd['but 2'][2]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE5-Conduire des projets</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][3]['rank'].'</td>
+							<td>'.$etd['but 1'][3]['moy' ].'</td>
+							<td>'.$etd['but 2'][3]['rank'].'</td>
+							<td>'.$etd['but 2'][3]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE5-Conduire des projets</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][4]['rank'].'</td>
+							<td>'.$etd['but 1'][4]['moy' ].'</td>
+							<td>'.$etd['but 2'][4]['rank'].'</td>
+							<td>'.$etd['but 2'][4]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE6-Collaborer</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][5]['rank'].'</td>
+							<td>'.$etd['but 1'][5]['moy' ].'</td>
+							<td>'.$etd['but 2'][5]['rank'].'</td>
+							<td>'.$etd['but 2'][5]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>Maths</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1']['anglais']['rank'].'</td>
+							<td>'.$etd['but 1']['anglais']['moy' ].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
 						</tr>
 						<tr>
 							<th>Anglais</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1']['anglais']['rank'].'</td>
+							<td>'.$etd['but 1']['anglais']['moy' ].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
 						</tr>
 						<tr>
 							<th>Nombre d\'absences injustifiées</th>

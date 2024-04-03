@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION getCompMoy(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
+CREATE OR REPLACE FUNCTION getCompMoy(IN semesterId INTEGER, IN compIdd INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS FLOAT AS $$
 DECLARE
 	tot_note FLOAT := 0;
@@ -7,7 +7,7 @@ BEGIN
 	SELECT SUM(modCoef) INTO tot_coef
 	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId 
     JOIN  CompMod cm ON cm.compId=c.compId
-	WHERE cm.compId = getCompMoy.compId AND semId = semesterId AND anneeId = yearId;
+	WHERE cm.compId = compIdd AND semId = semesterId AND anneeId = yearId;
 
 	IF tot_coef = 0 THEN
 		RETURN NULL; -- No modules affected to the Competence 
@@ -16,7 +16,7 @@ BEGIN
 	SELECT SUM(noteVal * modCoef) INTO tot_note
 	FROM  Moyenne m JOIN CompMod cm ON m.modId = cm.modId
 	JOIN  Competence c ON c.compId = cm.compId
-	WHERE cm.compId = compId AND m.anneeId = yearId 
+	WHERE cm.compId = compIdd AND m.anneeId = yearId 
 		  AND m.etdId = studentId AND semId = semesterId;
 
 	RETURN tot_note / tot_coef;

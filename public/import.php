@@ -32,6 +32,17 @@ function contenu()
 				<span>Libellé année</span>
 				<input type="text" id="anneeLib" name="année" placeholder="YYYY-YYYY + 1">
 			</div>
+
+
+			<h2 class="semestre" style="width:40px">Coef</h2>
+			<div class="gridLibImport">
+				<span>Fichier Coef:</span>
+				<input type="file" class="coef" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+			</div>
+
+			<hr>
+
+			
 			<h2 class="semestre">S1</h2>
 			<div class="gridLibImport">
 				<span>Fichier Moyenne:</span>

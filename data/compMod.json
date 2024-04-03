@@ -2,17 +2,17 @@
     {
         "compid": 11,
         "compcode": "BIN11",
-        "complib": "UE 1. R\u00c3\u00a9aliser",
+        "complib": "UE 1. R\u00e9aliser",
         "semid": 1,
         "modules": [
             {
                 "modId": "R101",
-                "modLib": "Initiation au d\u00c3\u00a9veloppement",
+                "modLib": "Initiation au d\u00e9veloppement",
                 "coef": "46"
             },
             {
                 "modId": "R102",
-                "modLib": "D\u00c3\u00a9veloppement d'interfaces web",
+                "modLib": "D\u00e9veloppement d'interfaces web",
                 "coef": "8"
             },
             {
@@ -22,7 +22,7 @@
             },
             {
                 "modId": "S101",
-                "modLib": "Impl\u00c3\u00a9mentation d'un besoin client",
+                "modLib": "Impl\u00e9mentation d'un besoin client",
                 "coef": "40"
             }
         ]
@@ -34,202 +34,18 @@
         "semid": 1,
         "modules": [
             {
-                "modId": "R201",
-                "modLib": "D\u00c3\u00a9veloppement orient\u00c3\u00a9 objets",
-                "coef": "23"
-            },
-            {
-                "modId": "R202",
-                "modLib": "D\u00c3\u00a9veloppement d'applications avec IHM",
-                "coef": "21"
-            },
-            {
-                "modId": "R203",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "12"
-            },
-            {
-                "modId": "R213",
-                "modLib": "Communication technique",
-                "coef": "4"
-            },
-            {
-                "modId": "S201",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "38"
-            },
-            {
-                "modId": "P201",
-                "modLib": "Portfolio",
-                "coef": "2"
-            }
-        ]
-    },
-    {
-        "compid": 13,
-        "compcode": "BIN13",
-        "complib": "UE 3. Administrer",
-        "semid": 1,
-        "modules": [
-            {
-                "modId": "R301",
-                "modLib": "D\u00c3\u00a9veloppement web",
-                "coef": "15"
-            },
-            {
-                "modId": "R302",
-                "modLib": "D\u00c3\u00a9veloppement efficace",
-                "coef": "12"
-            },
-            {
-                "modId": "R303",
-                "modLib": "Analyse",
-                "coef": "8"
-            },
-            {
-                "modId": "R304",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "15"
-            },
-            {
-                "modId": "R311",
-                "modLib": "Droits des contrats et du num\u00c3\u00a9rique",
-                "coef": "8"
-            },
-            {
-                "modId": "R313",
-                "modLib": "Communication professionnelle",
-                "coef": "2"
-            },
-            {
-                "modId": "S301",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 14,
-        "compcode": "BIN14",
-        "complib": "UE 4. G\u00c3\u00a9rer",
-        "semid": 1,
-        "modules": [
-            {
-                "modId": "R401",
-                "modLib": "Architecture logicielle",
-                "coef": "16"
-            },
-            {
-                "modId": "R402",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "8"
-            },
-            {
-                "modId": "R410",
-                "modLib": "Compl\u00c3\u00a9ment web",
-                "coef": "8"
-            },
-            {
-                "modId": "R411",
-                "modLib": "D\u00c3\u00a9veloppement mobile",
-                "coef": "8"
-            },
-            {
-                "modId": "S401",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "15"
-            },
-            {
-                "modId": "S411",
-                "modLib": "Stage",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 15,
-        "compcode": "BIN15",
-        "complib": "UE 5. Conduire",
-        "semid": 1,
-        "modules": [
-            {
-                "modId": "R504",
-                "modLib": "Qualit\u00c3\u00a9 algorithmique",
-                "coef": "2"
-            },
-            {
-                "modId": "R505",
-                "modLib": "Programmation avanc\u00c3\u00a9e",
-                "coef": "9"
-            },
-            {
-                "modId": "R506",
-                "modLib": "Sensibilisation \u00c3\u00a0 la programmation multimedia",
-                "coef": "2"
-            },
-            {
-                "modId": "R507",
-                "modLib": "Automatisation de la chaine de production",
-                "coef": "6"
-            },
-            {
-                "modId": "R508",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "7"
-            },
-            {
-                "modId": "R509",
-                "modLib": "Virtualisation avanc\u00c3\u00a9e",
-                "coef": "7"
-            },
-            {
-                "modId": "R510",
-                "modLib": "Nouveaux paradigmes de base de donn\u00c3\u00a9es",
-                "coef": "12"
-            },
-            {
-                "modId": "R513",
-                "modLib": "Economie durable et num\u00c3\u00a9rique",
-                "coef": "2"
-            },
-            {
-                "modId": "R514",
-                "modLib": "Anglais",
-                "coef": "3"
-            },
-            {
-                "modId": "S501",
-                "modLib": "D\u00c3\u00a9veloppement avanc\u00c3\u00a9",
-                "coef": "50"
-            }
-        ]
-    },
-    {
-        "compid": 16,
-        "compcode": "BIN16",
-        "complib": "UE 6. Collaborer",
-        "semid": 1,
-        "modules": []
-    },
-    {
-        "compid": 21,
-        "compcode": "BIN21",
-        "complib": "UE 1. R\u00c3\u00a9aliser",
-        "semid": 2,
-        "modules": [
-            {
                 "modId": "R101",
-                "modLib": "Initiation au d\u00c3\u00a9veloppement",
+                "modLib": "Initiation au d\u00e9veloppement",
                 "coef": "30"
             },
             {
                 "modId": "R106",
-                "modLib": "Math\u00c3\u00a9matiques discr\u00c3\u00a8tes",
+                "modLib": "Math\u00e9matiques discr\u00e8tes",
                 "coef": "10"
             },
             {
                 "modId": "R107",
-                "modLib": "Outils math\u00c3\u00a9matiques fondamentaux",
+                "modLib": "Outils math\u00e9matiques fondamentaux",
                 "coef": "20"
             },
             {
@@ -240,218 +56,19 @@
         ]
     },
     {
-        "compid": 22,
-        "compcode": "BIN22",
-        "complib": "UE 2. Optimiser",
-        "semid": 2,
-        "modules": [
-            {
-                "modId": "R201",
-                "modLib": "D\u00c3\u00a9veloppement orient\u00c3\u00a9 objets",
-                "coef": "27"
-            },
-            {
-                "modId": "R207",
-                "modLib": "Graphes",
-                "coef": "20"
-            },
-            {
-                "modId": "R209",
-                "modLib": "M\u00c3\u00a9thodes num\u00c3\u00a9riques",
-                "coef": "10"
-            },
-            {
-                "modId": "R213",
-                "modLib": "Communication technique",
-                "coef": "3"
-            },
-            {
-                "modId": "S202",
-                "modLib": "Exploration algorithmique d'un probl\u00c3\u00a8me",
-                "coef": "38"
-            },
-            {
-                "modId": "P201",
-                "modLib": "Portfolio",
-                "coef": "2"
-            }
-        ]
-    },
-    {
-        "compid": 23,
-        "compcode": "BIN23",
-        "complib": "UE 3. Administrer",
-        "semid": 2,
-        "modules": [
-            {
-                "modId": "R301",
-                "modLib": "D\u00c3\u00a9veloppement web",
-                "coef": "5"
-            },
-            {
-                "modId": "R302",
-                "modLib": "D\u00c3\u00a9veloppement efficace",
-                "coef": "15"
-            },
-            {
-                "modId": "R303",
-                "modLib": "Analyse",
-                "coef": "4"
-            },
-            {
-                "modId": "R306",
-                "modLib": "Architecture des r\u00c3\u00a9seaux",
-                "coef": "5"
-            },
-            {
-                "modId": "R308",
-                "modLib": "Probabilit\u00c3\u00a9s",
-                "coef": "20"
-            },
-            {
-                "modId": "R309",
-                "modLib": "Cryptographie et s\u00c3\u00a9curit\u00c3\u00a9",
-                "coef": "6"
-            },
-            {
-                "modId": "R312",
-                "modLib": "Anglais",
-                "coef": "5"
-            },
-            {
-                "modId": "S301",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 24,
-        "compcode": "BIN24",
-        "complib": "UE 4. G\u00c3\u00a9rer",
-        "semid": 2,
-        "modules": [
-            {
-                "modId": "R404",
-                "modLib": "M\u00c3\u00a9thodes d'optimisation",
-                "coef": "12"
-            },
-            {
-                "modId": "R405",
-                "modLib": "Anglais",
-                "coef": "4"
-            },
-            {
-                "modId": "R409",
-                "modLib": "Management avanc\u00c3\u00a9 SI",
-                "coef": "4"
-            },
-            {
-                "modId": "R410",
-                "modLib": "Compl\u00c3\u00a9ment web",
-                "coef": "4"
-            },
-            {
-                "modId": "R411",
-                "modLib": "D\u00c3\u00a9veloppement mobile",
-                "coef": "4"
-            },
-            {
-                "modId": "R412",
-                "modLib": "Automates",
-                "coef": "12"
-            },
-            {
-                "modId": "S401",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "15"
-            },
-            {
-                "modId": "S411",
-                "modLib": "Stage",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 25,
-        "compcode": "BIN25",
-        "complib": "UE 5. Conduire",
-        "semid": 2,
-        "modules": [
-            {
-                "modId": "R504",
-                "modLib": "Qualit\u00c3\u00a9 algorithmique",
-                "coef": "6"
-            },
-            {
-                "modId": "R505",
-                "modLib": "Programmation avanc\u00c3\u00a9e",
-                "coef": "7"
-            },
-            {
-                "modId": "R506",
-                "modLib": "Sensibilisation \u00c3\u00a0 la programmation multimedia",
-                "coef": "2"
-            },
-            {
-                "modId": "R508",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "5"
-            },
-            {
-                "modId": "R509",
-                "modLib": "Virtualisation avanc\u00c3\u00a9e",
-                "coef": "2"
-            },
-            {
-                "modId": "R510",
-                "modLib": "Nouveaux paradigmes de base de donn\u00c3\u00a9es",
-                "coef": "4"
-            },
-            {
-                "modId": "R511",
-                "modLib": "M\u00c3\u00a9thodes d'optimisation pour l'aide \u00c3\u00a0 la d\u00c3\u00a9cision",
-                "coef": "7"
-            },
-            {
-                "modId": "R512",
-                "modLib": "Mod\u00c3\u00a9lisations math\u00c3\u00a9matiques",
-                "coef": "13"
-            },
-            {
-                "modId": "R514",
-                "modLib": "Anglais",
-                "coef": "4"
-            },
-            {
-                "modId": "S501",
-                "modLib": "D\u00c3\u00a9veloppement avanc\u00c3\u00a9",
-                "coef": "50"
-            }
-        ]
-    },
-    {
-        "compid": 26,
-        "compcode": "BIN26",
-        "complib": "UE 6. Collaborer",
-        "semid": 2,
-        "modules": []
-    },
-    {
-        "compid": 31,
-        "compcode": "BIN31",
-        "complib": "UE 1. R\u00c3\u00a9aliser",
-        "semid": 3,
+        "compid": 13,
+        "compcode": "BIN13",
+        "complib": "UE 3.  Administrer",
+        "semid": 1,
         "modules": [
             {
                 "modId": "R103",
-                "modLib": "Introduction \u00c3\u00a0 l'architecture des ordinateurs",
+                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
                 "coef": "20"
             },
             {
                 "modId": "R104",
-                "modLib": "Introduction aux syst\u00c3\u00a8mes d'exploitation",
+                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
                 "coef": "20"
             },
             {
@@ -466,344 +83,63 @@
             },
             {
                 "modId": "S103",
-                "modLib": "Installation d'un poste pour le d\u00c3\u00a9veloppement",
+                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
                 "coef": "40"
             }
         ]
     },
     {
-        "compid": 32,
-        "compcode": "BIN32",
-        "complib": "UE 2. Optimiser",
-        "semid": 3,
-        "modules": [
-            {
-                "modId": "R201",
-                "modLib": "D\u00c3\u00a9veloppement orient\u00c3\u00a9 objets",
-                "coef": "12"
-            },
-            {
-                "modId": "R204",
-                "modLib": "Communication fonctionnement bas niveau",
-                "coef": "17"
-            },
-            {
-                "modId": "R205",
-                "modLib": "Introduction aux services r\u00c3\u00a9seaux",
-                "coef": "14"
-            },
-            {
-                "modId": "R207",
-                "modLib": "Graphes",
-                "coef": "2"
-            },
-            {
-                "modId": "R209",
-                "modLib": "M\u00c3\u00a9thodes num\u00c3\u00a9riques",
-                "coef": "3"
-            },
-            {
-                "modId": "R212",
-                "modLib": "Anglais",
-                "coef": "6"
-            },
-            {
-                "modId": "R213",
-                "modLib": "Communication technique",
-                "coef": "6"
-            },
-            {
-                "modId": "S203",
-                "modLib": "Installation de service r\u00c3\u00a9seau",
-                "coef": "38"
-            },
-            {
-                "modId": "P201",
-                "modLib": "Portfolio",
-                "coef": "2"
-            }
-        ]
-    },
-    {
-        "compid": 33,
-        "compcode": "BIN33",
-        "complib": "UE 3. Administrer",
-        "semid": 3,
-        "modules": [
-            {
-                "modId": "R301",
-                "modLib": "D\u00c3\u00a9veloppement web",
-                "coef": "5"
-            },
-            {
-                "modId": "R305",
-                "modLib": "Programmation syst\u00c3\u00a8me",
-                "coef": "22"
-            },
-            {
-                "modId": "R306",
-                "modLib": "Architecture des r\u00c3\u00a9seaux",
-                "coef": "14"
-            },
-            {
-                "modId": "R307",
-                "modLib": "SQL dans un langage de programmation",
-                "coef": "6"
-            },
-            {
-                "modId": "R309",
-                "modLib": "Cryptographie et s\u00c3\u00a9curit\u00c3\u00a9",
-                "coef": "8"
-            },
-            {
-                "modId": "R312",
-                "modLib": "Anglais",
-                "coef": "5"
-            },
-            {
-                "modId": "S301",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 34,
-        "compcode": "BIN34",
-        "complib": "UE 4. G\u00c3\u00a9rer",
-        "semid": 3,
-        "modules": [
-            {
-                "modId": "R401",
-                "modLib": "Architecture logicielle",
-                "coef": "14"
-            },
-            {
-                "modId": "R408",
-                "modLib": "Virtualisation",
-                "coef": "22"
-            },
-            {
-                "modId": "R412",
-                "modLib": "Automates",
-                "coef": "4"
-            },
-            {
-                "modId": "S401",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "15"
-            },
-            {
-                "modId": "S411",
-                "modLib": "Stage",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 35,
-        "compcode": "BIN35",
-        "complib": "UE 5. Conduire",
-        "semid": 3,
-        "modules": []
-    },
-    {
-        "compid": 36,
-        "compcode": "BIN36",
-        "complib": "UE 6. Collaborer",
-        "semid": 3,
-        "modules": []
-    },
-    {
-        "compid": 41,
-        "compcode": "BIN41",
-        "complib": "UE 1. R\u00c3\u00a9aliser",
-        "semid": 4,
+        "compid": 14,
+        "compcode": "BIN14",
+        "complib": "UE 4. G\u00e9rer",
+        "semid": 1,
         "modules": [
             {
                 "modId": "R105",
-                "modLib": "Introduction aux bases de donn\u00c3\u00a9es et SQL",
+                "modLib": "Introduction aux bases de donn\u00e9es et SQL",
                 "coef": "36"
             },
             {
                 "modId": "R106",
-                "modLib": "Math\u00c3\u00a9matiques discr\u00c3\u00a8tes",
+                "modLib": "Math\u00e9matiques discr\u00e8tes",
                 "coef": "18"
             },
             {
                 "modId": "R109",
-                "modLib": "Introduction \u00c3\u00a0 l'\u00c3\u00a9conomie durable et num\u00c3\u00a9rique",
+                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
                 "coef": "6"
             },
             {
                 "modId": "S104",
-                "modLib": "Cr\u00c3\u00a9ation d'une base de donn\u00c3\u00a9es",
+                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
                 "coef": "40"
             }
         ]
     },
     {
-        "compid": 42,
-        "compcode": "BIN42",
-        "complib": "UE 2. Optimiser",
-        "semid": 4,
-        "modules": [
-            {
-                "modId": "R202",
-                "modLib": "D\u00c3\u00a9veloppement d'applications avec IHM",
-                "coef": "5"
-            },
-            {
-                "modId": "R206",
-                "modLib": "Exploitation d'une base de donn\u00c3\u00a9es",
-                "coef": "30"
-            },
-            {
-                "modId": "R208",
-                "modLib": "Outils num\u00c3\u00a9riques pour les statistiques descriptives",
-                "coef": "10"
-            },
-            {
-                "modId": "R210",
-                "modLib": "Introduction \u00c3\u00a0 la gestion des syst\u00c3\u00a8mes d'information",
-                "coef": "9"
-            },
-            {
-                "modId": "R212",
-                "modLib": "Anglais",
-                "coef": "6"
-            },
-            {
-                "modId": "S204",
-                "modLib": "Exploitation d'une base de donn\u00c3\u00a9es",
-                "coef": "38"
-            },
-            {
-                "modId": "P201",
-                "modLib": "Portfolio",
-                "coef": "2"
-            }
-        ]
-    },
-    {
-        "compid": 43,
-        "compcode": "BIN43",
-        "complib": "UE 3. Administrer",
-        "semid": 4,
-        "modules": [
-            {
-                "modId": "R301",
-                "modLib": "D\u00c3\u00a9veloppement web",
-                "coef": "10"
-            },
-            {
-                "modId": "R307",
-                "modLib": "SQL dans un langage de programmation",
-                "coef": "25"
-            },
-            {
-                "modId": "R308",
-                "modLib": "Probabilit\u00c3\u00a9s",
-                "coef": "5"
-            },
-            {
-                "modId": "R309",
-                "modLib": "Cryptographie et s\u00c3\u00a9curit\u00c3\u00a9",
-                "coef": "5"
-            },
-            {
-                "modId": "R310",
-                "modLib": "Management des syst\u00c3\u00a8mes d'information",
-                "coef": "10"
-            },
-            {
-                "modId": "R311",
-                "modLib": "Droits des contrats et du num\u00c3\u00a9rique",
-                "coef": "5"
-            },
-            {
-                "modId": "S301",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 44,
-        "compcode": "BIN44",
-        "complib": "UE 4. G\u00c3\u00a9rer",
-        "semid": 4,
-        "modules": [
-            {
-                "modId": "R403",
-                "modLib": "Qualit\u00c3\u00a9 et au-del\u00c3\u00a0 du relationnel",
-                "coef": "18"
-            },
-            {
-                "modId": "R406",
-                "modLib": "Communication interne",
-                "coef": "6"
-            },
-            {
-                "modId": "R410",
-                "modLib": "Compl\u00c3\u00a9ment web",
-                "coef": "8"
-            },
-            {
-                "modId": "R411",
-                "modLib": "D\u00c3\u00a9veloppement mobile",
-                "coef": "8"
-            },
-            {
-                "modId": "S401",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "15"
-            },
-            {
-                "modId": "S411",
-                "modLib": "Stage",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 45,
-        "compcode": "BIN45",
+        "compid": 15,
+        "compcode": "BIN15",
         "complib": "UE 5. Conduire",
-        "semid": 4,
-        "modules": []
-    },
-    {
-        "compid": 46,
-        "compcode": "BIN46",
-        "complib": "UE 6. Collaborer",
-        "semid": 4,
-        "modules": []
-    },
-    {
-        "compid": 51,
-        "compcode": "BIN51",
-        "complib": "UE 1. R\u00c3\u00a9aliser",
-        "semid": 5,
+        "semid": 1,
         "modules": [
             {
                 "modId": "R101",
-                "modLib": "Initiation au d\u00c3\u00a9veloppement",
+                "modLib": "Initiation au d\u00e9veloppement",
                 "coef": "5"
             },
             {
                 "modId": "R102",
-                "modLib": "D\u00c3\u00a9veloppement d'interfaces web",
+                "modLib": "D\u00e9veloppement d'interfaces web",
                 "coef": "13"
             },
             {
                 "modId": "R105",
-                "modLib": "Introduction aux bases de donn\u00c3\u00a9es et SQL",
+                "modLib": "Introduction aux bases de donn\u00e9es et SQL",
                 "coef": "4"
             },
             {
                 "modId": "R108",
-                "modLib": "Introduction \u00c3\u00a0 la gestion des organisations",
+                "modLib": "Introduction \u00e0 la gestion des organisations",
                 "coef": "23"
             },
             {
@@ -819,19 +155,239 @@
         ]
     },
     {
-        "compid": 52,
-        "compcode": "BIN52",
+        "compid": 16,
+        "compcode": "BIN16",
+        "complib": "UE 6. Collaborer",
+        "semid": 1,
+        "modules": [
+            {
+                "modId": "R101",
+                "modLib": "Initiation au d\u00e9veloppement",
+                "coef": "4"
+            },
+            {
+                "modId": "R102",
+                "modLib": "D\u00e9veloppement d'interfaces web",
+                "coef": "5"
+            },
+            {
+                "modId": "R108",
+                "modLib": "Introduction \u00e0 la gestion des organisations",
+                "coef": "9"
+            },
+            {
+                "modId": "R109",
+                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                "coef": "12"
+            },
+            {
+                "modId": "R110",
+                "modLib": "Anglais",
+                "coef": "12"
+            },
+            {
+                "modId": "R111",
+                "modLib": "Bases de la communication",
+                "coef": "12"
+            },
+            {
+                "modId": "R112",
+                "modLib": "Projet professionnel et personnel",
+                "coef": "6"
+            },
+            {
+                "modId": "S106",
+                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 21,
+        "compcode": "BIN21",
+        "complib": "UE 1. R\u00e9aliser",
+        "semid": 2,
+        "modules": [
+            {
+                "modId": "R201",
+                "modLib": "D\u00e9veloppement orient\u00e9 objets",
+                "coef": "23"
+            },
+            {
+                "modId": "R202",
+                "modLib": "Developpement d'applications avec IHM",
+                "coef": "21"
+            },
+            {
+                "modId": "R203",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "12"
+            },
+            {
+                "modId": "R213",
+                "modLib": "Communication technique",
+                "coef": "4"
+            },
+            {
+                "modId": "S201",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "38"
+            },
+            {
+                "modId": "P201",
+                "modLib": "Portfolio",
+                "coef": "2"
+            }
+        ]
+    },
+    {
+        "compid": 22,
+        "compcode": "BIN22",
         "complib": "UE 2. Optimiser",
-        "semid": 5,
+        "semid": 2,
+        "modules": [
+            {
+                "modId": "R201",
+                "modLib": "D\u00e9veloppement orient\u00e9 objets",
+                "coef": "27"
+            },
+            {
+                "modId": "R207",
+                "modLib": "Graphes",
+                "coef": "20"
+            },
+            {
+                "modId": "R209",
+                "modLib": "M\u00e9thodes num\u00e9riques",
+                "coef": "10"
+            },
+            {
+                "modId": "R213",
+                "modLib": "Communication technique",
+                "coef": "3"
+            },
+            {
+                "modId": "S202",
+                "modLib": "Exploration algorithmique d'un probl\u00e8me",
+                "coef": "38"
+            },
+            {
+                "modId": "P201",
+                "modLib": "Portfolio",
+                "coef": "2"
+            }
+        ]
+    },
+    {
+        "compid": 23,
+        "compcode": "BIN23",
+        "complib": "UE 3.  Administrer",
+        "semid": 2,
+        "modules": [
+            {
+                "modId": "R201",
+                "modLib": "D\u00e9veloppement orient\u00e9 objets",
+                "coef": "12"
+            },
+            {
+                "modId": "R204",
+                "modLib": "Communication fonctionnement bas niveau",
+                "coef": "17"
+            },
+            {
+                "modId": "R205",
+                "modLib": "Introduction aux services r\u00e9seaux",
+                "coef": "14"
+            },
+            {
+                "modId": "R207",
+                "modLib": "Graphes",
+                "coef": "2"
+            },
+            {
+                "modId": "R209",
+                "modLib": "M\u00e9thodes num\u00e9riques",
+                "coef": "3"
+            },
+            {
+                "modId": "R212",
+                "modLib": "Anglais",
+                "coef": "6"
+            },
+            {
+                "modId": "R213",
+                "modLib": "Communication technique",
+                "coef": "6"
+            },
+            {
+                "modId": "S203",
+                "modLib": "Installation de service r\u00e9seau",
+                "coef": "38"
+            },
+            {
+                "modId": "P201",
+                "modLib": "Portfolio",
+                "coef": "2"
+            }
+        ]
+    },
+    {
+        "compid": 24,
+        "compcode": "BIN24",
+        "complib": "UE 4. G\u00e9rer",
+        "semid": 2,
         "modules": [
             {
                 "modId": "R202",
-                "modLib": "D\u00c3\u00a9veloppement d'applications avec IHM",
+                "modLib": "Developpement d'applications avec IHM",
+                "coef": "5"
+            },
+            {
+                "modId": "R206",
+                "modLib": "Exploitationd'une base de donn\u00e9es",
+                "coef": "30"
+            },
+            {
+                "modId": "R208",
+                "modLib": "Outils num\u00e9riques pour les statistiques descriptives",
+                "coef": "10"
+            },
+            {
+                "modId": "R210",
+                "modLib": "Introduction \u00e0 la gestion des syst\u00e8mes d'information",
+                "coef": "9"
+            },
+            {
+                "modId": "R212",
+                "modLib": "Anglais",
+                "coef": "6"
+            },
+            {
+                "modId": "S204",
+                "modLib": "Exploitation d'une base de donn\u00e9es",
+                "coef": "38"
+            },
+            {
+                "modId": "P201",
+                "modLib": "Portfolio",
+                "coef": "2"
+            }
+        ]
+    },
+    {
+        "compid": 25,
+        "compcode": "BIN25",
+        "complib": "UE 5. Conduire",
+        "semid": 2,
+        "modules": [
+            {
+                "modId": "R202",
+                "modLib": "Developpement d'applications avec IHM",
                 "coef": "5"
             },
             {
                 "modId": "R203",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
                 "coef": "6"
             },
             {
@@ -841,7 +397,7 @@
             },
             {
                 "modId": "R210",
-                "modLib": "Introduction \u00c3\u00a0 la gestion des syst\u00c3\u00a8mes d'information",
+                "modLib": "Introduction \u00e0 la gestion des syst\u00e8mes d'information",
                 "coef": "28"
             },
             {
@@ -867,162 +423,14 @@
         ]
     },
     {
-        "compid": 53,
-        "compcode": "BIN53",
-        "complib": "UE 3. Administrer",
-        "semid": 5,
-        "modules": [
-            {
-                "modId": "R302",
-                "modLib": "D\u00c3\u00a9veloppement efficace",
-                "coef": "8"
-            },
-            {
-                "modId": "R303",
-                "modLib": "Analyse",
-                "coef": "8"
-            },
-            {
-                "modId": "R304",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "8"
-            },
-            {
-                "modId": "R310",
-                "modLib": "Management des syst\u00c3\u00a8mes d'information",
-                "coef": "10"
-            },
-            {
-                "modId": "R311",
-                "modLib": "Droits des contrats et du num\u00c3\u00a9rique",
-                "coef": "10"
-            },
-            {
-                "modId": "R312",
-                "modLib": "Anglais",
-                "coef": "7"
-            },
-            {
-                "modId": "R313",
-                "modLib": "Communication professionnelle",
-                "coef": "9"
-            },
-            {
-                "modId": "S301",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 54,
-        "compcode": "BIN54",
-        "complib": "UE 4. G\u00c3\u00a9rer",
-        "semid": 5,
-        "modules": [
-            {
-                "modId": "R402",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
-                "coef": "10"
-            },
-            {
-                "modId": "R409",
-                "modLib": "Management avanc\u00c3\u00a9 SI",
-                "coef": "18"
-            },
-            {
-                "modId": "R410",
-                "modLib": "Compl\u00c3\u00a9ment web",
-                "coef": "4"
-            },
-            {
-                "modId": "R411",
-                "modLib": "D\u00c3\u00a9veloppement mobile",
-                "coef": "8"
-            },
-            {
-                "modId": "S401",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
-                "coef": "15"
-            },
-            {
-                "modId": "S411",
-                "modLib": "Stage",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 55,
-        "compcode": "BIN55",
-        "complib": "UE 5. Conduire",
-        "semid": 5,
-        "modules": []
-    },
-    {
-        "compid": 56,
-        "compcode": "BIN56",
+        "compid": 26,
+        "compcode": "BIN26",
         "complib": "UE 6. Collaborer",
-        "semid": 5,
-        "modules": []
-    },
-    {
-        "compid": 61,
-        "compcode": "BIN61",
-        "complib": "UE 1. R\u00c3\u00a9aliser",
-        "semid": 6,
-        "modules": [
-            {
-                "modId": "R101",
-                "modLib": "Initiation au d\u00c3\u00a9veloppement",
-                "coef": "4"
-            },
-            {
-                "modId": "R102",
-                "modLib": "D\u00c3\u00a9veloppement d'interfaces web",
-                "coef": "5"
-            },
-            {
-                "modId": "R108",
-                "modLib": "Introduction \u00c3\u00a0 la gestion des organisations",
-                "coef": "9"
-            },
-            {
-                "modId": "R109",
-                "modLib": "Introduction \u00c3\u00a0 l'\u00c3\u00a9conomie durable et num\u00c3\u00a9rique",
-                "coef": "12"
-            },
-            {
-                "modId": "R110",
-                "modLib": "Anglais",
-                "coef": "12"
-            },
-            {
-                "modId": "R111",
-                "modLib": "Bases de la communication",
-                "coef": "12"
-            },
-            {
-                "modId": "R112",
-                "modLib": "Projet professionnel et personnel",
-                "coef": "6"
-            },
-            {
-                "modId": "S106",
-                "modLib": "D\u00c3\u00a9couverte de l'environnement \u00c3\u00a9conomique et \u00c3\u00a9cologique",
-                "coef": "40"
-            }
-        ]
-    },
-    {
-        "compid": 62,
-        "compcode": "BIN62",
-        "complib": "UE 2. Optimiser",
-        "semid": 6,
+        "semid": 2,
         "modules": [
             {
                 "modId": "R202",
-                "modLib": "D\u00c3\u00a9veloppement d'applications avec IHM",
+                "modLib": "Developpement d'applications avec IHM",
                 "coef": "4"
             },
             {
@@ -1047,7 +455,7 @@
             },
             {
                 "modId": "S206",
-                "modLib": "Organisation d'un travail d'\u00c3\u00a9quipe",
+                "modLib": "Organisation d'un travail d'\u00e9quipe",
                 "coef": "38"
             },
             {
@@ -1058,24 +466,249 @@
         ]
     },
     {
-        "compid": 63,
-        "compcode": "BIN63",
-        "complib": "UE 3. Administrer",
-        "semid": 6,
+        "compid": 31,
+        "compcode": "BIN31",
+        "complib": "UE 1. R\u00e9aliser",
+        "semid": 3,
         "modules": [
             {
+                "modId": "R301",
+                "modLib": "D\u00e9veloppement web",
+                "coef": "15"
+            },
+            {
+                "modId": "R302",
+                "modLib": "D\u00e9veloppement efficace",
+                "coef": "12"
+            },
+            {
+                "modId": "R303",
+                "modLib": "Analyse",
+                "coef": "8"
+            },
+            {
                 "modId": "R304",
-                "modLib": "Qualit\u00c3\u00a9 de d\u00c3\u00a9veloppement",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "15"
+            },
+            {
+                "modId": "R311",
+                "modLib": "Droits des contrats et du num\u00e9rique",
+                "coef": "8"
+            },
+            {
+                "modId": "R313",
+                "modLib": "Communication professionnelle",
+                "coef": "2"
+            },
+            {
+                "modId": "S301",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 32,
+        "compcode": "BIN32",
+        "complib": "UE 2. Optimiser",
+        "semid": 3,
+        "modules": [
+            {
+                "modId": "R301",
+                "modLib": "D\u00e9veloppement web",
+                "coef": "5"
+            },
+            {
+                "modId": "R302",
+                "modLib": "D\u00e9veloppement efficace",
+                "coef": "15"
+            },
+            {
+                "modId": "R303",
+                "modLib": "Analyse",
+                "coef": "4"
+            },
+            {
+                "modId": "R306",
+                "modLib": "Architecture des r\u00e9seaux",
+                "coef": "5"
+            },
+            {
+                "modId": "R308",
+                "modLib": "Probabilit\u00e9s",
+                "coef": "20"
+            },
+            {
+                "modId": "R309",
+                "modLib": "Cryptographie et s\u00e9curit\u00e9",
+                "coef": "6"
+            },
+            {
+                "modId": "R312",
+                "modLib": "Anglais",
+                "coef": "5"
+            },
+            {
+                "modId": "S301",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 33,
+        "compcode": "BIN33",
+        "complib": "UE 3.  Administrer",
+        "semid": 3,
+        "modules": [
+            {
+                "modId": "R301",
+                "modLib": "D\u00e9veloppement web",
+                "coef": "5"
+            },
+            {
+                "modId": "R305",
+                "modLib": "Programmation syst\u00e8me",
+                "coef": "22"
+            },
+            {
+                "modId": "R306",
+                "modLib": "Architecture des r\u00e9seaux",
+                "coef": "14"
+            },
+            {
+                "modId": "R307",
+                "modLib": "SQL dans un langage de programmation",
+                "coef": "6"
+            },
+            {
+                "modId": "R309",
+                "modLib": "Cryptographie et s\u00e9curit\u00e9",
+                "coef": "8"
+            },
+            {
+                "modId": "R312",
+                "modLib": "Anglais",
+                "coef": "5"
+            },
+            {
+                "modId": "S301",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 34,
+        "compcode": "BIN34",
+        "complib": "UE 4. G\u00e9rer",
+        "semid": 3,
+        "modules": [
+            {
+                "modId": "R301",
+                "modLib": "D\u00e9veloppement web",
+                "coef": "10"
+            },
+            {
+                "modId": "R307",
+                "modLib": "SQL dans un langage de programmation",
+                "coef": "25"
+            },
+            {
+                "modId": "R308",
+                "modLib": "Probabilit\u00e9s",
                 "coef": "5"
             },
             {
                 "modId": "R309",
-                "modLib": "Cryptographie et s\u00c3\u00a9curit\u00c3\u00a9",
+                "modLib": "Cryptographie et s\u00e9curit\u00e9",
+                "coef": "5"
+            },
+            {
+                "modId": "R310",
+                "modLib": "Management des syst\u00e8mes d'information",
+                "coef": "10"
+            },
+            {
+                "modId": "R311",
+                "modLib": "Droits des contrats et du num\u00e9rique",
+                "coef": "5"
+            },
+            {
+                "modId": "S301",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 35,
+        "compcode": "BIN35",
+        "complib": "UE 5. Conduire",
+        "semid": 3,
+        "modules": [
+            {
+                "modId": "R302",
+                "modLib": "D\u00e9veloppement efficace",
+                "coef": "8"
+            },
+            {
+                "modId": "R303",
+                "modLib": "Analyse",
+                "coef": "8"
+            },
+            {
+                "modId": "R304",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "8"
+            },
+            {
+                "modId": "R310",
+                "modLib": "Management des syst\u00e8mes d'information",
+                "coef": "10"
+            },
+            {
+                "modId": "R311",
+                "modLib": "Droits des contrats et du num\u00e9rique",
+                "coef": "10"
+            },
+            {
+                "modId": "R312",
+                "modLib": "Anglais",
+                "coef": "7"
+            },
+            {
+                "modId": "R313",
+                "modLib": "Communication professionnelle",
+                "coef": "9"
+            },
+            {
+                "modId": "S301",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 36,
+        "compcode": "BIN36",
+        "complib": "UE 6. Collaborer",
+        "semid": 3,
+        "modules": [
+            {
+                "modId": "R304",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "5"
+            },
+            {
+                "modId": "R309",
+                "modLib": "Cryptographie et s\u00e9curit\u00e9",
                 "coef": "4"
             },
             {
                 "modId": "R310",
-                "modLib": "Management des syst\u00c3\u00a8mes d'information",
+                "modLib": "Management des syst\u00e8mes d'information",
                 "coef": "12"
             },
             {
@@ -1095,20 +728,215 @@
             },
             {
                 "modId": "S301",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
+                "modLib": "D\u00e9veloppement d'une application",
                 "coef": "40"
             }
         ]
     },
     {
-        "compid": 64,
-        "compcode": "BIN64",
-        "complib": "UE 4. G\u00c3\u00a9rer",
-        "semid": 6,
+        "compid": 41,
+        "compcode": "BIN41",
+        "complib": "UE 1. R\u00e9aliser",
+        "semid": 4,
         "modules": [
             {
                 "modId": "R401",
-                "modLib": "Architecture logicielle",
+                "modLib": "Architectecture logicielle",
+                "coef": "16"
+            },
+            {
+                "modId": "R402",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "8"
+            },
+            {
+                "modId": "R410",
+                "modLib": "Compl\u00e9ment web",
+                "coef": "8"
+            },
+            {
+                "modId": "R411",
+                "modLib": "D\u00e9veloppement mobile",
+                "coef": "8"
+            },
+            {
+                "modId": "S401",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "15"
+            },
+            {
+                "modId": "S411",
+                "modLib": "Stage",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 42,
+        "compcode": "BIN42",
+        "complib": "UE 2. Optimiser",
+        "semid": 4,
+        "modules": [
+            {
+                "modId": "R404",
+                "modLib": "M\u00e9thodes d'optimisation",
+                "coef": "12"
+            },
+            {
+                "modId": "R405",
+                "modLib": "Anglais",
+                "coef": "4"
+            },
+            {
+                "modId": "R409",
+                "modLib": "Management avanc\u00e9 SI",
+                "coef": "4"
+            },
+            {
+                "modId": "R410",
+                "modLib": "Compl\u00e9ment web",
+                "coef": "4"
+            },
+            {
+                "modId": "R411",
+                "modLib": "D\u00e9veloppement mobile",
+                "coef": "4"
+            },
+            {
+                "modId": "R412",
+                "modLib": "Automates",
+                "coef": "12"
+            },
+            {
+                "modId": "S401",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "15"
+            },
+            {
+                "modId": "S411",
+                "modLib": "Stage",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 43,
+        "compcode": "BIN43",
+        "complib": "UE 3.  Administrer",
+        "semid": 4,
+        "modules": [
+            {
+                "modId": "R401",
+                "modLib": "Architectecture logicielle",
+                "coef": "14"
+            },
+            {
+                "modId": "R408",
+                "modLib": "Virtualisation",
+                "coef": "22"
+            },
+            {
+                "modId": "R412",
+                "modLib": "Automates",
+                "coef": "4"
+            },
+            {
+                "modId": "S401",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "15"
+            },
+            {
+                "modId": "S411",
+                "modLib": "Stage",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 44,
+        "compcode": "BIN44",
+        "complib": "UE 4. G\u00e9rer",
+        "semid": 4,
+        "modules": [
+            {
+                "modId": "R403",
+                "modLib": "Qualit\u00e9 et au del\u00e0 du relationnel",
+                "coef": "18"
+            },
+            {
+                "modId": "R406",
+                "modLib": "Communication interne",
+                "coef": "6"
+            },
+            {
+                "modId": "R410",
+                "modLib": "Compl\u00e9ment web",
+                "coef": "8"
+            },
+            {
+                "modId": "R411",
+                "modLib": "D\u00e9veloppement mobile",
+                "coef": "8"
+            },
+            {
+                "modId": "S401",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "15"
+            },
+            {
+                "modId": "S411",
+                "modLib": "Stage",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 45,
+        "compcode": "BIN45",
+        "complib": "UE 5. Conduire",
+        "semid": 4,
+        "modules": [
+            {
+                "modId": "R402",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "10"
+            },
+            {
+                "modId": "R409",
+                "modLib": "Management avanc\u00e9 SI",
+                "coef": "18"
+            },
+            {
+                "modId": "R410",
+                "modLib": "Compl\u00e9ment web",
+                "coef": "4"
+            },
+            {
+                "modId": "R411",
+                "modLib": "D\u00e9veloppement mobile",
+                "coef": "8"
+            },
+            {
+                "modId": "S401",
+                "modLib": "D\u00e9veloppement d'une application",
+                "coef": "15"
+            },
+            {
+                "modId": "S411",
+                "modLib": "Stage",
+                "coef": "40"
+            }
+        ]
+    },
+    {
+        "compid": 46,
+        "compcode": "BIN46",
+        "complib": "UE 6. Collaborer",
+        "semid": 4,
+        "modules": [
+            {
+                "modId": "R401",
+                "modLib": "Architectecture logicielle",
                 "coef": "4"
             },
             {
@@ -1128,7 +956,7 @@
             },
             {
                 "modId": "S401",
-                "modLib": "D\u00c3\u00a9veloppement d'une application",
+                "modLib": "D\u00e9veloppement d'une application",
                 "coef": "15"
             },
             {
@@ -1139,14 +967,151 @@
         ]
     },
     {
-        "compid": 65,
-        "compcode": "BIN65",
+        "compid": 51,
+        "compcode": "BIN51",
+        "complib": "UE 1. R\u00e9aliser",
+        "semid": 5,
+        "modules": [
+            {
+                "modId": "R504",
+                "modLib": "Qualit\u00e9 algorithmique",
+                "coef": "2"
+            },
+            {
+                "modId": "R505",
+                "modLib": "Programmation avanc\u00e9e",
+                "coef": "9"
+            },
+            {
+                "modId": "R506",
+                "modLib": "Sensibilisation \u00e0 la programmati\u00b0 multimedia",
+                "coef": "2"
+            },
+            {
+                "modId": "R507",
+                "modLib": "Automatisation de la chaine de production",
+                "coef": "6"
+            },
+            {
+                "modId": "R508",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "7"
+            },
+            {
+                "modId": "R509",
+                "modLib": "Virtualisation avanc\u00e9e",
+                "coef": "7"
+            },
+            {
+                "modId": "R510",
+                "modLib": "Nouveaux paradigmes de base donn\u00e9es",
+                "coef": "12"
+            },
+            {
+                "modId": "R513",
+                "modLib": "Economie durable et num\u00e9rique",
+                "coef": "2"
+            },
+            {
+                "modId": "R514",
+                "modLib": "Anglais",
+                "coef": "3"
+            },
+            {
+                "modId": "S501",
+                "modLib": "D\u00e9veloppement avanc\u00e9",
+                "coef": "50"
+            }
+        ]
+    },
+    {
+        "compid": 52,
+        "compcode": "BIN52",
+        "complib": "UE 2. Optimiser",
+        "semid": 5,
+        "modules": [
+            {
+                "modId": "R504",
+                "modLib": "Qualit\u00e9 algorithmique",
+                "coef": "6"
+            },
+            {
+                "modId": "R505",
+                "modLib": "Programmation avanc\u00e9e",
+                "coef": "7"
+            },
+            {
+                "modId": "R506",
+                "modLib": "Sensibilisation \u00e0 la programmati\u00b0 multimedia",
+                "coef": "2"
+            },
+            {
+                "modId": "R508",
+                "modLib": "Qualit\u00e9 de d\u00e9veloppement",
+                "coef": "5"
+            },
+            {
+                "modId": "R509",
+                "modLib": "Virtualisation avanc\u00e9e",
+                "coef": "2"
+            },
+            {
+                "modId": "R510",
+                "modLib": "Nouveaux paradigmes de base donn\u00e9es",
+                "coef": "4"
+            },
+            {
+                "modId": "R511",
+                "modLib": "M\u00e9thodes d'optimisation pour l'aide \u00e0 la d\u00e9cision",
+                "coef": "7"
+            },
+            {
+                "modId": "R512",
+                "modLib": "Mod\u00e9lisations math\u00e9matiques",
+                "coef": "13"
+            },
+            {
+                "modId": "R514",
+                "modLib": "Anglais",
+                "coef": "4"
+            },
+            {
+                "modId": "S501",
+                "modLib": "D\u00e9veloppement avanc\u00e9",
+                "coef": "50"
+            }
+        ]
+    },
+    {
+        "compid": 53,
+        "compcode": "BIN53",
+        "complib": "UE 3.  Administrer",
+        "semid": 5,
+        "modules": []
+    },
+    {
+        "compid": 54,
+        "compcode": "BIN54",
+        "complib": "UE 4. G\u00e9rer",
+        "semid": 5,
+        "modules": []
+    },
+    {
+        "compid": 55,
+        "compcode": "BIN55",
         "complib": "UE 5. Conduire",
-        "semid": 6,
+        "semid": 5,
+        "modules": []
+    },
+    {
+        "compid": 56,
+        "compcode": "BIN56",
+        "complib": "UE 6. Collaborer",
+        "semid": 5,
         "modules": [
             {
                 "modId": "R501",
-                "modLib": "Initiation managment \u00c3\u00a9quipe informatique",
+                "modLib": "Initiation managment equipe informatique",
                 "coef": "9"
             },
             {
@@ -1161,7 +1126,7 @@
             },
             {
                 "modId": "R506",
-                "modLib": "Sensibilisation \u00c3\u00a0 la programmation multimedia",
+                "modLib": "Sensibilisation \u00e0 la programmati\u00b0 multimedia",
                 "coef": "2"
             },
             {
@@ -1171,7 +1136,7 @@
             },
             {
                 "modId": "R513",
-                "modLib": "Economie durable et num\u00c3\u00a9rique",
+                "modLib": "Economie durable et num\u00e9rique",
                 "coef": "5"
             },
             {
@@ -1181,10 +1146,45 @@
             },
             {
                 "modId": "S501",
-                "modLib": "D\u00c3\u00a9veloppement avanc\u00c3\u00a9",
+                "modLib": "D\u00e9veloppement avanc\u00e9",
                 "coef": "50"
             }
         ]
+    },
+    {
+        "compid": 61,
+        "compcode": "BIN61",
+        "complib": "UE 1. R\u00e9aliser",
+        "semid": 6,
+        "modules": []
+    },
+    {
+        "compid": 62,
+        "compcode": "BIN62",
+        "complib": "UE 2. Optimiser",
+        "semid": 6,
+        "modules": []
+    },
+    {
+        "compid": 63,
+        "compcode": "BIN63",
+        "complib": "UE 3.  Administrer",
+        "semid": 6,
+        "modules": []
+    },
+    {
+        "compid": 64,
+        "compcode": "BIN64",
+        "complib": "UE 4. G\u00e9rer",
+        "semid": 6,
+        "modules": []
+    },
+    {
+        "compid": 65,
+        "compcode": "BIN65",
+        "complib": "UE 5. Conduire",
+        "semid": 6,
+        "modules": []
     },
     {
         "compid": 66,

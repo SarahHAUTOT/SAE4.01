@@ -27,36 +27,61 @@ function alert($message)
     echo "<script>alert('$message');</script>";
 }
 
+
+function findYear($year)
+{
+    // Récupération des données JSON depuis le fichier
+	$jsonData = file_get_contents('../data/donnees.json');
+	$data = json_decode($jsonData, true);
+
+    $serializedObject = serialize($data[$year - 1]);
+    $_SESSION['year'] = $serializedObject;
+}
+
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
-    if (!isset($_SESSION['year'])) 
+    switch ($action)
     {
-        alert("Veuillez sélectionner une année");
-    }
-    else
-    {
-        echo $_SESSION["year"] ." ". $_SESSION["semester"];
-        switch ($action)
-        {
-            case 'pe':
-                //générationd des poursuite d'études
-                header("Location: generationPoursuite.php");
-                break;
-            case 'jury':
-                if (!isset($_SESSION['semester'])) 
-                {
-                    alert("Veuillez sélectionner une semestre");
-                }
-                break;
+        case 'pe':
+            //générationd des poursuite d'études
+            if (isset($_POST['yearPE']) && !empty($_POST['yearPE'])) {
+                findYear($_POST['yearPE']);
 
-            case 'comm':
-                //Génération de commissions
-                break;
-            default:
-                echo "Action non reconnue";
-                break;
-        }
+                header("Location: generationPoursuite.php");
+            }
+            else
+            {
+                alert("Veuillez selectionné une année");
+            }
+            break;
+
+        case 'comm':
+        case 'jury':
+            echo "Year selected: " . $_POST['yearCom'];
+
+            if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+
+                if (isset($_POST['semCom']) && !empty($_POST['semCom']))
+                {
+                    header("Location: commission.php");
+                }
+                else
+                {
+                    alert("Veuillez selectionnée un semestre");
+                }
+            }
+            else
+            {
+                alert("Veuillez selectionné une année");
+            }
+            break;
+
+
+
+        default:
+            echo "Action non reconnue";
+            break;
     }
 }
 
@@ -77,15 +102,11 @@ function contenu()
 			<div class="gridLibImport">
 
 				<span>Choix Année</span>
-				<select id="selectYear" onchange"saveSelectedYear()">';
+				<select id="selectYear" name="yearPE" ">';
 	
-    $i = 1;
 	foreach ($data as $anneeData) 
-		if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
-		{
-            echo '<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
-            $i++;
-        }
+		// if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
+            echo '<option value="'.$anneeData['anneeid'].'">'. $anneeData['annelib'] .'</option>';
 
 
 		echo '</select>
@@ -97,20 +118,16 @@ function contenu()
 			<h2>Préparation aux commissions/jurys</h2>
 			<div class="gridLibImport" >
 				<span>Choix Année</span>
-				<select id="selectYear" onchange"saveSelectedYear()">';
+				<select id="selectYear" name="yearCom" >';
 
 	
-	$i = 1;		
 	foreach ($data as $anneeData)
-    {
-        echo'	<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
-        $i++;
-    }
+        echo '<option value="'.$anneeData['anneeid'].'">'. $anneeData['annelib'] .'</option>';
 
 	echo    '</select>
 
 			<span>Choix semestre</span>
-			<select id="selectSemester" onchange="saveSelectedSemester()">
+			<select id="selectSemester" name="semCom" >
 				<option value="semestre1">S1</option>
 				<option value="semestre2">S2</option>
 				<option value="semestre3">S3</option>
@@ -127,9 +144,9 @@ function contenu()
 }
 
 head('css/generation.css');
+contenu();
 echo '<script src="js/selectYear.js"></script>';
 echo '<script src="js/selectSemester.js"></script>';
-contenu();
 foot();
 
 ?>
