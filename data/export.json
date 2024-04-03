@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "exportid": 1,
+        "exporttype": "PE",
+        "exportchemin": "-1"
+    },
+    {
+        "exportid": 2,
+        "exporttype": "PE",
+        "exportchemin": "test :2020-2021"
+    },
+    {
+        "exportid": 3,
+        "exporttype": "PE",
+        "exportchemin": "test :2020-2021"
+    }
+]

@@ -31,6 +31,7 @@ function isEmpty(value)
 }
 
 function callPHP(file, action, datas) {
+
 	return new Promise((resolve, reject) => {
 		fetch(file, {
 				method: 'POST',

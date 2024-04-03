@@ -301,8 +301,9 @@ class DB
 	
 
 
-	public function insertAnnee($anneLibMaisMieuxApparamentPutainDeMerde)
+	public function insertAnnee($years)
 	{
+
 		$postData = json_decode(file_get_contents("php://input"), true);
 			
 		// Prepare the SQL statement
@@ -310,7 +311,7 @@ class DB
 
 		// Bind parameters
 		$params = array(
-			$anneLibMaisMieuxApparamentPutainDeMerde
+			$years
 		);
 
 		$stmt = $this->connect->prepare($sql);
@@ -428,7 +429,7 @@ if (!empty($postData['action'])) {
 		
 		case 'insertAnnee':
 			// Appeler la méthode insertAnnee avec les données d'étudiants
-			$db->insertAnnee($postData['anneLib']);
+			$db->insertAnnee($postData['datas']);
 			break;
 		
 		case 'insertMoyennes':
