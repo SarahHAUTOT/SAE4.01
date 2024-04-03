@@ -17,7 +17,7 @@
                         "etdbonus": "0",
                         "etdabs": 5,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -234,7 +234,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -451,7 +451,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -668,7 +668,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -885,7 +885,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -1102,7 +1102,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -1319,7 +1319,7 @@
                         "etdbonus": "0.45",
                         "etdabs": 4,
                         "etdbac": "0034",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -1536,7 +1536,7 @@
                         "etdbonus": "0.32",
                         "etdabs": 3,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -1753,7 +1753,7 @@
                         "etdbonus": "0.38",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -1970,7 +1970,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -2187,7 +2187,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -2404,7 +2404,7 @@
                         "etdbonus": "0",
                         "etdabs": 6,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -2621,7 +2621,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -2838,7 +2838,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -3055,7 +3055,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -3272,7 +3272,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -3489,7 +3489,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -3706,7 +3706,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -3923,7 +3923,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -4140,7 +4140,7 @@
                         "etdbonus": "0",
                         "etdabs": 8,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -4357,7 +4357,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -4574,7 +4574,7 @@
                         "etdbonus": "0",
                         "etdabs": 5,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -4791,7 +4791,7 @@
                         "etdbonus": "0",
                         "etdabs": 9,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -5008,7 +5008,7 @@
                         "etdbonus": "0",
                         "etdabs": 19,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -5225,7 +5225,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -5442,7 +5442,7 @@
                         "etdbonus": "0",
                         "etdabs": 5,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -5659,7 +5659,7 @@
                         "etdbonus": "0",
                         "etdabs": 5,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -5876,7 +5876,7 @@
                         "etdbonus": "0",
                         "etdabs": 11,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -6093,7 +6093,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -6310,7 +6310,7 @@
                         "etdbonus": "0",
                         "etdabs": 42,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -6527,7 +6527,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -6744,7 +6744,7 @@
                         "etdbonus": "0",
                         "etdabs": 6,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -6961,7 +6961,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -7178,7 +7178,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -7395,7 +7395,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -7612,7 +7612,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -7829,7 +7829,7 @@
                         "etdbonus": "0",
                         "etdabs": 5,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -8046,7 +8046,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -8263,7 +8263,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -8480,7 +8480,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -8697,7 +8697,7 @@
                         "etdbonus": "0",
                         "etdabs": 6,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -8914,7 +8914,7 @@
                         "etdbonus": "0.22",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -9131,7 +9131,7 @@
                         "etdbonus": "0",
                         "etdabs": 4,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -9348,7 +9348,7 @@
                         "etdbonus": "0.2",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -9565,7 +9565,7 @@
                         "etdbonus": "0.43",
                         "etdabs": 3,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -9782,7 +9782,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -9999,7 +9999,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -10216,7 +10216,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -10433,7 +10433,7 @@
                         "etdbonus": "0",
                         "etdabs": 16,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -10650,7 +10650,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -10867,7 +10867,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -11084,7 +11084,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -11301,7 +11301,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -11518,7 +11518,7 @@
                         "etdbonus": "0",
                         "etdabs": 27,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -11735,7 +11735,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -11952,7 +11952,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -12169,7 +12169,7 @@
                         "etdbonus": "0",
                         "etdabs": 4,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -12386,7 +12386,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -12603,7 +12603,7 @@
                         "etdbonus": "0",
                         "etdabs": 7,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -12820,7 +12820,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -13037,7 +13037,7 @@
                         "etdbonus": "0",
                         "etdabs": 14,
                         "etdbac": "ES",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -13254,7 +13254,7 @@
                         "etdbonus": "0",
                         "etdabs": 4,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -13471,7 +13471,7 @@
                         "etdbonus": "0.44",
                         "etdabs": 4,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -13688,7 +13688,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -13905,7 +13905,7 @@
                         "etdbonus": "0",
                         "etdabs": 4,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -14122,7 +14122,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -14339,7 +14339,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -14556,7 +14556,7 @@
                         "etdbonus": "0",
                         "etdabs": 4,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -14773,7 +14773,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -14990,7 +14990,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -15207,7 +15207,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -15424,7 +15424,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -15641,7 +15641,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -15858,7 +15858,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -16075,7 +16075,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -16292,7 +16292,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -16509,7 +16509,7 @@
                         "etdbonus": "0",
                         "etdabs": 37,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -16726,7 +16726,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -16943,7 +16943,7 @@
                         "etdbonus": "0",
                         "etdabs": 7,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -17160,7 +17160,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -17377,7 +17377,7 @@
                         "etdbonus": "0",
                         "etdabs": 12,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -17594,7 +17594,7 @@
                         "etdbonus": "0.16",
                         "etdabs": 3,
                         "etdbac": "0031",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -17811,7 +17811,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -18028,7 +18028,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "S",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -18245,7 +18245,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -18462,7 +18462,7 @@
                         "etdbonus": "0.48",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -18679,7 +18679,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -18896,7 +18896,7 @@
                         "etdbonus": "0",
                         "etdabs": 7,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -19113,7 +19113,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -19330,7 +19330,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -19547,7 +19547,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -19764,7 +19764,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -19981,7 +19981,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -20198,7 +20198,7 @@
                         "etdbonus": "0",
                         "etdabs": 3,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -20415,7 +20415,7 @@
                         "etdbonus": "0",
                         "etdabs": 1,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -20632,7 +20632,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "NBGE",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -20849,7 +20849,7 @@
                         "etdbonus": "0",
                         "etdabs": 0,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",
@@ -21066,7 +21066,7 @@
                         "etdbonus": "0",
                         "etdabs": 2,
                         "etdbac": "STI2D",
-                        "rank": null,
+                        "rank": 1,
                         "modules": [
                             {
                                 "modId": "R101",

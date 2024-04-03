@@ -127,9 +127,9 @@ function generateYears()
 			foreach ($students as &$student) 
 			{
 				// Get rank of the student for the current semester and year
-				$query = 'SELECT getRankSem('.$semester['semid'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
+				$query = 'SELECT getRankSem('.$semester['semid'].', '.$student['etdid'].', '.$year['anneeid'].') as "rank" FROM AdmComp'; 
 				$rankSem = $db->execQuery($query);
-				$student['rank'] = $rankSem;
+				$student['rank'] = $rankSem[0]['rank'];
 
 				/* MODULES */
 				// We get the grades from this year, semester, and student
@@ -163,13 +163,6 @@ function generateYears()
 				}
 
 				/* YEAR */
-				// We get the admission by year
-				$query = "SELECT * FROM AdmAnnee WHERE anneeId = " . $year['anneeid'] . " AND etdId = ".$student["etdid"];
-				$admYear = $db->execQuery($query); // Assuming only one row is returned
-
-				// Put it in student
-				$student['admi'] = $admYear[0]['admi'];
-
 				$semesterStudents[] = $student; // Add the student to the array of students for this semester
 			}
 

@@ -80,8 +80,6 @@ function generateAll()
 
 	let cheminFic = "../src/app/DB.inc.php";
 	let cheminJSON = "../src/app/DBtoJSON.php";
-
-	console.log(admComp);
 	
 	anneLib = document.getElementById('anneeLib').value;
 
@@ -90,6 +88,8 @@ function generateAll()
 		alert("Veuillez entrer une année dans un format correct");
 		return 0;
 	}
+
+	document.getElementById('save').innerText = "Chargement...";
 
 	// Insertion des étudiants
 	callPHP(cheminFic, 'insertAnnee', anneLib)
@@ -135,13 +135,15 @@ function generateAll()
 				console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 			});
 		})
+		.then(() => {
+			window.location.href = "accueilAdmin.php";
+		})
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
 
 
 
-	// window.location.href = "accueilAdmin.php";
 }
 
 
@@ -375,7 +377,6 @@ function decomposeJury ()
 					'comp'  : (excelData[0][e - 1]).replace('BIN',''),
 				}
 
-				console.log( excelData[0][e - 1]),
 				admComp.push(admCompBis);
 			});
 		}
