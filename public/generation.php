@@ -36,7 +36,6 @@ if (isset($_POST['action'])) {
     }
     else
     {
-        echo $_SESSION["year"] ." ". $_SESSION["semester"];
         switch ($action)
         {
             case 'pe':
@@ -77,7 +76,7 @@ function contenu()
 			<div class="gridLibImport">
 
 				<span>Choix Année</span>
-				<select id="selectYear" onchange="saveSelectedYear()">';
+				<select id="selectYear">';
 	
     $i = 1;
 	foreach ($data as $anneeData) 
