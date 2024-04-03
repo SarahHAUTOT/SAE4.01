@@ -155,7 +155,8 @@ class DB
 		$max_annee_id = $result['max_annee_id'];
 
 		// Check if data exists and contains students
-		if (!empty($moyennes)) {
+		if (!empty($moyennes))
+		{
 			// For each student in data
 			foreach ($moyennes as $moyenne) 
 			{
@@ -199,7 +200,6 @@ class DB
 					return "Error updating moyennes: " . $db->getError();
 				}
 			}
-		} else {
 		}
 	}
 
@@ -471,6 +471,6 @@ if (!empty($postData['action'])) {
 			break;
 	}
 } else {
-	// Répondre au client avec un message d'erreur
+	// Répondre au client avec un message d'erreur TODO
 }
 ?>
