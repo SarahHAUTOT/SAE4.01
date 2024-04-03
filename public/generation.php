@@ -34,15 +34,8 @@ function findYear($year)
 	$jsonData = file_get_contents('../data/donnees.json');
 	$data = json_decode($jsonData, true);
 
-	$anneeCur = "";
-	foreach ($data as $annee)
-	{
-		if ( strcmp($annee['anneeid'], $year) )
-		{
-            $serializedObject = serialize($annee);
-            $_SESSION['year'] = $serializedObject;
-        }
-	}
+    $serializedObject = serialize($data[$year - 1]);
+    $_SESSION['year'] = $serializedObject;
 }
 
 if (isset($_POST['action'])) {
@@ -55,9 +48,7 @@ if (isset($_POST['action'])) {
             if (isset($_POST['yearPE']) && !empty($_POST['yearPE'])) {
                 findYear($_POST['yearPE']);
 
-                alert($_POST['yearPE']);
-
-                // header("Location: generationPoursuite.php");
+                header("Location: generationPoursuite.php");
             }
             else
             {
@@ -73,7 +64,7 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
-                    header("Location: accueilAdmin.php");
+                    header("Location: commission.php");
                 }
                 else
                 {
