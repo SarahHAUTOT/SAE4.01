@@ -143,12 +143,8 @@ function generationCommissionComp(table, annee, semestre,competence) {
     })
     .then(jsonData => {
         jsonData.forEach(anneeData => {
-            console.log(anneeData['annelib'])
-            console.log(anneeData['annelib'] === '2021-2022')
             if (anneeData['annelib'] === '2021-2022') {
                 anneeData['semesters'].forEach(semesterData => {
-                    console.log(anneeData['semesters'])
-                    console.log(semesterData['semid'] === semestre)
                     if (semesterData['semid'] === semestre) {
                         semesterData['etd'].forEach(etudiantData => {
                             const row = document.createElement('tr');
