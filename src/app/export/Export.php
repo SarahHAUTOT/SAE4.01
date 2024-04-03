@@ -312,7 +312,7 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $
 	$pdf->Ln();
 
 
-	$title = $anneelib."_PoursuiteDEtude_" . $avi['nom'] . "_" . $avi['prenom'] . ".pdf";
+	$title = $anneelib."_PoursuiteDEtude_" . $avi['nom'] . "_" . $avi['prenom'] . "_" . $avi['etdid'] . ".pdf";
 	$pdf->Output($title, 'I');
 
     $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
