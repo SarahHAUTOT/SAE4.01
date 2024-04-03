@@ -199,7 +199,7 @@ function generateStudents(int $yearId, int $semesterId)
 	$students  = $db->execQuery($query);
 
 	// For each studient
-	foreach ($studients as &$studient) 
+	foreach ($students as &$studient) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
 				  FROM AdmComp'; 
