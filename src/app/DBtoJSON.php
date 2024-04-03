@@ -127,7 +127,7 @@ function generateYears()
 			foreach ($students as &$student) 
 			{
 				// Get rank of the student for the current semester and year
-				$query = 'SELECT getRankSem('.$semester['semId'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
+				$query = 'SELECT getRankSem('.$semester['semid'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
 				$rankSem = $db->execQuery($query);
 				$student['rank'] = $rankSem;
 

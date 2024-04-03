@@ -301,35 +301,41 @@ class DB
 	
 
 
-	public function insertAnnee($anneLib)
+	public function insertAnnee($years)
 	{
+
 		$postData = json_decode(file_get_contents("php://input"), true);
-
-		foreach ($anneLib as $anneLibMaisMieuxApparamentPutainDeMerde) 
-		{
 			
-				// Prepare the SQL statement
-				$sql = "INSERT INTO Annee (annelib) VALUES (?)";
+		// Prepare the SQL statement
+		$sql = "INSERT INTO Annee (annelib) VALUES (?)";
 
-				// Bind parameters
-				$params = array(
-					$anneLibMaisMieuxApparamentPutainDeMerde
-				);
+		// Bind parameters
+		$params = array(
+			$years
+		);
 
-			$stmt = $this->connect->prepare($sql);
-			$result = $stmt->execute($params);
-		}
-
+		$stmt = $this->connect->prepare($sql);
+		$result = $stmt->execute($params);
 	}
 	
 	public function insertAdmComps($admComps)
 	{
 		$postData = json_decode(file_get_contents("php://input"), true);
 
-		foreach ($$admComps as $admc) 
+		$sql = "SELECT MAX(anneeId) AS max_annee_id FROM Annee";
+
+		$stmt = $this->connect->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$max_annee_id = $result['max_annee_id'];
+
+
+
+		foreach ($admComps as $admc) 
 		{
 			$sql = "SELECT * FROM AdmComp WHERE anneeId = ? AND compId = ? AND etdId = ?";
-			$param = array ($admc['anneeId'],$admc['compId'], $admc['etdId']);
+			$param = array ($max_annee_id,$admc['comp'], $admc['etdId']);
 
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
@@ -342,10 +348,10 @@ class DB
 
 				// Bind parameters
 				$params = array(
-					$admc['admi'],
+					$admc['adm'],
 					$admc['etdId'],
-					$admc['compId'],
-					$admc['anneeId']
+					$admc['comp'],
+					$max_annee_id
 				);
 			}
 			else
@@ -356,9 +362,9 @@ class DB
 				// Bind parameters
 				$params = array(
 					$admc['etdId'],
-					$admc['compId'],
-					$admc['anneeId'],
-					$admc['admi']
+					$admc['comp'],
+					$max_annee_id,
+					$admc['adm']
 				);
 			}
 

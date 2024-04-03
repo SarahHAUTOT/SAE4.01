@@ -80,6 +80,9 @@ function generateAll()
 
 	let cheminFic = "../src/app/DB.inc.php";
 	let cheminJSON = "../src/app/DBtoJSON.php";
+
+	console.log(admComp);
+	
 	anneLib = document.getElementById('anneeLib').value;
 
 	if (!checkYearFormat(anneLib))
@@ -87,7 +90,6 @@ function generateAll()
 		alert("Veuillez entré une année dans un format correct");
 		return 0;
 	}
-
 
 	// Insertion des étudiants
 	callPHP(cheminFic, 'insertAnnee', anneLib)
@@ -205,6 +207,7 @@ function decomposeMoyennes(event)
 
 			students.push(student)
 
+
 			for (let mod of modules)
 				if (!isNaN(row[mod.lib]))
 				{
@@ -214,7 +217,8 @@ function decomposeMoyennes(event)
 						moy  : row[mod.lib],
 						modId: mod.id
 					};
-					
+
+					moyennes.push(moy);
 				}
 		}
 	};
@@ -368,8 +372,10 @@ function decomposeJury ()
 				{
 					'etdId' : etdid,
 					'adm'   : excelData[i][e],
-					'comp'  : excelData[i][ind - 1],
+					'comp'  : (excelData[0][e - 1]).replace('BIN',''),
 				}
+
+				console.log( excelData[0][e - 1]),
 				admComp.push(admCompBis);
 			});
 		}
