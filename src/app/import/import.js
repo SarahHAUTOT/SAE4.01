@@ -325,6 +325,8 @@ function decomposeCoef(event)
 		}
 	};
 
+
+	console.log("hey");
 	reader.readAsArrayBuffer(file);
 }
 
