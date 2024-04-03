@@ -23,7 +23,7 @@ if ($_SESSION['role'] != 2) {
 }
 
 
-function contenue()
+function contenu()
 {
 	echo '
 		<h1>Importation des données</h1>
@@ -98,7 +98,7 @@ function contenue()
 
 head('css/generation.css');
 
-contenue();
+contenu();
 
 foot();
 

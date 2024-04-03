@@ -23,8 +23,13 @@ if ($_SESSION['role'] != 2) {
 }
 
 
+if (! isset($_SESSION['etd']))
+    header('Location: generation.php');
+	
+    exit;
 
-function contenue()
+
+function contenu($etd)
 {
 	echo '
 	<h1>Génération avis de poursuite d\'études</h1>
@@ -49,8 +54,8 @@ function contenue()
 }
 
 head('css/generation.css');
-echo $_SESSION['year'];
-contenue();
+
+contenu();
 
 foot();
 
