@@ -362,7 +362,7 @@ function generatePDFs()
 }
 
 
-function ajouterAvis($nouvelAvis, $logo1, $logo2, $chef, $signature, $anneeLib)
+function ajouterAvis($nouvelAvis)
 {
 	// Charger les données JSON existantes depuis le fichier
 	$donnees = json_decode(file_get_contents('../../../data/study.json'), true);
@@ -374,7 +374,17 @@ function ajouterAvis($nouvelAvis, $logo1, $logo2, $chef, $signature, $anneeLib)
 	$donnees['nbAvisMaster'][$avi['avisMaster'   ]] = $donnees['nbAvisMaster'][$avi['avisMaster'   ]]+1;
 	$donnees['nbAvisIng'   ][$avi['avisIngenieur']] = $donnees['nbAvisIng']   [$avi['avisIngenieur']]+1;
 
+	// Enregistrer les données mises à jour dans le fichier JSON
+	file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
+}
 
+
+function ajouterInfo($logo1, $logo2, $chef, $signature, $anneeLib)
+{
+	// Charger les données JSON existantes depuis le fichier
+	$donnees = json_decode(file_get_contents('../../../data/study.json'), true);
+
+	//Ajouter les info en +
 	$donnees['logo1'    ] = $logo1;
 	$donnees['logo2'    ] = $logo2;
 	$donnees['chef'     ] = $chef;

@@ -48,14 +48,14 @@ function contenu(String $anneeSelec, int $semestreSelec)
 	$headerCreated = false;
 	foreach ($data as $annee)
 	{
-		if ($anne['anneLib'] == $anneeSelec)
-			foreach ($anne['semesters'] as $sem)
+		if ($annee['anneLib'] == $anneeSelec)
+			foreach ($annee['semesters'] as $sem)
 			{
 				if ($sem['semId'] == $semestreSelec)
 				{
 					$headerCreated = true;
-					foreach ($competences as $comp)
-						$contenu .= '<th>C'.comp['compid'].'</th>';
+					foreach ($sem['competences'] as $comp)
+						$contenu .= '<th>C'.$comp['compid'].'</th>';
 				}
 
 				if ($headerCreated) break;
@@ -69,8 +69,8 @@ function contenu(String $anneeSelec, int $semestreSelec)
 	$semesterFound = false;
 	foreach ($data as $annee)
 	{
-		if ($anne['anneLib'] == $anneeSelec)
-			foreach ($anne['semesters'] as $sem)
+		if ($annee['anneLib'] == $anneeSelec)
+			foreach ($annee['semesters'] as $sem)
 			{
 				$semesterFound = true;
 				if ($sem['semId'] == $semestreSelec)
@@ -88,7 +88,7 @@ function contenu(String $anneeSelec, int $semestreSelec)
 					}
 
 					foreach($student['competences'] as $comp)
-						$contenu .= '<td>'.$comp['admi'] .'</td>'
+						$contenu .= '<td>'.$comp['admi'] .'</td>';
 
 					$contenu .= '</tr>';
 				}

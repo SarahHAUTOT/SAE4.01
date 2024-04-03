@@ -107,12 +107,27 @@ function generationCommissionComp(table, annee, semestre,competence) {
         thElement.textContent = headerText;
         firstRow.appendChild(thElement);
     });
-    const thElement = document.createElement('th');
-    const lienA     = document.createElement('a')
-    lienA.setAttribute('href','commission.php')
-    lienA.textContent = competence;
-    thElement.appendChild(lienA);
-    firstRow.appendChild(thElement);
+    fetch('http://localhost/SAE4.01/data/comp.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(jsonData => {
+        let countCompetence =0;
+        jsonData.forEach(bin => {
+            if(bin['compid']>=competence*10+1 && bin['compid']<=competence*10+9){countCompetence++}
+        })
+        const thElement = document.createElement('th');
+        const lienA     = document.createElement('a')
+        lienA.setAttribute('href','commission.php')
+        lienA.textContent = 'C'+competence;
+        thElement.setAttribute('colspan',countCompetence)
+        thElement.appendChild(lienA);
+        firstRow.appendChild(thElement);
+    })
+    
 
     tHeadElem.appendChild(firstRow);
     table.appendChild(tHeadElem);

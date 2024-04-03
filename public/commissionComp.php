@@ -47,7 +47,7 @@ function contenu()
 			const titre2 = document.getElementById("anneeSemestre")
 			titre2.textContent = "Annee 2021-2022 / Semestre 1"
 			const table = document.getElementById("tableCom")
-			generationCommissionComp(table,"2021-2022",1)
+			generationCommissionComp(table,"2021-2022",1,"1")
 		});
 	</script>';
 }
