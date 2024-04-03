@@ -30,6 +30,14 @@ function isEmpty(value)
 	return (value == null || (typeof value === "string" && value.trim().length === 0));
 }
 
+function reverseString(str)
+{
+    let splitString = str.split("");
+    let reverseArray = splitString.reverse();
+	let joinArray = reverseArray.join("");
+    return joinArray;
+}
+
 function callPHP(file, action, datas) {
 	return new Promise((resolve, reject) => {
 		fetch(file, {
@@ -266,7 +274,7 @@ function decomposeCoef(event)
 				}
 				
 			}
-		
+				
 		let nbComp = workbook.SheetNames.length -1;
 
 		let modAttr = ['modCode', 'modLib', 'modCat'];
@@ -313,7 +321,7 @@ function decomposeCoef(event)
 					let compColumn = 'D'.charCodeAt(0);
 					let idComp = (letter.charCodeAt(0) - compColumn) + ((nbSem -1) * nbComp);
 					
-					let compId = competences[idComp].compId; // TODO wrong thing
+					let compId = reverseString(competences[idComp].compId);
 					compMod = { compId: compId, modId: currentModId, modCoef: dataCell };
 
 					compMods.push(compMod);
