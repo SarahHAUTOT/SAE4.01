@@ -22,18 +22,13 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
-
-if (! isset($_SESSION['etd']))
-    header('Location: generation.php');
-	
-    exit;
-
-
-function contenu($etd)
+function contenu()
 {
 	echo '
-	<h1>Génération avis de poursuite d\'études</h1>
+	<h1>Génération avis de poursuite d\'études'. $_SESSION['year']['annelib'] .'</h1>
 	<div class="container">
+
+	<form method="POST" action="suiv">
 		<h2>Choix des paramètres</h2>
 		<div class="gridLibImport">
 			<span>Nom du chef de Dept. :</span>
@@ -49,7 +44,9 @@ function contenu($etd)
 			<input type="file" id="sign-cach-dept" name="sign-cach-dept" accept="image/png, image/jpeg">
 
             </div>
-            <a href="squeletteFicheAvis.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Remplir les avies</button></a>
+            <button class="validateButtonStyle" type="import" name="signCachet" value="">Remplir les avies</button>
+	
+	</form>
 	</div>';
 }
 

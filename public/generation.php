@@ -27,49 +27,70 @@ function alert($message)
     echo "<script>alert('$message');</script>";
 }
 
+
+function findYear($year)
+{
+    // Récupération des données JSON depuis le fichier
+	$jsonData = file_get_contents('../data/donnees.json');
+	$data = json_decode($jsonData, true);
+
+	$anneeCur = "";
+	foreach ($data as $annee)
+	{
+		if ( strcmp($annee['anneeid'], $year) )
+		{
+            $serializedObject = serialize($annee);
+            $_SESSION['year'] = $serializedObject;
+        }
+	}
+}
+
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
-    if (!isset($_SESSION['year'])) 
+    switch ($action)
     {
-        alert("Veuillez sélectionner une année");
-    }
-    else
-    {
-        switch ($action)
-        {
-            case 'pe':
-                //générationd des poursuite d'études
-                header("Location: generationPoursuite.php");
-                break;
+        case 'pe':
+            //générationd des poursuite d'études
+            if (isset($_POST['yearPE']) && !empty($_POST['yearPE'])) {
+                findYear($_POST['yearPE']);
 
-            case 'comm':
-            case 'jury':
-                echo "Year selected: " . $_POST['yearCom'];
+                alert($_POST['yearPE']);
 
-                if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+                // header("Location: generationPoursuite.php");
+            }
+            else
+            {
+                alert("Veuillez selectionné une année");
+            }
+            break;
 
-                    if (isset($_POST['semCom']) && !empty($_POST['semCom']))
-                    {
-                        header("Location: connexion.php");
-                    }
-                    else
-                    {
-                        alert("Veuillez selectionnée un semestre");
-                    }
+        case 'comm':
+        case 'jury':
+            echo "Year selected: " . $_POST['yearCom'];
+
+            if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+
+                if (isset($_POST['semCom']) && !empty($_POST['semCom']))
+                {
+                    header("Location: accueilAdmin.php");
                 }
                 else
                 {
-                    alert("Veuillez ,fbgdbsjfbs une année" . $_POST['yearCom'] . "djzjbd");
+                    alert("Veuillez selectionnée un semestre");
                 }
-                break;
+            }
+            else
+            {
+                alert("Veuillez selectionné une année");
+            }
+            break;
 
 
 
-            default:
-                echo "Action non reconnue";
-                break;
-        }
+        default:
+            echo "Action non reconnue";
+            break;
     }
 }
 
@@ -92,13 +113,9 @@ function contenu()
 				<span>Choix Année</span>
 				<select id="selectYear" name="yearPE" ">';
 	
-    $i = 1;
 	foreach ($data as $anneeData) 
-		if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
-		{
-            echo '<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
-            $i++;
-        }
+		// if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
+            echo '<option value="'.$anneeData['anneeid'].'">'. $anneeData['annelib'] .'</option>';
 
 
 		echo '</select>
@@ -113,12 +130,8 @@ function contenu()
 				<select id="selectYear" name="yearCom" >';
 
 	
-	$i = 1;		
 	foreach ($data as $anneeData)
-    {
-        echo'	<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
-        $i++;
-    }
+        echo '<option value="'.$anneeData['anneeid'].'">'. $anneeData['annelib'] .'</option>';
 
 	echo    '</select>
 
