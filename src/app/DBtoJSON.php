@@ -198,8 +198,8 @@ function generateStudents(int $yearId, int $semesterId)
 				WHERE anneId = ".$yearId." AND semId = ".$semesterId;
 	$students  = $db->execQuery($query);
 
-	// For each studient
-	foreach ($students as &$studient) 
+	// For each student
+	foreach ($students as &$student) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
 				  FROM AdmComp'; 
