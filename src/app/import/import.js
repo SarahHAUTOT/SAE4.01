@@ -162,7 +162,8 @@ function decomposeMoyennes(event)
 		// Iterate through the Modules
 		const header = Object.keys(rows[0]);
 		const compDetails = header.slice(13, header.length -2);
-		for (let i = 0; i < compDetails.length; i++) {
+		for (let i = 0; i < compDetails.length; i++)
+        {
 			let key = compDetails[i];
 
 			let isBonus = key.startsWith('Bonus');

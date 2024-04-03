@@ -61,55 +61,59 @@ function contenue()
 			<div class="gridLibImport">
 
 				<span>Choix Année</span>
-				<select>';
-				
+				<select id="selectYear" onchange"saveSelectedYear()">';
+	
+    $i = 1;
 	foreach ($data as $anneeData) 
-		if (count($anneeData['semesters'][4]['etd']) > 0)
-				echo '
-					<option value="annee4">'. $anneeData['annelib'] .'</option>';
+		if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
+		{
+            echo '<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
+            $i++;
+        }
 
 
-				echo '</select>
-			</div>
-
-			<button  type="submit" name="action" value="pe" class="validateButtonStyle">Continuer vers export d\'avis de poursuite d\'étude</button>
+		echo '</select>
 		</div>
+        	<button  type="submit" name="action" value="pe" class="validateButtonStyle">Continuer vers export d\'avis de poursuite d\'étude</button>
+		</div>
+
 		<div class="generationSection">
 			<h2>Préparation aux commissions/jurys</h2>
 			<div class="gridLibImport" >
 				<span>Choix Année</span>
-				<select>';
+				<select id="selectYear">';
 
-				
 	
-				
-	foreach ($data as $anneeData) 
-		echo'	<option value="annee4">'. $anneeData['annelib'] .'</option>';
+	$i = 1;		
+	foreach ($data as $anneeData)
+    {
+        echo'	<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
+        $i++;
+    }
 
+	echo    '</select>
 
-	echo'
-				</select>
-
-				<span>Choix semestre</span>
-				<select>
-					<option value="semestre1">S1</option>
-					<option value="semestre2">S2</option>
-					<option value="semestre3">S3</option>
-					<option value="semestre4">S4</option>
-					<option value="semestre4">S5</option>
-				</select>
-			</div>
-			
-			<button type="submit" name="action" value="jury" class="validateButtonStyle">Générer Jury</button>
-			<button type="submit" name="action" value="com" class="validateButtonStyle">Générer Commission</button>
+			<span>Choix semestre</span>
+			<select id="selectSemester" onchange="saveSelectedSemester()">
+				<option value="semestre1">S1</option>
+				<option value="semestre2">S2</option>
+				<option value="semestre3">S3</option>
+				<option value="semestre4">S4</option>
+				<option value="semestre4">S5</option>
+			</select>
 		</div>
-		</form>
+			
+		<button type="submit" name="action" value="jury" class="validateButtonStyle">Générer Jury</button>
+		<button type="submit" name="action" value="com" class="validateButtonStyle">Générer Commission</button>
+	</div>
+	</form>
 	</div>';
 }
 
 head('css/generation.css');
-
+echo '<script src="js/selectYear.js"></script>';
+echo '<script src="js/selectSemester.js"></script>';
 contenue();
-
 foot();
+
 ?>
