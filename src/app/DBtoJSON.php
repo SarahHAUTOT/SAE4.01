@@ -186,7 +186,7 @@ function generateYears()
 /*                          CSV CREATION                              */
 /**********************************************************************/
 
-function generateStudents(int $yearId, int $semesterId)
+function generateStudentsCsv(int $yearId, int $semesterId)
 {
 	
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
@@ -263,6 +263,38 @@ function generateStudents(int $yearId, int $semesterId)
 				];
 			}
 		}
+	}
+
+	// JSON Generation
+	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
+	file_put_contents( '../../data/csv.json', $jsonData);
+
+	echo "Le fichier csv.json a été créé avec succès.<br>";
+}
+
+
+
+
+/**********************************************************************/
+/*                   POURSUITE D'ETUDE CREATION                       */
+/**********************************************************************/
+
+function generateStudents(int $yearId)
+{
+	
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
+	// Getting all of the student for a specified year and semester
+	$query     = "SELECT etdId, etdNom, etdPrenom 
+				  FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
+				  WHERE anneId = ".$yearId." AND compId LIKE '5_'";
+	$students  = $db->execQuery($query);
+
+	// For each student
+	foreach ($students as &$student) 
+	{
+		// For BUT 1 and BUT 2 => we will determine the moy and rank of each students for every comp + math + anglais 
+		// For BUT 3           => get the moy and rank of each students for the comp 61, 62 and 66 + math + anglais
 	}
 
 	// JSON Generation
