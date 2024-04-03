@@ -301,27 +301,41 @@ class DB
 	
 
 
-	public function insertAnnee($anneLib)
+	public function insertAnnee($years)
 	{
-		$anneLib = $anneLib[0];
-		$postData = json_decode(file_get_contents("php://input"), true);
 
-		$sql = "INSERT INTO Annee (anneLib) VALUES ?";
-		$param = array ($anneLib);
+		$postData = json_decode(file_get_contents("php://input"), true);
+			
+		// Prepare the SQL statement
+		$sql = "INSERT INTO Annee (annelib) VALUES (?)";
+
+		// Bind parameters
+		$params = array(
+			$years
+		);
 
 		$stmt = $this->connect->prepare($sql);
-		$res = $stmt->execute($param);
-
+		$result = $stmt->execute($params);
 	}
 	
 	public function insertAdmComps($admComps)
 	{
 		$postData = json_decode(file_get_contents("php://input"), true);
 
-		foreach ($$admComps as $admc) 
+		$sql = "SELECT MAX(anneeId) AS max_annee_id FROM Annee";
+
+		$stmt = $this->connect->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$max_annee_id = $result['max_annee_id'];
+
+
+
+		foreach ($admComps as $admc) 
 		{
 			$sql = "SELECT * FROM AdmComp WHERE anneeId = ? AND compId = ? AND etdId = ?";
-			$param = array ($admc['anneeId'],$admc['compId'], $admc['etdId']);
+			$param = array ($max_annee_id,$admc['comp'], $admc['etdId']);
 
 			$stmt = $this->connect->prepare($sql);
 			$res = $stmt->execute($param);
@@ -334,10 +348,10 @@ class DB
 
 				// Bind parameters
 				$params = array(
-					$admc['admi'],
+					$admc['adm'],
 					$admc['etdId'],
-					$admc['compId'],
-					$admc['anneeId']
+					$admc['comp'],
+					$max_annee_id
 				);
 			}
 			else
@@ -348,9 +362,9 @@ class DB
 				// Bind parameters
 				$params = array(
 					$admc['etdId'],
-					$admc['compId'],
-					$admc['anneeId'],
-					$admc['admi']
+					$admc['comp'],
+					$max_annee_id,
+					$admc['adm']
 				);
 			}
 
@@ -459,8 +473,4 @@ if (!empty($postData['action'])) {
 } else {
 	// Répondre au client avec un message d'erreur
 }
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 ?>

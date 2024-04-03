@@ -22,68 +22,98 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+
+	echo ("hey");
+
+    switch ($action) {
+        case 'pe':
+			//générationd des poursuite d'études
+			header("Location: connexion.php");
+            break;
+        case 'jury':
+			//Génération jury
+            break;
+        case 'comm':
+			//Génération de commissions
+            break;
+        default:
+            echo "Action non reconnue";
+            break;
+    }
+}
+
 
 function contenue()
 {
+	$jsonData = file_get_contents('../data/donnees.json');
+	$data = json_decode($jsonData, true);
+
+
+
 	echo '
 	<h1> Génération </h1>
 	<div class="container">
+	<form action="generation.php" method="post">
 		<div class="generationSection">
 			<h2>Avis de poursuite d\'études</h2>
 			<div class="gridLibImport">
+
 				<span>Choix Année</span>
-				<select>
-					<option value="annee1">Année 1</option>
-					<option value="annee2">Année 2</option>
-					<option value="annee3">Année 3</option>
-					<option value="annee4">Année 4</option>
-				</select>
+				<select id="selectYear" onchange"saveSelectedYear()">';
+	
+    $i = 1;
+	foreach ($data as $anneeData) 
+		if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
+		{
+            echo '<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
+            $i++;
+        }
 
-				<span>Choix d\'étudiant</span>
-				<select>
-					<option value="etudiant1">Étudiant 1</option>
-					<option value="etudiant2">Étudiant 2</option>
-					<option value="etudiant3">Étudiant 3</option>
-					<option value="etudiant4">Étudiant 4</option>
-				</select>
-			</div>
 
-			<a href="generationPoursuite.php"><button class="validateButtonStyle">Continuer vers export d\'avis de poursuite d\'étude</button></a>
+		echo '</select>
 		</div>
+        	<button  type="submit" name="action" value="pe" class="validateButtonStyle">Continuer vers export d\'avis de poursuite d\'étude</button>
+		</div>
+
 		<div class="generationSection">
 			<h2>Préparation aux commissions/jurys</h2>
 			<div class="gridLibImport" >
 				<span>Choix Année</span>
-				<select>
-					<option value="annee1">Année 1</option>
-					<option value="annee2">Année 2</option>
-					<option value="annee3">Année 3</option>
-					<option value="annee4">Année 4</option>
-				</select>
+				<select id="selectYear">';
 
-				<span>Choix semestre</span>
-				<select>
-					<option value="semestre1">Semestre 1</option>
-					<option value="semestre2">Semestre 2</option>
-					<option value="semestre3">Semestre 3</option>
-					<option value="semestre4">Semestre 4</option>
-				</select>
-			</div>
-			
-			<a href=""><button class="validateButtonStyle">Générer Jury</button></a>
-			<a href="commission.php"><button class="validateButtonStyle">Générer Commission</button></a>
+	
+	$i = 1;		
+	foreach ($data as $anneeData)
+    {
+        echo'	<option value="annee'.$i.'">'. $anneeData['annelib'] .'</option>';
+        $i++;
+    }
+
+	echo    '</select>
+
+			<span>Choix semestre</span>
+			<select id="selectSemester" onchange="saveSelectedSemester()">
+				<option value="semestre1">S1</option>
+				<option value="semestre2">S2</option>
+				<option value="semestre3">S3</option>
+				<option value="semestre4">S4</option>
+				<option value="semestre4">S5</option>
+			</select>
 		</div>
+			
+		<button type="submit" name="action" value="jury" class="validateButtonStyle">Générer Jury</button>
+		<button type="submit" name="action" value="com" class="validateButtonStyle">Générer Commission</button>
+	</div>
+	</form>
 	</div>';
 }
 
 head('css/generation.css');
-
+echo '<script src="js/selectYear.js"></script>';
+echo '<script src="js/selectSemester.js"></script>';
 contenue();
-
 foot();
-
-
-
-
 
 ?>

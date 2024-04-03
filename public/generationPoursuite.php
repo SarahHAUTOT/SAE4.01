@@ -23,7 +23,13 @@ if ($_SESSION['role'] != 2) {
 }
 
 
-function contenue()
+if (! isset($_SESSION['etd']))
+    header('Location: generation.php');
+	
+    exit;
+
+
+function contenue($etd)
 {
 	echo '
 	<h1>Génération avis de poursuite d\'études</h1>

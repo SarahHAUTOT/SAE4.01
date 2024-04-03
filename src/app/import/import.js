@@ -78,7 +78,11 @@ function checkYearFormat(annee) {
 function generateAll()
 {
 
-	let cheminFic = "../../public/DB.inc.php";
+	let cheminFic = "../src/app/DB.inc.php";
+	let cheminJSON = "../src/app/DBtoJSON.php";
+
+	console.log(admComp);
+	
 	anneLib = document.getElementById('anneeLib').value;
 
 	if (!checkYearFormat(anneLib))
@@ -116,9 +120,26 @@ function generateAll()
 			// Toutes les opérations ont réussi
 			console.log("Toutes les données ont été insérées avec succès !");
 		})
+		.then(() => {
+			fetch(cheminJSON)
+			.then(response => {
+				if (!response.ok) {
+				throw new Error('Network response was not ok');
+				}
+				return response.text();
+			})
+			.then(data => {
+				console.log(data); // Affiche la réponse du fichier PHP
+			})
+			.catch(error => {
+				console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
+			});
+		})
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
+
+
 
 	// window.location.href = "accueilAdmin.php";
 }
@@ -143,7 +164,8 @@ function decomposeMoyennes(event)
 		// Iterate through the Modules
 		const header = Object.keys(rows[0]);
 		const compDetails = header.slice(13, header.length -2);
-		for (let i = 0; i < compDetails.length; i++) {
+		for (let i = 0; i < compDetails.length; i++)
+        {
 			let key = compDetails[i];
 
 			let isBonus = key.startsWith('Bonus');
@@ -185,6 +207,7 @@ function decomposeMoyennes(event)
 
 			students.push(student)
 
+
 			for (let mod of modules)
 				if (!isNaN(row[mod.lib]))
 				{
@@ -194,7 +217,8 @@ function decomposeMoyennes(event)
 						moy  : row[mod.lib],
 						modId: mod.id
 					};
-					
+
+					moyennes.push(moy);
 				}
 		}
 	};
@@ -348,8 +372,10 @@ function decomposeJury ()
 				{
 					'etdId' : etdid,
 					'adm'   : excelData[i][e],
-					'comp'  : excelData[i][ind - 1],
+					'comp'  : (excelData[0][e - 1]).replace('BIN',''),
 				}
+
+				console.log( excelData[0][e - 1]),
 				admComp.push(admCompBis);
 			});
 		}

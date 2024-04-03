@@ -2,16 +2,16 @@
     {
         "exportid": 1,
         "exporttype": "PE",
-        "exportchemin": "\/chemin\/vers\/export1.csv"
+        "exportchemin": "8420_Thomas_Micheline_2022-2023"
     },
     {
         "exportid": 2,
         "exporttype": "CO",
-        "exportchemin": "\/chemin\/vers\/export2.csv"
+        "exportchemin": "2022-2023_S2_commission"
     },
     {
         "exportid": 3,
         "exporttype": "JU",
-        "exportchemin": "\/chemin\/vers\/export3.csv"
+        "exportchemin": "2025-2026_S1_commission"
     }
 ]

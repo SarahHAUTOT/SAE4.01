@@ -8,6 +8,8 @@ generateCompMod();
 generateYears();
 generateExport();
 
+echo "pute";
+
 
 /**********************************************************************/
 /*                              USERS                                 */
@@ -85,12 +87,9 @@ function generateCompMod()
 	// Générer le JSON
 	$jsonData = json_encode($competences, JSON_PRETTY_PRINT);
 	// Écrire le JSON dans un fichier
-	file_put_contents( '../../data/comp.json', $jsonData);
+	file_put_contents( '../../data/compMod.json', $jsonData);
 	echo "Le fichier comp.json a été créé avec succès.<br>";
 }
-
-
-
 
 
 /**********************************************************************/
@@ -128,7 +127,7 @@ function generateYears()
 			foreach ($students as &$student) 
 			{
 				// Get rank of the student for the current semester and year
-				$query = 'SELECT getRankSem('.$semester['semId'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
+				$query = 'SELECT getRankSem('.$semester['semid'].', '.$student['etdid'].', '.$year['anneeid'].') FROM AdmComp'; 
 				$rankSem = $db->execQuery($query);
 				$student['rank'] = $rankSem;
 
