@@ -3,8 +3,6 @@
 //Pour la structure
 include 'background.php';
 
-
-
 // Démarrer la session
 session_start();
 
@@ -29,10 +27,9 @@ function contenu()
 	<div>
 		<h1>Commission d\'études</h1>
 		<div class="container">
-			<h2 id="anneeSemestre">%%ETUDIANT SPECIFIQUE%%</h2>
+			<h2 id="anneeSemestre"></h2>
 				<table class="block" id="tableCom">
 				</table>
-
 				<div class="gridRessource">
 					<label id="modification">*Modification non sauvegardée*</label>
 					<button class="validateButtonStyle" type="import" name="signCachet" value="">Prévisualiser</button>

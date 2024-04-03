@@ -29,7 +29,7 @@ if (! isset($_SESSION['etd']))
     exit;
 
 
-function contenue($etd)
+function contenu($etd)
 {
 	echo '
 	<h1>Génération avis de poursuite d\'études</h1>
@@ -55,7 +55,7 @@ function contenue($etd)
 
 head('css/generation.css');
 
-contenue();
+contenu();
 
 foot();
 

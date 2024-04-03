@@ -33,7 +33,7 @@ function forEachStudents($etds)
 	}
 }
 
-function contenue()
+function contenu()
 {
 	echo '
 	<div>
@@ -245,7 +245,7 @@ function contenue()
 
 head('css/generation.css');
 
-contenue();
+contenu();
 
 foot();
 

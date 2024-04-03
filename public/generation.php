@@ -45,7 +45,7 @@ if (isset($_POST['action'])) {
 }
 
 
-function contenue()
+function contenu()
 {
 	$jsonData = file_get_contents('../data/donnees.json');
 	$data = json_decode($jsonData, true);
@@ -113,7 +113,7 @@ function contenue()
 head('css/generation.css');
 echo '<script src="js/selectYear.js"></script>';
 echo '<script src="js/selectSemester.js"></script>';
-contenue();
+contenu();
 foot();
 
 ?>
