@@ -217,7 +217,6 @@ function moyenneComp(semestre, comp, modules) {
                             if (module1['modId'] === module2['modId']) {
                                 console.log(module2['noteVal'] +" = "+parseFloat(module2['noteVal']))
                                 console.log(module1['noteVal'] +" = "+parseFloat(module1['noteVal']))
-                                console.log()
                                 resultat += parseFloat(module2['noteVal']) * parseFloat(module1['modVal']);
                                 coeff += parseFloat(module1['modVal']);
                             }
