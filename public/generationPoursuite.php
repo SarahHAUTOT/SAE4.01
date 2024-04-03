@@ -22,30 +22,18 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
+require_once('../src/app/export/export.php'); 
+$year = unserialize($_SESSION['year']);
 
 // Vérifier si les champs du formulaire sont soumis
-if (isset($_POST['user']) && isset($_POST['password'])) {
-	$username = $_POST['user'];
-	$password = $_POST['password'];
-
-	foreach ($data as $user) {
-		if ($user['userlogin'] === $username && $user['userpassword'] === $password) {
-			$_SESSION['username'] = $username;
-			$_SESSION['role'] = $user['userdroit'];
-
-			if ( $user['userdroit'] == 2)
-				header("Location: ./accueilAdmin.php");
-			else
-				header("Location: ./accueilUtilisateur.php");
-
-			exit;
-		}
-	}
+if (isset($_POST['chef'])  && isset($_POST['sign'])  && 
+    isset($_POST['logo1']) && isset($_POST['logo2'])  ) 
+{
+	ajouterInfo();
 }
 
 function contenu()
 {
-	$year = unserialize($_SESSION['year']);
 
 	echo '
 	<h1>Génération avis de poursuite d\'études '. $year['annelib'] .' </h1>
