@@ -10,16 +10,16 @@ session_start();
 
 // Vérifier si la session est ouverte
 if (!isset($_SESSION['role'])) {
-    // Rediriger vers la page de connexion si la session n'est pas ouverte
-    header('Location: connexion.php');
-    exit;
+	// Rediriger vers la page de connexion si la session n'est pas ouverte
+	header('Location: connexion.php');
+	exit;
 }
 
 // Vérifier les droits de l'utilisateur
 if ($_SESSION['role'] != 2) {
-    // Rediriger vers une page d'erreur si l'utilisateur n'a pas les droits nécessaires
-    header('Location: accueilUtilisateur.php');
-    exit;
+	// Rediriger vers une page d'erreur si l'utilisateur n'a pas les droits nécessaires
+	header('Location: accueilUtilisateur.php');
+	exit;
 }
 
 
@@ -28,13 +28,26 @@ if ($_SESSION['role'] != 2) {
 
 function forEachStudents($etds)
 {
-	foreach ($etds as $key => $etd) {
-		# code...
-	}
+	/*
+	foreach ($etds as $etd)
+	{
+		contenue($etd)
+	}*/
 }
 
 function contenue($etd)
 {
+	// Récupération des données JSON depuis le fichier
+	$jsonData = file_get_contents('../../data/donnees.json');
+	$data = json_decode($jsonData, true);
+
+	$anneeCur = "";
+	foreach ($data as $annee)
+	{
+		if ( strcmp($annee['annelib'], $_SESSION['year']) )
+			$anneeCur = $annee;
+	}
+
 	echo '
 	<div>
 		<h1>Génération avis de poursuite d\'études</h1>
@@ -43,13 +56,13 @@ function contenue($etd)
 			<table>
 				<thead>
 					<tr>
-					  <th>Apprentissage</th>
-					  <th>BUT 1</th>
-					  <th>BUT 2</th>
-					  <th>BUT 3</th>
+					<th>Apprentissage</th>
+					<th>BUT 1</th>
+					<th>BUT 2</th>
+					<th>BUT 3</th>
 					</tr>
-				  </thead>
-				  <tbody>
+				</thead>
+				<tbody>
 					<tr>
 						<th>Parcours d\'études</th>
 						<td>N-2</td>
@@ -64,7 +77,7 @@ function contenue($etd)
 						<th>Si mobilité à létranger (lieu,durée)</th>
 						<td colspan="3"></td>
 					</tr>
-				  </tbody>
+				</tbody>
 				</table>
 				<hr>
 				<h3>Résultat des compétences</h3>
@@ -81,70 +94,70 @@ function contenue($etd)
 							<th>Rang</th>
 							<th>Moy.</th>
 						</tr>
-					  </thead>
-					  <tbody>
+					</thead>
+					<tbody>
 						<tr>
 							<th>UE1-Réaliser des applications</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][0]['rank'].'</td>
+							<td>'.$etd['but 1'][0]['moy' ].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE2-Optimiser des applications</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][0]['rank'].'</td>
+							<td>'.$etd['but 1'][0]['moy' ].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
+							<td>'.$etd['but 2'][0]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE3-Administrer des systèmes</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][1]['rank'].'</td>
+							<td>'.$etd['but 1'][1]['moy' ].'</td>
+							<td>'.$etd['but 2'][1]['rank'].'</td>
+							<td>'.$etd['but 2'][1]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE4-Gérer des données</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][2]['rank'].'</td>
+							<td>'.$etd['but 1'][2]['moy' ].'</td>
+							<td>'.$etd['but 2'][2]['rank'].'</td>
+							<td>'.$etd['but 2'][2]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE5-Conduire des projets</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][3]['rank'].'</td>
+							<td>'.$etd['but 1'][3]['moy' ].'</td>
+							<td>'.$etd['but 2'][3]['rank'].'</td>
+							<td>'.$etd['but 2'][3]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE5-Conduire des projets</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][4]['rank'].'</td>
+							<td>'.$etd['but 1'][4]['moy' ].'</td>
+							<td>'.$etd['but 2'][4]['rank'].'</td>
+							<td>'.$etd['but 2'][4]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>UE6-Collaborer</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1'][5]['rank'].'</td>
+							<td>'.$etd['but 1'][5]['moy' ].'</td>
+							<td>'.$etd['but 2'][5]['rank'].'</td>
+							<td>'.$etd['but 2'][5]['rank'].'</td>
 						</tr>
 						<tr>
 							<th>Maths</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1']['anglais']['rank'].'</td>
+							<td>'.$etd['but 1']['anglais']['moy' ].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
 						</tr>
 						<tr>
 							<th>Anglais</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>'.$etd['but 1']['anglais']['rank'].'</td>
+							<td>'.$etd['but 1']['anglais']['moy' ].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
+							<td>'.$etd['but 2']['anglais']['rank'].'</td>
 						</tr>
 						<tr>
 							<th>Nombre d\'absences injustifiées</th>
@@ -253,13 +266,13 @@ function contenu()
 			<table>
 				<thead>
 					<tr>
-					  <th>Apprentissage</th>
-					  <th>BUT 1</th>
-					  <th>BUT 2</th>
-					  <th>BUT 3</th>
+					<th>Apprentissage</th>
+					<th>BUT 1</th>
+					<th>BUT 2</th>
+					<th>BUT 3</th>
 					</tr>
-				  </thead>
-				  <tbody>
+				</thead>
+				<tbody>
 					<tr>
 						<th>Parcours d\'études</th>
 						<td>N-2</td>
@@ -274,7 +287,7 @@ function contenu()
 						<th>Si mobilité à létranger (lieu,durée)</th>
 						<td colspan="3"></td>
 					</tr>
-				  </tbody>
+				</tbody>
 				</table>
 				<hr>
 				<h3>Résultat des compétences</h3>
@@ -291,8 +304,8 @@ function contenu()
 							<th>Rang</th>
 							<th>Moy.</th>
 						</tr>
-					  </thead>
-					  <tbody>
+					</thead>
+					<tbody>
 						<tr>
 							<th>UE1-Réaliser des applications</th>
 							<td></td>
@@ -455,7 +468,7 @@ function contenu()
 
 head('css/generation.css');
 
-contenue();
+contenu();
 
 foot();
 

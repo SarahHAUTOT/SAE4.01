@@ -21,7 +21,7 @@ if ($_SESSION['role'] != 2) {
 }
 
 
-function contenue()
+function contenu()
 {
 	echo '
 		<h1>Bienvenue Admin</h1>
@@ -43,6 +43,6 @@ function contenue()
 
 head('css/accueilEtConnexion.css');
 
-contenue();
+contenu();
 
 foot();
