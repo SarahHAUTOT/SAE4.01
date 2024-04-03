@@ -301,25 +301,20 @@ class DB
 	
 
 
-	public function insertAnnee($anneLib)
+	public function insertAnnee($anneLibMaisMieuxApparamentPutainDeMerde)
 	{
 		$postData = json_decode(file_get_contents("php://input"), true);
-
-		foreach ($anneLib as $anneLibMaisMieuxApparamentPutainDeMerde) 
-		{
 			
-				// Prepare the SQL statement
-				$sql = "INSERT INTO Annee (annelib) VALUES (?)";
+		// Prepare the SQL statement
+		$sql = "INSERT INTO Annee (annelib) VALUES (?)";
 
-				// Bind parameters
-				$params = array(
-					$anneLibMaisMieuxApparamentPutainDeMerde
-				);
+		// Bind parameters
+		$params = array(
+			$anneLibMaisMieuxApparamentPutainDeMerde
+		);
 
-			$stmt = $this->connect->prepare($sql);
-			$result = $stmt->execute($params);
-		}
-
+		$stmt = $this->connect->prepare($sql);
+		$result = $stmt->execute($params);
 	}
 	
 	public function insertAdmComps($admComps)
@@ -433,7 +428,7 @@ if (!empty($postData['action'])) {
 		
 		case 'insertAnnee':
 			// Appeler la méthode insertAnnee avec les données d'étudiants
-			$db->insertAnnee($postData['datas']);
+			$db->insertAnnee($postData['anneLib']);
 			break;
 		
 		case 'insertMoyennes':

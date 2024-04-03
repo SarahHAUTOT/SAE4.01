@@ -112,4 +112,9 @@ head('css/generation.css');
 contenue();
 
 foot();
+
+
+
+
+
 ?>

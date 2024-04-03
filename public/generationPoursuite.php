@@ -22,6 +22,13 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
+
+if (! isset($_SESSION['etd']))
+    header('Location: generation.php');
+	
+    exit;
+
+
 function contenue($etd)
 {
 	echo '
