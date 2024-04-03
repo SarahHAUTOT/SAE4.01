@@ -1,27 +1,23 @@
-CREATE OR REPLACE FUNCTION getCompMoy(IN semesterId INTEGER, IN compIdd INTEGER, IN studentId INTEGER, IN yearId INTEGER)
+CREATE OR REPLACE FUNCTION getCompMoy(IN compIdd INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS FLOAT AS $$
 DECLARE
-	tot_note FLOAT := 0;
-	tot_coef FLOAT := 0;
+	moy FLOAT:= 0;
 BEGIN
-	SELECT SUM(modCoef) INTO tot_coef
-	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId 
-    JOIN  CompMod cm ON cm.compId=c.compId
-	WHERE cm.compId = compIdd AND semId = semesterId AND anneeId = yearId;
+	SELECT SUM(noteVal * cm.modCoef) / SUM(cm.modCoef) INTO moy
+	FROM Moyenne m
+	JOIN CompMod cm ON m.modId = cm.modId
+	JOIN Competence c ON c.compId = cm.compId
+	WHERE c.compId = compIdd -- ID de la compétence 11
+	AND   m.etdId = studentId
+	AND   anneeId = yearId; -- ID de l'étudiant
 
-	IF tot_coef = 0 THEN
-		RETURN NULL; -- No modules affected to the Competence 
-	END IF;
+	RETURN moy;
 
-	SELECT SUM(noteVal * modCoef) INTO tot_note
-	FROM  Moyenne m JOIN CompMod cm ON m.modId = cm.modId
-	JOIN  Competence c ON c.compId = cm.compId
-	WHERE cm.compId = compIdd AND m.anneeId = yearId 
-		  AND m.etdId = studentId AND semId = semesterId;
-
-	RETURN tot_note / tot_coef;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
 
 
 CREATE OR REPLACE FUNCTION getSemMoy(IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
@@ -30,15 +26,15 @@ DECLARE
 	total FLOAT := 0;
 	count_comps INTEGER := 0;
 BEGIN
-	SELECT COUNT(c.compId) INTO count_comps 
-	FROM  AdmComp admc JOIN Competence c ON c.compId=admc.compId 
-	WHERE semId = semesterId AND anneeId = yearId;
+	SELECT COUNT(*) INTO count_comps 
+	FROM   Competence
+	WHERE  semid = semesterId;
 
 	IF count_comps = 0 THEN
 		RETURN NULL; -- No competence for the semester 
 	END IF;
 
-	SELECT SUM( getCompMoy(semesterId, c.compId, etdId, yearId) ) INTO total
+	SELECT SUM( getCompMoy(c.compId, etdId, yearId) ) INTO total
 	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId 
 	WHERE etdId = studentId AND semId = semesterId AND anneeId = yearId;
 
@@ -47,31 +43,56 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
+
+
+
+
+
+
+
 CREATE OR REPLACE FUNCTION getRankSem(IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS INTEGER AS $$
 DECLARE
-	nb_student INTEGER := NULL;
-	student_rank INTEGER := NULL;
+    student_avg FLOAT;
+    rank INTEGER;
 BEGIN
-	-- Getting the moy of the semester for every student
-	CREATE TEMP TABLE IF NOT EXISTS etd_moySem AS
-	SELECT etdId, getSemMoy(semesterId, etdId, yearId) AS moySem
-	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId
-	WHERE anneeId = yearId AND semId = semesterId;
+    -- Obtenir la moyenne de l'étudiant pour le semestre donné
+    SELECT getSemMoy(semesterId, studentId, yearId) INTO student_avg;
 
-	SELECT COUNT(etdId) INTO nb_student FROM etd_moySem;
-	IF nb_student = 0 THEN
-		RETURN NULL; -- No students for this comp
-	END IF;
+    -- Calculer le rang de l'étudiant en fonction de sa moyenne par rapport aux autres étudiants
+    SELECT COUNT(*) + 1 INTO rank
+    FROM (
+        SELECT DISTINCT(etdId), getSemMoy(semesterId, etdId, yearId) AS avg
+        FROM   Moyenne m JOIN CompMod co ON co.modId = m.modId JOIN
+		       Competence c ON c.compId = co.compId
+        WHERE  semId = semesterId AND anneeId = yearId
+    ) AS students_avg
+    WHERE avg > student_avg OR (avg = student_avg AND etdId < studentId);
 
-	-- Getting the rank of one student
-	SELECT RANK() OVER (ORDER BY moySem ASC) INTO student_rank
-	FROM  etd_moySem 
-	WHERE etdId = studentId;
-
-	RETURN student_rank;
+    RETURN rank;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+
+
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/*                                      A  CORRIGER                                       */
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+
+
 
 
 CREATE OR REPLACE FUNCTION getRCUE(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
@@ -98,6 +119,15 @@ BEGIN
 	RETURN student_adm1; -- Temporarily returning only student_adm1
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
+
 
 
 CREATE OR REPLACE FUNCTION getNbAdmiUE(IN semesterId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
