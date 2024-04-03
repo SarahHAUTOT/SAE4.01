@@ -79,8 +79,8 @@ function checkYearFormat(annee) {
 function generateAll()
 {
 
-	let cheminFic = "../DB.inc.php";
-	let cheminJSON = "../DBtoJSON.php";
+	let cheminFic = "../src/app/DB.inc.php";
+	let cheminJSON = "../src/app/DBtoJSON.php";
 	anneLib = document.getElementById('anneeLib').value;
 
 	if (!checkYearFormat(anneLib))
