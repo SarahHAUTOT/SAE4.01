@@ -43,16 +43,30 @@ if (isset($_POST['action'])) {
                 //générationd des poursuite d'études
                 header("Location: generationPoursuite.php");
                 break;
+
+            case 'comm':
             case 'jury':
-                if (!isset($_SESSION['semester'])) 
+                echo "Year selected: " . $_POST['yearCom'];
+
+                if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+
+                    if (isset($_POST['semCom']) && !empty($_POST['semCom']))
+                    {
+                        header("Location: connexion.php");
+                    }
+                    else
+                    {
+                        alert("Veuillez selectionnée un semestre");
+                    }
+                }
+                else
                 {
-                    alert("Veuillez sélectionner une semestre");
+                    alert("Veuillez ,fbgdbsjfbs une année" . $_POST['yearCom'] . "djzjbd");
                 }
                 break;
 
-            case 'comm':
-                //Génération de commissions
-                break;
+
+
             default:
                 echo "Action non reconnue";
                 break;
@@ -77,7 +91,7 @@ function contenu()
 			<div class="gridLibImport">
 
 				<span>Choix Année</span>
-				<select id="selectYear" onchange="saveSelectedYear()">';
+				<select id="selectYear" name="yearPE" ">';
 	
     $i = 1;
 	foreach ($data as $anneeData) 
@@ -97,7 +111,7 @@ function contenu()
 			<h2>Préparation aux commissions/jurys</h2>
 			<div class="gridLibImport" >
 				<span>Choix Année</span>
-				<select id="selectYear" onchange="saveSelectedYear()">';
+				<select id="selectYear" name="yearCom" >';
 
 	
 	$i = 1;		
@@ -110,7 +124,7 @@ function contenu()
 	echo    '</select>
 
 			<span>Choix semestre</span>
-			<select id="selectSemester" onchange="saveSelectedSemester()">
+			<select id="selectSemester" name="semCom" >
 				<option value="semestre1">S1</option>
 				<option value="semestre2">S2</option>
 				<option value="semestre3">S3</option>
@@ -127,9 +141,9 @@ function contenu()
 }
 
 head('css/generation.css');
+contenu();
 echo '<script src="js/selectYear.js"></script>';
 echo '<script src="js/selectSemester.js"></script>';
-contenu();
 foot();
 
 ?>
