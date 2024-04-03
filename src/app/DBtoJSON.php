@@ -88,7 +88,7 @@ function generateCompMod()
 	$jsonData = json_encode($competences, JSON_PRETTY_PRINT);
 	// Écrire le JSON dans un fichier
 	file_put_contents( '../../data/compMod.json', $jsonData);
-	echo "Le fichier comp.json a été créé avec succès.<br>";
+	echo "Le fichier compMod.json a été créé avec succès.<br>";
 }
 
 
@@ -198,8 +198,8 @@ function generateStudents(int $yearId, int $semesterId)
 				WHERE anneId = ".$yearId." AND semId = ".$semesterId;
 	$students  = $db->execQuery($query);
 
-	// For each studient
-	foreach ($studients as &$studient) 
+	// For each student
+	foreach ($students as &$student) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
 				  FROM AdmComp'; 
