@@ -34,26 +34,29 @@ if (isset($_POST['action'])) {
     {
         alert("Veuillez sélectionner une année");
     }
-
-    switch ($action)
+    else
     {
-        case 'pe':
-			//générationd des poursuite d'études
-			header("Location: generationPoursuite.php");
-            break;
-        case 'jury':
-            if (!isset($_SESSION['semester'])) 
-            {
-                alert("Veuillez sélectionner une semestre");
-            }
-            break;
+        echo $_SESSION["year"] ." ". $_SESSION["semester"];
+        switch ($action)
+        {
+            case 'pe':
+                //générationd des poursuite d'études
+                header("Location: generationPoursuite.php");
+                break;
+            case 'jury':
+                if (!isset($_SESSION['semester'])) 
+                {
+                    alert("Veuillez sélectionner une semestre");
+                }
+                break;
 
-        case 'comm':
-			//Génération de commissions
-            break;
-        default:
-            echo "Action non reconnue";
-            break;
+            case 'comm':
+                //Génération de commissions
+                break;
+            default:
+                echo "Action non reconnue";
+                break;
+        }
     }
 }
 
@@ -94,7 +97,7 @@ function contenue()
 			<h2>Préparation aux commissions/jurys</h2>
 			<div class="gridLibImport" >
 				<span>Choix Année</span>
-				<select id="selectYear">';
+				<select id="selectYear" onchange"saveSelectedYear()">';
 
 	
 	$i = 1;		

@@ -49,7 +49,7 @@ function contenue()
 }
 
 head('css/generation.css');
-
+echo $_SESSION['year'];
 contenue();
 
 foot();

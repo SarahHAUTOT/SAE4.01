@@ -2,7 +2,6 @@ function saveSelectedYear()
 {
 	let e = document.getElementById("selectYear");
 	let text = e.options[e.selectedIndex].text;
-	//console.log(text)
 
 	let xhr = new XMLHttpRequest(); // AJAX Request to server 
 	xhr.open("POST", "saveSelectedOption.php", true);
