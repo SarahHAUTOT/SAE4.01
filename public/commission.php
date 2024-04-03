@@ -42,9 +42,9 @@ function contenu()
 	<script>
 		window.addEventListener("load", (event) =>{
 			const titre2 = document.getElementById("anneeSemestre")
-			titre2.textContent = "Annee 2021-2022 / Semestre 1"
+			titre2.textContent = "Annee 2020-2021 / Semestre 1"
 			const table = document.getElementById("tableCom")
-			generationCommission(table,"2021-2022",1)
+			generationCommission(table,"2020-2021",1)
 		});
 	</script>';
 }

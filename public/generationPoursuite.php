@@ -22,17 +22,28 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
+require_once('../src/app/export/export.php'); 
+$year = unserialize($_SESSION['year']);
+
+// Vérifier si les champs du formulaire sont soumis
+if (isset($_POST['chef'])  && isset($_POST['sign'])  && 
+    isset($_POST['logo1']) && isset($_POST['logo2'])  ) 
+{
+	ajouterInfo();
+}
+
 function contenu()
 {
+
 	echo '
-	<h1>Génération avis de poursuite d\'études'. $_SESSION['year']['annelib'] .'</h1>
+	<h1>Génération avis de poursuite d\'études '. $year['annelib'] .' </h1>
 	<div class="container">
 
 	<form method="POST" action="suiv">
 		<h2>Choix des paramètres</h2>
 		<div class="gridLibImport">
 			<span>Nom du chef de Dept. :</span>
-			<input type="text" id="nom-chef-dept" name="nom-chef-dept" value="">
+			<input type="text" id="chef" name="chef" value="">
 
 			<span>Logo 1 :</span>
 			<input type="file" id="logo1" name="logo1" accept="image/png, image/jpeg">
@@ -41,7 +52,7 @@ function contenu()
 			<input type="file" id="logo2" name="logo2" accept="image/png, image/jpeg">
 
 			<span>Signature et cachet du Dept. :</span>
-			<input type="file" id="sign-cach-dept" name="sign-cach-dept" accept="image/png, image/jpeg">
+			<input type="file" id="sign" name="sign" accept="image/png, image/jpeg">
 
             </div>
             <button class="validateButtonStyle" type="import" name="signCachet" value="">Remplir les avies</button>
