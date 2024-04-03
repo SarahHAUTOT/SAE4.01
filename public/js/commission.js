@@ -80,10 +80,10 @@ function generationCommission(table, annee, semestre) {
 
                             Promise.all(promises)
                                 .then(results => {
-                                    const row = document.createElement('tr');
                                     results.forEach(result => {
                                         const thElement = document.createElement('th');
                                         thElement.textContent = String(result);
+                                        console.log("passé")
                                         row.appendChild(thElement);
                                     });
                                     tBodyElem.appendChild(row);
@@ -92,6 +92,7 @@ function generationCommission(table, annee, semestre) {
                                     console.error('Error:', error);
                                 });
                             tBodyElem.appendChild(row);
+                            
                         });
                     }
                 });
@@ -214,6 +215,9 @@ function moyenneComp(semestre, comp, modules) {
                     competence['modules'].forEach(module1 => {
                         modules.forEach(module2 => {
                             if (module1['modId'] === module2['modId']) {
+                                console.log(module2['noteVal'] +" = "+parseFloat(module2['noteVal']))
+                                console.log(module1['noteVal'] +" = "+parseFloat(module1['noteVal']))
+                                console.log()
                                 resultat += parseFloat(module2['noteVal']) * parseFloat(module1['modVal']);
                                 coeff += parseFloat(module1['modVal']);
                             }
