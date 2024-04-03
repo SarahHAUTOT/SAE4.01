@@ -8,7 +8,8 @@ DECLARE
 BEGIN
 	SELECT SUM(modCoef) INTO tot_coef
 	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId 
-	WHERE compId = getCompMoy.compId AND semId = semesterId AND anneeId = yearId;
+    JOIN  CompMod cm ON cm.compId=c.compId
+	WHERE cm.compId = getCompMoy.compId AND semId = semesterId AND anneeId = yearId;
 
 	IF tot_coef = 0 THEN
 		RETURN NULL; -- No modules affected to the Competence 
