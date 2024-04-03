@@ -1,29 +1,17 @@
-<<<<<<< HEAD
 [
     {
         "exportid": 1,
         "exporttype": "PE",
-        "exportchemin": "export1.pdf",
-        "codeNIP":8420,
-        "nom":"Thomas",
-        "prenom":"Micheline",
-        "année":"2022-2023"
+        "exportchemin": "8420_Thomas_Micheline_2022-2023.pdf"
     },
     {
         "exportid": 2,
         "exporttype": "CO",
-        "exportchemin": "export2.csv",
-        "année":"2022-2023",
-        "semestre":"S2"
+        "exportchemin": "2022-2023_S2_commission.csv"
     },
     {
         "exportid": 3,
         "exporttype": "JU",
-        "exportchemin": "export3.csv",
-        "année":"2025-2026",
-        "semestre":"S1"
+        "exportchemin": "2025-2026_S1_commission.csv"
     }
 ]
-=======
-[]
->>>>>>> 9639dec09b27099e7108e85339746fab4928d001

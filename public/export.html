@@ -52,32 +52,36 @@
 	</footer>
 
 	<script>
-
-		// Charger le fichier JSON
 		fetch('../data/export.json')
 			.then(response => response.json())
 			.then(data => {
 
 				// Événement pour le radio bouton "PE"
 				document.getElementById('radioPE').addEventListener('change', () => {
-					afficherExport('PE', data);
+					afficherExport('PE', data, document.getElementById('inputRecherche').value.trim());
 				});
 
 				// Événement pour le radio bouton "CO"
 				document.getElementById('radioCO').addEventListener('change', () => {
-					afficherExport('CO', data);
+					afficherExport('CO', data, document.getElementById('inputRecherche').value.trim());
 				});
 
 				// Événement pour le radio bouton "JU"
 				document.getElementById('radioJU').addEventListener('change', () => {
-					afficherExport('JU', data);
+					afficherExport('JU', data, document.getElementById('inputRecherche').value.trim());
+				});
+
+				document.getElementById('inputRecherche').addEventListener('input', function () {
+					const termeRecherche = this.value.trim(); // Obtenir le terme de recherche sans les espaces de début et de fin
+					const typeExport = document.querySelector('input[type="radio"]:checked').value; // Obtenir le type d'export sélectionné
+					afficherExport(typeExport, data, termeRecherche);
 				});
 			})
 			.catch(error => console.error('Erreur lors du chargement du fichier JSON :', error));
 
-
-		function afficherExport(typeExport, data, termeRecherche = '') {
+		function afficherExport(typeExport, data, termeRecherche) {
 			if (typeExport === 'PE') {
+				//Poursuite d'étude
 				// Supprimer les anciennes données
 				const tableauExports = document.getElementById('tableauExports');
 				tableauExports.innerHTML = `
@@ -91,32 +95,32 @@
 					</tr>
 				</thead>
 				<tbody>`;
-/*
-				// Filtrer les données en fonction du type d'export
-				const exportsFiltres = data.filter(exportData => {
-					return exportData.exporttype === typeExport && (termeRecherche !='' ||
-						(exportData.codeNIP.includes(termeRecherche) ||
-							exportData.nom.includes(termeRecherche) ||
-							exportData.prenom.includes(termeRecherche) ||
-							exportData.annee.includes(termeRecherche)));
-				});*/
 
-				const exportsFiltres = data.filter(exportData => exportData.exporttype === typeExport);
-
+				const exportsFiltres = data.filter(exportData => exportData.exporttype === typeExport && exportData.exportchemin.toLowerCase().includes(termeRecherche.toLowerCase()));
 
 				// Créer les lignes du tableau
 				exportsFiltres.forEach(exportData => {
+					const nomFichier = exportData.exportchemin;
+					const parties = nomFichier.split('_');
+
+					console.log("test", nomFichier)
+					if (nomFichier.toLowerCase().includes(termeRecherche.toLowerCase())) {
+						console.log("contenu", nomFichier);
+					} else {
+						console.log("c'est non", nomFichier);
+					}
+
 					const newRow = tableauExports.insertRow();
 					newRow.innerHTML = `
-		<td>${exportData.codeNIP}</td>
-		<td>${exportData.nom}</td>
-		<td>${exportData.prenom}</td>
-		<td>${exportData.année}</td>
-		<td><a href="../generer/poursuite${exportData.exportchemin}" download><button>Télécharger des données</button></a></td>`;
+		<td>${parties[0]}</td>
+		<td>${parties[1]}</td>
+		<td>${parties[2]}</td>
+		<td>${parties[3].split('.')[0]}</td>
+		<td><a href="../generer/poursuite${nomFichier}.pdf" download><button>Télécharger des données</button></a></td>`;
 				});
 			}
 			else {
-				// Supprimer les anciennes données
+				//commission et jury
 				const tableauExports = document.getElementById('tableauExports');
 				tableauExports.innerHTML = `
 				<thead>
@@ -129,26 +133,24 @@
 				<tbody>`;
 
 				// Filtrer les données en fonction du type d'export
-				const exportsFiltres = data.filter(exportData => exportData.exporttype === typeExport);
-
+				const exportsFiltres = data.filter(exportData => exportData.exporttype === typeExport && exportData.exportchemin.toLowerCase().includes(termeRecherche.toLowerCase()));
 
 				// Créer les lignes du tableau
 				exportsFiltres.forEach(exportData => {
+					const nomFichier = exportData.exportchemin;
+					const parties = nomFichier.split('_');
+
 					const newRow = tableauExports.insertRow();
 					newRow.innerHTML = `
-		<td>${exportData.année}</td>
-		<td>${exportData.semestre}</td>
-		<td><a href="../generer/poursuite${exportData.exportchemin}" download><button>Télécharger des données</button></a></td>`;
+		<td>${parties[0]}</td>
+		<td>${parties[1]}</td>
+		<td><a href="../generer/poursuite${nomFichier}.csv" download><button>Télécharger des données</button></a></td>`;
 				});
 			}
 
 		}
 
-		document.getElementById('inputRecherche').addEventListener('input', function () {
-			const termeRecherche = this.value.trim(); // Obtenir le terme de recherche sans les espaces de début et de fin
-			const typeExport = document.querySelector('input[type="radio"]:checked').value; // Obtenir le type d'export sélectionné
-			afficherExport(typeExport, data, termeRecherche);
-		});
+
 
 	</script>
 
