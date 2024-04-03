@@ -77,7 +77,7 @@ function contenu()
 			<div class="gridLibImport">
 
 				<span>Choix Année</span>
-				<select id="selectYear" onchange"saveSelectedYear()">';
+				<select id="selectYear" onchange="saveSelectedYear()">';
 	
     $i = 1;
 	foreach ($data as $anneeData) 
@@ -97,7 +97,7 @@ function contenu()
 			<h2>Préparation aux commissions/jurys</h2>
 			<div class="gridLibImport" >
 				<span>Choix Année</span>
-				<select id="selectYear" onchange"saveSelectedYear()">';
+				<select id="selectYear" onchange="saveSelectedYear()">';
 
 	
 	$i = 1;		
