@@ -34,7 +34,7 @@ function contenu($etd)
 	echo '
 	<h1>Génération avis de poursuite d\'études</h1>
 	<div class="container">
-		<h2>%%CHOIX ETUDIANT%%</h2>
+		<h2>Choix des paramètres</h2>
 		<div class="gridLibImport">
 			<span>Nom du chef de Dept. :</span>
 			<input type="text" id="nom-chef-dept" name="nom-chef-dept" value="">
@@ -48,8 +48,8 @@ function contenu($etd)
 			<span>Signature et cachet du Dept. :</span>
 			<input type="file" id="sign-cach-dept" name="sign-cach-dept" accept="image/png, image/jpeg">
 
-		</div>
-		<a href="squeletteFicheAvis.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Export %%CHOIX ETUDIANT%%(prévisualisation)</button></a>
+            </div>
+            <a href="squeletteFicheAvis.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Remplir les avies</button></a>
 	</div>';
 }
 

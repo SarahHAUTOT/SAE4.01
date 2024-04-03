@@ -443,3 +443,8 @@ VALUES
     (15, 'S501', 50),
     (25, 'S501', 50),
     (65, 'S501', 50);
+
+
+
+INSERT INTO Utilisateur VALUES ( 'admin', 'admin', 2),
+                               (  'user',  'user', 1);

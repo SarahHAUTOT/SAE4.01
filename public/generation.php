@@ -22,19 +22,32 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
+function alert($message) 
+{
+    echo "<script>alert('$message');</script>";
+}
+
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
-	echo ("hey");
+    if (!isset($_SESSION['year'])) 
+    {
+        alert("Veuillez sélectionner une année");
+    }
 
-    switch ($action) {
+    switch ($action)
+    {
         case 'pe':
 			//générationd des poursuite d'études
-			header("Location: connexion.php");
+			header("Location: generationPoursuite.php");
             break;
         case 'jury':
-			//Génération jury
+            if (!isset($_SESSION['semester'])) 
+            {
+                alert("Veuillez sélectionner une semestre");
+            }
             break;
+
         case 'comm':
 			//Génération de commissions
             break;
@@ -104,7 +117,7 @@ function contenu()
 		</div>
 			
 		<button type="submit" name="action" value="jury" class="validateButtonStyle">Générer Jury</button>
-		<button type="submit" name="action" value="com" class="validateButtonStyle">Générer Commission</button>
+		<button type="submit" name="action" value="comm" class="validateButtonStyle">Générer Commission</button>
 	</div>
 	</form>
 	</div>';

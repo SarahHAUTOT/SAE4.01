@@ -1,5 +1,3 @@
--- All of these methods are used in the DBtoJSON file for the csv creation
-
 CREATE OR REPLACE FUNCTION getCompMoy(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS FLOAT AS $$
 DECLARE
@@ -8,7 +6,8 @@ DECLARE
 BEGIN
 	SELECT SUM(modCoef) INTO tot_coef
 	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId 
-	WHERE compId = getCompMoy.compId AND semId = semesterId AND anneeId = yearId;
+    JOIN  CompMod cm ON cm.compId=c.compId
+	WHERE cm.compId = getCompMoy.compId AND semId = semesterId AND anneeId = yearId;
 
 	IF tot_coef = 0 THEN
 		RETURN NULL; -- No modules affected to the Competence 
@@ -17,7 +16,7 @@ BEGIN
 	SELECT SUM(noteVal * modCoef) INTO tot_note
 	FROM  Moyenne m JOIN CompMod cm ON m.modId = cm.modId
 	JOIN  Competence c ON c.compId = cm.compId
-	WHERE cm.compId = getCompMoy.compId AND m.anneeId = yearId 
+	WHERE cm.compId = compId AND m.anneeId = yearId 
 		  AND m.etdId = studentId AND semId = semesterId;
 
 	RETURN tot_note / tot_coef;
@@ -53,10 +52,10 @@ RETURNS INTEGER AS $$
 DECLARE
 	nb_student INTEGER := NULL;
 	student_rank INTEGER := NULL;
-    etd_moySem TABLE (etdId INTEGER, moySem FLOAT);
 BEGIN
 	-- Getting the moy of the semester for every student
-	SELECT etdId, getSemMoy(semesterId, etdId, yearId) INTO etd_moySem
+	CREATE TEMP TABLE IF NOT EXISTS etd_moySem AS
+	SELECT etdId, getSemMoy(semesterId, etdId, yearId) AS moySem
 	FROM  AdmComp admc JOIN Competence c ON c.compId = admc.compId
 	WHERE anneeId = yearId AND semId = semesterId;
 
@@ -66,7 +65,7 @@ BEGIN
 	END IF;
 
 	-- Getting the rank of one student
-	SELECT RANK() OVER (ORDER BY etd_moySem.moySem ASC) INTO student_rank
+	SELECT RANK() OVER (ORDER BY moySem ASC) INTO student_rank
 	FROM  etd_moySem 
 	WHERE etdId = studentId;
 
@@ -75,23 +74,28 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-
 CREATE OR REPLACE FUNCTION getRCUE(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS VARCHAR AS $$
 DECLARE
 	student_adm1 VARCHAR := NULL;
 	student_adm2 VARCHAR := NULL;
-	lastSemId    INTEGER := semId -1;
+	lastSemId    INTEGER := semesterId - 1;
 BEGIN
 	-- Getting the admi of the two last semester for one comp
-	SELECT admc1.admi INTO student_adm1, admc2.admi INTO student_adm2
-	FROM AdmComp admc1 JOIN AdmComp admc2 ON admc1.compId=admc2.compId 
+	SELECT admc1.admi INTO student_adm1
+	FROM AdmComp admc1
 	JOIN Competence c1 ON c1.compId=admc1.compId
+	WHERE admc1.compId = compId AND admc1.etdId = studentId AND
+		  admc1.anneeId = yearId AND  c1.semId = semesterId;
+
+	SELECT admc2.admi INTO student_adm2
+	FROM AdmComp admc2
 	JOIN Competence c2 ON c2.compId=admc2.compId
-	WHERE admc1.compId  = getRCUE.compId AND admc1.etdId = studentId AND
-		  admc1.anneeId = yearId AND  c1.semId = semesterId  AND c2.semId = lastSemId;
-	
+	WHERE admc2.compId = compId AND admc2.etdId = studentId AND
+		  admc2.anneeId = yearId AND  c2.semId = lastSemId;
+
 	-- switch case TODO
+	RETURN student_adm1; -- Temporarily returning only student_adm1
 END;
 $$ LANGUAGE plpgsql;
 

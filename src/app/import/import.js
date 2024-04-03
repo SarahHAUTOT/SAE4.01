@@ -87,7 +87,7 @@ function generateAll()
 
 	if (!checkYearFormat(anneLib))
 	{
-		alert("Veuillez entré une année dans un format correct");
+		alert("Veuillez entrer une année dans un format correct");
 		return 0;
 	}
 
