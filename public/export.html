@@ -103,13 +103,6 @@
 					const nomFichier = exportData.exportchemin;
 					const parties = nomFichier.split('_');
 
-					console.log("test", nomFichier)
-					if (nomFichier.toLowerCase().includes(termeRecherche.toLowerCase())) {
-						console.log("contenu", nomFichier);
-					} else {
-						console.log("c'est non", nomFichier);
-					}
-
 					const newRow = tableauExports.insertRow();
 					newRow.innerHTML = `
 		<td>${parties[0]}</td>
