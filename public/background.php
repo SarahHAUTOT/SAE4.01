@@ -7,7 +7,7 @@ function head($css, $username=""){echo'
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mon Site Web</title>
+	<title>DocSco</title>
 	<link rel="stylesheet" href="css/background.css">
 	<link rel="stylesheet" href="'. $css .'">
 </head>
@@ -16,7 +16,7 @@ function head($css, $username=""){echo'
 
 	<header>
 		<div class="logo">
-			<img src="images/logo.png" alt="Logo de votre site">
+			<img src="images/logo.png" alt="Logo DocSco">
 			<h1>DocSco</h1>
 		</div>
 		<div class="user">

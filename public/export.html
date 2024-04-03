@@ -30,6 +30,23 @@
 			</div>
 			<span> Filtres :</span> <br>
 
+			<script>
+				// Obtenez la référence de l'élément select
+				const select = document.getElementById('maListe');
+
+				// Obtenez la valeur sélectionnée
+				const valeurSelectionnee = select.value;
+
+				select.addEventListener('change', function () {
+					// Obtenez la nouvelle valeur sélectionnée
+					const nouvelleValeurSelectionnee = select.value;
+
+					// Afficher la nouvelle valeur sélectionnée
+					console.log(nouvelleValeurSelectionnee);
+				});
+			</script>
+
+
 			<input type="radio" id="radioPE" name="typeExport" value="PE">
 			<label for="radioPE">Poursuit d'étude</label>
 			<input type="radio" id="radioCO" name="typeExport" value="CO">
