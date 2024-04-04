@@ -426,18 +426,18 @@ function generateCSV(String $year, String $type, String $semester)
 		$json_data = file_get_contents('../../../data/csv.json');
 		$commissionData = json_decode($json_data, true);
 
-		$header  = headerCommission (...);
+		$header  = headerCommission ($commissionData[0]['competences']);
 		$content = contentCommission($commissionData) ;
 	}
 
-	if (strcmp($type, 'Jury') === 0 && $semesterId >= 2)
+	if (strcmp($type, 'Jury') === 0 && $semester >= 2)
 	{
 		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
 		// Exploiting JSON File
 		$json_data = file_get_contents('../../../data/csv.json');
 		$juryData = json_decode($json_data, true);
 		
-		$header  = headerJury (...);
+		$header  = headerJury ($juryData[0]['competences']['RCUE'], $juryData[0]['competences']);
 		$content = contentJury($juryData); 
 	}
 
@@ -485,7 +485,7 @@ function headerJury($rcues, $competences)
 	return $header .'\n';
 }
 
-function contentJury($competences)
+function contentJury($students)
 {
 	$studentInfo = "";
 

@@ -291,6 +291,7 @@ function generateStudents(int $yearId)
 	$students  = $db->execQuery($query);
 
 	// For each student
+	$i = 1;
 	foreach ($students as &$student) 
 	{
 		// For BUT 1 and BUT 2 (the first 4 semester)
@@ -309,20 +310,21 @@ function generateStudents(int $yearId)
 				$moyComp2 = $db->execQuery($query);
 
 				$moyBUT = ($moyComp1 + $moyComp2) /2;
-				
+
+				$UEid  = "UE ". str_replace("5", "", $competences[$j]['compid']."");
+				$compLib = $competences[$j]['complib'] .'';
+
+				$student['nbStud'] = $i;
+
 				if ($i <= 2)
 				{
-					$compid  = "UE ". str_replace("".$i, "", $competences[$j]['compid']."");
-					$compLib = $competences[$j]['complib'] .'';
-					$student['BUT 1'][$compid]['moy'] = $moyBUT;
-					$student['BUT 1'][$compid]['lib'] = $compLib;
+					$student['BUT 1'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 1'][$UEid]['lib'] = $compLib;
 				}
 				else
 				{
-					$compid  = "UE ". str_replace("".$i, "", $competences[$j]['compid']."");
-					$compLib = $competences[$j]['complib'] .'';
-					$student['BUT 2'][$compid]['moy'] = $moyBUT;
-					$student['BUT 2'][$compid]['lib'] = $compLib;
+					$student['BUT 2'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 2'][$UEid]['lib'] = $compLib;
 				}
 			}
 
@@ -346,6 +348,7 @@ function generateStudents(int $yearId)
 
 		}
 
+		$i++;
 	}
 
 	// JSON Generation
