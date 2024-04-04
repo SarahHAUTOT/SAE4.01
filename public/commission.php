@@ -194,7 +194,9 @@ function generationCommissionComp($table, $anneeId, $semestre, $competence)
 
 
 
-    $query = "SELECT modLib, modId FROM CompMod cm JOIN Competence c on c.compId=cm.compId 
+    $query = "SELECT modLib, modId
+    FROM CompMod cm JOIN Competence c on c.compId=cm.compId 
+    JOIN Module m on m.modId=cm.modId 
     WHERE c.compId = ".$semestre.$competence;
     $modules = $db->execQuery($query);
 
