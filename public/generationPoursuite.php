@@ -32,6 +32,7 @@ if (isset($_POST['chef'])  && !empty($_POST['chef'])  &&
 	isset($_POST['logo2']) && !empty($_POST['logo2'])) 
 {
 	ajouterInfo($_POST['logo1'], $_POST['logo2'], $_POST['chef'], $_POST['sign'], $_SESSION['annelib']);
+	header('Location: squeletteFicheAvis.php');
 }
 
 function contenu()

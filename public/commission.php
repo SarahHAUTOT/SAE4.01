@@ -2,7 +2,7 @@
 
 //Pour la structure
 include 'background.php';
-include '../src/app/DB.inc.php'; // si decommenter ça fait bugger
+include '../src/app/DB.inc.php';
 
 // Démarrer la session
 session_start();
