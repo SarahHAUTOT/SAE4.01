@@ -1,7 +1,8 @@
 <?php
-require ('../DBtoJSON');
-require ('../DB.inc.php');
-require ('../../../lib/fpdf/fpdf.php');
+require ('../src/app/DB.inc.php');
+require ('../lib/fpdf/fpdf.php');
+
+echo "test";
 
 function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $nbAviMast)
 {
@@ -326,7 +327,7 @@ function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $
 function generatePDFs() 
 {
 	// Lire le contenu du fichier JSON
-	$jsonData = file_get_contents('../../../data/study.json');
+	$jsonData = file_get_contents('../data/study.json');
 	
 	// Convertir la chaîne JSON en tableau associatif
 	$data = json_decode($jsonData, true);
@@ -364,8 +365,11 @@ function generatePDFs()
 
 function ajouterAvis($nouvelAvis)
 {
+	$cheminFichier = '../data/study.json';
+	
+	
 	// Charger les données JSON existantes depuis le fichier
-	$donnees = json_decode(file_get_contents('../../../data/study.json'), true);
+	$donnees = json_decode(file_get_contents($cheminFichier), true);
 
 	// Ajouter le nouvel avis à la liste des avis
 	$donnees['avis'][] = $nouvelAvis;
@@ -381,8 +385,11 @@ function ajouterAvis($nouvelAvis)
 
 function ajouterInfo($logo1, $logo2, $chef, $signature, $anneeLib)
 {
+	$cheminFichier = '../data/study.json';
+	
+	
 	// Charger les données JSON existantes depuis le fichier
-	$donnees = json_decode(file_get_contents('../../../data/study.json'), true);
+	$donnees = json_decode(file_get_contents($cheminFichier), true);
 
 	//Ajouter les info en +
 	$donnees['logo1'    ] = $logo1;
@@ -390,6 +397,9 @@ function ajouterInfo($logo1, $logo2, $chef, $signature, $anneeLib)
 	$donnees['chef'     ] = $chef;
 	$donnees['signature'] = $signature;
 	$donnees['anneeLib' ] = $anneeLib;
+
+	$donnees['nbAvisMaster'] = [0,0,0,0,0];
+	$donnees['nbAvisIng'   ] = [0,0,0,0,0];
 	// Enregistrer les données mises à jour dans le fichier JSON
 	file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
 }
@@ -397,7 +407,7 @@ function ajouterInfo($logo1, $logo2, $chef, $signature, $anneeLib)
 function resetJSON() 
 {
 	// Chemin vers le fichier JSON
-	$cheminFichier = '../../../data/study.json';
+	$cheminFichier = '../data/study.json';
 
 	// Charger les données JSON existantes depuis le fichier
 	$donnees = json_decode(file_get_contents($cheminFichier), true);
@@ -410,7 +420,7 @@ function resetJSON()
 	$resultat = file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
 }
 
-function generateCSV(String $year, String $type, String $semester)
+function generateCSV(int $year, String $type, int $semester)
 {
 	// CSV File creation
 	header('Content-type: text/csv; charset=utf-8');
@@ -423,7 +433,7 @@ function generateCSV(String $year, String $type, String $semester)
 	{
 		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
 		// Exploiting JSON File
-		$json_data = file_get_contents('../../../data/csv.json');
+		$json_data = file_get_contents('../data/csv.json');
 		$commissionData = json_decode($json_data, true);
 
 		$header  = headerCommission ($commissionData[0]['competences']);
@@ -434,7 +444,7 @@ function generateCSV(String $year, String $type, String $semester)
 	{
 		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
 		// Exploiting JSON File
-		$json_data = file_get_contents('../../../data/csv.json');
+		$json_data = file_get_contents('../data/csv.json');
 		$juryData = json_decode($json_data, true);
 		
 		$header  = headerJury ($juryData[0]['competences']['RCUE'], $juryData[0]['competences']);
