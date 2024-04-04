@@ -22,24 +22,27 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
-require_once('../src/app/export/export.php'); 
+include('../src/app/export/Export.php'); 
 $year = unserialize($_SESSION['year']);
 
 // Vérifier si les champs du formulaire sont soumis
-if (isset($_POST['chef'])  && isset($_POST['sign'])  && 
-    isset($_POST['logo1']) && isset($_POST['logo2'])  ) 
+if (isset($_POST['chef'])  && !empty($_POST['chef'])  &&
+    isset($_POST['sign'])  && !empty($_POST['sign'])  &&
+    isset($_POST['logo1']) && !empty($_POST['logo1']) &&
+	isset($_POST['logo2']) && !empty($_POST['logo2'])) 
 {
-	ajouterInfo();
+	ajouterInfo($_POST['logo1'], $_POST['logo2'], $_POST['chef'], $_POST['sign'], $year['annelib']);
 }
 
 function contenu()
 {
+	$year = unserialize($_SESSION['year']);
 
 	echo '
 	<h1>Génération avis de poursuite d\'études '. $year['annelib'] .' </h1>
 	<div class="container">
 
-	<form method="POST" action="suiv">
+	<form method="POST" action="generationPoursuite.php">
 		<h2>Choix des paramètres</h2>
 		<div class="gridLibImport">
 			<span>Nom du chef de Dept. :</span>
