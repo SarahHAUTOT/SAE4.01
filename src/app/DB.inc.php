@@ -7,7 +7,7 @@ class DB
 
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
-		$connStr = 'pgsql:host=127.0.0.1 port=5432 dbname='.$dbName; 
+		$connStr = 'pgsql:host=woody port=5432 dbname='.$dbName; 
 		try 
 		{
 			// Connection with the base
@@ -132,9 +132,6 @@ class DB
 
 				$stmt = $this->connect->prepare($sql);
 				$result = $stmt->execute($params);
-				if ($result === false) {
-					return "Error inserting student: " . $db->getError();
-				}
 			}
 
 		} else {
@@ -196,9 +193,6 @@ class DB
 
 				$stmt = $this->connect->prepare($sql);
 				$result = $stmt->execute($params);
-				if ($result === false) {
-					return "Error updating moyennes: " . $db->getError();
-				}
 			}
 		}
 	}
@@ -245,9 +239,7 @@ class DB
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
-			
-			if ($result === false) return "Error inserting Competence: " . $db->getError();
-		}
+					}
 	}
 
 
@@ -293,9 +285,7 @@ class DB
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
-			
-			if ($result === false) return "Error inserting Modules: " . $db->getError();
-		}
+					}
 	}
 
 	
@@ -371,7 +361,6 @@ class DB
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
 			
-			if ($result === false) return "Error inserting CompMod: " . $db->getError();
 		}
 	}
 
@@ -415,7 +404,6 @@ class DB
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
 			
-			if ($result === false) return "Error inserting CompMod: " . $db->getError();
 		}
 	}
 }

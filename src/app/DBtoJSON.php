@@ -3,12 +3,12 @@
 // Connexion à la base de données
 require 'DB.inc.php';
 
-generateUsers();
-generateCompMod();
-generateYears();
-generateExport();
-
-echo "pute";
+// generateUsers();
+// generateCompMod();
+// generateYears();
+// generateExport();
+// 
+// echo "pute";
 
 
 /**********************************************************************/
@@ -192,14 +192,13 @@ function generateYears()
 
 function generateStudentsCsv(int $yearId, int $semesterId)
 {
-	
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 	// Getting all of the student for a specified year and semester
-	$query     = "SELECT etdId, etdNom, etdPrenom, etdCursus, etdBonus 
+	$query     = "SELECT e.etdId, etdNom, etdPrenom, etdCursus, etdBonus 
 				FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
 				JOIN  Competence c ON c.compId=admc.compId 
-				WHERE anneId = ".$yearId." AND semId = ".$semesterId;
+				WHERE anneeId = ".$yearId." AND semId = ".$semesterId;
 	$students  = $db->execQuery($query);
 
 	// For each student
@@ -217,12 +216,17 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		$students['admiUEs'] = $nbAdmiUE; // UEs that are passed
 
 		// For each competences of the last semester
-		$query = "SELECT * FROM Competence WHERE semId =".$semesterId -1;
+		$lastSemester = $semesterId-1;
+		$query = "SELECT * FROM Competence WHERE semId =".$lastSemester;
 		$lastSemComps = $db->execQuery($query);
 
 		foreach ($lastSemComps as &$comp) 
 		{
-            $query = 'SELECT getRCUE('.($semesterId-1).', '.$comp['compid'].', '.$student['etdid'].', '.$yearId.') FROM AdmComp';
+			$compNb = str_replace($lastSemester, "", $comp['compid']);
+			$compId1 = $compNb.''.$lastSemester; 
+			$compId2 = $compNb.''.($lastSemester-1);
+
+            $query = 'SELECT getRCUE('.$compId1.', '.$compId2.', '.$student['etdid'].', '.$yearId.') FROM AdmComp';
 			$admiRCUE = $db->execQuery($query);
 
 			$student['RCUE'][] = 
@@ -254,7 +258,7 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 			$query = "SELECT modCode, noteVal 
 					  FROM  Module m JOIN CompMod cm  ON m.modId=cm.modId 
 					  				 JOIN Moyenne moy ON m.modId=moy.modId 
-					  WHERE compId = ".$compInfo[0]['compid']."";
+					  WHERE compId = ".$compInfo[0]['compid'];
 			
 			$modules = $db->execQuery($query);
 
@@ -285,7 +289,6 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 
 function generateStudents(int $yearId)
 {
-	
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 	// Getting all of the student for a specified year and semester
@@ -357,8 +360,8 @@ function generateStudents(int $yearId)
 
 	// JSON Generation
 	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
-	file_put_contents( '../../data/pe.json', $jsonData);
+	file_put_contents( '../../data/etudiants.json', $jsonData);
 
-	echo "Le fichier pe.json a été créé avec succès.<br>";
+	echo "Le fichier etudiants.json a été créé avec succès.<br>";
 }
 ?>

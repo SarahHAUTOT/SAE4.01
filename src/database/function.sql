@@ -76,7 +76,7 @@ $$ LANGUAGE plpgsql;
 
 
 
-
+-- get rank comp
 
 
 /******************************************************************************************/
@@ -95,25 +95,24 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION getRCUE(IN semesterId INTEGER, IN compId INTEGER, IN studentId INTEGER, IN yearId INTEGER)
+CREATE OR REPLACE FUNCTION getRCUE(IN compId1 INTEGER, IN compId2 INTEGER, IN studentId INTEGER, IN yearId INTEGER)
 RETURNS VARCHAR AS $$
 DECLARE
 	student_adm1 VARCHAR := NULL;
 	student_adm2 VARCHAR := NULL;
-	lastSemId    INTEGER := semesterId - 1;
 BEGIN
 	-- Getting the admi of the two last semester for one comp
 	SELECT admc1.admi INTO student_adm1
 	FROM AdmComp admc1
 	JOIN Competence c1 ON c1.compId=admc1.compId
-	WHERE admc1.compId = compId AND admc1.etdId = studentId AND
-		  admc1.anneeId = yearId AND  c1.semId = semesterId;
+	WHERE admc1.compId = compId1 AND admc1.etdId = studentId AND
+		  admc1.anneeId = yearId;
 
 	SELECT admc2.admi INTO student_adm2
 	FROM AdmComp admc2
 	JOIN Competence c2 ON c2.compId=admc2.compId
-	WHERE admc2.compId = compId AND admc2.etdId = studentId AND
-		  admc2.anneeId = yearId AND  c2.semId = lastSemId;
+	WHERE admc2.compId = compId2 AND admc2.etdId = studentId AND
+		  admc2.anneeId = yearId;
 
 	-- switch case TODO
 	RETURN student_adm1; -- Temporarily returning only student_adm1

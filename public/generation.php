@@ -152,12 +152,12 @@ function contenu()
 	echo    '</select>
 
 			<span>Choix semestre</span>
-			<select id="selectSemester" name="semCom" >
-				<option value="semestre1">S1</option>
-				<option value="semestre2">S2</option>
-				<option value="semestre3">S3</option>
-				<option value="semestre4">S4</option>
-				<option value="semestre4">S5</option>
+			<select id="selectSemester" name="semCom">
+				<option value="1">S1</option>
+				<option value="2">S2</option>
+				<option value="3">S3</option>
+				<option value="4">S4</option>
+				<option value="5">S5</option>
 			</select>
 		</div>
 			
