@@ -117,9 +117,11 @@ function generationCommission($anneeId, $semestre) {
 
 
 		// Recup moyenne Semestre
-        $query = "SELECT getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.") as \"moysem\" FROM AdmComp";
+        $query = "SELECT * FROM getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.") as \"moysem\"";
         $moy = $db->execQuery($query);
-        $row .= "<td>". $moy['moysem'][0] ."</td>";
+
+        echo "<br>";
+        $row .= "<td>". round($moy[0]['moysem'],2) ."</td>";
 
 		$row .= "<td>". $student['tp'] ."</td>";
 		$row .= "<td>". $student['td'] ."</td>";
@@ -127,11 +129,12 @@ function generationCommission($anneeId, $semestre) {
 
 		for($i = 0; $i < count($liens); $i++ )
 		{
-            $query = "SELECT getCompMoy(".$semestre.$anneeId.($i+1).", ".$student['etdid'].", ".$anneeId.") as \"moycomp\" FROM AdmComp";
+            $query = "SELECT * FROM getCompMoy(".$semestre.($i+1).", ".$student['etdid'].", ".$anneeId.") as \"moycomp\"";
             $moy = $db->execQuery($query);
 
-			$row .= "<td>".$moy['moycomp'][0]."</td>";
+			$row .= "<td>". round($moy[0]['moycomp'], 2)."</td>";
 		}
+
 
 		$table .= $row . "</tr> \n";
 	}
