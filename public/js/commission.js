@@ -91,7 +91,8 @@ function generationCommission(table, annee, semestre) {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
-function generationCommissionComp(table, annee, semestre,competence) {
+
+function generationCommissionComp(table, annee, semestre, competence) {
     
     
     while (table.hasChildNodes()) {
@@ -203,39 +204,4 @@ function generationCommissionComp(table, annee, semestre,competence) {
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
-}
-
-function moyenneComp(semestre, comp, modules) {
-    let idComp = semestre * 10 + comp;
-    let coeff = 0.00;
-    let resultat = 0.00;
-
-    return fetch('http://localhost/SAE4.01/data/compMod.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(jsonData => {
-            jsonData.forEach(competence => {
-                if (competence['compid'] === idComp) {
-                    competence['modules'].forEach(module1 => {
-                        modules.forEach(module2 => {
-                            if (module1['modId'] === module2['modId']) {
-                                console.log(module2['noteVal'] +" = "+parseFloat(module2['noteVal']))
-                                console.log(module1['noteVal'] +" = "+parseFloat(module1['noteVal']))
-                                resultat += parseFloat(module2['noteVal']) * parseFloat(module1['modVal']);
-                                coeff += parseFloat(module1['modVal']);
-                            }
-                        });
-                    });
-                }
-            });
-            resultat = resultat / coeff;
-            return resultat;
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
 }
