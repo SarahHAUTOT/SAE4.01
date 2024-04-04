@@ -63,8 +63,9 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
-                    // header("Location: commission.php");
-                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_POST['semCom']));
+                    // header("Location: commission.php
+                    $_SESSION['semCom'] = $_POST['semCom'];
+                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom'] +1));
                 }
                 else
                 {
@@ -148,7 +149,7 @@ function contenu()
 	echo    '</select>
 
 			<span>Choix semestre</span>
-			<select id="selectSemester" name="semCom" >
+			<select id="selectSemester" name="semCom">
 				<option value="semestre1">S1</option>
 				<option value="semestre2">S2</option>
 				<option value="semestre3">S3</option>
