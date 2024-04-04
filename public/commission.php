@@ -115,11 +115,10 @@ function generationCommission($anneeId, $semestre) {
 		$row .= "<td>". $student['prenom'] ."</td>";
 
 
-
 		// Recup moyenne Semestre
-        $query = "SELECT getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.") as \"moysem\" FROM AdmComp";
+        $query = "SELECT * FROM getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.")";
         $moy = $db->execQuery($query);
-        $row .= "<td>". $moy['moysem'][0] ."</td>";
+        $row .= "<td>". $moy[0]['moysem'] ."</td>";
 
 		$row .= "<td>". $student['tp'] ."</td>";
 		$row .= "<td>". $student['td'] ."</td>";
@@ -127,10 +126,10 @@ function generationCommission($anneeId, $semestre) {
 
 		for($i = 0; $i < count($liens); $i++ )
 		{
-            $query = "SELECT getCompMoy(".$semestre.$anneeId.($i+1).", ".$student['etdid'].", ".$anneeId.") as \"moycomp\" FROM AdmComp";
+            $query = "SELECT * getCompMoy(".$semestre.$anneeId.($i+1).", ".$student['etdid'].", ".$anneeId.")";
             $moy = $db->execQuery($query);
 
-			$row .= "<td>".$moy['moycomp'][0]."</td>";
+			$row .= "<td>".$moy[0]['moycomp']."</td>";
 		}
 
 		$table .= $row . "</tr> \n";
@@ -294,9 +293,9 @@ function generationCommissionComp($table, $anneeId, $semestre, $competence)
 
 
 		// Recup moyenne Semestre
-        $query = "SELECT getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.") as \"moysem\" FROM AdmComp";
+        $query = "SELECT * FROM getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.")";
         $moy = $db->execQuery($query);
-        $row .= "<td>". $moy['moysem'][0] ."</td>";
+        $row .= "<td>". $moy[0]['moysem'] ."</td>";
 
 		$row .= "<td>". $student['tp'] ."</td>";
 		$row .= "<td>". $student['td'] ."</td>";
@@ -304,7 +303,7 @@ function generationCommissionComp($table, $anneeId, $semestre, $competence)
 
         foreach($modules as $module)
         {
-            $query = "SELECT noteVal FROM CompMod WHERE compId = ".$semestre.$competence;
+            $query = "SELECT noteVal FROM CompMod WHERE compId = ".$semestre.$competence." AND modId =".$module['noteval'];
             $noteVal = $db->execQuery($query);
             
             $row .= "<td>". $noteVal ."</td>";
