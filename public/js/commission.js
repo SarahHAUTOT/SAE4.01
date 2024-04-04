@@ -25,8 +25,10 @@ function generationCommission(table, annee, semestre) {
 
     liens.forEach(lienLib => {
         const thElement = document.createElement('th');
-        const lienA     = document.createElement('a')
-        lienA.setAttribute('href','commissionComp.php')
+        const lienA     = document.createElement('a');
+        const semNumber = liens.indexOf(lienLib) + 1; // Sem number 1 to 6
+
+        lienA.setAttribute('href', `commissionComp.php?sem=${semNumber}`);
         lienA.textContent = lienLib;
         thElement.appendChild(lienA);
         firstRow.appendChild(thElement);

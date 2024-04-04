@@ -64,6 +64,7 @@ if (isset($_POST['action'])) {
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
                     findYear($_POST['yearPE']);
+                    $_SESSION['semCom'] = $_POST['semCom'];
 
                     // header("Location: commission.php");
                     generateCSV(intval($_POST['yearCom']), 'Commission', intval($_POST['semCom']));

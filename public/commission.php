@@ -28,7 +28,7 @@ function contenu()
 	<div>
 		<h1>Commission d\'études</h1>
 		<div class="container">
-			<h2>Année '. $year['annelib'] .' / Semestre '.intval($_POST['semCom']).'</h2>
+			<h2>Année '. $year['annelib'] .' / Semestre '.$_SESSION['semCom'].'</h2>
 				<table class="block" id="tableCom">
 				</table>
 				<div class="gridRessource">
@@ -43,7 +43,7 @@ function contenu()
 	<script>
 		window.addEventListener("load", (event) =>{
 			const table = document.getElementById("tableCom")
-			generationCommission(table,'.json_encode($year['annelib']).',1)
+			generationCommission(table,'.json_encode($year['annelib']).','.$_SESSION['semCom'].')
 		});
 	</script>';
 }
