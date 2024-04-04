@@ -242,19 +242,19 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS moyUe FROM Moyenne";
+			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS 'moyUe' FROM Moyenne";
 			$compInfo = $db->execQuery($query);
 
 			$student['competences'][] = 
 			[
 				'compCode'=> $comp['compcode'],
-				'moy'     => $compInfo['moyUe']
+				'moy'     => $compInfo[0]['moyUe']
 			];
 
 			$query = "SELECT modCode, noteVal 
 					  FROM  Module m JOIN CompMod cm  ON m.modId=cm.modId 
 					  				 JOIN Moyenne moy ON m.modId=moy.modId 
-					  WHERE compId = ".$compInfo['compid']."";
+					  WHERE compId = ".$compInfo[0]['compid']."";
 			
 			$modules = $db->execQuery($query);
 
