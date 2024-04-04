@@ -201,7 +201,7 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 				WHERE anneeId = ".$yearId." AND semId = ".$semesterId;
 	$students  = $db->execQuery($query);
 
-	// For each student
+    // For each student
 	foreach ($students as &$student) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
@@ -209,11 +209,11 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
 
-		$query = "SELECT getNbAdmiUE(".$semesterId.", ".$student['etdid'].", ".$yearId.") 
+		$query = "SELECT getNbAdmiUE(".$semesterId.", ".$student['etdid'].", ".$yearId.") as \"admiue\" 
 				FROM AdmComp";
 		$nbAdmiUE = $db->execQuery($query);
 
-		$students['admiUEs'] = $nbAdmiUE; // UEs that are passed
+		$students['admiUEs'] = $nbAdmiUE[0]['admiue']; // UEs that are passed
 
 		// For each competences of the last semester
 		$lastSemester = $semesterId-1;
@@ -222,11 +222,7 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 
 		foreach ($lastSemComps as &$comp) 
 		{
-			$compNb = str_replace($lastSemester, "", $comp['compid']);
-			$compId1 = $compNb.''.$lastSemester; 
-			$compId2 = $compNb.''.($lastSemester-1);
-
-            $query = 'SELECT getRCUE('.$compId1.', '.$compId2.', '.$student['etdid'].', '.$yearId.') FROM AdmComp';
+            $query = 'SELECT admi FROM AdmComp WHERE compId='.$comp['compid'];
 			$admiRCUE = $db->execQuery($query);
 
 			$student['RCUE'][] = 
@@ -236,9 +232,9 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 			];
 		}
 
-		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; 
+		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') as "moysem" FROM AdmComp'; 
 		$moySem = $db->execQuery($query);
-		$student['moySem'] = $moySem;
+		$student['moySem'] = $moySem[0]['moysem'];
 
 		$query = "SELECT * FROM Competence WHERE semId =".$semesterId;
 		$competences = $db->execQuery($query);
@@ -246,13 +242,13 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS 'moyUe' FROM Moyenne";
+			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS \"moyue\" FROM Moyenne";
 			$compInfo = $db->execQuery($query);
 
 			$student['competences'][] = 
 			[
 				'compCode'=> $comp['compcode'],
-				'moy'     => $compInfo[0]['moyUe']
+				'moy'     => $compInfo[0]['moyue']
 			];
 
 			$query = "SELECT modCode, noteVal 
@@ -275,7 +271,7 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 
 	// JSON Generation
 	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
-	file_put_contents( '../../data/csv.json', $jsonData);
+	file_put_contents( '../data/csv.json', $jsonData);
 
 	echo "Le fichier csv.json a été créé avec succès.<br>";
 }

@@ -2,20 +2,18 @@
 
 //Pour la structure
 include 'background.php';
-//include '../src/app/export/Export.php'; si decommenter ça fait bugger
-include '../src/app/DB.inc.php'; // TODO remove later
+include '../src/app/export/Export.php'; // si decommenter ça fait bugger
 
 // Creating global data
 global $db;
 $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
-$query = "SELECT a.anneeId, anneLib
+$query = "SELECT DISTINCT (a.anneeId), annelib
 FROM Annee a JOIN AdmComp admc ON a.anneeId=admc.anneeId
 WHERE CAST (compId as varchar) LIKE '5_'";
 $years = $db->execQuery($query);
 
 global $anneePE;
-
 foreach ($years as $year) 
 {
     $anneePE[] = 
@@ -59,8 +57,7 @@ if (isset($_POST['action'])) {
                 global $anneePE;
 
                 $_SESSION['year'] = $_POST['yearPE'];
-                $_SESSION['anneLib'] = $anneePE[ $_SESSION['year'] ];
-                generateStudentsPE($_SESSION['year']);
+                $_SESSION['annelib'] = $anneePE[ $_SESSION['year'] -1 ]['annelib'];
                 header("Location: generationPoursuite.php");
             }
             else
@@ -79,10 +76,10 @@ if (isset($_POST['action'])) {
                     global $anneePE;
 
                     $_SESSION['year'    ] = $_POST['yearPE'];
-                    $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] ];
+                    $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] -1];
                     $_SESSION['semCom'  ] = $_POST['semCom'];
 
-                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom'] +1));
+                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
                     // header("Location: commission.php");
                 }
                 else
@@ -159,7 +156,7 @@ function contenu()
 				<span>Choix Année</span>
 				<select id="selectYear" name="yearCom" >';
 
-    $query = "SELECT anneeId, anneLib FROM Annee";
+    $query = "SELECT anneeId, annelib FROM Annee";
     $anneeData = $db->execQuery($query);
 
 	foreach ($anneeData as $year)
