@@ -427,7 +427,8 @@ function generateCSV(int $year, String $type, int $semester)
 	// CSV File creation
 	// header('Content-type: text/csv; charset=utf-8');
 	// header('Content-Disposition: attachment; filename=PV_'.$type.'_S'.$semester);
-	
+
+    
 	$header  = null;
 	$content = null;
 

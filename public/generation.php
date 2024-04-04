@@ -76,10 +76,10 @@ if (isset($_POST['action'])) {
                     global $anneePE;
 
                     $_SESSION['year'    ] = $_POST['yearPE'];
-                    $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] ];
+                    $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] -1];
                     $_SESSION['semCom'  ] = $_POST['semCom'];
 
-                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom'] +1));
+                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
                     // header("Location: commission.php");
                 }
                 else
