@@ -65,6 +65,7 @@ if (isset($_POST['action'])) {
                 {
                     // header("Location: commission.php
                     $_SESSION['semCom'] = $_POST['semCom'];
+                    echo $_SESSION['semCom'];
                     generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom'] +1));
                 }
                 else
@@ -150,11 +151,11 @@ function contenu()
 
 			<span>Choix semestre</span>
 			<select id="selectSemester" name="semCom">
-				<option value="semestre1">S1</option>
-				<option value="semestre2">S2</option>
-				<option value="semestre3">S3</option>
-				<option value="semestre4">S4</option>
-				<option value="semestre4">S5</option>
+				<option value="1">S1</option>
+				<option value="2">S2</option>
+				<option value="3">S3</option>
+				<option value="4">S4</option>
+				<option value="5">S5</option>
 			</select>
 		</div>
 			
