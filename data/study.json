@@ -126,24 +126,5 @@
         "chef": "Tamere",
         "signature": "Logo1.png",
         "anneeLib": "2022-2023"
-    },
-    "logo1": "20240318_163607.jpg",
-    "logo2": "SCODOC.png",
-    "chef": "ds",
-    "signature": "20240318_163607.jpg",
-    "anneeLib": "2020-2021",
-    "nbAvisMaster": [
-        0,
-        0,
-        0,
-        0,
-        0
-    ],
-    "nbAvisIng": [
-        0,
-        0,
-        0,
-        0,
-        0
-    ]
+    }
 }

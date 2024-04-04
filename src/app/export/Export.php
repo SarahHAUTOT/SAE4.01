@@ -1,6 +1,8 @@
 <?php
 require ('../src/app/DB.inc.php');
+require ('../src/app/DBtoJSON.php');
 require ('../lib/fpdf/fpdf.php');
+
 
 echo "test";
 
@@ -375,8 +377,8 @@ function ajouterAvis($nouvelAvis)
 	$donnees['avis'][] = $nouvelAvis;
 
 	//Ajouter les info en +
-	$donnees['nbAvisMaster'][$avi['avisMaster'   ]] = $donnees['nbAvisMaster'][$avi['avisMaster'   ]]+1;
-	$donnees['nbAvisIng'   ][$avi['avisIngenieur']] = $donnees['nbAvisIng']   [$avi['avisIngenieur']]+1;
+	$donnees['nbAvisMaster'][$nouvelAvis['avisMaster'   ]] = $donnees['nbAvisMaster'][$nouvelAvis['avisMaster'   ]]+1;
+	$donnees['nbAvisIng'   ][$nouvelAvis['avisIngenieur']] = $donnees['nbAvisIng']   [$nouvelAvis['avisIngenieur']]+1;
 
 	// Enregistrer les données mises à jour dans le fichier JSON
 	file_put_contents($cheminFichier, json_encode($donnees, JSON_PRETTY_PRINT));
@@ -422,6 +424,9 @@ function resetJSON()
 
 function generateCSV(int $year, String $type, int $semester)
 {
+	// Creating the csv.json file
+	generateStudentsCsv($year, $semester);
+
 	// CSV File creation
 	header('Content-type: text/csv; charset=utf-8');
 	header('Content-Disposition: attachment; filename=PV_'.$type.'_S'.$semester.'_'.$year);
@@ -431,7 +436,6 @@ function generateCSV(int $year, String $type, int $semester)
 
 	if (strcmp($type, 'Commission') === 0)
 	{
-		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
 		// Exploiting JSON File
 		$json_data = file_get_contents('../data/csv.json');
 		$commissionData = json_decode($json_data, true);
@@ -442,7 +446,6 @@ function generateCSV(int $year, String $type, int $semester)
 
 	if (strcmp($type, 'Jury') === 0 && $semester >= 2)
 	{
-		// function generateStudents(int $yearId, int $semesterId) dans DBtoJSON
 		// Exploiting JSON File
 		$json_data = file_get_contents('../data/csv.json');
 		$juryData = json_decode($json_data, true);
