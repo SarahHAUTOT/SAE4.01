@@ -118,10 +118,11 @@ function generationCommissionComp(table, annee, semestre,competence) {
 
     headers.forEach(headerText => {
         const thElement = document.createElement('th');
+        thElement.setAttribute('rowspan',2)
         thElement.textContent = headerText;
         firstRow.appendChild(thElement);
     });
-    fetch('http://localhost/SAE4.01/data/comp.json')
+    fetch('http://localhost/SAE4.01/data/compMod.json')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -131,6 +132,7 @@ function generationCommissionComp(table, annee, semestre,competence) {
     .then(jsonData => {
         let countCompetence =0;
         jsonData.forEach(bin => {
+            console.log(bin)
             if(bin['compid']>=competence*10+1 && bin['compid']<=competence*10+9){countCompetence++}
         })
         const thElement = document.createElement('th');
