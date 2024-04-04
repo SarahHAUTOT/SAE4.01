@@ -56,43 +56,29 @@ function generationCommission(table, annee, semestre) {
                             const row = document.createElement('tr');
                             
                             ['etdid', 'etdnom', 'etdprenom'].forEach(key => {
-                                const thElement = document.createElement('th');
+                                const thElement = document.createElement('td');
                                 thElement.textContent = etudiantData[key];
                                 row.appendChild(thElement);
                             });
 
-                            row.innerHTML += "<th>Moyenne</th>";
+                            row.innerHTML += "<td>Moyenne</td>";
 
                             ['etdgroupetp', 'etdgroupetd'].forEach(key => {
-                                const thElement = document.createElement('th');
+                                const thElement = document.createElement('td');
                                 thElement.textContent = etudiantData[key];
                                 row.appendChild(thElement);
                             });
                             const promises = [];
 
-                            if (semestre !== 5 || i <= 5) {
-                                for (let i = 1; i <= 6; i++) {
-                                    promises.push(moyenneComp(semestre, i, etudiantData['modules']));
-                                }
-                            } else {
-                                promises.push(moyenneComp(semestre, 1, etudiantData['modules']));
-                                promises.push(moyenneComp(semestre, 2, etudiantData['modules']));
-                                promises.push(moyenneComp(semestre, 6, etudiantData['modules']));
-                            }
-
-                            Promise.all(promises)
-                                .then(results => {
-                                    results.forEach(result => {
-                                        const thElement = document.createElement('th');
-                                        thElement.textContent = String(result);
-                                        console.log("passé")
-                                        row.appendChild(thElement);
-                                    });
-                                    tBodyElem.appendChild(row);
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                });
+                            etudiantData['competences'].forEach(comp => {
+                                console.log(comp)
+                                const thElement = document.createElement('td');
+                                const moyenneFloat = parseFloat(comp['moySem']);
+                                console.log(parseFloat(comp['moySem']))
+                                const formattedMoyenne = moyenneFloat.toFixed(2);
+                                thElement.textContent = formattedMoyenne;
+                                row.appendChild(thElement)
+                            });
                             tBodyElem.appendChild(row);
                             
                         });
@@ -187,22 +173,21 @@ function generationCommissionComp(table, annee, semestre,competence) {
                             const row = document.createElement('tr');
                             
                             ['etdid', 'etdnom', 'etdprenom'].forEach(key => {
-                                const thElement = document.createElement('th');
+                                const thElement = document.createElement('td');
                                 thElement.textContent = etudiantData[key];
                                 row.appendChild(thElement);
                             });
-
-                            row.innerHTML += "<th>Moyenne</th>";
+                            row.innerHTML += "<td>Moyenne</td>";
 
                             ['etdgroupetp', 'etdgroupetd'].forEach(key => {
-                                const thElement = document.createElement('th');
+                                const thElement = document.createElement('td');
                                 thElement.textContent = etudiantData[key];
                                 row.appendChild(thElement);
                             });
 
                             etudiantData['modules'].forEach(module => {
                                 if (idModule.includes(module['modId'])) {
-                                    const thElement = document.createElement('th');
+                                    const thElement = document.createElement('td');
                                     thElement.textContent = module['noteVal']
                                     row.appendChild(thElement)
                                 }
