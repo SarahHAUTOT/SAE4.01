@@ -432,8 +432,33 @@
 
 			const suivant = document.getElementById('suivant');
 			suivant.addEventListener('click', function () {
-				console.log(avi);;
+				callPHP("export.php","sex", avi);
 			});
+
+
+			function callPHP(file, action, datas) {
+				return new Promise((resolve, reject) => {
+					fetch(file, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({ action: action, datas }),
+					})
+						.then(response => {
+							if (!response.ok) {
+								throw new Error('Network response was not ok');
+							}
+							return response.text();
+						})
+						.then(data => {
+							resolve(data); // Renvoie le message de succès du script PHP
+						})
+						.catch(error => {
+							reject(error);
+						});
+				});
+			}
 
 		</script>
 
