@@ -195,10 +195,10 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 	// Getting all of the student for a specified year and semester
-	$query     = "SELECT e.etdId, etdNom, etdPrenom, etdCursus, etdBonus 
+	$query     = 'SELECT distinct(e.etdId) as "etdid", etdNom as "nom", etdPrenom as "prenom", etdGroupeTP as "tp", etdGroupeTD as "td" 
 				FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
 				JOIN  Competence c ON c.compId=admc.compId 
-				WHERE anneeId = ".$yearId." AND semId = ".$semesterId;
+				WHERE anneeId = '.$yearId.' AND semId = '.$semesterId;
 	$students  = $db->execQuery($query);
 
     // For each student

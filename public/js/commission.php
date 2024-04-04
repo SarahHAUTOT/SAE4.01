@@ -1,72 +1,17 @@
 <?php
 
-//Pour la structure
-include 'background.php';
-include '../src/app/DB.inc.php'; // si decommenter ça fait bugger
-
-// Démarrer la session
-session_start();
-
-// Vérifier si la session est ouverte
-if (!isset($_SESSION['role'])) {
-    // Rediriger vers la page de connexion si la session n'est pas ouverte
-    header('Location: connexion.php');
-    exit;
-}
-
-// Vérifier les droits de l'utilisateur
-if ($_SESSION['role'] != 2) {
-    // Rediriger vers une page d'erreur si l'utilisateur n'a pas les droits nécessaires
-    header('Location: accueilUtilisateur.php');
-    exit;
-}
-
-
-function contenu()
-{
-	$year     = $_SESSION['anneLib'];
-
-	var_dump($year);
-	echo '
-	<div>
-		<h1>Commission d\'études</h1>
-		<div class="container">
-			<h2>Année '. $year .' / Semestre '.$_SESSION['semCom'].'</h2>
-				
-
-
-	';
-	$tableHTML = '';
-
-	generationCommission($_SESSION['year'], $_SESSION['semCom']);
-	
-	echo '
-				<div class="gridRessource">
-					<label id="modification">*Modification non sauvegardée*</label>
-					<button class="validateButtonStyle" type="import" name="signCachet" value="">Prévisualiser</button>
-					<button class="validateButtonStyle" type="import" name="signCachet" value="">Sauvegarder les modification</button>
-					<a href="generation.php"><button class="validateButtonStyle" type="import" name="signCachet" value="">Générer</button></a>
-				</div>
-		</div>
-	</div>';
-
-
-}
-
-head('css/commissionEtFicheAvis.css');
-
-contenu();
-
-foot();
+include '../../src/app/DB.inc.php'; // si decommenter ça fait bugger
 
 
 
+$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 
-
-function generationCommission($annee, $semestre) {
-
-	$table = '<table class="block" id="tableCom">';
+function generationCommission($table, $annee, $semestre) {
+    // Transformation des balises HTML et du code DOM
+    while ($table->hasChildNodes()) {
+        $table->removeChild($table->firstChild);
+    }
 
     $tHeadElem = "<thead></thead>";
     $tBodyElem = "<tbody></tbody>";
@@ -97,11 +42,10 @@ function generationCommission($annee, $semestre) {
     $table .= $tBodyElem;
 
 
-
-	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+	global $db;
 
 	// Getting all of the student for a specified year and semester
-	$query     = 'SELECT distinct(e.etdId) as "etdid", etdNom as "nom", etdPrenom as "prenom", etdGroupeTP as "tp", etdGroupeTD as "td" 
+	$query     = 'SELECT e.etdId as "etdid", etdNom as "nom", etdPrenom as "prenom", etdGroupeTP as "tp", etdGroupeTD as "td" 
 				FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
 				JOIN  Competence c ON c.compId=admc.compId 
 				WHERE anneeId = '.$annee.' AND semId = '.$semestre;
@@ -135,10 +79,10 @@ function generationCommission($annee, $semestre) {
 			$row .= "<td>C".($i+1)."</td>";
 		}
 
-		$table .= $row . "</tr> \n";
+		$table .= "$row</tr>";
 	}
 
-	echo $table . '</table>';
+
 
 
 
@@ -179,6 +123,11 @@ function generationCommission($annee, $semestre) {
 }
 
 function generationCommissionComp($table, $annee, $semestre, $competence) {
+    // Transformation des balises HTML et du code DOM
+    while ($table->hasChildNodes()) {
+        $table->removeChild($table->firstChild);
+    }
+
     $countModule = 0;
     $idModule = [];
     $tHeadElem = "<thead></thead>";
@@ -260,5 +209,4 @@ function generationCommissionComp($table, $annee, $semestre, $competence) {
     //     }
     // }
 }
-
 ?>

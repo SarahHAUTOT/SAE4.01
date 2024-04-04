@@ -2,7 +2,8 @@
 
 //Pour la structure
 include 'background.php';
-include '../src/app/export/Export.php'; // si decommenter ça fait bugger
+// include '../src/app/export/Export.php'; // si decommenter ça fait bugger
+include '../src/app/DB.inc.php'; // si decommenter ça fait bugger
 
 // Creating global data
 global $db;
@@ -23,6 +24,17 @@ foreach ($years as $year)
         ];
 }
 
+global $annee;
+$query = "SELECT anneeId, annelib FROM Annee";
+$years = $db->execQuery($query);
+foreach ($years as $year) 
+{
+    $annee[] = 
+        [
+            'anneeid' => $year['anneeid'],
+            'annelib' => $year['annelib'],  
+        ];
+}
 
 // Démarrer la session
 session_start();
@@ -73,14 +85,14 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']))
                 {
-                    global $anneePE;
+                    global $annee;
 
-                    $_SESSION['year'    ] = $_POST['yearPE'];
-                    $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] -1];
+                    $_SESSION['year'    ] = $_POST['yearCom'];
+                    $_SESSION['anneLib'] = $annee[ $_POST['yearCom'] -1]['annelib'];
                     $_SESSION['semCom'  ] = $_POST['semCom'];
 
-                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
-                    // header("Location: commission.php");
+                    // generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                    header("Location: commission.php");
                 }
                 else
                 {

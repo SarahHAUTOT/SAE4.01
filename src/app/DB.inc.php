@@ -10,7 +10,7 @@ class DB
 
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
-		$connStr = 'pgsql:host=woody port=5432 dbname='.$dbName; 
+		$connStr = 'pgsql:host=127.0.0.1 port=5432 dbname='.$dbName; 
 		try 
 		{
 			// Connection with the base
