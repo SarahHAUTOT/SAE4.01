@@ -2,7 +2,7 @@
 
 //Pour la structure
 include 'background.php';
-//include '../src/app/export/Export.php';
+//include '../src/app/export/Export.php'; si decommenter ça fait bugger
 include '../src/app/DB.inc.php'; // TODO remove later
 
 // Creating global data
@@ -60,7 +60,7 @@ if (isset($_POST['action'])) {
 
                 $_SESSION['year'] = $_POST['yearPE'];
                 $_SESSION['anneLib'] = $anneePE[ $_SESSION['year'] ];
-                generateStudents($_SESSION['year']);
+                generateStudentsPE($_SESSION['year']);
                 header("Location: generationPoursuite.php");
             }
             else
