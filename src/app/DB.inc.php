@@ -1,5 +1,8 @@
 <?php
 
+set_time_limit(200000);
+
+
 class DB
 {
 	private static $instance = null; // to make sure that only one DB Object exist
