@@ -45,7 +45,7 @@ if (isset($_POST['action'])) {
     switch ($action)
     {
         case 'pe':
-            //générationd des poursuite d'études
+            //génération des poursuite d'études
             if (isset($_POST['yearPE']) && !empty($_POST['yearPE'])) {
                 findYear($_POST['yearPE']);
 
@@ -53,7 +53,7 @@ if (isset($_POST['action'])) {
             }
             else
             {
-                alert("Veuillez selectionné une année");
+                alert("Veuillez selectionner une année");
             }
             break;
 
@@ -63,17 +63,20 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
+                    findYear($_POST['yearPE']);
+                    $_SESSION['semCom'] = $_POST['semCom'];
+
                     // header("Location: commission.php");
                     generateCSV(intval($_POST['yearCom']), 'Commission', intval($_POST['semCom']));
                 }
                 else
                 {
-                    alert("Veuillez selectionnée un semestre");
+                    alert("Veuillez selectionner un semestre");
                 }
             }
             else
             {
-                alert("Veuillez selectionné une année");
+                alert("Veuillez selectionner une année");
             }
             break;
 
@@ -85,16 +88,18 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
+                    findYear($_POST['yearPE']);
+
                     // header("Location: commission.php");
                 }
                 else
                 {
-                    alert("Veuillez selectionnée un semestre");
+                    alert("Veuillez selectionner un semestre");
                 }
             }
             else
             {
-                alert("Veuillez selectionné une année");
+                alert("Veuillez selectionner une année");
             }
             break;
 
@@ -148,12 +153,12 @@ function contenu()
 	echo    '</select>
 
 			<span>Choix semestre</span>
-			<select id="selectSemester" name="semCom" >
-				<option value="semestre1">S1</option>
-				<option value="semestre2">S2</option>
-				<option value="semestre3">S3</option>
-				<option value="semestre4">S4</option>
-				<option value="semestre4">S5</option>
+			<select id="selectSemester" name="semCom">
+				<option value="1">S1</option>
+				<option value="2">S2</option>
+				<option value="3">S3</option>
+				<option value="4">S4</option>
+				<option value="5">S5</option>
 			</select>
 		</div>
 			

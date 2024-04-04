@@ -1,5 +1,4 @@
 <?php
-require ('../src/app/DB.inc.php');
 require ('../src/app/DBtoJSON.php');
 require ('../lib/fpdf/fpdf.php');
 
@@ -428,8 +427,8 @@ function generateCSV(int $year, String $type, int $semester)
 	generateStudentsCsv($year, $semester);
 
 	// CSV File creation
-	header('Content-type: text/csv; charset=utf-8');
-	header('Content-Disposition: attachment; filename=PV_'.$type.'_S'.$semester.'_'.$year);
+	// header('Content-type: text/csv; charset=utf-8');
+	// header('Content-Disposition: attachment; filename=PV_'.$type.'_S'.$semester);
 	
 	$header  = null;
 	$content = null;
@@ -454,11 +453,9 @@ function generateCSV(int $year, String $type, int $semester)
 		$content = contentJury($juryData); 
 	}
 
-	if (!is_null($header) && !is_null($content))
-	{
 		echo $header;
 		echo $content;
-	}
+
 }
 
 function headerCommission($competences)
