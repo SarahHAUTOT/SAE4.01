@@ -155,7 +155,11 @@ function generateYears()
 				// Put them in student
 				$student['competences'] = [];
 				foreach ($competences as $competence) {
+					$query = 'SELECT getCompMoy('.$student['etdid'].', '.$year['anneeid'].') as "moy" FROM AdmComp'; 
+					$moySem = $db->execQuery($query);
+					
 					$student['competences'][] = [
+						'moySem'   => $moySem[0]['moy'],
 						'compId'   => $competence['compid'],
 						'compLib'  => $competence['complib'],
 						'admi'     => $competence['admi']
@@ -238,19 +242,19 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS moyUe FROM Moyenne";
+			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS 'moyUe' FROM Moyenne";
 			$compInfo = $db->execQuery($query);
 
 			$student['competences'][] = 
 			[
 				'compCode'=> $comp['compcode'],
-				'moy'     => $compInfo['moyUe']
+				'moy'     => $compInfo[0]['moyUe']
 			];
 
 			$query = "SELECT modCode, noteVal 
 					  FROM  Module m JOIN CompMod cm  ON m.modId=cm.modId 
 					  				 JOIN Moyenne moy ON m.modId=moy.modId 
-					  WHERE compId = ".$compInfo['compid']."";
+					  WHERE compId = ".$compInfo[0]['compid']."";
 			
 			$modules = $db->execQuery($query);
 
@@ -291,6 +295,7 @@ function generateStudents(int $yearId)
 	$students  = $db->execQuery($query);
 
 	// For each student
+	$i = 1;
 	foreach ($students as &$student) 
 	{
 		// For BUT 1 and BUT 2 (the first 4 semester)
@@ -309,20 +314,21 @@ function generateStudents(int $yearId)
 				$moyComp2 = $db->execQuery($query);
 
 				$moyBUT = ($moyComp1 + $moyComp2) /2;
-				
+
+				$UEid  = "UE ". str_replace("5", "", $competences[$j]['compid']."");
+				$compLib = $competences[$j]['complib'] .'';
+
+				$student['nbStud'] = $i;
+
 				if ($i <= 2)
 				{
-					$compid  = "UE ". str_replace("".$i, "", $competences[$j]['compid']."");
-					$compLib = $competences[$j]['complib'] .'';
-					$student['BUT 1'][$compid]['moy'] = $moyBUT;
-					$student['BUT 1'][$compid]['lib'] = $compLib;
+					$student['BUT 1'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 1'][$UEid]['lib'] = $compLib;
 				}
 				else
 				{
-					$compid  = "UE ". str_replace("".$i, "", $competences[$j]['compid']."");
-					$compLib = $competences[$j]['complib'] .'';
-					$student['BUT 2'][$compid]['moy'] = $moyBUT;
-					$student['BUT 2'][$compid]['lib'] = $compLib;
+					$student['BUT 2'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 2'][$UEid]['lib'] = $compLib;
 				}
 			}
 
@@ -346,6 +352,7 @@ function generateStudents(int $yearId)
 
 		}
 
+		$i++;
 	}
 
 	// JSON Generation
