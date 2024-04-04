@@ -137,7 +137,7 @@ table {
 	text-align: center;
 }
 
-td,th {
+td{
 	border: 1px solid #dddddd;
 	background-color: #ffffff;
 	text-align: left;

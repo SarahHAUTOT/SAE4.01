@@ -2,7 +2,7 @@
 
 //Pour la structure
 include 'background.php';
-include '../src/app/export/Export.php';
+//include '../src/app/export/Export.php';
 include '../src/app/DB.inc.php';
 
 // Creating global data
@@ -55,15 +55,17 @@ if (isset($_POST['action'])) {
     {
         case 'pe':
             //générationd des poursuite d'études
-            if (isset($_POST['yearPE']) && isset($_POST['yearPE'])) {
+            if (isset($_POST['yearPE'])) {
+                global $anneePE;
 
                 $_SESSION['year'] = $_POST['yearPE'];
+                $_SESSION['anneLib'] = $anneePE[ $_SESSION['year'] ];
                 generateStudents($_SESSION['year']);
                 header("Location: generationPoursuite.php");
             }
             else
             {
-                alert("Veuillez selectionné une année");
+                alert("Veuillez selectionner une année");
             }
             break;
 
@@ -76,21 +78,21 @@ if (isset($_POST['action'])) {
                 {
                     global $anneePE;
 
-                    // header("Location: commission.php");
                     $_SESSION['year'    ] = $_POST['yearPE'];
                     $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] ];
                     $_SESSION['semCom'  ] = $_POST['semCom'];
 
                     generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom'] +1));
+                    // header("Location: commission.php");
                 }
                 else
                 {
-                    alert("Veuillez selectionnée un semestre");
+                    alert("Veuillez selectionner un semestre");
                 }
             }
             else
             {
-                alert("Veuillez selectionné une année");
+                alert("Veuillez selectionner une année");
             }
             break;
 
@@ -108,12 +110,12 @@ if (isset($_POST['action'])) {
                 }
                 else
                 {
-                    alert("Veuillez selectionnée un semestre");
+                    alert("Veuillez selectionner un semestre");
                 }
             }
             else
             {
-                alert("Veuillez selectionné une année");
+                alert("Veuillez selectionner une année");
             }
             break;
 
