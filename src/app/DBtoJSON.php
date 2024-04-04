@@ -155,7 +155,11 @@ function generateYears()
 				// Put them in student
 				$student['competences'] = [];
 				foreach ($competences as $competence) {
+					$query = 'SELECT getCompMoy('.$student['etdid'].', '.$year['anneeid'].') as "moy" FROM AdmComp'; 
+					$moySem = $db->execQuery($query);
+					
 					$student['competences'][] = [
+						'moySem'   => $moySem[0]['moy'],
 						'compId'   => $competence['compid'],
 						'compLib'  => $competence['complib'],
 						'admi'     => $competence['admi']
