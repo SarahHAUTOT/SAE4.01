@@ -142,17 +142,16 @@
 			fetch('../data/etudiants.json')
 				.then(response => response.json())
 				.then(data => {
-					
+
 					// Obtenir les informations de l'étudiant
 					const etudiant = data[1];
 
+					//prenom et nom de l'étudiant
+					const etud = document.getElementById('etudiant');
+					etud.innerHTML = `${etudiant.etdprenom} ${etudiant.etdnom}`;
 
-			const etud = document.getElementById('etudiant');
-			etud.innerHTML = `${etudiant.etdprenom} ${etudiant.etdnom}`
-
-
+					//BUT 1 et 2
 					const but12 = document.getElementById('BUT12');
-					
 
 					const but121 = but12.insertRow();
 					but121.innerHTML = `
@@ -224,11 +223,7 @@
 							<td colspan="2"></td>
 							<td colspan="2"></td>`;
 
-
-
-
-
-
+					//BUT 3
 					const but3 = document.getElementById('BUT3');
 
 					const but31 = but3.insertRow();
