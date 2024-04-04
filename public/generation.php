@@ -2,6 +2,7 @@
 
 //Pour la structure
 include 'background.php';
+include '../src/app/export/Export.php';
 
 
 
@@ -57,14 +58,34 @@ if (isset($_POST['action'])) {
             break;
 
         case 'comm':
-        case 'jury':
-            echo "Year selected: " . $_POST['yearCom'];
 
             if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
 
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
-                    header("Location: commission.php");
+                    // header("Location: commission.php");
+                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_POST['semCom']));
+                }
+                else
+                {
+                    alert("Veuillez selectionnée un semestre");
+                }
+            }
+            else
+            {
+                alert("Veuillez selectionné une année");
+            }
+            break;
+
+
+
+        case 'jury':
+
+            if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+
+                if (isset($_POST['semCom']) && !empty($_POST['semCom']))
+                {
+                    // header("Location: commission.php");
                 }
                 else
                 {
