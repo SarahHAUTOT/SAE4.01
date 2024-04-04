@@ -59,7 +59,7 @@ function generationCommission(table, annee, semestre) {
                                 row.appendChild(thElement);
                             });
 
-                            row.innerHTML += "<th>moyenne</th>";
+                            row.innerHTML += "<th>Moyenne</th>";
 
                             ['etdgroupetp', 'etdgroupetd'].forEach(key => {
                                 const thElement = document.createElement('th');
@@ -109,11 +109,13 @@ function generationCommissionComp(table, annee, semestre,competence) {
     while (table.hasChildNodes()) {
         table.removeChild(table.firstChild);
     }
-
+    let countModule = 0;
+    const idModule = []
     const tHeadElem = document.createElement('thead');
     const tBodyElem = document.createElement('tbody');
 
     const firstRow = document.createElement('tr');
+    const row = document.createElement('tr')
     const headers = ["NIP", "Nom", "Prénom", 'Moy', "TP", "TD"]
 
     headers.forEach(headerText => {
@@ -122,6 +124,7 @@ function generationCommissionComp(table, annee, semestre,competence) {
         thElement.textContent = headerText;
         firstRow.appendChild(thElement);
     });
+    console.log("compmod")
     fetch('http://localhost/SAE4.01/data/compMod.json')
     .then(response => {
         if (!response.ok) {
@@ -130,22 +133,38 @@ function generationCommissionComp(table, annee, semestre,competence) {
         return response.json();
     })
     .then(jsonData => {
-        let countCompetence =0;
         jsonData.forEach(bin => {
-            console.log(bin)
-            if(bin['compid']>=competence*10+1 && bin['compid']<=competence*10+9){countCompetence++}
+            if(bin['compid']==semestre*10+competence){
+                bin['modules'].forEach(module => {
+                    countModule++
+                    idModule.push(module['modId'])
+                })
+                let thElement = document.createElement('th');
+                let lienA     = document.createElement('a')
+                lienA.setAttribute('href','commission.php')
+                lienA.textContent = bin['complib'];
+                thElement.setAttribute('colspan',countModule)
+                thElement.setAttribute('rowspan',1)
+                thElement.appendChild(lienA);
+                firstRow.appendChild(thElement);
+            }
         })
-        const thElement = document.createElement('th');
-        const lienA     = document.createElement('a')
-        lienA.setAttribute('href','commission.php')
-        lienA.textContent = 'C'+competence;
-        thElement.setAttribute('colspan',countCompetence)
-        thElement.appendChild(lienA);
-        firstRow.appendChild(thElement);
+        jsonData.forEach(comp => {
+            if(comp['compid']==semestre*10+competence){
+                comp['modules'].forEach(module => {
+                    let thElement = document.createElement('th');
+                    thElement.textContent = module['modLib']
+                    console.log(module['modLib'])
+                    row.appendChild(thElement)
+                })
+            }
+        })
     })
     
 
     tHeadElem.appendChild(firstRow);
+    tHeadElem.appendChild(row)
+
     table.appendChild(tHeadElem);
     table.appendChild(tBodyElem);
 
@@ -171,7 +190,7 @@ function generationCommissionComp(table, annee, semestre,competence) {
                                 row.appendChild(thElement);
                             });
 
-                            row.innerHTML += "<th>moyenne</th>";
+                            row.innerHTML += "<th>Moyenne</th>";
 
                             ['etdgroupetp', 'etdgroupetd'].forEach(key => {
                                 const thElement = document.createElement('th');
@@ -179,13 +198,13 @@ function generationCommissionComp(table, annee, semestre,competence) {
                                 row.appendChild(thElement);
                             });
 
-                            for (let i = 1; i <= 6; i++) {
-                                const thElement = document.createElement('th');
-                                if (semestre !== 5 || i <= 5) {
-                                    thElement.textContent = i;
-                                    row.appendChild(thElement);
+                            etudiantData['modules'].forEach(module => {
+                                if (idModule.includes(module['modId'])) {
+                                    const thElement = document.createElement('th');
+                                    thElement.textContent = module['noteVal']
+                                    row.appendChild(thElement)
                                 }
-                            }
+                            })
 
                             tBodyElem.appendChild(row);
                         });

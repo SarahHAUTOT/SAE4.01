@@ -25,11 +25,12 @@ if ($_SESSION['role'] != 2) {
 
 function contenu()
 {
+	$year     = unserialize($_SESSION['year']);
 	echo '
 	<div>
 		<h1>Commission d\'études</h1>
 		<div class="container">
-			<h2 id = "anneeSemestre">%%ETUDIANT SPECIFIQUE%%</h2>
+		<h2>Année '. $year['annelib'] .' / Semestre '.intval($_POST['semCom']).'</h2>
 				<table class="block" id="tableCom">
 				</table>
 
@@ -44,10 +45,8 @@ function contenu()
 	<script src = "js/commission.js"></script>
 	<script>
 		window.addEventListener("load", (event) =>{
-			const titre2 = document.getElementById("anneeSemestre")
-			titre2.textContent = "Annee 2021-2022 / Semestre 1"
 			const table = document.getElementById("tableCom")
-			generationCommissionComp(table,"2020-2021",1,1)
+			generationCommissionComp(table,'.json_encode($year['annelib']).',1,2)
 		});
 	</script>';
 }
