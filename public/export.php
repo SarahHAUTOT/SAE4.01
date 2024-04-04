@@ -137,8 +137,7 @@ function contenu()
 
 		}
 
-	</script>
-';
+	</script>';
 }
 
 head('css/generation.css');

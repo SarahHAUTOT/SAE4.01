@@ -3,12 +3,12 @@
 // Connexion à la base de données
 require 'DB.inc.php';
 
-generateUsers();
-generateCompMod();
-generateYears();
-generateExport();
-
-echo "pute";
+// generateUsers();
+// generateCompMod();
+// generateYears();
+// generateExport();
+// 
+// echo "pute";
 
 
 /**********************************************************************/
@@ -195,13 +195,13 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 	// Getting all of the student for a specified year and semester
-	$query     = "SELECT etdId, etdNom, etdPrenom, etdCursus, etdBonus 
+	$query     = 'SELECT distinct(e.etdId) as "etdid", etdNom as "nom", etdPrenom as "prenom", etdGroupeTP as "tp", etdGroupeTD as "td" 
 				FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
 				JOIN  Competence c ON c.compId=admc.compId 
-				WHERE anneId = ".$yearId." AND semId = ".$semesterId;
+				WHERE anneeId = '.$yearId.' AND semId = '.$semesterId;
 	$students  = $db->execQuery($query);
 
-	// For each student
+    // For each student
 	foreach ($students as &$student) 
 	{
 		$query = 'SELECT getRankSem('.$semesterId.', '.$student['etdid'].', '.$yearId.') 
@@ -209,11 +209,11 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		$rank = $db->execQuery($query);
 		$student['rank'] = $rank;
 
-		$query = "SELECT getNbAdmiUE(".$semesterId.", ".$student['etdid'].", ".$yearId.") 
+		$query = "SELECT getNbAdmiUE(".$semesterId.", ".$student['etdid'].", ".$yearId.") as \"admiue\" 
 				FROM AdmComp";
 		$nbAdmiUE = $db->execQuery($query);
 
-		$students['admiUEs'] = $nbAdmiUE; // UEs that are passed
+		$students['admiUEs'] = $nbAdmiUE[0]['admiue']; // UEs that are passed
 
 		// For each competences of the last semester
 		$lastSemester = $semesterId-1;
@@ -222,11 +222,7 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 
 		foreach ($lastSemComps as &$comp) 
 		{
-			$compNb = str_replace($lastSemester, "", $comp['compid']);
-			$compId1 = $compNb.''.$lastSemester; 
-			$compId2 = $compNb.''.($lastSemester-1);
-
-            $query = 'SELECT getRCUE('.$compId1.', '.$compId2.', '.$student['etdid'].', '.$yearId.') FROM AdmComp';
+            $query = 'SELECT admi FROM AdmComp WHERE compId='.$comp['compid'];
 			$admiRCUE = $db->execQuery($query);
 
 			$student['RCUE'][] = 
@@ -236,9 +232,9 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 			];
 		}
 
-		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') FROM AdmComp'; 
+		$query = 'SELECT getSemMoy('.$semesterId.', '.$student['etdid'].', '.$yearId.') as "moysem" FROM AdmComp'; 
 		$moySem = $db->execQuery($query);
-		$student['moySem'] = $moySem;
+		$student['moySem'] = $moySem[0]['moysem'];
 
 		$query = "SELECT * FROM Competence WHERE semId =".$semesterId;
 		$competences = $db->execQuery($query);
@@ -246,13 +242,13 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 		// For each competences of the semester
 		foreach ($competences as &$comp) 
 		{
-			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS 'moyUe' FROM Moyenne";
+			$query = "SELECT compId, getCompMoy(".$semesterId.", ".$comp['compid'].", ".$student['etdid'].", ".$yearId.") AS \"moyue\" FROM Moyenne";
 			$compInfo = $db->execQuery($query);
 
 			$student['competences'][] = 
 			[
 				'compCode'=> $comp['compcode'],
-				'moy'     => $compInfo[0]['moyUe']
+				'moy'     => $compInfo[0]['moyue']
 			];
 
 			$query = "SELECT modCode, noteVal 
@@ -275,7 +271,7 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 
 	// JSON Generation
 	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
-	file_put_contents( '../../data/csv.json', $jsonData);
+	file_put_contents( '../data/csv.json', $jsonData);
 
 	echo "Le fichier csv.json a été créé avec succès.<br>";
 }
@@ -287,36 +283,36 @@ function generateStudentsCsv(int $yearId, int $semesterId)
 /*                   POURSUITE D'ETUDE CREATION                       */
 /**********************************************************************/
 
-function generateStudents(int $yearId)
+function generateStudentsPE(int $yearId)
 {
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
-	// Getting all of the student for a specified year and semester
-	$query     = "SELECT etdId, etdNom, etdPrenom 
+	// Getting all of the student for a specified year
+	$query     = "SELECT e.etdId, etdNom, etdPrenom 
 				  FROM  Etudiant e JOIN AdmComp admc ON e.etdId=admc.etdId 
-				  WHERE anneId = ".$yearId." AND compId LIKE '5_'";
+				  WHERE anneeId = ".$yearId." AND CAST (compId as varchar) LIKE '5_'";
 	$students  = $db->execQuery($query);
 
 	// For each student
-	$i = 1;
+	$i = 0;
 	foreach ($students as &$student) 
 	{
 		// For BUT 1 and BUT 2 (the first 4 semester)
 		for ($i = 1; $i <= 4; $i++)
 		{
-			$query = "SELECT compId, compLib  FROM Competence c WHERE compId LIKE '".$i."_'";
+			$query = "SELECT compId, compLib  FROM Competence c WHERE CAST (compId as varchar) LIKE '".$i."_'";
 			$competences = $db->execQuery($query);
 
 			// For BUT 1 and BUT 2 => we will determine the moy and rank of each students for every comp
 			for ($j = 0; $j < count($competences) -2; $j = $j +2)
 			{
-				$query = "SELECT getCompMoy(".$competences[$j]['compid'].", ".$student['etdid'].", ".$yearId.") FROM AdmComp";
+				$query = "SELECT getCompMoy(".$competences[$j]['compid'].", ".$student['etdid'].", ".$yearId.") as \"compmoy\" FROM AdmComp";
 				$moyComp1 = $db->execQuery($query);
 
-				$query = "SELECT getCompMoy(".$competences[$j+1]['compid'].", ".$student['etdid'].", ".$yearId.") FROM AdmComp";
+				$query = "SELECT getCompMoy(".$competences[$j+1]['compid'].", ".$student['etdid'].", ".$yearId.") as \"compmoy\" FROM AdmComp";
 				$moyComp2 = $db->execQuery($query);
-
-				$moyBUT = ($moyComp1 + $moyComp2) /2;
+                
+				$moyBUT = ($moyComp1[0]['compmoy'] + $moyComp2[0]['compmoy']) /2;
 
 				$UEid  = "UE ". str_replace("5", "", $competences[$j]['compid']."");
 				$compLib = $competences[$j]['complib'] .'';
@@ -341,7 +337,8 @@ function generateStudents(int $yearId)
 			$compIds = [51, 52, 56];
 			for ($i = 0; $i < count($compIds); $i++)
 			{
-				$query = "SELECT compLib, getCompMoy(".$compIds[$i].", ".$student['etdid'].", ".$yearId.") FROM AdmComp WHERE compId = ".$compIds[$i];
+				$query = "SELECT compLib, getCompMoy(".$compIds[$i].", ".$student['etdid'].", ".$yearId.")
+                FROM AdmComp admc JOIN Competence c on c.compId=admc.compId WHERE c.compId = ".$compIds[$i];
 				$competences = $db->execQuery($query);
 
 				$compid  = "UE ". str_replace("".$i, "", $compIds[$i]."");
@@ -360,8 +357,94 @@ function generateStudents(int $yearId)
 
 	// JSON Generation
 	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
-	file_put_contents( '../../data/pe.json', $jsonData);
+	file_put_contents( '../../data/etudiants.json', $jsonData);
 
-	echo "Le fichier pe.json a été créé avec succès.<br>";
+	echo "Le fichier etudiants.json a été créé avec succès.<br>";
 }
+
+
+
+/*********************************************************************/
+/*                   CREATION DE LA COMMISSION                       */
+/*********************************************************************/
+
+function generateStudentsComm(int $yearId, int $semesterId)
+{
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
+	// Getting all of the student for a specified year and semester
+	$query     = "SELECT e.etdId, etdNom, etdPrenom 
+				  FROM  Etudiant e JOIN AdmComp admc ON e.etdId=admc.etdId 
+				  WHERE anneeId = ".$yearId." AND CAST (compId as varchar) LIKE '5_'";
+	$students  = $db->execQuery($query);
+
+	// For each student
+	$i = 0;
+	foreach ($students as &$student) 
+	{
+		// For BUT 1 and BUT 2 (the first 4 semester)
+		for ($i = 1; $i <= 4; $i++)
+		{
+			$query = "SELECT compId, compLib  FROM Competence c WHERE CAST (compId as varchar) LIKE '".$i."_'";
+			$competences = $db->execQuery($query);
+
+			// For BUT 1 and BUT 2 => we will determine the moy and rank of each students for every comp
+			for ($j = 0; $j < count($competences) -2; $j = $j +2)
+			{
+				$query = "SELECT getCompMoy(".$competences[$j]['compid'].", ".$student['etdid'].", ".$yearId.") as \"compmoy\" FROM AdmComp";
+				$moyComp1 = $db->execQuery($query);
+
+				$query = "SELECT getCompMoy(".$competences[$j+1]['compid'].", ".$student['etdid'].", ".$yearId.") as \"compmoy\" FROM AdmComp";
+				$moyComp2 = $db->execQuery($query);
+                
+				$moyBUT = ($moyComp1[0]['compmoy'] + $moyComp2[0]['compmoy']) /2;
+
+				$UEid  = "UE ". str_replace("5", "", $competences[$j]['compid']."");
+				$compLib = $competences[$j]['complib'] .'';
+
+				$student['nbStud'] = $i;
+
+				if ($i <= 2)
+				{
+					$student['BUT 1'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 1'][$UEid]['lib'] = $compLib;
+				}
+				else
+				{
+					$student['BUT 2'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 2'][$UEid]['lib'] = $compLib;
+				}
+			}
+
+			// calculer moy math + anglais du BUT 1 et 2
+
+			// For BUT 3 => get the moy and rank of each students for the comp 51, 52 and 56
+			$compIds = [51, 52, 56];
+			for ($i = 0; $i < count($compIds); $i++)
+			{
+				$query = "SELECT compLib, getCompMoy(".$compIds[$i].", ".$student['etdid'].", ".$yearId.")
+                FROM AdmComp admc JOIN Competence c on c.compId=admc.compId WHERE c.compId = ".$compIds[$i];
+				$competences = $db->execQuery($query);
+
+				$compid  = "UE ". str_replace("".$i, "", $compIds[$i]."");
+				$compLib = $competences[$j]['complib'] .'';
+
+				$student['BUT 3'][$compid]['moy'] = $moyBUT;
+				$student['BUT 3'][$compid]['lib'] = $compLib;
+			}
+
+			// calculer moy math + anglais du BUT 3
+
+		}
+
+		$i++;
+	}
+
+	// JSON Generation
+	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
+	file_put_contents( '../../data/etudiants.json', $jsonData);
+
+	echo "Le fichier etudiants.json a été créé avec succès.<br>";
+}
+
 ?>

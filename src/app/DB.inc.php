@@ -1,5 +1,8 @@
 <?php
 
+set_time_limit(200000);
+
+
 class DB
 {
 	private static $instance = null; // to make sure that only one DB Object exist
@@ -132,9 +135,6 @@ class DB
 
 				$stmt = $this->connect->prepare($sql);
 				$result = $stmt->execute($params);
-				if ($result === false) {
-					return "Error inserting student: " . $db->getError();
-				}
 			}
 
 		} else {
@@ -196,9 +196,6 @@ class DB
 
 				$stmt = $this->connect->prepare($sql);
 				$result = $stmt->execute($params);
-				if ($result === false) {
-					return "Error updating moyennes: " . $db->getError();
-				}
 			}
 		}
 	}
@@ -245,9 +242,7 @@ class DB
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
-			
-			if ($result === false) return "Error inserting Competence: " . $db->getError();
-		}
+					}
 	}
 
 
@@ -293,9 +288,7 @@ class DB
 
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
-			
-			if ($result === false) return "Error inserting Modules: " . $db->getError();
-		}
+					}
 	}
 
 	
@@ -371,7 +364,6 @@ class DB
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
 			
-			if ($result === false) return "Error inserting CompMod: " . $db->getError();
 		}
 	}
 
@@ -415,7 +407,6 @@ class DB
 			$stmt = $this->connect->prepare($sql);
 			$result = $stmt->execute($params);
 			
-			if ($result === false) return "Error inserting CompMod: " . $db->getError();
 		}
 	}
 }
