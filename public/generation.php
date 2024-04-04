@@ -3,7 +3,7 @@
 //Pour la structure
 include 'background.php';
 //include '../src/app/export/Export.php';
-include '../src/app/DB.inc.php';
+include '../src/app/DB.inc.php'; // TODO remove later
 
 // Creating global data
 global $db;
