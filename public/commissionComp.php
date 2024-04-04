@@ -56,6 +56,10 @@ function contenu()
 
 function generationCommissionComp($anneeId, $semestre, $competence)
 {
+
+	$table = '<table class="block" id="tableCom">';
+
+
     $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
     
     $countModule = 0;
@@ -73,13 +77,14 @@ function generationCommissionComp($anneeId, $semestre, $competence)
 
 
 
-    $query = "SELECT modLib, modId FROM CompMod cm JOIN Competence c on c.compId=cm.compId 
+    $query = "SELECT modLib, m.modId FROM CompMod cm JOIN Competence c on c.compId=cm.compId JOIN Module m ON m.modId = cm.modId 
     WHERE c.compId = ".$semestre.$competence;
     $modules = $db->execQuery($query);
 
 
-    $query = "SELECT compLib FROM Competence WHERE c.compId = ".$semestre.$competence;
+    $query = "SELECT compLib FROM Competence WHERE compId = ".$semestre.$competence;
     $compLib = $db->execQuery($query);
+    $compLib = $compLib[0]['complib'];
 
     // $compModData = file_get_contents('http://localhost/SAE4.01/data/compMod.json');
     // $compModData = json_decode($compModData, true);
@@ -97,13 +102,16 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     // }
 
 
+    $countModule =0;
     foreach ($modules as $module)
     {
         $countModule++;
         $idModule[] = $module['modid'];
     }
 
-    $lienA = "<a href='commission.php'>{".$compLib."}</a>";
+    echo $countModule;
+
+    $lienA = "<a href='commission.php'>".$compLib."</a>";
     $firstRow .= "<th colspan='".$countModule."' rowspan='1'>".$lienA."</th>";
 
     // foreach ($compModData as $comp) {
@@ -115,7 +123,7 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     // }
 
     foreach ($modules as $module)
-        $row .= "<th>{".$module['modlib']."}</th>";
+        $row .= "<th>".$module['modlib']."</th>";
 
     $tHeadElem = "<thead>".$firstRow."</thead><thead>".$row."</thead>";
     $table .= $tHeadElem;
@@ -174,7 +182,8 @@ function generationCommissionComp($anneeId, $semestre, $competence)
 		// Recup moyenne Semestre
         $query = "SELECT * FROM getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.")";
         $moy = $db->execQuery($query);
-        $row .= "<td>". $moy[0]['moysem'] ."</td>";
+
+        $row .= "<td>". round($moy[0]['getsemmoy'],2) ."</td>";
 
 		$row .= "<td>". $student['tp'] ."</td>";
 		$row .= "<td>". $student['td'] ."</td>";
@@ -182,15 +191,17 @@ function generationCommissionComp($anneeId, $semestre, $competence)
 
         foreach($modules as $module)
         {
-            $query = "SELECT noteVal FROM CompMod WHERE compId = ".$semestre.$competence." AND modId =".$module['noteval'];
+
+            $query = "SELECT noteVal FROM Moyenne m JOIN CompMod cm ON m.modid = cm.modid WHERE compId = ".$semestre.$competence." AND cm.modId = '".$module['modid'] ."'";
             $noteVal = $db->execQuery($query);
             
-            $row .= "<td>". $noteVal ."</td>";
+            $row .= "<td>". $noteVal[0]['noteval'] ."</td>";
         }
         
 
 		$table .= $row . "</tr> \n";
 	}
+	echo $table . '</table>';
 }
 
 head('css/commissionEtFicheAvis.css');

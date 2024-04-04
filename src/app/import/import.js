@@ -97,6 +97,12 @@ function generateAll()
 		return 0;
 	}
 
+	console.log(students);
+	console.log(moyennes);
+
+	console.log("please no my baby");
+	console.log(admComp);
+
 	document.getElementById('save').innerText = "Chargement...";
 
 	// Insertion des étudiants
@@ -143,9 +149,9 @@ function generateAll()
 				console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 			});
 		})
-		.then(() => {
-			window.location.href = "accueilAdmin.php";
-		})
+		// .then(() => {
+		// 	window.location.href = "accueilAdmin.php";
+		// })
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});
@@ -360,7 +366,7 @@ function decomposeJury ()
 
 		//On cherche ou sont les ressources
 		let ind = [];
-		let pattern = /^BIN\d{2}$/;
+		let pattern = /^BIN\d{2}(A)?$/;
 
 
 		excelData[1]; //header
@@ -384,7 +390,7 @@ function decomposeJury ()
 				{
 					'etdId' : etdid,
 					'adm'   : excelData[i][e],
-					'comp'  : (excelData[0][e - 1]).replace('BIN',''),
+					'comp'  : (excelData[0][e - 1]).replace('BIN','').replace('A',''),
 				}
 
 				admComp.push(admCompBis);
