@@ -155,7 +155,11 @@ function generateYears()
 				// Put them in student
 				$student['competences'] = [];
 				foreach ($competences as $competence) {
+					$query = 'SELECT getCompMoy('.$student['etdid'].', '.$year['anneeid'].') as "moy" FROM AdmComp'; 
+					$moySem = $db->execQuery($query);
+					
 					$student['competences'][] = [
+						'moySem'   => $moySem[0]['moy'],
 						'compId'   => $competence['compid'],
 						'compLib'  => $competence['complib'],
 						'admi'     => $competence['admi']
@@ -286,21 +290,75 @@ function generateStudents(int $yearId)
 
 	// Getting all of the student for a specified year and semester
 	$query     = "SELECT etdId, etdNom, etdPrenom 
-				  FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
+				  FROM  Etudiant e JOIN AdmComp admc ON e.etdId=admc.etdId 
 				  WHERE anneId = ".$yearId." AND compId LIKE '5_'";
 	$students  = $db->execQuery($query);
 
 	// For each student
+	$i = 1;
 	foreach ($students as &$student) 
 	{
-		// For BUT 1 and BUT 2 => we will determine the moy and rank of each students for every comp + math + anglais 
-		// For BUT 3           => get the moy and rank of each students for the comp 61, 62 and 66 + math + anglais
+		// For BUT 1 and BUT 2 (the first 4 semester)
+		for ($i = 1; $i <= 4; $i++)
+		{
+			$query = "SELECT compId, compLib  FROM Competence c WHERE compId LIKE '".$i."_'";
+			$competences = $db->execQuery($query);
+
+			// For BUT 1 and BUT 2 => we will determine the moy and rank of each students for every comp
+			for ($j = 0; $j < count($competences) -2; $j = $j +2)
+			{
+				$query = "SELECT getCompMoy(".$competences[$j]['compid'].", ".$student['etdid'].", ".$yearId.") FROM AdmComp";
+				$moyComp1 = $db->execQuery($query);
+
+				$query = "SELECT getCompMoy(".$competences[$j+1]['compid'].", ".$student['etdid'].", ".$yearId.") FROM AdmComp";
+				$moyComp2 = $db->execQuery($query);
+
+				$moyBUT = ($moyComp1 + $moyComp2) /2;
+
+				$UEid  = "UE ". str_replace("5", "", $competences[$j]['compid']."");
+				$compLib = $competences[$j]['complib'] .'';
+
+				$student['nbStud'] = $i;
+
+				if ($i <= 2)
+				{
+					$student['BUT 1'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 1'][$UEid]['lib'] = $compLib;
+				}
+				else
+				{
+					$student['BUT 2'][$UEid]['moy'] = $moyBUT;
+					$student['BUT 2'][$UEid]['lib'] = $compLib;
+				}
+			}
+
+			// calculer moy math + anglais du BUT 1 et 2
+
+			// For BUT 3 => get the moy and rank of each students for the comp 51, 52 and 56
+			$compIds = [51, 52, 56];
+			for ($i = 0; $i < count($compIds); $i++)
+			{
+				$query = "SELECT compLib, getCompMoy(".$compIds[$i].", ".$student['etdid'].", ".$yearId.") FROM AdmComp WHERE compId = ".$compIds[$i];
+				$competences = $db->execQuery($query);
+
+				$compid  = "UE ". str_replace("".$i, "", $compIds[$i]."");
+				$compLib = $competences[$j]['complib'] .'';
+
+				$student['BUT 3'][$compid]['moy'] = $moyBUT;
+				$student['BUT 3'][$compid]['lib'] = $compLib;
+			}
+
+			// calculer moy math + anglais du BUT 3
+
+		}
+
+		$i++;
 	}
 
 	// JSON Generation
 	$jsonData = json_encode($students, JSON_PRETTY_PRINT);
-	file_put_contents( '../../data/csv.json', $jsonData);
+	file_put_contents( '../../data/pe.json', $jsonData);
 
-	echo "Le fichier csv.json a été créé avec succès.<br>";
+	echo "Le fichier pe.json a été créé avec succès.<br>";
 }
 ?>
