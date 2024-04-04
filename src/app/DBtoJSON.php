@@ -292,9 +292,9 @@ function generateStudents(int $yearId)
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 	// Getting all of the student for a specified year and semester
-	$query     = "SELECT etdId, etdNom, etdPrenom 
+	$query     = "SELECT e.etdId, etdNom, etdPrenom 
 				  FROM  Etudiant e JOIN AdmComp admc ON e.etdId=admc.etdId 
-				  WHERE anneId = ".$yearId." AND compId LIKE '5_'";
+				  WHERE anneeId = ".$yearId." AND CAST (compId as varchar) LIKE '5_'";
 	$students  = $db->execQuery($query);
 
 	// For each student
@@ -304,19 +304,19 @@ function generateStudents(int $yearId)
 		// For BUT 1 and BUT 2 (the first 4 semester)
 		for ($i = 1; $i <= 4; $i++)
 		{
-			$query = "SELECT compId, compLib  FROM Competence c WHERE compId LIKE '".$i."_'";
+			$query = "SELECT compId, compLib  FROM Competence c WHERE CAST (compId as varchar) LIKE '".$i."_'";
 			$competences = $db->execQuery($query);
 
 			// For BUT 1 and BUT 2 => we will determine the moy and rank of each students for every comp
 			for ($j = 0; $j < count($competences) -2; $j = $j +2)
 			{
-				$query = "SELECT getCompMoy(".$competences[$j]['compid'].", ".$student['etdid'].", ".$yearId.") FROM AdmComp";
+				$query = "SELECT getCompMoy(".$competences[$j]['compid'].", ".$student['etdid'].", ".$yearId.") as \"compmoy\" FROM AdmComp";
 				$moyComp1 = $db->execQuery($query);
 
-				$query = "SELECT getCompMoy(".$competences[$j+1]['compid'].", ".$student['etdid'].", ".$yearId.") FROM AdmComp";
+				$query = "SELECT getCompMoy(".$competences[$j+1]['compid'].", ".$student['etdid'].", ".$yearId.") as \"compmoy\" FROM AdmComp";
 				$moyComp2 = $db->execQuery($query);
-
-				$moyBUT = ($moyComp1 + $moyComp2) /2;
+                
+				$moyBUT = ($moyComp1[0]['compmoy'] + $moyComp2[0]['compmoy']) /2;
 
 				$UEid  = "UE ". str_replace("5", "", $competences[$j]['compid']."");
 				$compLib = $competences[$j]['complib'] .'';
@@ -341,7 +341,8 @@ function generateStudents(int $yearId)
 			$compIds = [51, 52, 56];
 			for ($i = 0; $i < count($compIds); $i++)
 			{
-				$query = "SELECT compLib, getCompMoy(".$compIds[$i].", ".$student['etdid'].", ".$yearId.") FROM AdmComp WHERE compId = ".$compIds[$i];
+				$query = "SELECT compLib, getCompMoy(".$compIds[$i].", ".$student['etdid'].", ".$yearId.")
+                FROM AdmComp admc JOIN Competence c on c.compId=admc.compId WHERE c.compId = ".$compIds[$i];
 				$competences = $db->execQuery($query);
 
 				$compid  = "UE ". str_replace("".$i, "", $compIds[$i]."");

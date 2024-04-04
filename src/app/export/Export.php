@@ -3,8 +3,6 @@ require ('../src/app/DBtoJSON.php');
 require ('../lib/fpdf/fpdf.php');
 
 
-echo "test";
-
 function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $nbAviMast)
 {
 	// Inclure le fichier fpdf.php

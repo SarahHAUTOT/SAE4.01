@@ -3,7 +3,27 @@
 //Pour la structure
 include 'background.php';
 include '../src/app/export/Export.php';
+include '../src/app/DB.inc.php';
 
+// Creating global data
+global $db;
+$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
+$query = "SELECT a.anneeId, anneLib
+FROM Annee a JOIN AdmComp admc ON a.anneeId=admc.anneeId
+WHERE CAST (compId as varchar) LIKE '5_'";
+$years = $db->execQuery($query);
+
+global $anneePE;
+
+foreach ($years as $year) 
+{
+    $anneePE[] = 
+        [
+            'anneeid' => $year['anneeid'],
+            'annelib' => $year['annelib'],  
+        ];
+}
 
 
 // Démarrer la session
@@ -28,17 +48,6 @@ function alert($message)
     echo "<script>alert('$message');</script>";
 }
 
-
-function findYear($year)
-{
-    // Récupération des données JSON depuis le fichier
-	$jsonData = file_get_contents('../data/donnees.json');
-	$data = json_decode($jsonData, true);
-
-    $serializedObject = serialize($data[$year - 1]);
-    $_SESSION['year'] = $serializedObject;
-}
-
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
@@ -46,9 +55,10 @@ if (isset($_POST['action'])) {
     {
         case 'pe':
             //générationd des poursuite d'études
-            if (isset($_POST['yearPE']) && !empty($_POST['yearPE'])) {
-                findYear($_POST['yearPE']);
+            if (isset($_POST['yearPE']) && isset($_POST['yearPE'])) {
 
+                $_SESSION['year'] = $_POST['yearPE'];
+                generateStudents($_SESSION['year']);
                 header("Location: generationPoursuite.php");
             }
             else
@@ -59,13 +69,18 @@ if (isset($_POST['action'])) {
 
         case 'comm':
 
-            if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+            if (isset($_POST['yearCom']))
+            {
 
-                if (isset($_POST['semCom']) && !empty($_POST['semCom']))
+                if (isset($_POST['semCom']))
                 {
-                    // header("Location: commission.php
-                    $_SESSION['semCom'] = $_POST['semCom'];
-                    echo $_SESSION['semCom'];
+                    global $anneePE;
+
+                    // header("Location: commission.php");
+                    $_SESSION['year'    ] = $_POST['yearPE'];
+                    $_SESSION['anneeLib'] = $anneePE[ $_POST['yearPE'] ];
+                    $_SESSION['semCom'  ] = $_POST['semCom'];
+
                     generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom'] +1));
                 }
                 else
@@ -87,6 +102,8 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']) && !empty($_POST['semCom']))
                 {
+                    $_SESSION['year'  ] = $_POST['yearPE'];
+                    $_SESSION['semCom'] = $_POST['semCom'];
                     // header("Location: commission.php");
                 }
                 else
@@ -111,10 +128,8 @@ if (isset($_POST['action'])) {
 
 function contenu()
 {
-	$jsonData = file_get_contents('../data/donnees.json');
-	$data = json_decode($jsonData, true);
-
-
+    global $anneePE;
+    global $db;
 
 	echo '
 	<h1> Génération </h1>
@@ -127,9 +142,8 @@ function contenu()
 				<span>Choix Année</span>
 				<select id="selectYear" name="yearPE" ">';
 	
-	foreach ($data as $anneeData) 
-		// if ($anneeData['semesters'][4] != null && count($anneeData['semesters'][4]['etd']) > 0) // We check if the fifth semester exist  
-            echo '<option value="'.$anneeData['anneeid'].'">'. $anneeData['annelib'] .'</option>';
+	foreach ($anneePE as $year) 
+        echo '<option value="'.$year['anneeid'].'">'. $year['annelib'] .'</option>';
 
 
 		echo '</select>
@@ -143,9 +157,11 @@ function contenu()
 				<span>Choix Année</span>
 				<select id="selectYear" name="yearCom" >';
 
-	
-	foreach ($data as $anneeData)
-        echo '<option value="'.$anneeData['anneeid'].'">'. $anneeData['annelib'] .'</option>';
+    $query = "SELECT anneeId, anneLib FROM Annee";
+    $anneeData = $db->execQuery($query);
+
+	foreach ($anneeData as $year)
+        echo '<option value="'.$year['anneeid'].'">'. $year['annelib'] .'</option>';
 
 	echo    '</select>
 

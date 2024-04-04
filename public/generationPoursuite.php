@@ -2,6 +2,7 @@
 
 //Pour la structure
 include 'background.php';
+include('../src/app/export/Export.php'); 
 
 
 
@@ -22,8 +23,7 @@ if ($_SESSION['role'] != 2) {
     exit;
 }
 
-include('../src/app/export/Export.php'); 
-$year = unserialize($_SESSION['year']);
+$year = $_SESSION['year'];
 
 // Vérifier si les champs du formulaire sont soumis
 if (isset($_POST['chef'])  && !empty($_POST['chef'])  &&
