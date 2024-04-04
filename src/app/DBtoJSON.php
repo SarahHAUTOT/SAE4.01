@@ -298,7 +298,7 @@ function generateStudents(int $yearId)
 	$students  = $db->execQuery($query);
 
 	// For each student
-	$i = 1;
+	$i = 0;
 	foreach ($students as &$student) 
 	{
 		// For BUT 1 and BUT 2 (the first 4 semester)
