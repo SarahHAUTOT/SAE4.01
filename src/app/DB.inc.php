@@ -1,6 +1,8 @@
 <?php
 
-set_time_limit(200000);
+
+//Pour des requêtes d'insertion un peu longue
+set_time_limit(180);
 
 
 class DB
@@ -10,11 +12,18 @@ class DB
 
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
-		$connStr = 'pgsql:host=woody port=5432 dbname='.$dbName; 
+
+		$nomBaseDeDonnee   = 'hs220880';
+		$loginBaseDeDonnee = 'hs220880';
+		$mdpBaseDeDonnee   = 'SAHAU2004';
+		
+		
+		
+		$connStr = 'pgsql:host=woody port=5432 dbname='.$nomBaseDeDonnee; 
 		try 
 		{
 			// Connection with the base
-			$this->connect = new PDO($connStr, $identifier, $password);
+			$this->connect = new PDO($connStr, $loginBaseDeDonnee, $mdpBaseDeDonnee);
 		
 			$this->connect->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER); 
 			$this->connect->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION); 
