@@ -15,10 +15,10 @@ function head($css, $username=""){echo'
 <body>
 
 	<header>
-		<div class="logo">
+	<a href="accueilAdmin.php"><div class="logo"> 
 			<img src="images/logo.png" alt="Logo DocSco">
 			<h1>DocSco</h1>
-		</div>
+		</div></a>
 		<div class="user">
 			'. $username .'
 		</div>
