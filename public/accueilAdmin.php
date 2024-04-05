@@ -35,7 +35,7 @@ function contenu()
 				
 			<span class="urgent">*ATTENTION, IL VOUS FAUDRA IMPORTER AU MINIMUM 3 ANNEES POUR POUVOIR UTILISER CETTE APPLICATION CORRECTEMENT*</span>
 			<br>
-			<a href="import.php"><button class="validateButtonStyle">Importer"</button></a>
+			<a href="import.php"><button class="validateButtonStyle">Importer</button></a>
 			<a href="export.php"><button class="validateButtonStyle">Exporter</button></a>
 			<a href="generation.php"><button class="validateButtonStyle">Générer</button></a>
 		</div>';

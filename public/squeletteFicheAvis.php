@@ -34,6 +34,8 @@ if ($_SESSION['role'] != 2) {
 	exit;
 }
 
+head('css/commissionEtFicheAvis.css');
+
 // Vérifier si on a appuyer sur le btn suivant
 if (isset($_POST['idStudent'])) {
 	global $nbStudents;
@@ -118,8 +120,7 @@ function contenue($etd, $suivant = true)
 							<th>Moy.</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>';
+					<tbody>';
 
 	
 
@@ -133,30 +134,21 @@ function contenue($etd, $suivant = true)
 	for ($i = 0; $i < count($competencesNom); $i++)
 	{
 
-
+		echo '<tr>';
 		echo '<th>'. $competencesNom[$i]['complib'].'</th>';
-		$rank1 = $db->execQuery("SELECT * FROM getRankSem(1,". $etd[0]['etdid'] . ",". $year . ')');
-		$rank2 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ')');
+		$rank1 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ")");
+		$rank2 = $db->execQuery("SELECT * FROM getRankSem(4,". $etd[0]['etdid'] . ",". $year . ")");
 
-		$moy1 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."1,". $etd[0]['etdid'] . ",". $year . ')');
-		$moy2 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."2,". $etd[0]['etdid'] . ",". $year . ')');
-
-
-		echo "SELECT * FROM getCompMoy(".($i+1)."2,". $etd[0]['etdid'] . ",". $year . ')';
-
+		$moy1 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."1,". $etd[0]['etdid'] . ",". $year-2 . ")");
+		$moy2 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."2,". $etd[0]['etdid'] . ",". $year-1 . ")");
 		echo '
 		<td>'.$rank1[0]['getranksem'].'</td>
-		<td>'.$moy1 [0]['getcompmoy'].'</td>
+		<td>'.round($moy1 [0]['getcompmoy'], 2).'</td>
 		<td>'.$rank2[0]['getranksem'].'</td>
-		<td>'.$moy2 [0]['getcompmoy'].'</td>';
+		<td>'.round($moy2 [0]['getcompmoy'], 2).'</td>';
 
-		var_dump($moy1);
-
-
-		echo '</tr><tr>';
-		
+		echo '</tr>';
 	}
-
 
 	// echo '
 	// 					</tr>
@@ -230,31 +222,6 @@ function contenue($etd, $suivant = true)
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<th>UE1-Réaliser des applications</th>
-							<td>'.$etd['BUT 3']['UE 1']['rank'].'</td>
-							<td>'.$etd['BUT 3']['UE 1']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE2-Optimiser des applications</th>
-							<td>'.$etd['BUT 3']['UE 2']['rank'].'</td>
-							<td>'.$etd['BUT 3']['UE 2']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE6-Collaborer</th>
-							<td>'.$etd['BUT 3']['UE 6']['rank'].'</td>
-							<td>'.$etd['BUT 3']['UE 6']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>Maths</th>
-							<td>'.$etd['BUT 3']['Maths']['rank'].'</td>
-							<td>'.$etd['BUT 3']['Maths']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>Anglais</th>
-							<td>'.$etd['BUT 3']['Anglais']['rank'].'</td>
-							<td>'.$etd['BUT 3']['Anglais']['moy'].'</td>
-						</tr>
 						<tr>
 							<th>Nombre d\'absences injustifiées</th>
 							<td colspan="2"></td>
@@ -804,10 +771,6 @@ function contenu($etd)
 </script>
 ';
 }
-
-head('css/commissionEtFicheAvis.css');
-
-contenu();
 
 foot();
 
