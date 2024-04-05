@@ -21,7 +21,7 @@ if ($nbStudents == 0) header("Location : generationPoursuite.php");
 
 
 // Vérifier si la session est ouverte
-if (!isset($_SESSION['role'])) {
+if (!isset($_SESSION['role'])) { 
 	// Rediriger vers la page de connexion si la session n'est pas ouverte
 	header('Location: connexion.php');
 	exit;
