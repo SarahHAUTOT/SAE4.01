@@ -96,9 +96,9 @@ if (isset($_POST['action'])) {
                     {
                         global $annee;
 
-                        $_SESSION['year'    ] = $_POST['yearCom'];
-                        $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
-                        $_SESSION['semCom'  ] = $_POST['semCom'];
+                    $_SESSION['year'    ] = $_POST['yearCom'];
+                    $_SESSION['annelib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
+                    $_SESSION['semCom'  ] = $_POST['semCom'];
 
                         // if ($_SESSION['semCom'  ] >= 2) generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
                         header("Location: commission.php");
