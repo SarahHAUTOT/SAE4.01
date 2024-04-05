@@ -125,7 +125,7 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     foreach ($modules as $module)
         $row .= "<th>".$module['modlib']."</th>";
 
-    $tHeadElem = "<thead>".$firstRow."</thead><thead>".$row."</thead>";
+    $tHeadElem = "<thead>".$firstRow."".$row."</thead>";
     $table .= $tHeadElem;
     $table .= $tBodyElem;
 
