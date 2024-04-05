@@ -421,6 +421,8 @@ function resetJSON()
 
 function generateCSV(int $year, String $type, int $semester)
 {
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
 	// Creating the csv.json file
 	generateStudentsCsv($year, $semester);
 
@@ -431,28 +433,35 @@ function generateCSV(int $year, String $type, int $semester)
     // Open output stream
     $output = fopen('php://output', 'w');
 
+
+	$query = 'SELECT compId, compCode FROM Competence WHERE CAST(compId as varchar) LIKE "'.$semester.'_"';
+	$competences = $db->execQuery($query);
+
+	$query = 'SELECT compId, compCode FROM Competence WHERE CAST(compId as varchar) LIKE "'.($semester-1).'_"';
+	$rcues = $db->execQuery($query);
+
+	$query   = 'SELECT distinct(e.etdId), etdNom, etdPrenom, etdGroupeTP, etdGroupeTD 
+				FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
+				JOIN  Competence c ON c.compId=admc.compId 
+				WHERE anneeId = '.$year.' AND semId = '.$semester;
+	$students  = $db->execQuery($query);
+
     // Prepare and output CSV data
     if (strcmp($type, 'Commission') === 0)
 	{
-		$json_data = file_get_contents('../data/csv.json');
-		$commissionData = json_decode($json_data, true);
-
-        $header = headerCommission($commissionData[0]['competences']);
+        $header = headerCommission($competences);
         fputcsv($output, $header); // Write CSV header
 
-        $content = contentCommission($commissionData);
+        $content = contentCommission($competences);
         fwrite($output, $content); // Write CSV content
     }
 
-    if (strcmp($type, 'Jury') === 0 && $semester >= 2)
+    if (strcmp($type, 'Jury') === 0)
 	{
-		$json_data = file_get_contents('../data/csv.json');
-		$juryData = json_decode($json_data, true);
-
-        $header = headerJury($juryData[0]['competences']['RCUE'], $juryData[0]['competences']);
+        $header = headerJury($rcues, $competences);
         fputcsv($output, $header); // Write CSV header
 
-        $content = contentJury($juryData);
+        $content = contentJury($students, $competences, $year);
         fwrite($output, $content); // Write CSV content
     }
 
@@ -461,21 +470,23 @@ function generateCSV(int $year, String $type, int $semester)
 
 	echo $header;
 	echo $content;
-	
 }
 
 function headerCommission($competences)
 {
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
 	$header = '"Rg", "Nom", "Prenom", "Cursus", "Ues", "Moy"';
 
 	foreach ($competences as $comp)
 	{
-		$header .= ', "'.$comp['compCode'].'", "Bonus '.$comp['compCode'].'"';
-		
-		foreach ($comp['modules'] as $mod)
-		{
+		$header .= ', "'.$comp['compcode'].'", "Bonus '.$comp['compcode'].'"';
+
+		$query = 'SELECT modCode FROM CompMod cm JOIN Module m ON m.modId=cm.modId WHERE compId ='.$comp['compid'];
+		$modules = $db->execQuery($query);
+
+		foreach ($modules as $mod)
 			$header .= ', "'.$mod['modCode'].'"';
-		}		
 	}
 
 	return $header .'\n';
@@ -485,24 +496,23 @@ function headerCommission($competences)
 function headerJury($rcues, $competences)
 {
 	$header = '"Rg", "Nom", "Prenom", "Cursus"';
-	
+
 	foreach ($rcues as $rcue)
-	{
-		$header .= ', "C'.$rcue['compId'].'"';
-	}
+		$header .= ', "C'.$rcue['compid'].'"';
+
 
 	$header .= ', "Ues", "Moy"';
 
 	foreach ($competences as $comp)
-	{
-		$header .= ', "'.$comp['compCode'].'"';
-	}
+		$header .= ', "'.$comp['compcode'].'"';
 
 	return $header .'\n';
 }
 
-function contentJury($students)
+function contentJury($students, $competences, $year)
 {
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
 	$studentInfo = "";
 
 	// Iterating through the students of the specified year
@@ -523,9 +533,12 @@ function contentJury($students)
 			$student['admiUes'] .'", "'.
 			$student['moySem'] .'"';
 
-		foreach ($student['competences'] as $comp)
+		foreach ($competences as $comp)
 		{
-			$studentInfo .= '", "'.$comp['moy'];
+			$query = 'SELECT * as "moy" FROM getCompMoy('.$comp['compid'].','.$student['etdid'].','.$year.')';
+			$moy = $db->execQuery($query);
+
+			$studentInfo .= '", "'.$moy[0]['moy'];
 		}
 
 		$studentInfo .= '\n';	
@@ -535,8 +548,9 @@ function contentJury($students)
 	return $studentInfo;
 }
 
-function contentCommission($students)
+function contentCommission($students, $competences, $year)
 {
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 	$studentInfo = "";
 
 	// Iterating through the students of the specified year
@@ -550,14 +564,18 @@ function contentCommission($students)
 			$student['admiUEs']   .'", "'.
 			$student['moySem']   .'"';
 
-		foreach ($student['competences'] as $comp)
+		foreach ($competences as $comp)
 		{
-			$studentInfo .= ', "'.$comp['moy'].'" ,"'.$student['etdBonus'].'"';
+			$query = 'SELECT * as "moy" FROM getCompMoy('.$comp['compid'].','.$student['etdid'].','.$year.')';
+			$moy = $db->execQuery($query);
 
-			foreach ($comp['modules'] as $mod)
-			{
+			$studentInfo .= ', "'.$moy[0]['moy'].'" ,"'.$student['etdBonus'].'"';
+
+			$query = 'SELECT noteVal FROM CompMod cm JOIN Module m ON m.modId=cm.modId WHERE compId ='.$comp['compid'];
+			$modules = $db->execQuery($query);
+
+			foreach ($modules as $mod)
 				$studentInfo .= ', "'.$mod['noteVal'].'"';
-			}
 		}
 
 		$studentInfo .= '\n';

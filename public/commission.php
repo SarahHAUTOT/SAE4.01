@@ -24,7 +24,7 @@ if ($_SESSION['role'] != 2) {
 
 function contenu()
 {
-	$year     = $_SESSION['anneLib'];
+	$year     = $_SESSION['annelib'];
 
 	var_dump($year);
 	echo '

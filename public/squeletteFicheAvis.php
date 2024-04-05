@@ -36,6 +36,9 @@ if ($_SESSION['role'] != 2) {
 
 // Vérifier si on a appuyer sur le btn suivant
 if (isset($_POST['idStudent'])) {
+	global $nbStudents;
+	$lastEtd = $nbStudents >= ($_POST['idStudent'] +1);
+
 	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 	$query = "SELECT *
@@ -46,7 +49,7 @@ if (isset($_POST['idStudent'])) {
 			  WHERE row_num =".($_POST['idStudent'] +1);
 	$etd = $db->execQuery($query);
 
-	contenue($etd);
+	contenue($etd, $lastEtd);
 }
 else
 {

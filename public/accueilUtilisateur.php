@@ -34,7 +34,7 @@ function contenu()
 				facilitant la collaboration entre les membres du jury, DocSco vise à améliorer l\'efficacité et la
 				qualité du processus d\'évaluation. Son potentiel d\'extension à d\'autres départements suggère une
 				évolution continue et une pertinence à long terme dans le domaine de l\'éducation.</p>
-			<a href="export.php"><button class="validateButtonStyle"><img src="images/exporter.png" alt="Exporter"></button></a>
+			<a href="export.php"><button class="validateButtonStyle">Exporter</button></a>
 		</div>';
 }
 
