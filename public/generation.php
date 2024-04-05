@@ -37,11 +37,12 @@ foreach ($years as $year)
 }
 
 global $semestres;
-$query = "SELECT semId
+$query = "SELECT DISTINCT(s.semId)
           FROM Semestre s JOIN Competence c ON c.semid=s.semid 
           JOIN CompMod cm ON cm.compId=c.compId
           WHERE modId IN ( SELECT modId FROM Moyenne )";
 $sems = $db->execQuery($query);
+
 foreach ($sems as $sem) 
 {
     $semestres[] = 
@@ -196,7 +197,7 @@ function contenu()
 			<select id="selectSemester" name="semCom">';
 	
     foreach ($semestres as $sem)
-        echo '<option value="'.$sem['semId'].'">S'.$sem['semId'].'</option>';
+        echo '<option value="'.$sem['semid'].'">S'.$sem['semid'].'</option>';
 
 	echo '</select>
 		</div>
