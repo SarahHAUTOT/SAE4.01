@@ -76,7 +76,7 @@ function checkYearFormat(annee) {
     let deuxiemeAnnee = parseInt(match[2]); // Deuxième année
 
     // Vérification si l'année est vide ou ne correspond pas au format attendu
-    if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 3) {
+    if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 1) {
         return false;
     } else {
         return true;
