@@ -149,9 +149,9 @@ function generateAll()
 				console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 			});
 		})
-		// .then(() => {
-		// 	window.location.href = "accueilAdmin.php";
-		// })
+		.then(() => {
+			window.location.href = "accueilAdmin.php";
+		})
 		.catch(error => {
 			console.error('Une erreur s\'est produite lors de l\'appel PHP:', error);
 		});

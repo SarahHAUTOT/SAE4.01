@@ -70,6 +70,8 @@ else
 function contenue($etd, $suivant = true)
 {
 	$year = $_SESSION['year'];
+	$structureEtd = [];
+
 
 	echo '
 	<div>
@@ -136,19 +138,180 @@ function contenue($etd, $suivant = true)
 
 		echo '<tr>';
 		echo '<th>'. $competencesNom[$i]['complib'].'</th>';
-		$rank1 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ")");
-		$rank2 = $db->execQuery("SELECT * FROM getRankSem(4,". $etd[0]['etdid'] . ",". $year . ")");
 
-		$moy1 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."1,". $etd[0]['etdid'] . ",". $year-2 . ")");
-		$moy2 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."2,". $etd[0]['etdid'] . ",". $year-1 . ")");
+
+		//Moyenne BUT1
+		$moy11 = $db->execQuery("SELECT * FROM getCompMoy(1".($i+1).",". $etd[0]['etdid'] . ",". $year-2 . ")");
+		$moy12 = $db->execQuery("SELECT * FROM getCompMoy(2".($i+1).",". $etd[0]['etdid'] . ",". $year-2 . ")");
+		$moy1 = ($moy11[0]['getcompmoy'] + $moy12[0]['getcompmoy']) / 2;
+
+		//Moyenne BUT2
+		$moy21 = $db->execQuery("SELECT * FROM getCompMoy(3".($i+1).",". $etd[0]['etdid'] . ",". $year-1 . ")");
+		$moy22 = $db->execQuery("SELECT * FROM getCompMoy(4".($i+1).",". $etd[0]['etdid'] . ",". $year-1 . ")");
+		$moy2 = ($moy21[0]['getcompmoy'] + $moy22[0]['getcompmoy']) / 2;
+
+		
+		//Rang BUT1
+		$rank1 = $db->execQuery("SELECT * FROM getRankComp(2".($i+1).",". $etd[0]['etdid'] . ",". $year . ")");
+
+		//Rank BUT2
+		$rank2 = $db->execQuery("SELECT * FROM getRankComp(4".($i+1).",". $etd[0]['etdid'] . ",". $year . ")");
+
 		echo '
-		<td>'.$rank1[0]['getranksem'].'</td>
-		<td>'.round($moy1 [0]['getcompmoy'], 2).'</td>
-		<td>'.$rank2[0]['getranksem'].'</td>
-		<td>'.round($moy2 [0]['getcompmoy'], 2).'</td>';
+		<td>'.$rank1[0]['getrankcomp'].'</td>
+		<td>'.round($moy1 , 2).'</td>
+
+		<td>'.$rank2[0]['getrankcomp'].'</td>
+		<td>'.round($moy2, 2).'</td>';
 
 		echo '</tr>';
 	}
+
+
+	//Math
+	echo '<tr>';
+	echo '<th> Maths </th>';
+
+
+	//Moyenne BUT
+	$moyMathBut1 = $db->execQuery("SELECT AVG(noteval) FROM Module m JOIN Moyenne mo ON m.modId = mo.modId WHERE modcat = 'Math' AND etdId = ".$etd[0]['etdid']. " AND anneeId = ". ($year - 2));
+	$moyMathBut2 = $db->execQuery("SELECT AVG(noteval) FROM Module m JOIN Moyenne mo ON m.modId = mo.modId WHERE modcat = 'Math' AND etdId = ".$etd[0]['etdid']. " AND anneeId = ". ($year - 1));
+	
+	//Rang 
+	$rank1 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ")");
+	$rank2 = $db->execQuery("SELECT * FROM getRankSem(4,". $etd[0]['etdid'] . ",". $year . ")");
+
+	echo '
+	<td>'.$rank1[0]['getranksem'].'</td>
+	<td>'.round($moyMathBut1[0]['avg'] , 2).'</td>
+
+	<td>'.$rank2[0]['getranksem'].'</td>
+	<td>'.round($moyMathBut2[0]['avg'], 2).'</td>';
+
+	echo '</tr>';
+
+
+	//Anglais
+	echo '<tr>';
+	echo '<th> Anglais </th>';
+
+
+	//Moyenne BUT
+	$moyAnglaisBut1 = $db->execQuery("SELECT AVG(noteval) FROM Module m JOIN Moyenne mo ON m.modId = mo.modId WHERE m.modId IN ('R110', 'R212') AND etdId = ".$etd[0]['etdid']. " AND anneeId = ". ($year - 2));
+	$moyAnglaisBut2 = $db->execQuery("SELECT AVG(noteval) FROM Module m JOIN Moyenne mo ON m.modId = mo.modId WHERE m.modId IN ('R312', 'R405') AND etdId = ".$etd[0]['etdid']. " AND anneeId = ". ($year - 1));
+	
+	//Rang 
+	$rank1 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ")");
+	$rank2 = $db->execQuery("SELECT * FROM getRankSem(4,". $etd[0]['etdid'] . ",". $year . ")");
+
+	echo '
+	<td>'.$rank1[0]['getranksem'].'</td>
+	<td>'.round($moyAnglaisBut1[0]['avg'] , 2).'</td>
+
+	<td>'.$rank2[0]['getranksem'].'</td>
+	<td>'.round($moyAnglaisBut2[0]['avg'], 2).'</td>';
+
+
+	$abs = $db->execQuery("SELECT etdAbs FROM Etudiant WHERE etdId = " . $etd[0]['etdid']);
+
+	echo '</tr>
+			<tr>
+				<th>Nombre d\'absences injustifiées</th>
+				<td colspan="4">'. $abs[0]['etdabs'] .'</td>
+			</tr>';
+
+
+
+
+
+
+
+
+
+
+
+
+	// BUT 3
+
+	echo '
+					</tbody>
+				</table>
+				<table>
+					<thead>
+						<tr>
+							<th rowspan="2"></th>
+							<th colspan="2">BUT 3</th>
+						</tr>
+						<tr>
+							<th>Rang</th>
+							<th>Moy.</th>
+						</tr>
+					</thead>
+					<tbody> ';
+
+					
+	$query = "SELECT complib FROM Competence WHERE semId = 5 AND compId IN (51,52,56)";
+	$competencesNom = $db->execQuery($query);
+
+
+	//Pour les 3 compétences
+	for ($ind = 0; $ind < count($competencesNom); $ind++)
+	{
+
+		if ($ind == 2) $i = 5;
+		else $i = $ind; 
+
+
+		echo '<tr>';
+		echo '<th>'. $competencesNom[$ind]['complib'].'</th>';
+
+
+		//Moyenne BUT1
+		$moy = $db->execQuery("SELECT * FROM getCompMoy(5".($i+1).",". $etd[0]['etdid'] . ",". $year . ")");
+		
+
+		//Rang BUT1
+		$rank = $db->execQuery("SELECT * FROM getRankComp(5".($i+1).",". $etd[0]['etdid'] . ",". $year . ")");
+
+		echo '
+		<td>'.$rank[0]['getrankcomp'].'</td>
+		<td>'.round($moy[0]['getcompmoy'] , 2).'</td>';
+
+		echo '</tr>';
+	}
+
+
+	//Math
+	echo '<tr>';
+	echo '<th> Maths </th>';
+
+
+	//Moyenne BUT
+	$moyMathBut1 = $db->execQuery("SELECT AVG(noteval) FROM Module m JOIN Moyenne mo ON m.modId = mo.modId WHERE modcat = 'Math' AND etdId = ".$etd[0]['etdid']. " AND anneeId = ". ($year - 2));
+	$moyMathBut2 = $db->execQuery("SELECT AVG(noteval) FROM Module m JOIN Moyenne mo ON m.modId = mo.modId WHERE modcat = 'Math' AND etdId = ".$etd[0]['etdid']. " AND anneeId = ". ($year - 1));
+	
+	//Rang 
+	$rank1 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ")");
+	$rank2 = $db->execQuery("SELECT * FROM getRankSem(4,". $etd[0]['etdid'] . ",". $year . ")");
+
+	echo '
+	<td>'.$rank1[0]['getranksem'].'</td>
+	<td>'.round($moyMathBut1[0]['avg'] , 2).'</td>';
+
+	echo '</tr>';
+
+
+	//Anglais
+	$abs = $db->execQuery("SELECT etdAbs FROM Etudiant WHERE etdId = " . $etd[0]['etdid']);
+
+	echo '</tr>
+			<tr>
+				<th>Nombre d\'absences injustifiées</th>
+				<td colspan="2">'. $abs[0]['etdabs'] .'</td>
+			</tr>';
+
+
+
 
 	// echo '
 	// 					</tr>
@@ -208,24 +371,6 @@ function contenue($etd, $suivant = true)
 	// 					</tr>
 
 	echo '
-					</tbody>
-				</table>
-				<table>
-					<thead>
-						<tr>
-							<th rowspan="2"></th>
-							<th colspan="2">BUT 3</th>
-						</tr>
-						<tr>
-							<th>Rang</th>
-							<th>Moy.</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<th>Nombre d\'absences injustifiées</th>
-							<td colspan="2"></td>
-						</tr>
 					</tbody>
 				</table>
 				<hr>

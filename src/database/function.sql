@@ -7,9 +7,9 @@ BEGIN
 	FROM Moyenne m
 	JOIN CompMod cm ON m.modId = cm.modId
 	JOIN Competence c ON c.compId = cm.compId
-	WHERE c.compId = compIdd -- ID de la compétence 11
+	WHERE c.compId = compIdd 
 	AND   m.etdId = studentId
-	AND   anneeId = yearId; -- ID de l'étudiant
+	AND   anneeId = yearId; 
 
 	RETURN moy;
 
@@ -84,22 +84,23 @@ DECLARE
     student_avg FLOAT;
     rank INTEGER;
 BEGIN
-    -- Obtenir la moyenne de l'étudiant pour le semestre donné
-    SELECT getCompMoy(compIdd, studentId, yearId) INTO student_avg;
+    -- Obtenir la moyenne de l'étudiant pour la compétence donnée
+    SELECT getCompMoy(compIdd, compIdd, studentId, yearId) INTO student_avg;
 
     -- Calculer le rang de l'étudiant en fonction de sa moyenne par rapport aux autres étudiants
     SELECT COUNT(*) + 1 INTO rank
     FROM (
-        SELECT DISTINCT(etdId), getCompMoy(compIdd, studentId, yearId) AS avg
-        FROM   Moyenne m JOIN CompMod co ON co.modId = m.modId JOIN
-		       Competence c ON c.compId = co.compId
-        WHERE  semId = semesterId AND anneeId = yearId
+        SELECT DISTINCT(etdId), getCompMoy(compIdd, compIdd, etdId, yearId) AS avg
+        FROM   AdmComp admc JOIN Competence c ON c.compId = admc.compId 
+               JOIN CompMod co ON co.compId = c.compId
+        WHERE  anneeId = yearId AND co.compId = compIdd
     ) AS students_avg
     WHERE avg > student_avg OR (avg = student_avg AND etdId < studentId);
 
     RETURN rank;
 END;
 $$ LANGUAGE plpgsql;
+
 
 
 
