@@ -2,8 +2,7 @@
 
 //Pour la structure
 include 'background.php';
-// include '../src/app/export/Export.php'; // si decommenter ça fait bugger
-include '../src/app/DB.inc.php'; // si decommenter ça fait bugger
+include '../src/app/export/Export.php';
 
 // Creating global data
 global $db;
@@ -128,10 +127,13 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']))
                 {
-                    $_SESSION['year'  ] = $_POST['yearPE'];
-                    $_SESSION['semCom'] = $_POST['semCom'];
-                    echo $_SESSION['semCom'];
-                    // header("Location: commission.php");
+
+                    $_SESSION['year'    ] = $_POST['yearCom'];
+                    $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
+                    $_SESSION['semCom'  ] = $_POST['semCom'];
+
+                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                    // header("Location: export.php");
                 }
                 else
                 {
