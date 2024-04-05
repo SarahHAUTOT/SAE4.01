@@ -2,8 +2,7 @@
 
 //Pour la structure
 include 'background.php';
-// include '../src/app/export/Export.php'; // si decommenter ça fait bugger
-include '../src/app/DB.inc.php'; // si decommenter ça fait bugger
+include '../src/app/export/Export.php';
 
 // Creating global data
 global $db;
@@ -33,6 +32,21 @@ foreach ($years as $year)
         [
             'anneeid' => $year['anneeid'],
             'annelib' => $year['annelib'],  
+        ];
+}
+
+global $semestres;
+$query = "SELECT DISTINCT(s.semId)
+          FROM Semestre s JOIN Competence c ON c.semid=s.semid 
+          JOIN CompMod cm ON cm.compId=c.compId
+          WHERE modId IN ( SELECT modId FROM Moyenne )";
+$sems = $db->execQuery($query);
+
+foreach ($sems as $sem) 
+{
+    $semestres[] = 
+        [
+            'semid' => $sem['semid'],
         ];
 }
 
@@ -91,7 +105,7 @@ if (isset($_POST['action'])) {
                     $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
                     $_SESSION['semCom'  ] = $_POST['semCom'];
 
-                    if ($_SESSION['semCom'  ] >= 2) generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                    // if ($_SESSION['semCom'  ] >= 2) generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
                     header("Location: commission.php");
                 }
                 else
@@ -113,10 +127,13 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']))
                 {
-                    $_SESSION['year'  ] = $_POST['yearPE'];
-                    $_SESSION['semCom'] = $_POST['semCom'];
-                    echo $_SESSION['semCom'];
-                    // header("Location: commission.php");
+
+                    $_SESSION['year'    ] = $_POST['yearCom'];
+                    $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
+                    $_SESSION['semCom'  ] = $_POST['semCom'];
+
+                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                    // header("Location: export.php");
                 }
                 else
                 {
@@ -141,6 +158,7 @@ if (isset($_POST['action'])) {
 function contenu()
 {
     global $anneePE;
+    global $semestres;
     global $db;
 
 	echo '
@@ -178,13 +196,12 @@ function contenu()
 	echo    '</select>
 
 			<span>Choix semestre</span>
-			<select id="selectSemester" name="semCom">
-				<option value="1">S1</option>
-				<option value="2">S2</option>
-				<option value="3">S3</option>
-				<option value="4">S4</option>
-				<option value="5">S5</option>
-			</select>
+			<select id="selectSemester" name="semCom">';
+	
+    foreach ($semestres as $sem)
+        echo '<option value="'.$sem['semid'].'">S'.$sem['semid'].'</option>';
+
+	echo '</select>
 		</div>
 			
 		<button type="submit" name="action" value="jury" class="validateButtonStyle">Générer Jury</button>

@@ -19,7 +19,6 @@ $nbStudents = $countStud[0]['count'];
 
 if ($nbStudents == 0) header("Location : generationPoursuite.php");
 
-
 // Vérifier si la session est ouverte
 if (!isset($_SESSION['role'])) { 
 	// Rediriger vers la page de connexion si la session n'est pas ouverte
@@ -38,20 +37,29 @@ head('css/commissionEtFicheAvis.css');
 
 // Vérifier si on a appuyer sur le btn suivant
 if (isset($_POST['idStudent'])) {
-	global $nbStudents;
-	$lastEtd = $nbStudents >= ($_POST['idStudent'] +1);
 
-	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
-
-	$query = "SELECT *
-			  FROM ( SELECT ROW_NUMBER() OVER(ORDER BY e.etdid) AS row_num, e.etdid, etdprenom, etdnom
-    				 FROM Etudiant e JOIN AdmComp admc ON e.etdid=admc.etdid
-    				 WHERE anneeid = ".$year." AND cast(compid as varchar) LIKE '5_'
-					)
-			  WHERE row_num =".($_POST['idStudent'] +1);
-	$etd = $db->execQuery($query);
-
-	contenue($etd, $lastEtd);
+    if (isset($_POST['action']) && $_POST['action'] === 'generatepdf' )
+    {
+        // TODO géneration Otti
+        // header("Location : accueilAdmin.php");
+    }
+    else // isset($_POST['etdSuiv'])
+    {
+        global $nbStudents;
+        $isLastEtd = $nbStudents >= ($_POST['idStudent'] +1);
+    
+        $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+    
+        $query = "SELECT *
+                  FROM ( SELECT ROW_NUMBER() OVER(ORDER BY e.etdid) AS row_num, e.etdid, etdprenom, etdnom
+                         FROM Etudiant e JOIN AdmComp admc ON e.etdid=admc.etdid
+                         WHERE anneeid = ".$year." AND cast(compid as varchar) LIKE '5_'
+                        )
+                  WHERE row_num =".($_POST['idStudent'] +1);
+        $etd = $db->execQuery($query);
+    
+        contenue($etd, !$isLastEtd);
+    }
 }
 else
 {
@@ -421,7 +429,7 @@ function contenue($etd, $suivant = true)
 	if ($suivant)
 		echo '<button type="submit" name="action" value="etdSuiv" class="validateButtonStyle">Suivant</button>';
 	else 
-		echo '<button type="submit" name="action" value="generatePDF" class="validateButtonStyle">Génerer</button>';
+		echo '<button type="submit" name="action" value="generatepdf" class="validateButtonStyle">Génerer</button>';
 
 	echo '</form>
 	</div>';
