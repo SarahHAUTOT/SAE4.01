@@ -11,7 +11,7 @@ $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
 
 $query = "SELECT DISTINCT (a.anneeId), annelib
 FROM Annee a JOIN AdmComp admc ON a.anneeId=admc.anneeId
-WHERE CAST (compId as varchar) LIKE '5_' AND a.anneId > 2";
+WHERE CAST (compId as varchar) LIKE '5_' AND a.anneeId > 2";
 $years = $db->execQuery($query);
 
 global $anneePE;
