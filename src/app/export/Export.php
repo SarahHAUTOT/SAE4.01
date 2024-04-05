@@ -2,6 +2,8 @@
 
 require('../../../lib/fpdf/fpdf.php');
 
+
+generatePDFs();
 function generatePDF($avi, $anneelib, $logo1, $logo2, $chef, $sign, $nbAviIng, $nbAviMast)
 {
 	// Inclure le fichier fpdf.php
