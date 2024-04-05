@@ -35,20 +35,6 @@ foreach ($years as $year)
         ];
 }
 
-global $semestres;
-$query = "SELECT DISTINCT(s.semId)
-          FROM Semestre s JOIN Competence c ON c.semid=s.semid 
-          JOIN CompMod cm ON cm.compId=c.compId
-          WHERE modId IN ( SELECT modId FROM Moyenne )";
-$sems = $db->execQuery($query);
-
-foreach ($sems as $sem) 
-{
-    $semestres[] = 
-        [
-            'semid' => $sem['semid'],
-        ];
-}
 
 // Démarrer la session
 session_start();
@@ -96,17 +82,28 @@ if (isset($_POST['action'])) {
 
             if (isset($_POST['yearCom']))
             {
-
                 if (isset($_POST['semCom']))
                 {
-                    global $annee;
+                    $query = "SELECT DISTINCT(semId)
+                            FROM Competence c JOIN CompMod cm ON c.compId = cm.compId JOIN Moyenne m ON m.modId = cm.modId WHERE anneeid = ". $_POST['yearCom'] . " AND semId = " . $_POST['semCom'];
+                    $sems = $db->execQuery($query);
 
-                    $_SESSION['year'    ] = $_POST['yearCom'];
-                    $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
-                    $_SESSION['semCom'  ] = $_POST['semCom'];
+                    if (count($sems) == 0)
+                    {
+                        alert("Pas de donnée");
+                    }
+                    else
+                    {
+                        global $annee;
 
-                    // if ($_SESSION['semCom'  ] >= 2) generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
-                    header("Location: commission.php");
+                        $_SESSION['year'    ] = $_POST['yearCom'];
+                        $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
+                        $_SESSION['semCom'  ] = $_POST['semCom'];
+
+                        // if ($_SESSION['semCom'  ] >= 2) generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                        header("Location: commission.php");
+
+                    }
                 }
                 else
                 {
@@ -128,12 +125,24 @@ if (isset($_POST['action'])) {
                 if (isset($_POST['semCom']))
                 {
 
-                    $_SESSION['year'    ] = $_POST['yearCom'];
-                    $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
-                    $_SESSION['semCom'  ] = $_POST['semCom'];
+                    $query = "SELECT DISTINCT(semId)
+                            FROM Competence c JOIN CompMod cm ON c.compId JOIN Moyenne m ON m.modId = cm.modId WHERE annee = ". $_POST['yearCom'] . " AND semId = " . $_POST['yearCom'];
+                    $sems = $db->execQuery($query);
 
-                    generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
-                    // header("Location: export.php");
+
+                    if ($sems->rowCount() == 0)
+                    {
+                        alert("Pas de donnée");
+                    }
+                    else
+                    {
+                        $_SESSION['year'    ] = $_POST['yearCom'];
+                        $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
+                        $_SESSION['semCom'  ] = $_POST['semCom'];
+
+                        generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                        // header("Location: export.php");
+                    }
                 }
                 else
                 {
@@ -198,8 +207,8 @@ function contenu()
 			<span>Choix semestre</span>
 			<select id="selectSemester" name="semCom">';
 	
-    foreach ($semestres as $sem)
-        echo '<option value="'.$sem['semid'].'">S'.$sem['semid'].'</option>';
+    for ($i = 1; $i<=5 ;$i++)
+        echo '<option value="'.$i.'">S'.$i.'</option>';
 
 	echo '</select>
 		</div>
