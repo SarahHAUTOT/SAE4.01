@@ -13,9 +13,15 @@ class DB
 	private function __construct(String $dbName, String $identifier, String $password)
 	{
 
-		$nomBaseDeDonnee   = 'hs220880';
-		$loginBaseDeDonnee = 'hs220880';
-		$mdpBaseDeDonnee   = 'SAHAU2004';
+
+
+		/********************************/
+		/**    A  MODIFIE  ICI     V   **/
+		/********************************/
+		 $nomBaseDeDonnee   = 'hs220880';
+		 $loginBaseDeDonnee = 'hs220880';
+		 $mdpBaseDeDonnee   = 'SAHAU2004';
+		/********************************/
 		
 		
 		
