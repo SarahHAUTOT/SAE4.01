@@ -78,6 +78,30 @@ $$ LANGUAGE plpgsql;
 
 -- get rank comp
 
+CREATE OR REPLACE FUNCTION getRankComp(IN compIdd INTEGER, IN studentId INTEGER, IN yearId INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+    student_avg FLOAT;
+    rank INTEGER;
+BEGIN
+    -- Obtenir la moyenne de l'étudiant pour le semestre donné
+    SELECT getCompMoy(compIdd, studentId, yearId) INTO student_avg;
+
+    -- Calculer le rang de l'étudiant en fonction de sa moyenne par rapport aux autres étudiants
+    SELECT COUNT(*) + 1 INTO rank
+    FROM (
+        SELECT DISTINCT(etdId), getCompMoy(compIdd, studentId, yearId) AS avg
+        FROM   Moyenne m JOIN CompMod co ON co.modId = m.modId JOIN
+		       Competence c ON c.compId = co.compId
+        WHERE  semId = semesterId AND anneeId = yearId
+    ) AS students_avg
+    WHERE avg > student_avg OR (avg = student_avg AND etdId < studentId);
+
+    RETURN rank;
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 /******************************************************************************************/
 /******************************************************************************************/
