@@ -1,0 +1,2740 @@
+[
+    {
+        "anneeid": 1,
+        "annelib": "2020-2021",
+        "semesters": [
+            {
+                "semid": 1,
+                "etd": [
+                    {
+                        "etdid": 8860,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8860",
+                        "etdprenom": "Petu8860",
+                        "etdgroupetp": "B1",
+                        "etdgroupetd": "B",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0.16",
+                        "etdabs": 3,
+                        "etdbac": "0031",
+                        "rank": 1,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "16.28"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "16.2"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "15"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "12"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "19.25"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "20"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "15.19"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "17.13"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "18.47"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "13.62"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "17.63"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "17.2"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "17"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "16.7"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "11.25"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "15.8"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "14"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8810,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8810",
+                        "etdprenom": "Petu8810",
+                        "etdgroupetp": "D2",
+                        "etdgroupetd": "D",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0",
+                        "etdabs": 1,
+                        "etdbac": "NBGE",
+                        "rank": 2,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "17.41"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "17.87"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "18"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "15"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "17.29"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "13.98"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "15.7"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "12.5"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "13"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "14.5"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "16.19"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "8.6"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "13.5"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "18.1"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "15.94"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "13.2"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "7"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8918,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8918",
+                        "etdprenom": "Petu8918",
+                        "etdgroupetp": "A1",
+                        "etdgroupetd": "A",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0.32",
+                        "etdabs": 3,
+                        "etdbac": "NBGE",
+                        "rank": 4,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "18.74"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "19.12"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "18.5"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "17"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "11.5"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "11.12"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "15.61"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "15.57"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "19.27"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "11.5"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "15.43"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "11.9"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "13"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "13.2"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "6.5"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "15.1"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "13"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8811,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8811",
+                        "etdprenom": "Petu8811",
+                        "etdgroupetp": "A1",
+                        "etdgroupetd": "A",
+                        "etdcursus": "S1 S2 S3 S4",
+                        "etdbonus": "0",
+                        "etdabs": 2,
+                        "etdbac": "NBGE",
+                        "rank": 3,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "18.85"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "17.18"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "9.25"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "17"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "13.45"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "15.62"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "19.72"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "10.5"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "18.6"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "12.88"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "16.88"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "13.8"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "14.75"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "12.9"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "6"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "15"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "10.5"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8884,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8884",
+                        "etdprenom": "Petu8884",
+                        "etdgroupetp": "C2",
+                        "etdgroupetd": "C",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0",
+                        "etdabs": 0,
+                        "etdbac": "S",
+                        "rank": 5,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "15.31"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "16.62"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "17.5"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "16"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "16.75"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "17.3"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "13.7"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "11.5"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "14.33"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "9.93"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "15.97"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "13.7"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "13.5"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "18.5"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "9.69"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "11.2"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "11.12"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "semid": 2,
+                "etd": []
+            },
+            {
+                "semid": 3,
+                "etd": []
+            },
+            {
+                "semid": 4,
+                "etd": []
+            },
+            {
+                "semid": 5,
+                "etd": []
+            },
+            {
+                "semid": 6,
+                "etd": []
+            }
+        ]
+    },
+    {
+        "anneeid": 2,
+        "annelib": "2020-2021",
+        "semesters": [
+            {
+                "semid": 1,
+                "etd": [
+                    {
+                        "etdid": 8860,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8860",
+                        "etdprenom": "Petu8860",
+                        "etdgroupetp": "B1",
+                        "etdgroupetd": "B",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0.16",
+                        "etdabs": 3,
+                        "etdbac": "0031",
+                        "rank": 1,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "16.28"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "16.2"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "15"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "12"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "19.25"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "20"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "15.19"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "17.13"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "18.47"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "13.62"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "17.63"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "17.2"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "17"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "16.7"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "11.25"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "15.8"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "14"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4848",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.885",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.0616",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.6515625",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.858333333333333",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.0106",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8810,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8810",
+                        "etdprenom": "Petu8810",
+                        "etdgroupetp": "D2",
+                        "etdgroupetd": "D",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0",
+                        "etdabs": 1,
+                        "etdbac": "NBGE",
+                        "rank": 2,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "17.41"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "17.87"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "18"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "15"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "17.29"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "13.98"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "15.7"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "12.5"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "13"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "14.5"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "16.19"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "8.6"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "13.5"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "18.1"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "15.94"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "13.2"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "7"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.5182",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.028",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.895999999999999",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.106562499999999",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.57041666666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.742899999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8918,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8918",
+                        "etdprenom": "Petu8918",
+                        "etdgroupetp": "A1",
+                        "etdgroupetd": "A",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0.32",
+                        "etdabs": 3,
+                        "etdbac": "NBGE",
+                        "rank": 4,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "18.74"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "19.12"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "18.5"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "17"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "11.5"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "11.12"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "15.61"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "15.57"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "19.27"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "11.5"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "15.43"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "11.9"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "13"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "13.2"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "6.5"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "15.1"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "13"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.06",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.24",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "16.28",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.475",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "11.232916666666666",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.027599999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8811,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8811",
+                        "etdprenom": "Petu8811",
+                        "etdgroupetp": "A1",
+                        "etdgroupetd": "A",
+                        "etdcursus": "S1 S2 S3 S4",
+                        "etdbonus": "0",
+                        "etdabs": 2,
+                        "etdbac": "NBGE",
+                        "rank": 3,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "18.85"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "17.18"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "9.25"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "17"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "13.45"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "15.62"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "19.72"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "10.5"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "18.6"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "12.88"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "16.88"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "13.8"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "14.75"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "12.9"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "6"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "15"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "10.5"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "17.4004",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "18.011999999999997",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.712399999999997",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.2953125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "10.911354166666667",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "12.185599999999999",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    },
+                    {
+                        "etdid": 8884,
+                        "etdciv": "M.",
+                        "etdnom": "Netu8884",
+                        "etdprenom": "Petu8884",
+                        "etdgroupetp": "C2",
+                        "etdgroupetd": "C",
+                        "etdcursus": "S1 S2 S3 S4 S5 S6",
+                        "etdbonus": "0",
+                        "etdabs": 0,
+                        "etdbac": "S",
+                        "rank": 5,
+                        "modules": [
+                            {
+                                "modId": "R101",
+                                "modLib": "Initiation au d\u00e9veloppement",
+                                "noteVal": "15.31"
+                            },
+                            {
+                                "modId": "R102",
+                                "modLib": "D\u00e9veloppement d'interfaces web",
+                                "noteVal": "16.62"
+                            },
+                            {
+                                "modId": "R110",
+                                "modLib": "Anglais",
+                                "noteVal": "17.5"
+                            },
+                            {
+                                "modId": "S101",
+                                "modLib": "Impl\u00e9mentation d'un besoin client",
+                                "noteVal": "16"
+                            },
+                            {
+                                "modId": "R106",
+                                "modLib": "Math\u00e9matiques discr\u00e8tes",
+                                "noteVal": "16.75"
+                            },
+                            {
+                                "modId": "R107",
+                                "modLib": "Outils math\u00e9matiques fondamentaux",
+                                "noteVal": "17.3"
+                            },
+                            {
+                                "modId": "S102",
+                                "modLib": "Comparaison d'approches algorithmiques",
+                                "noteVal": "13.7"
+                            },
+                            {
+                                "modId": "R103",
+                                "modLib": "Introduction \u00e0 l'architecture des ordinateurs",
+                                "noteVal": "11.5"
+                            },
+                            {
+                                "modId": "R104",
+                                "modLib": "Introduction aux syst\u00e8mes d'exploitation",
+                                "noteVal": "14.33"
+                            },
+                            {
+                                "modId": "R111",
+                                "modLib": "Bases de la communication",
+                                "noteVal": "9.93"
+                            },
+                            {
+                                "modId": "S103",
+                                "modLib": "Installation d\u2019un poste pour le d\u00e9veloppement",
+                                "noteVal": "15.97"
+                            },
+                            {
+                                "modId": "R109",
+                                "modLib": "Introduction \u00e0 l'\u00e9conomie durable et num\u00e9rique",
+                                "noteVal": "13.7"
+                            },
+                            {
+                                "modId": "S104",
+                                "modLib": "Cr\u00e9ation d\u2019une base de donn\u00e9es",
+                                "noteVal": "13.5"
+                            },
+                            {
+                                "modId": "R108",
+                                "modLib": "Introduction \u00e0 la gestion des organisations",
+                                "noteVal": "18.5"
+                            },
+                            {
+                                "modId": "S105",
+                                "modLib": "Recueil de besoins",
+                                "noteVal": "9.69"
+                            },
+                            {
+                                "modId": "R112",
+                                "modLib": "Projet professionnel et personnel",
+                                "noteVal": "11.2"
+                            },
+                            {
+                                "modId": "S106",
+                                "modLib": "D\u00e9couverte de l'environnement \u00e9conomique et \u00e9cologique",
+                                "noteVal": "11.12"
+                            }
+                        ],
+                        "competences": [
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.8222",
+                                "compId": 11,
+                                "compLib": "UE 1. R\u00e9aliser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "15.208",
+                                "compId": 12,
+                                "compLib": "UE 2. Optimiser",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.448400000000001",
+                                "compId": 13,
+                                "compLib": "UE 3.  Administrer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "14.4328125",
+                                "compId": 14,
+                                "compLib": "UE 4. G\u00e9rer",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.069374999999999",
+                                "compId": 15,
+                                "compLib": "UE 5. Conduire",
+                                "admi": "ADM"
+                            },
+                            {
+                                "moySem": "13.163999999999998",
+                                "compId": 16,
+                                "compLib": "UE 6. Collaborer",
+                                "admi": "ADM"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "semid": 2,
+                "etd": []
+            },
+            {
+                "semid": 3,
+                "etd": []
+            },
+            {
+                "semid": 4,
+                "etd": []
+            },
+            {
+                "semid": 5,
+                "etd": []
+            },
+            {
+                "semid": 6,
+                "etd": []
+            }
+        ]
+    }
+]

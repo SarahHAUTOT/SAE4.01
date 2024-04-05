@@ -1,0 +1,54 @@
+/* Reset des styles par défaut */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+
+/* Styles pour le header */
+header {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+}
+
+header .logo img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+header .user {
+    padding-right: 10%;
+    text-align: right;
+}
+
+/* Styles pour le footer */
+footer {
+    background-color: black;
+    color: white;
+}
+
+footer .logo {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .logo img {
+    width: 125px;
+    margin: 10px;
+}
+
+main {
+    color: black;
+    flex-grow: 1;
+}

@@ -1,0 +1,60 @@
+/* Styles pour le contenu principal */
+main {
+    color: black;
+    flex-grow: 1;
+}
+
+.container {
+
+    border-radius: 10px;
+    background-color: #6b027760;
+    width: 550px;
+    padding: 30px;
+    margin: auto;
+	text-align: center;
+    
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+h2{
+	margin: 10px;
+}
+
+.validateButtonStyle {
+    margin-top: 30px;
+    margin-bottom:0px;
+    display: inline-block;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: #6b027750;
+  }
+.validateButtonStyle:hover {
+    outline: none;
+    background-color: #6b02777f;
+}
+
+.urgent{
+	color: red;
+	font-weight: bold;
+}
+.gridRessource {
+    height: auto;
+    margin:auto;
+    font-weight: bold;
+    font-size: large;
+    text-align: right;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    grid-row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
