@@ -26,7 +26,6 @@ function contenu()
 {
 	$year     = $_SESSION['annelib'];
 
-	var_dump($year);
 	echo '
 	<div>
 		<h1>Commission d\'études</h1>

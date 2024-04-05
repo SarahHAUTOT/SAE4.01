@@ -26,21 +26,21 @@ if ($_SESSION['role'] != 2) {
 
 function contenu()
 {
-	$year       = $_SESSION['anneLib'];
-	$competence = $_GET['sem'];
-	echo '
+    $year       = $_SESSION['anneLib'];
+    $competence = $_GET['sem'];
+    echo '
 	<div>
 		<h1>Commission d\'études</h1>
 		<div class="container">
-		<h2>Année '. $year .' / Semestre '.$_SESSION['semCom'].'</h2>';
+		<h2>Année ' . $year . ' / Semestre ' . $_SESSION['semCom'] . '</h2>';
 
-		
-	$tableHTML = '';
 
-	generationCommissionComp($_SESSION['year'], $_SESSION['semCom'], $competence);
-		
-		
-		echo'
+    $tableHTML = '';
+
+    generationCommissionComp($_SESSION['year'], $_SESSION['semCom'], $competence);
+
+
+    echo '
 
 				<div class="gridRessource">
 					<label id="modification">*Modification non sauvegardée*</label>
@@ -57,11 +57,11 @@ function contenu()
 function generationCommissionComp($anneeId, $semestre, $competence)
 {
 
-	$table = '<table class="block" id="tableCom">';
+    $table = '<table class="block" id="tableCom">';
 
 
     $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
-    
+
     $countModule = 0;
     $idModule = [];
     $tHeadElem = "<thead></thead>";
@@ -72,17 +72,17 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     $headers = ["NIP", "Nom", "Prénom", 'Moy', "TP", "TD"];
 
     foreach ($headers as $headerText)
-        $firstRow .= "<th rowspan='2'>".$headerText."</th>";
+        $firstRow .= "<th rowspan='2'>" . $headerText . "</th>";
 
 
 
 
     $query = "SELECT modLib, m.modId FROM CompMod cm JOIN Competence c on c.compId=cm.compId JOIN Module m ON m.modId = cm.modId 
-    WHERE c.compId = ".$semestre.$competence;
+    WHERE c.compId = " . $semestre . $competence;
     $modules = $db->execQuery($query);
 
 
-    $query = "SELECT compLib FROM Competence WHERE compId = ".$semestre.$competence;
+    $query = "SELECT compLib FROM Competence WHERE compId = " . $semestre . $competence;
     $compLib = $db->execQuery($query);
     $compLib = $compLib[0]['complib'];
 
@@ -102,17 +102,14 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     // }
 
 
-    $countModule =0;
-    foreach ($modules as $module)
-    {
+    $countModule = 0;
+    foreach ($modules as $module) {
         $countModule++;
         $idModule[] = $module['modid'];
     }
 
-    echo $countModule;
-
-    $lienA = "<a href='commission.php'>".$compLib."</a>";
-    $firstRow .= "<th colspan='".$countModule."' rowspan='1'>".$lienA."</th>";
+    $lienA = "<a href='commission.php'>" . $compLib . "</a>";
+    $firstRow .= "<th colspan='" . $countModule . "' rowspan='1'>" . $lienA . "</th>";
 
     // foreach ($compModData as $comp) {
     //     if ($comp['compid'] == $semestre * 10 + $competence) {
@@ -123,9 +120,9 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     // }
 
     foreach ($modules as $module)
-        $row .= "<th>".$module['modlib']."</th>";
+        $row .= "<th>" . $module['modlib'] . "</th>";
 
-    $tHeadElem = "<thead>".$firstRow."".$row."</thead>";
+    $tHeadElem = "<thead>" . $firstRow . "" . $row . "</thead>";
     $table .= $tHeadElem;
     $table .= $tBodyElem;
 
@@ -163,45 +160,43 @@ function generationCommissionComp($anneeId, $semestre, $competence)
     //         }
     //     }
     // }
-	
+
     $query = 'SELECT distinct(e.etdId) as "etdid", etdNom as "nom", etdPrenom as "prenom", etdGroupeTP as "tp", etdGroupeTD as "td" 
 			  FROM  Etudiant e JOIN AdmComp  admc ON e.etdId=admc.etdId 
 			  JOIN  Competence c ON c.compId=admc.compId 
-			  WHERE anneeId = '.$anneeId.' AND semId = '.$semestre;
-	$students  = $db->execQuery($query);
+			  WHERE anneeId = ' . $anneeId . ' AND semId = ' . $semestre;
+    $students  = $db->execQuery($query);
 
-	foreach($students as $student)
-	{
-		$row = "<tr>";
-		$row .= "<td>". $student['etdid'] ."</td>";
-		$row .= "<td>". $student['nom'] ."</td>";
-		$row .= "<td>". $student['prenom'] ."</td>";
-
+    foreach ($students as $student) {
+        $row = "<tr>";
+        $row .= "<td>" . $student['etdid'] . "</td>";
+        $row .= "<td>" . $student['nom'] . "</td>";
+        $row .= "<td>" . $student['prenom'] . "</td>";
 
 
-		// Recup moyenne Semestre
-        $query = "SELECT * FROM getSemMoy(".$semestre.", ".$student['etdid'].", ".$anneeId.")";
+
+        // Recup moyenne Semestre
+        $query = "SELECT * FROM getSemMoy(" . $semestre . ", " . $student['etdid'] . ", " . $anneeId . ")";
         $moy = $db->execQuery($query);
 
-        $row .= "<td>". round($moy[0]['getsemmoy'],2) ."</td>";
+        $row .= "<td>" . round($moy[0]['getsemmoy'], 2) . "</td>";
 
-		$row .= "<td>". $student['tp'] ."</td>";
-		$row .= "<td>". $student['td'] ."</td>";
+        $row .= "<td>" . $student['tp'] . "</td>";
+        $row .= "<td>" . $student['td'] . "</td>";
 
 
-        foreach($modules as $module)
-        {
+        foreach ($modules as $module) {
 
-            $query = "SELECT noteVal FROM Moyenne m JOIN CompMod cm ON m.modid = cm.modid WHERE compId = ".$semestre.$competence." AND cm.modId = '".$module['modid'] ."'";
+            $query = "SELECT noteVal FROM Moyenne m JOIN CompMod cm ON m.modid = cm.modid WHERE compId = " . $semestre . $competence . " AND cm.modId = '" . $module['modid'] . "'";
             $noteVal = $db->execQuery($query);
-            
-            $row .= "<td>". $noteVal[0]['noteval'] ."</td>";
-        }
-        
 
-		$table .= $row . "</tr> \n";
-	}
-	echo $table . '</table>';
+            $row .= "<td>" . $noteVal[0]['noteval'] . "</td>";
+        }
+
+
+        $table .= $row . "</tr> \n";
+    }
+    echo $table . '</table>';
 }
 
 head('css/commissionEtFicheAvis.css');
@@ -209,5 +204,3 @@ head('css/commissionEtFicheAvis.css');
 contenu();
 
 foot();
-
-?>
