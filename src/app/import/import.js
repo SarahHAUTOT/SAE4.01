@@ -76,7 +76,7 @@ function checkYearFormat(annee) {
     let deuxiemeAnnee = parseInt(match[2]); // Deuxième année
 
     // Vérification si l'année est vide ou ne correspond pas au format attendu
-    if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 1) {
+    if (annee === "" || isNaN(premiereAnnee) || isNaN(deuxiemeAnnee) || deuxiemeAnnee !== premiereAnnee + 3) {
         return false;
     } else {
         return true;
@@ -185,7 +185,7 @@ function decomposeMoyennes(event)
 			let key = compDetails[i];
 
 			let isBonus = key.startsWith('Bonus');
-			let isComp = !isNaN(parseInt(key.replace('BIN', '')));
+			let isComp = !isNaN(parseInt(key.replace('BIN', '').replace('A','')));
 			let isMod = !isComp && !isBonus;
 
 			if (isBonus)
@@ -194,12 +194,14 @@ function decomposeMoyennes(event)
 				continue;
 			}
 
-			if (isMod)
+			if (isMod && compDetails[i] !== "Just.")
 			{
 				let lib = compDetails[i];
-				let id  = compDetails[i].replace('BIN', ''); // getting rid of the 'BIN'
+				let id  = compDetails[i].replace('BIN', '').replace('A',''); // getting rid of the 'BIN' and fucking A
 				let mod = { id: id, lib: lib };
 				modules.push(mod);
+
+				console.log(compDetails[i].replace('BIN', '').replace('A',''));
 			}
 		}
 

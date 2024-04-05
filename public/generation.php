@@ -88,10 +88,10 @@ if (isset($_POST['action'])) {
                     global $annee;
 
                     $_SESSION['year'    ] = $_POST['yearCom'];
-                    $_SESSION['anneLib'] = $annee[ $_POST['yearCom'] -1]['annelib'];
+                    $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
                     $_SESSION['semCom'  ] = $_POST['semCom'];
 
-                    // generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
+                    if ($_SESSION['semCom'  ] >= 2) generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
                     header("Location: commission.php");
                 }
                 else
@@ -109,12 +109,13 @@ if (isset($_POST['action'])) {
 
         case 'jury':
 
-            if (isset($_POST['yearCom']) && !empty($_POST['yearCom'])) {
+            if (isset($_POST['yearCom'])) {
 
-                if (isset($_POST['semCom']) && !empty($_POST['semCom']))
+                if (isset($_POST['semCom']))
                 {
                     $_SESSION['year'  ] = $_POST['yearPE'];
                     $_SESSION['semCom'] = $_POST['semCom'];
+                    echo $_SESSION['semCom'];
                     // header("Location: commission.php");
                 }
                 else

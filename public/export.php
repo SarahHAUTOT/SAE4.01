@@ -112,8 +112,8 @@ function contenu()
 				tableauExports.innerHTML = `
 				<thead>
 					<tr>
-						<th>année</th>
-						<th>semestre</th>
+						<th>Année</th>
+						<th>Semestre</th>
 						<th>Téléchargement</th>
 					</tr>
 				</thead>

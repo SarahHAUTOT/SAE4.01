@@ -8,7 +8,6 @@ include '../src/app/DB.inc.php';
 session_start();
 
 $db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
-var_dump($_SESSION['year']);
 $year = $_SESSION['year'];
 $query = "SELECT DISTINCT COUNT(e.etdid) 
 		  FROM Etudiant e JOIN admcomp admc ON e.etdid=admc.etdid 
@@ -22,7 +21,7 @@ if ($nbStudents == 0) header("Location : generationPoursuite.php");
 
 
 // Vérifier si la session est ouverte
-if (!isset($_SESSION['role'])) {
+if (!isset($_SESSION['role'])) { 
 	// Rediriger vers la page de connexion si la session n'est pas ouverte
 	header('Location: connexion.php');
 	exit;
@@ -68,7 +67,8 @@ else
 
 function contenue($etd, $suivant = true)
 {
-	var_dump($etd);
+	$year = $_SESSION['year'];
+
 	echo '
 	<div>
 	<form action="squeletteFicheAvis.php" method="post">
@@ -119,67 +119,103 @@ function contenue($etd, $suivant = true)
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th>UE1-Réaliser des applications</th>
-							<td>'.$etd['BUT 1']['UE 1']['rank'].'</td>
-							<td>'.$etd['BUT 1']['UE 1']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['UE 1']['rank'].'</td>
-							<td>'.$etd['BUT 2']['UE 1']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE2-Optimiser des applications</th>
-							<td>'.$etd['BUT 1']['UE 2']['rank'].'</td>
-							<td>'.$etd['BUT 1']['UE 2']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['UE 2']['rank'].'</td>
-							<td>'.$etd['BUT 2']['UE 2']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE3-Administrer des systèmes</th>
-							<td>'.$etd['BUT 1']['UE 3']['rank'].'</td>
-							<td>'.$etd['BUT 1']['UE 3']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['UE 3']['rank'].'</td>
-							<td>'.$etd['BUT 2']['UE 3']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE4-Gérer des données</th>
-							<td>'.$etd['BUT 1']['UE 4']['rank'].'</td>
-							<td>'.$etd['BUT 1']['UE 4']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['UE 4']['rank'].'</td>
-							<td>'.$etd['BUT 2']['UE 4']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE5-Conduire des projets</th>
-							<td>'.$etd['BUT 1']['UE 5']['rank'].'</td>
-							<td>'.$etd['BUT 1']['UE 5']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['UE 5']['rank'].'</td>
-							<td>'.$etd['BUT 2']['UE 5']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>UE6-Collaborer</th>
-							<td>'.$etd['BUT 1']['UE 6']['rank'].'</td>
-							<td>'.$etd['BUT 1']['UE 6']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['UE 6']['rank'].'</td>
-							<td>'.$etd['BUT 2']['UE 6']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>Maths</th>
-							<td>'.$etd['BUT 1']['Maths']['rank'].'</td>
-							<td>'.$etd['BUT 1']['Maths']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['Maths']['rank'].'</td>
-							<td>'.$etd['BUT 2']['Maths']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>Anglais</th>
-							<td>'.$etd['BUT 1']['Anglais']['rank'].'</td>
-							<td>'.$etd['BUT 1']['Anglais']['moy' ].'</td>
-							<td>'.$etd['BUT 2']['Anglais']['rank'].'</td>
-							<td>'.$etd['BUT 2']['Anglais']['moy'].'</td>
-						</tr>
-						<tr>
-							<th>Nombre d\'absences injustifiées</th>
-							<td colspan="2"></td>
-							<td colspan="2"></td>
-						</tr>
+						<tr>';
+
+	
+
+	$db = DB::getInstance("hs220880", "hs220880", "SAHAU2004");
+
+	$query = "SELECT complib FROM Competence WHERE semId = 1";
+	$competencesNom = $db->execQuery($query);
+
+
+	//Pour les 6 compétences
+	for ($i = 0; $i < count($competencesNom); $i++)
+	{
+
+
+		echo '<th>'. $competencesNom[$i]['complib'].'</th>';
+		$rank1 = $db->execQuery("SELECT * FROM getRankSem(1,". $etd[0]['etdid'] . ",". $year . ')');
+		$rank2 = $db->execQuery("SELECT * FROM getRankSem(2,". $etd[0]['etdid'] . ",". $year . ')');
+
+		$moy1 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."1,". $etd[0]['etdid'] . ",". $year . ')');
+		$moy2 = $db->execQuery("SELECT * FROM getCompMoy(".($i+1)."2,". $etd[0]['etdid'] . ",". $year . ')');
+
+
+		echo "SELECT * FROM getCompMoy(".($i+1)."2,". $etd[0]['etdid'] . ",". $year . ')';
+
+		echo '
+		<td>'.$rank1[0]['getranksem'].'</td>
+		<td>'.$moy1 [0]['getcompmoy'].'</td>
+		<td>'.$rank2[0]['getranksem'].'</td>
+		<td>'.$moy2 [0]['getcompmoy'].'</td>';
+
+		var_dump($moy1);
+
+
+		echo '</tr><tr>';
+		
+	}
+
+
+	// echo '
+	// 					</tr>
+	// 					<tr>
+	// 						<th>UE2-Optimiser des applications</th>
+	// 						<td>'.$etd['BUT 1']['UE 2']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['UE 2']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 2']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 2']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>UE3-Administrer des systèmes</th>
+	// 						<td>'.$etd['BUT 1']['UE 3']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['UE 3']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 3']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 3']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>UE4-Gérer des données</th>
+	// 						<td>'.$etd['BUT 1']['UE 4']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['UE 4']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 4']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 4']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>UE5-Conduire des projets</th>
+	// 						<td>'.$etd['BUT 1']['UE 5']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['UE 5']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 5']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 5']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>UE6-Collaborer</th>
+	// 						<td>'.$etd['BUT 1']['UE 6']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['UE 6']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 6']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['UE 6']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>Maths</th>
+	// 						<td>'.$etd['BUT 1']['Maths']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['Maths']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['Maths']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['Maths']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>Anglais</th>
+	// 						<td>'.$etd['BUT 1']['Anglais']['rank'].'</td>
+	// 						<td>'.$etd['BUT 1']['Anglais']['moy' ].'</td>
+	// 						<td>'.$etd['BUT 2']['Anglais']['rank'].'</td>
+	// 						<td>'.$etd['BUT 2']['Anglais']['moy'].'</td>
+	// 					</tr>
+	// 					<tr>
+	// 						<th>Nombre d\'absences injustifiées</th>
+	// 						<td colspan="2"></td>
+	// 						<td colspan="2"></td>
+	// 					</tr>
+
+	echo '
 					</tbody>
 				</table>
 				<table>
