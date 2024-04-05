@@ -124,25 +124,7 @@ if (isset($_POST['action'])) {
 
                 if (isset($_POST['semCom']))
                 {
-
-                    $query = "SELECT DISTINCT(semId)
-                            FROM Competence c JOIN CompMod cm ON c.compId JOIN Moyenne m ON m.modId = cm.modId WHERE annee = ". $_POST['yearCom'] . " AND semId = " . $_POST['yearCom'];
-                    $sems = $db->execQuery($query);
-
-
-                    if ($sems->rowCount() == 0)
-                    {
-                        alert("Pas de donnée");
-                    }
-                    else
-                    {
-                        $_SESSION['year'    ] = $_POST['yearCom'];
-                        $_SESSION['anneLib' ] = $annee[ $_POST['yearCom'] -1]['annelib'];
-                        $_SESSION['semCom'  ] = $_POST['semCom'];
-
-                        generateCSV(intval($_POST['yearCom']), 'Commission', intval($_SESSION['semCom']));
-                        // header("Location: export.php");
-                    }
+                    // TODO
                 }
                 else
                 {
